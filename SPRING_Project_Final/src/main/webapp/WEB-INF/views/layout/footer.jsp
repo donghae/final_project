@@ -99,10 +99,17 @@
 				</div>
 				
 			<div id="div_3">
+<<<<<<< HEAD
 			<a href="#"><img id="img1" src="../images/footerimage/5af2d4c8c7437.png"></a>
 			<a href="#"><img id="img1" src="../images/footerimage/insta.png"></a>
 			<a href="#"><img id="img1" src="../images/footerimage/444.PNG"></a>
 			<a href="#"><img id="img1" src="../images/footerimage/555.PNG"></a>
+=======
+			<a href="#"><img id="img1" src="${path}resources/images/common_img/icons/footerimage/5af2d4c8c7437.png"></a>
+			<a href="#"><img id="img1" src="${path}resources/images/common_img/icons/footerimage/insta.png"></a>
+			<a href="#"><img id="img1" src="${path}resources/images/common_img/icons/footerimage/444.PNG"></a>
+			<a href="#"><img id="img1" src="${path}resources/images/common_img/icons/footerimage/555.PNG"></a>
+>>>>>>> branch 'master' of https://github.com/donghae/final_project.git
 			</div>
 			</div>
 			</div>		
