@@ -99,10 +99,10 @@
 				</div>
 				
 			<div id="div_3">
-			<a href="#"><img id="img1" src="${path}resources/images/common_img/footerimage/5af2d4c8c7437.png"></a>
-			<a href="#"><img id="img1" src="${path}resources/images/common_img/footerimage/insta.png"></a>
-			<a href="#"><img id="img1" src="${path}resources/images/common_img/footerimage/444.PNG"></a>
-			<a href="#"><img id="img1" src="${path}resources/images/common_img/footerimage/555.PNG"></a>
+			<a href="#"><img id="img1" src="${path}resources/images/common_img/icons/footerimage/5af2d4c8c7437.png"></a>
+			<a href="#"><img id="img1" src="${path}resources/images/common_img/icons/footerimage/insta.png"></a>
+			<a href="#"><img id="img1" src="${path}resources/images/common_img/icons/footerimage/444.PNG"></a>
+			<a href="#"><img id="img1" src="${path}resources/images/common_img/icons/footerimage/555.PNG"></a>
 			</div>
 			</div>
 			</div>		
