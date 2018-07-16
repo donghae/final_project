@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,19 +35,19 @@
 		<div id="mint_nav">
 			<div class="line_middle">
 				
-				<a href="#"><img class="cateimg" src="../images/font/main/main1_mint.PNG"></a>
-				<a><img class="imgspace" src="../images/font/space_mint.PNG"></a>
-				<a href="#"><img class="cateimg" src="../images/font/main/main2_mint.PNG"></a>
-				<a><img class="imgspace" src="../images/font/space_mint.PNG"></a>
-				<a href="#"><img class="cateimg" src="../images/font/main/main3_mint.PNG" ></a>	
+				<a href="#"><img class="cateimg" src="resources/images/common_img/font/main/main1_mint.PNG"></a>
+				<a><img class="imgspace" src="resources/images/common_img/font/main/space_mint.PNG"></a>
+				<a href="#"><img class="cateimg" src="resources/images/common_img/font/main/main2_mint.PNG"></a>
+				<a><img class="imgspace" src="resources/images/common_img/font/main/space_mint.PNG"></a>
+				<a href="#"><img class="cateimg" src="resources/images/common_img/font/main/main3_mint.PNG" ></a>	
 				
 			    <a href="#">
-			    	<img class="logoimg" src="../images/logo/ARA_mint.PNG">
+			    	<img class="logoimg" src="resources/images/common_img/logo/ARA_mint.PNG">
 			    </a>
 				
-				<a href="#"><img class="cateimg" src="../images/font/main/main4_mint.PNG"></a>
-				<a><img class="imgspace" src="../images/font/space_mint.PNG"></a>
-			    <a href="#"><img class="cateimg" src="../images/font/main/main5_mint.PNG"></a>
+				<a href="#"><img class="cateimg" src="resources/images/common_img/font/main/main4_mint.PNG"></a>
+				<a><img class="imgspace" src="resources/images/common_img/font/main/space_mint.PNG"></a>
+			    <a href="#"><img class="cateimg" src="resources/images/common_img/font/main/main5_mint.PNG"></a>
 			
 			</div>
 		</div>

@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +19,7 @@
 		<div>
 		
 			<div>
-				<img class="img2" src="../images/logo/ARA_navy.PNG">
+				<img class="img2" src="resources/images/common_img/logo/ARA_navy.PNG">
 			</div>
 			<div>			
 			<hr style="width:90%">
@@ -58,7 +61,7 @@
 			</div>
 			
 			<div id="div_1">
-				<img class="img3" src="../images/logo/ARA_full_navy.PNG">
+				<img class="img3" src="resources/images/common_img/logo/ARA_full_navy.PNG">
 				<hr class="hr1">
 				주소:서울특별시 금천구 가산디지털2로 123
 			</div>
@@ -93,7 +96,6 @@
 					<li><a href="#">스포츠응용산업학</a></li>
 					<li><a href="#">체육교육학</a></li>
 				</ul>
-				
 				</div>
 				
 			<div id="div_3">
