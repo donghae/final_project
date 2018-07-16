@@ -1,10 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
+<%@ include file="../setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=divice-width", initial-scale="1">
-<title>부트스트랩</title>
-<link rel="stylesheet" href="../css/footer_css.css"> <!-- 외부스타일시트 -->
 
 </head>
 <body>
@@ -16,7 +18,7 @@
 		<div>
 		
 			<div>
-				<img class="img2" src="../images/logo/ARA_navy.PNG">
+				<img class="img2" src="${path}resources/images/common_img/logo/ARA_navy.PNG">
 			</div>
 			<div>			
 			<hr style="width:90%">
@@ -58,7 +60,7 @@
 			</div>
 			
 			<div id="div_1">
-				<img class="img3" src="../images/logo/ARA_full_navy.PNG">
+				<img class="img3" src="${path}resources/images/common_img/logo/ARA_full_navy.PNG">
 				<hr class="hr1">
 				주소:서울특별시 금천구 가산디지털2로 123
 			</div>
@@ -97,10 +99,10 @@
 				</div>
 				
 			<div id="div_3">
-			<a href="#"><img id="img1" src="../images/footerimage/5af2d4c8c7437.png"></a>
-			<a href="#"><img id="img1" src="../images/footerimage/insta.png"></a>
-			<a href="#"><img id="img1" src="../images/footerimage/444.PNG"></a>
-			<a href="#"><img id="img1" src="../images/footerimage/555.PNG"></a>
+			<a href="#"><img id="img1" src="${path}resources/images/common_img/footerimage/5af2d4c8c7437.png"></a>
+			<a href="#"><img id="img1" src="${path}resources/images/common_img/footerimage/insta.png"></a>
+			<a href="#"><img id="img1" src="${path}resources/images/common_img/footerimage/444.PNG"></a>
+			<a href="#"><img id="img1" src="${path}resources/images/common_img/footerimage/555.PNG"></a>
 			</div>
 			</div>
 			</div>		
