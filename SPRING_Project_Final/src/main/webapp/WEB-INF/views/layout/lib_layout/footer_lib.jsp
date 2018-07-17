@@ -19,7 +19,7 @@
 		
 		
 			<!-- Newsletter -->
-
+	<div class="container">
 			
 			
 			<!-- Footer Content -->
