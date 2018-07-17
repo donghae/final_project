@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=divice-width", initial-scale="1">
-<title>부트스트랩</title>
-<link rel="stylesheet" href="../css/footer_css.css"> <!-- 외부스타일시트 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
-</head>
-<body>
+<link rel="stylesheet" href="resources/css/ara_footer.css"> <!-- 외부스타일시트 -->
 
-	<!-- 추가 -->
-	<!-- 4. 푸터 : 홈페이지의 기타 정보를 보여주는 역할을 수행한다.
-				일반적으로 홈페이지의 가장 아래쪽에 위치하며, 저작권, 개발자, 네비게이션 등을 포함한다
-				 -->
-				 
+
+<!-- 푸터	 --> 			 
 	<footer>
 	<div style="background-color:#001E42;color:#ffffff;">
 		<br>
 		<div>
 		
 			<div>
-				<img class="img2" src="../images/logo/ARA_navy.PNG">
+				<img class="img2" src="resources/images/logo/ARA_navy.PNG">
 			</div>
 			<div>			
 			<hr style="width:90%">
@@ -62,7 +53,7 @@
 			</div>
 			
 			<div id="div_1">
-				<img class="img3" src="../images/logo/ARA_full_navy.PNG">
+				<img class="img3" src="resources/images/logo/ARA_full_navy.PNG">
 				<hr class="hr1">
 				주소:서울특별시 금천구 가산디지털2로 123
 			</div>
@@ -101,14 +92,15 @@
 				</div>
 				
 			<div id="div_3">
-			<a href="#"><img id="img1" src="../images/footerimage/5af2d4c8c7437.png"></a>
-			<a href="#"><img id="img1" src="../images/footerimage/insta.png"></a>
-			<a href="#"><img id="img1" src="../images/footerimage/444.PNG"></a>
-			<a href="#"><img id="img1" src="../images/footerimage/555.PNG"></a>
+			<a href="#"><img id="img1" src="resources/images/sns_img/5af2d4c8c7437.png"></a>
+			<a href="#"><img id="img1" src="resources/images/sns_img/insta.png"></a>
+			<a href="#"><img id="img1" src="resources/images/sns_img/444.PNG"></a>
+			<a href="#"><img id="img1" src="resources/images/sns_img/555.PNG"></a>
 			</div>
 			</div>
 			</div>		
 		</div>
 	</footer>
+	
 </body>
 </html>

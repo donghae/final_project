@@ -4,11 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:set var="path" value="/projectFinal/" />
+<c:set var="path" value="/projectFinal/"/>
 
-
-<link type="text/css" rel="stylesheet" href="${path}resources/css/main_footer.css" />
-<link type="text/css" rel="stylesheet" href="${path}resources/css/main_header.css" />
 
 
 
