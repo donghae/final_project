@@ -17,7 +17,76 @@
 <body>
 <footer class="footer">
 		
-		
+		<div class="container">
+			<div class="hero_boxes">
+		<div class="hero_boxes_inner">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2 hero_box_col">
+						<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+							<img src="resources/images/common_img/icons/book_search.png" class="svg" alt="">
+							<div class="hero_box_content">
+								<h2 class="hero_box_title">책검색</h2>
+							</div>
+						</div>
+						
+					</div>
+					<div class="col-lg-2 hero_box_col">
+						<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+							<img src="resources/images/common_img/icons/books.png" class="svg" alt="">
+							<div class="hero_box_content">
+								<h2 class="hero_box_title">대출</h2>
+								<hr>
+								<h2 class="hero_box_title">연장</h2>
+								<hr>
+								<h2 class="hero_box_title">예약</h2>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-2 hero_box_col">
+						<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+							<img src="resources/images/common_img/icons/lamp.png" class="svg" alt="">
+							<div class="hero_box_content">
+								<h2 class="hero_box_title">좌석</h2>
+								<h2 class="hero_box_title">예약</h2>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-2 hero_box_col">
+						<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+							<img src="resources/images/common_img/icons/manuscript.png" class="svg" alt="">
+							<div class="hero_box_content">
+								<h2 class="hero_box_title">도서</h2>
+								<h2 class="hero_box_title">신청</h2>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2 hero_box_col">
+						<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+							<img src="resources/images/common_img/icons/library.png" class="svg" alt="">
+							<div class="hero_box_content">
+								<h2 class="hero_box_title">시설</h2>
+								<h2 class="hero_box_title">안내</h2>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-2 hero_box_col">
+						<div class="hero_box d-flex flex-row align-items-center justify-content-start">
+							<img src="resources/images/common_img/icons/chat.png" class="svg" alt="">
+							<div class="hero_box_content">
+								<h2 class="hero_box_title">Q&A</h2>
+							</div>
+						</div>
+					</div>
+
+					
+				</div>
+			</div>
+		</div>
+	</div>
 			<!-- Newsletter -->
 
 			

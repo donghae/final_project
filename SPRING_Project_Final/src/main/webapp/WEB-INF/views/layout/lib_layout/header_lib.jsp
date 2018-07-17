@@ -36,7 +36,7 @@
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><center><a href="#">소장자료검색</a></center></li>
+								<li><center><a href="./cate1_1.jsp">소장자료검색</a></center></li>
 								<li><center><a href="#">통합검색</a></center></li>
 							</ul>
 						</li>

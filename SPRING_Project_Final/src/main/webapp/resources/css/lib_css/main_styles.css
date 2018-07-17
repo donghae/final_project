@@ -156,8 +156,8 @@ h6::selection
 	
 }
 hr{
-	color: #C4E8F6;
-	border-color: #C4E8F6;
+	color: #001E42;
+	border-color: #001E42;
 	
 }
 ::-webkit-input-placeholder
@@ -387,7 +387,7 @@ section
 }
 .main_nav_item a:hover
 {
-	color: #C4E8F6;
+	color: #001E42;
 }
 
 /*********************************
@@ -398,7 +398,7 @@ section
 {
 	width: 279px;
 	height: 100%;
-	background: #C4E8F8;
+	background: #001E42;
 }
 .header_side img
 {
@@ -440,7 +440,7 @@ section
 }
 .hamburger_container:hover i
 {
-	color: #C4E8F6;
+	color: #001E42;
 }
 
 /*********************************
@@ -518,7 +518,7 @@ section
 }
 .menu_item a:hover
 {
-	color: #C4E8F6;
+	color: #001E42;
 }
 .menu_close_container
 {
@@ -565,7 +565,7 @@ section
 .menu_close_container:hover .menu_close,
 .menu_close_container:hover .menu_close::after
 {
-	background: #C4E8F6;
+	background: #001E42;
 }
 
 /*********************************
@@ -599,7 +599,7 @@ section
 }
 .menu_social_item a i:hover
 {
-	color: #C4E8F6;
+	color: #001E42;
 }
 .menu_container.active .menu_social_container
 {
@@ -746,7 +746,7 @@ section
 }
 .hero_slider_nav:hover
 {
-	background: #C4E8F6;
+	background: #001E42;
 }
 .hero_slider_nav:hover span
 {
@@ -795,14 +795,18 @@ section
 	display: block;
 	width: 100%;
 	height: 161px;
-	background: #001E42;
+	background: #ffffff;
 	padding-left: 50px;
 	cursor: pointer;
 }
 .hero_box:hover
 {
-	background: #C4E8F6;
-	
+	background: #001E42;
+	border: 2px solid #ffffff;
+}
+.hero_box:hover > .hero_box_content > .hero_box_title
+{	
+	color: #ffffff;
 }
 .hero_box img
 {
@@ -813,7 +817,7 @@ section
 }
 .svg path
 {
-	fill: #C4E8F6;
+	fill: #001E42;
 }
 
 .hero_box svg
@@ -836,7 +840,7 @@ section
 	margin-right:15px;
 	font-size: 15px;
 	font-weight: 500;
-	color: #FFFFFF;
+	color: #001E42;
 	margin-bottom: 7px;
 }
 .hero_box_link
@@ -868,7 +872,7 @@ section
 .section_title h1
 {
 	display: block;
-	color: #1a1a1a;
+	color: #ffffff;
 	font-weight: 500;
 	padding-top: 24px;
 }
@@ -886,7 +890,7 @@ section
 	width: 55px;
 	height: 4px;
 	content: '';
-	background: #C4E8F6;
+	background: #001E42;
 }
 
 /*********************************
@@ -997,7 +1001,7 @@ section
 {
 	width: 67px;
 	height: 67px;
-	background: #C4E8F6;
+	background: #001E42;
 	margin-left: auto;
 }
 .course_price span
@@ -1019,7 +1023,7 @@ section
 .register_section
 {
 	width: 100%;
-	background: #C4E8F6;
+	background: #001E42;
 	padding-top: 156px;
 	padding-bottom: 161px;
 }
@@ -1116,13 +1120,13 @@ input:last-of-type
 .input_field:focus
 {
 	outline: none !important;
-	border: solid 2px #C4E8F6;
+	border: solid 2px #001E42;
 }
 .search_submit_button
 {
 	width: 100%;
 	height: 48px;
-	background: #C4E8F6;
+	background: #001E42;
 	color: #FFFFFF;
 	font-size: 14px;
 	text-transform: uppercase;
@@ -1227,7 +1231,7 @@ input:last-of-type
 .quote
 {
 	font-size: 36px;
-	color: #C4E8F6;
+	color: #001E42;
 }
 .testimonials_text
 {
@@ -1288,7 +1292,7 @@ input:last-of-type
 	width: 16px !important;
 	height: 16px !important;
 	border: none;
-	background: #C4E8F6 !important;
+	background: #001E42 !important;
 }
 
 /*********************************
@@ -1311,14 +1315,14 @@ input:last-of-type
 {
 	width: 131px;
 	height: 131px;
-	border: solid 2px #C4E8F6;
+	border: solid 2px #001E42;
 	margin-bottom: 18px;
 }
 .event_day
 {
 	font-size: 48px;
 	font-weight: 700;
-	color: #C4E8F6;
+	color: #001E42;
 	margin-bottom: 1px;
 	line-height: 1;
 }
@@ -1326,7 +1330,7 @@ input:last-of-type
 {
 	font-size: 16px;
 	font-weight: 700;
-	color: #C4E8F6;
+	color: #001E42;
 }
 .event_name a
 {
@@ -1336,7 +1340,7 @@ input:last-of-type
 }
 .event_name a:hover
 {
-	color: #C4E8F6;
+	color: #001E42;
 }
 .event_location
 {
@@ -1368,12 +1372,12 @@ input:last-of-type
 .footer
 {
 	width: 100%;
-	padding-top: 500px;
-	background: #C4E8F6;
+	padding-top: 600px;
+	background: #001E42;
 }
 .footer .section_title h1
 {
-	color: #1a1a1a;
+	color: #ffffff;
 }
 
 /*********************************
@@ -1399,19 +1403,19 @@ input:last-of-type
 	border: none;
 	padding-left: 27px;
 	font-weight: 500;
-	color: #1a1a1a;
+	color: #ffffff;
 }
 .newsletter_email:focus
 {
-	outline: solid 2px #C4E8F6;
+	outline: solid 2px #001E42;
 }
 .newsletter_submit_btn
 {
 	width: 164px;
 	height: 42px;
 	border: none;
-	background: #001E42;
-	color: #ffffff;
+	background: #C4E8F6;
+	color: #001E42;
 	font-size: 14px;
 	font-weight: 500;
 	cursor: pointer;
@@ -1437,7 +1441,7 @@ input:last-of-type
 }
 .footer_content .logo span
 {
-	color: #001E42;
+	color: #ffffff;
 }
 .footer_about_text
 {
@@ -1450,7 +1454,7 @@ input:last-of-type
 	
 	font-size: 18px;
 	font-weight: bold;
-	color: #001E42;
+	color: #ffffff;
 	padding-top: 15px;
 }
 .footer_column_content
@@ -1464,7 +1468,7 @@ input:last-of-type
 .footer_list_item a
 {
 	font-size: 14px;
-	color: #001E42;
+	color: #ffffff;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -1473,13 +1477,13 @@ input:last-of-type
 }
 .footer_list_item a:hover
 {
-	color: #ffffff;
+	color: #001E42;
 }
 .footer_contact_item
 {
 	font-size: 14px;
 	font-weight: 400;
-	color: #001E42;
+	color: #ffffff;
 	margin-bottom: 22px;
 }
 .footer_contact_item:last-child
@@ -1510,11 +1514,11 @@ input:last-of-type
 }
 .footer_social .menu_social_item a i
 {
-	color: #001E42;
+	color: #ffffff;
 }
 .footer_social .menu_social_item a i:hover
 {
-	color: #ffffff;
+	color: #001E42;
 }
 .footer_social .menu_social_item:last-child
 {
