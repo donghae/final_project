@@ -20,39 +20,16 @@ header, section, article, footer {
 }
 
 #div_a{
+	margin-top:-1%;
 	display:inline-block;
 	width: 20%;
 	height: 20%;
 }
-#div_b{
-	display:inline-block;
-	width: 20%;
-	height: 20%;
-}
-#div_c{
-	display:inline-block;
-	width: 20%;
-	height: 20%;;
-}
-#div_d{
-	display:inline-block;
-	width: 20%;
-	height: 20%;
-}
-#div_e{
-	display:inline-block;
-	width: 20%;
-	height: 20%;
-}
-#div_f{
-	display:inline-block;
-	width: 20%;
-	height: 20%;
-}
+
 #div_1{
 	position:absolute;
 	margin-left: 53%;
-	margin-top:-1%
+	margin-top:-5%
 }
 #div_2{
 	display:inline-block;
@@ -62,9 +39,10 @@ header, section, article, footer {
 #div_3{
 	position:absolute;
 	margin-left:52%;
-	margin-top: -3%;
+	margin-top: -1%;
 }
 #div_0{
+	display: flex;
 	margin-left:4%;
 	padding-bottom: 2%;
 	width:80%;
