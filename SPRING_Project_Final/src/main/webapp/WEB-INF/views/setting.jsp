@@ -7,7 +7,7 @@
 <c:set var="path" value="/projectFinal/"/>
 
 
-
+<link rel="stylesheet" href="resources/css/ara_section.css">
 
 
 
