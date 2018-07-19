@@ -6,14 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Course</title>
-
+<link rel="stylesheet" href="resources/css/box_mon.css"> 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
 <div class="super_container">
 
-	<%@include file="header_lib.jsp" %>
+	<%@include file="../layout/header_lib.jsp" %>
 	
 	<!-- Menu -->
 	<!-- <div class="menu_container menu_mm">
@@ -64,7 +64,7 @@
 				
 				<!-- Hero Slide -->
 				<div class="hero_slide">
-					<div class="hero_slide_background" style="background-image:url(resources/images/lib_img/slider_background.jpg)"></div>
+					<div class="hero_slide_background" style="background-image:url(resources/boot_library/img/slider_background.jpg)"></div>
 					<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 						<div class="hero_slide_content text-center">
 							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Leading the Way to the <span>Future</span></h1>
@@ -74,7 +74,7 @@
 				
 				<!-- Hero Slide -->
 				<div class="hero_slide">
-					<div class="hero_slide_background" style="background-image:url(resources/images/lib_img/slider_background.jpg)"></div>
+					<div class="hero_slide_background" style="background-image:url(resources/boot_library/img/slider_background.jpg)"></div>
 					<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 						<div class="hero_slide_content text-center">
 							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Leading the Way to the <span>Future</span></h1>
@@ -85,7 +85,7 @@
 				
 				<!-- Hero Slide -->
 				<div class="hero_slide">
-					<div class="hero_slide_background" style="background-image:url(resources/images/lib_img/slider_background.jpg)"></div>
+					<div class="hero_slide_background" style="background-image:url(resources/boot_library/img/slider_background.jpg)"></div>
 					<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 						<div class="hero_slide_content text-center">
 							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">Leading the Way to the <span>Future</span></h1>
@@ -98,31 +98,9 @@
 			<div class="hero_slider_left hero_slider_nav trans_200"><span class="trans_200">prev</span></div>
 			<div class="hero_slider_right hero_slider_nav trans_200"><span class="trans_200">next</span></div>
 		</div>
-		<div class="newsletter">
-				<div class="row">
-					<div class="col">
-						<div class="section_title text-center">
-							<h1>소장자료검색</h1>
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col text-center">
-						<div class="newsletter_form_container mx-auto">
-							<form action="post">
-								<div class="newsletter_form d-flex flex-md-row flex-column flex-xs-column align-items-center justify-content-center">
-									<input id="newsletter_email" class="newsletter_email" type="text" placeholder="search" required="required" data-error="Valid email is required.">
-									<button id="newsletter_submit" type="submit" class="newsletter_submit_btn trans_300" value="Submit">검색</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-
-			</div>
+		
 	</div>
-				<h1>자료검색할부분</h1>
+	
 	
 	<!-- Popular -->
 <!-- 
@@ -495,8 +473,8 @@
 	</div>
  -->
  	
-	<%@include file="footer_lib_main.jsp" %>
-
+	<%@include file="../layout/footer_lib_main.jsp" %>
+	<%@include file="../layout/footer_lib.jsp" %>
 </div>
 
 

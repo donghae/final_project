@@ -34,59 +34,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					
-					<!-- footer2 Column - About -->
-					<div class="col-lg-3 footer2_col">
-						<div class="footer2_column_title">자료검색</div>
-						<div class="footer2_column_content">
-							<ul>
-								<li class="footer2_list_item"><a href="#">소장자료검색</a></li>
-								<li class="footer2_list_item"><a href="#">통합검색</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<!-- footer2 Column - Menu -->
-
-					<div class="col-lg-3 footer2_col">
-						<div class="footer2_column_title">도서관 서비스</div>
-						<div class="footer2_column_content">
-							<ul>
-								<li class="footer2_list_item"><a href="#">좌석현황</a></li>
-								<li class="footer2_list_item"><a href="#">좌석예약</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<!-- footer2 Column - Usefull Links -->
-
-					<div class="col-lg-3 footer2_col">
-						<div class="footer2_column_title">도서관 소개</div>
-						<div class="footer2_column_content">
-							<ul>
-								<li class="footer2_list_item"><a href="#">개요</a></li>
-								<li class="footer2_list_item"><a href="#">연혁</a></li>
-								<li class="footer2_list_item"><a href="#">현황</a></li>
-								<li class="footer2_list_item"><a href="#">찾아오시는 길</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<!-- footer2 Column - Contact -->
-
-					<div class="col-lg-3 footer2_col">
-						<div class="footer2_column_title">마이라이브러리</div>
-						<div class="footer2_column_content">
-							<ul>
-								<li class="footer2_list_item"><a href="#">대출현황 / 대출기록</a></li>
-								<li class="footer2_list_item"><a href="#">도서 예약 현황</a></li>
-								<li class="footer2_list_item"><a href="#">희망도서 신청 현황</a></li>
-							</ul>
-						</div>
-					</div>
-
-				</div>
+				
 			</div>
 
 			<!-- footer2 Copyright -->

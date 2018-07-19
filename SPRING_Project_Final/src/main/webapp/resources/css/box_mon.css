@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+* {
+	color:#001E42;
+}
+body{
+	margin:0px;
+	padding:0px;
+}
+section{
+	margin:0px;
+	padding:0px;	
+}
+article {
+	width:100%;
+	margin:0px;
+	padding:50px 0px;
+}
+#header_fill {
+	width:100%;
+	margin:0px;
+	padding:100px 0px;
+}
+.back_mint {		
+	background-color:#C4E8F6;
+}
+.back_white {	
+	background-color:#fff;	
+}
+.back_beige {
+	background-color:#FDF8F5;
+}
+
+/* 섹션안의 박스 */
+.content {
+	width:90%;
+	margin:50px auto 30px;
+	padding:0px auto;
+}
+/* div안의 버튼 등을 가운데 정렬 */
+.content>.center {
+	margin:0 auto;
+	text-align:center;
+	
+}
+
+
+
+
+
+/* 
+셀렉트박스, 인풋박스
+.hei {
+	height:40px;
+	border-style:solid;
+	border-color:#ebebeb;
+	border-width:1px;
+	border-radius:4px;
+}
+
+버튼
+.btn_navy {
+	height:40px;
+	padding:0px 30px;
+	background-color:#001E42;
+	text-weight:bold;
+	border-style:none;
+	border-radius:125px;
+	border-width:0.5px;	
+	color:#fff;
+}
+.btn_white {
+	height:40px;
+	padding:0px 30px;
+	background-color:#fff;
+	text-weight:bold;
+	border-style:solid;
+	border-color:#ebebeb;
+	border-radius:125px;
+	border-width:0.5px;	
+} */
+

@@ -7,8 +7,9 @@
 <c:set var="path" value="/projectFinal/"/>
 
 
-<link rel="stylesheet" href="resources/css/ara_section.css">
-
+<link rel="stylesheet" href="resources/css/button.css"> 
+<link rel="stylesheet" href="resources/css/table_admin.css"> 
+<link rel="stylesheet" href="resources/css/table_student.css"> 
 
 
 

@@ -124,16 +124,16 @@ p a:hover::after
 {
 	opacity: 0.2;
 }
-::selection
+/* ::selection
 {
-	background: #FFD266;
+	background: #001E42;
 	color: #C88E00;
 }
 p::selection
 {
-	background: #FFD266;
+	background: #001E42;
 	color: #C88E00;
-}
+} */
 h1{font-size: 36px;}
 h2{font-size: 22px;}
 h3{font-size: 18px;}
@@ -164,31 +164,31 @@ hr{
 {
 	font-size: 14px !important;
 	font-weight: 500 !important;
-	color: #a5a5a5 !important;
+	color: #393939 !important;
 }
 :-moz-placeholder /* older Firefox*/
 {
 	font-size: 14px !important;
 	font-weight: 500 !important;
-	color: #a5a5a5 !important;
+	color: #393939 !important;
 }
 ::-moz-placeholder /* Firefox 19+ */ 
 {
 	font-size: 14px !important;
 	font-weight: 500 !important;
-	color: #a5a5a5 !important;
+	color: #393939 !important;
 } 
 :-ms-input-placeholder
 { 
 	font-size: 14px !important;
 	font-weight: 500 !important;
-	color: #a5a5a5 !important;
+	color: #393939 !important;
 }
 ::input-placeholder
 {
 	font-size: 14px !important;
 	font-weight: 500 !important;
-	color: #a5a5a5 !important;
+	color: #393939 !important;
 }
 .form-control
 {
@@ -1522,8 +1522,8 @@ input:last-of-type
 
 .footer2_content 
 {
-	padding-top: 80px;
-	padding-bottom: 83px;
+	padding-top: 20px;
+	padding-bottom: 23px;
 	border-bottom: solid 2px #001E42;
 }
 .footer2_content .logo_container
@@ -1621,8 +1621,8 @@ input:last-of-type
 
 .footer2_bar
 {
-	padding-top: 19px;
-	padding-bottom: 19px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 .footer2_social .menu_social_item a i
 {

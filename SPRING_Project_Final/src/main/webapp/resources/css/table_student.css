@@ -1,0 +1,360 @@
+table {
+  border-spacing: 1;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  color : #000000;
+}
+.st_mint {
+  position: relative;
+}
+.st_mint td, th {
+  padding-left: 8px;
+}
+.st_mint thead tr {
+  height: 60px;
+  background: #C4E8F6;
+  font-size: 16px;
+}
+.st_mint tbody tr {
+  height: 48px;
+  border-bottom: 1px solid #C4E8F6;
+}
+.st_mint tbody tr:last-child {
+  border: 0;
+}
+.st_mint td, .st_mint th {
+  text-align: left;
+}
+
+
+@media screen and (max-width: 35.5em) {
+  .st_mint {
+    display: block;
+  }
+  .st_mint > *, .st_mint tr, .st_mint td, .st_mint th {
+    display: block;
+  }
+  .st_mint thead {
+    display: none;
+  }
+  .st_mint tbody tr {
+    height: auto;
+    padding: 8px 0;
+  }
+  .st_mint tbody tr td {
+    padding-left: 45%;
+    margin-bottom: 12px;
+  }
+  .st_mint tbody tr td:last-child {
+    margin-bottom: 0;
+  }
+  .st_mint tbody tr td:before {
+    position: absolute;
+    font-weight: 700;
+    width: 40%;
+    left: 10px;
+    top: 0;
+  }
+  .st_mint tbody tr td:nth-child(1):before {
+    content: "Code";
+  }
+  .st_mint tbody tr td:nth-child(2):before {
+    content: "Stock";
+  }
+  .st_mint tbody tr td:nth-child(3):before {
+    content: "Cap";
+  }
+  .st_mint tbody tr td:nth-child(4):before {
+    content: "Inch";
+  }
+  .st_mint tbody tr td:nth-child(5):before {
+    content: "Box Type";
+  }
+}
+.st_navy {
+  position: relative;
+}
+.st_navy th{
+	color:#fff;
+	padding-left: 8px;
+}
+.st_navy td {
+  padding-left: 8px;
+  background: #fff;
+}
+.st_navy thead tr {
+  height: 60px;
+  background: #001E42;
+  font-size: 16px;
+  color:#ffffff;
+}
+.st_navy tbody tr {
+  height: 48px;
+  border-bottom: 1px solid #001E42;
+}
+.st_navy tbody tr:last-child {
+  border: 0;
+}
+.st_navy td, .st_navy th {
+  text-align: left;
+}
+
+
+@media screen and (max-width: 35.5em) {
+  .st_navy {
+    display: block;
+  }
+  .st_navy > *, .st_navy tr, .st_navy td, .st_navy th {
+    display: block;
+  }
+  .st_navy thead {
+    display: none;
+  }
+  .st_navy tbody tr {
+    height: auto;
+    padding: 8px 0;
+  }
+  .st_navy tbody tr td {
+    padding-left: 45%;
+    margin-bottom: 12px;
+  }
+  .st_navy tbody tr td:last-child {
+    margin-bottom: 0;
+  }
+  .st_navy tbody tr td:before {
+    position: absolute;
+    font-weight: 700;
+    width: 40%;
+    left: 10px;
+    top: 0;
+  }
+  .st_navy tbody tr td:nth-child(1):before {
+    content: "Code";
+  }
+  .st_navy tbody tr td:nth-child(2):before {
+    content: "Stock";
+  }
+  .st_navy tbody tr td:nth-child(3):before {
+    content: "Cap";
+  }
+  .st_navy tbody tr td:nth-child(4):before {
+    content: "Inch";
+  }
+  .st_navy tbody tr td:nth-child(5):before {
+    content: "Box Type";
+  }
+}
+.st_red {
+  position: relative;
+}
+.st_red td, th {
+  padding-left: 8px;
+}
+.st_red thead tr {
+  height: 60px;
+  background: #E82929;
+  font-size: 16px;
+  color: #ffffff;
+}
+.st_red tbody tr {
+  height: 48px;
+  border-bottom: 1px solid #E82929;
+}
+.st_red tbody tr:last-child {
+  border: 0;
+}
+.st_red td, .st_red th {
+  text-align: left;
+}
+
+
+@media screen and (max-width: 35.5em) {
+  .st_red {
+    display: block;
+  }
+  .st_red > *, .st_red tr, .st_red td, .st_red th {
+    display: block;
+  }
+  .st_red thead {
+    display: none;
+  }
+  .st_red tbody tr {
+    height: auto;
+    padding: 8px 0;
+  }
+  .st_red tbody tr td {
+    padding-left: 45%;
+    margin-bottom: 12px;
+  }
+  .st_red tbody tr td:last-child {
+    margin-bottom: 0;
+  }
+  .st_red tbody tr td:before {
+    position: absolute;
+    font-weight: 700;
+    width: 40%;
+    left: 10px;
+    top: 0;
+  }
+  .st_red tbody tr td:nth-child(1):before {
+    content: "Code";
+  }
+  .st_red tbody tr td:nth-child(2):before {
+    content: "Stock";
+  }
+  .st_red tbody tr td:nth-child(3):before {
+    content: "Cap";
+  }
+  .st_red tbody tr td:nth-child(4):before {
+    content: "Inch";
+  }
+  .st_red tbody tr td:nth-child(5):before {
+    content: "Box Type";
+  }
+}
+.st_opacity {
+  position: relative;
+}
+.st_opacity td, th {
+  padding-left: 8px;
+}
+.st_opacity thead tr {
+  height: 60px;
+  background: rgba(255,255,255,0.3);
+  font-size: 16px;
+  color: #000000;
+}
+.st_opacity tbody tr {
+  background: rgba(255,255,255,0);
+  height: 48px;
+  border-bottom: 1px solid #000000;
+}
+.st_opacity tbody tr:last-child {
+  border: 0;
+}
+.st_opacity td, .st_opacity th {
+  text-align: left;
+}
+
+
+@media screen and (max-width: 35.5em) {
+  .st_opacity {
+    display: block;
+  }
+  .st_opacity > *, .st_opacity tr, .st_opacity td, .st_opacity th {
+    display: block;
+  }
+  .st_opacity thead {
+    display: none;
+  }
+  .st_opacity tbody tr {
+    height: auto;
+    padding: 8px 0;
+  }
+  .st_opacity tbody tr td {
+    padding-left: 45%;
+    margin-bottom: 12px;
+  }
+  .st_opacity tbody tr td:last-child {
+    margin-bottom: 0;
+  }
+  .st_opacity tbody tr td:before {
+    position: absolute;
+    font-weight: 700;
+    width: 40%;
+    left: 10px;
+    top: 0;
+  }
+  .st_opacity tbody tr td:nth-child(1):before {
+    content: "Code";
+  }
+  .st_opacity tbody tr td:nth-child(2):before {
+    content: "Stock";
+  }
+  .st_opacity tbody tr td:nth-child(3):before {
+    content: "Cap";
+  }
+  .st_opacity tbody tr td:nth-child(4):before {
+    content: "Inch";
+  }
+  .st_opacity tbody tr td:nth-child(5):before {
+    content: "Box Type";
+  }
+}
+
+
+
+.st_beige {
+  position: relative;
+}
+.st_beige td, th {
+  padding-left: 8px;
+}
+.st_beige thead tr {
+  height: 60px;
+  background: #FDF8F5;
+  font-size: 16px;
+  color: #001E42;
+}
+.st_beige tbody tr {
+  height: 48px;
+  border-bottom: 1px solid #FDF8F5;
+}
+.st_beige tbody tr:last-child {
+  border: 0;
+}
+.st_beige td, .st_beige th {
+  text-align: left;
+}
+
+
+@media screen and (max-width: 35.5em) {
+  .st_beige {
+    display: block;
+  }
+  .st_beige > *, .st_beige tr, .st_beige td, .st_beige th {
+    display: block;
+  }
+  .st_beige thead {
+    display: none;
+  }
+  .st_beige tbody tr {
+    height: auto;
+    padding: 8px 0;
+  }
+  .st_beige tbody tr td {
+    padding-left: 45%;
+    margin-bottom: 12px;
+  }
+  .st_beige tbody tr td:last-child {
+    margin-bottom: 0;
+  }
+  .st_beige tbody tr td:before {
+    position: absolute;
+    font-weight: 700;
+    width: 40%;
+    left: 10px;
+    top: 0;
+  }
+  .st_beige tbody tr td:nth-child(1):before {
+    content: "Code";
+  }
+  .st_beige tbody tr td:nth-child(2):before {
+    content: "Stock";
+  }
+  .st_beige tbody tr td:nth-child(3):before {
+    content: "Cap";
+  }
+  .st_beige tbody tr td:nth-child(4):before {
+    content: "Inch";
+  }
+  .st_beige tbody tr td:nth-child(5):before {
+    content: "Box Type";
+  }
+}

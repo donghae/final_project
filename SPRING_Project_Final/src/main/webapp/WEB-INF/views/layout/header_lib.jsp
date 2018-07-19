@@ -59,7 +59,6 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li><center><a href="#">개요</a></center></li>
-								<li><center><a href="#">연혁</a></center></li>
 								<li><center><a href="#">현황</a></center></li>
 								<li><center><a href="#">찾아오시는 길</a></center></li>
 							</ul>
@@ -79,9 +78,8 @@
 				</div>
 			</nav>
 		</div>
-		<div class="header_side d-flex flex-row justify-content-center align-items-center">
-			
-		</div>
+
+		
 
 		
 	</header>

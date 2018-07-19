@@ -78,20 +78,22 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<li><a href="#">대학소개</a></li>
-							<li><a href="#">입학안내</a></li>
-							<!-- <li class="has-dropdown active">
-								<a href="#">카테고리이름</a>
+							<li><a href="#">도서 검색</a></li>
+							<li><a href="#">도서관 소개</a></li>							
+							<li class="has-dropdown active">
+								<a href="#">도서관 서비스</a>
 								<ul class="dropdown">
-									<li><a href="#">Web Design</a></li>
-									<li><a href="#">eCommerce</a></li>
-									<li><a href="#">Branding</a></li>
-									<li><a href="#">API</a></li>
+									<li><a href="#">좌석 현황</a></li>
+									<li><a href="#">좌석 예약</a></li>																
 								</ul>
-							</li> -->							
-							<li><a href="#">교육</a></li>
-							<li><a href="#">대학생활</a></li>
-							<li><a href="#">커뮤니티</a></li>
+							<li class="has-dropdown active">
+								<a href="#">마이 라이브러리</a>
+								<ul class="dropdown">
+									<li><a href="#">대출 현황/대출 기록</a></li>
+									<li><a href="#">도서 예약현황</a></li>
+									<li><a href="#">희망 도서 신청현황</a></li>									
+								</ul>
+							</li>														
 						</ul>
 					</div>
 				</div>
