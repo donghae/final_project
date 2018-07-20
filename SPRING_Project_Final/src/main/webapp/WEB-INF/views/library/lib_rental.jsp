@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../setting.jsp" %>    
-<link rel="stylesheet" href="resources/css/box_mon.css"> 
+
 
 
 

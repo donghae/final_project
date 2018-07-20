@@ -6,6 +6,8 @@
 
 <c:set var="path" value="/projectFinal/"/>
 
+
+<link rel="stylesheet" href="resources/css/box_mon.css"> 
 <link rel="stylesheet" href="resources/css/font_common.css">
 
 <link rel="stylesheet" href="resources/css/button.css"> 

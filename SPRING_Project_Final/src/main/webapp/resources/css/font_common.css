@@ -17,21 +17,21 @@ body{
 
 
 /* 나눔바른펜 - 얇은 폰트 필요시 사용 */
-@font-face {
+/* @font-face {
 	font-family: ‘Nanum Barun Gothic’;
 	font-style: normal;
 	font-weight: 400;
 	src: local(‘Nanum Barun Gothic Regular’), local(‘Nanum Barun Gothic-Regular’), local(‘NanumBarunGothic Regular’);
-	src: url(“/Font/NanumBarunGothic.eot”); /*A*/
-	src: url(“/Font/NanumBarunGothic.eot?#iefix”) format(‘embedded-opentype’), /*B*/
-	url(“/Font/NanumBarunGothic.woff”) format(‘woff’), /*C*/
-	url(“/Font/NanumBarunGothic.ttf”) format(‘truetype’)format('truetype'); /*D*/
+	src: url(“/Font/NanumBarunGothic.eot”); A
+	src: url(“/Font/NanumBarunGothic.eot?#iefix”) format(‘embedded-opentype’), B
+	url(“/Font/NanumBarunGothic.woff”) format(‘woff’), C
+	url(“/Font/NanumBarunGothic.ttf”) format(‘truetype’)format('truetype'); D
 	
-}
-
+} */
+/* 
 .nanumFont {
 	font-family: ‘Nanum Barun Gothic’,sans-serif !important;
-}
+} */
 
 
 

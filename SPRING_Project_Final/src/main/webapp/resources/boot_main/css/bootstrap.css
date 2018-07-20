@@ -804,8 +804,13 @@ address {
   line-height: 1.42857;
 }
 
-
-
+/* code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+ */
 code {
   padding: 2px 4px;
   font-size: 90%;

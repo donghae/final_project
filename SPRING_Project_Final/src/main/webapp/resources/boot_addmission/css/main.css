@@ -41,13 +41,11 @@ a:focus, a:hover {
     color: inherit;
 }
 
-h1, h2, h3, h5,
-h4, h6 {
-    
+h1, h2, h3,
+h4, h5, h6 {
 	font-weight: normal;
 	margin: 0;
 }
-
 
 .clear:before,
 .clear:after {
@@ -63,9 +61,7 @@ h4, h6 {
    *zoom: 1;
 }
 
-body > section {
-    /* padding: 100px 0; */
-}
+
 
 .section-title {
   margin: 0 auto 85px;
