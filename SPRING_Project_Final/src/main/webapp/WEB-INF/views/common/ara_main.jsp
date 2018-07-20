@@ -30,8 +30,8 @@
 						<table class="iconTable">											
 							<tr>																
 								<td><a href="#"><img src="resources/images/common_img/icons/user.png" width="70px"></a></td>
-								<td><a href="#"><img src="resources/images/common_img/icons/library.png" width="70px"></a></td>
-								<td><a href="#"><img src="resources/images/common_img/icons/domi.png" width="70px"></a></td>
+								<td><a href="lib_home"><img src="resources/images/common_img/icons/library.png" width="70px"></a></td>
+								<td><a href="dormitory"><img src="resources/images/common_img/icons/domi.png" width="70px"></a></td>
 							</tr>
 							<tr>
 								<td><a href="#"><img src="resources/images/common_img/icons/cyber.png" width="70px"></a></td>

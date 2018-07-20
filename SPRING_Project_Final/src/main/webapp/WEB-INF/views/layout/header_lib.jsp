@@ -22,8 +22,8 @@
 			<!-- Logo -->
 			<div class="logo_container">
 				<div class="logo">
-					<img src="resources/images/common_img/logo/ARA_white.PNG" alt="" width="51px" height="43px">
-					<span>아라대학교</span>
+					<a href="ara"><img src="resources/images/common_img/logo/ARA_white.PNG" alt="" width="51px" height="43px">
+					<span>아라대학교</span></a>
 				</div>
 			</div>
 
@@ -38,18 +38,8 @@
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><center><a href="./cate1_1.jsp">소장자료검색</a></center></li>
-								<li><center><a href="#">통합검색</a></center></li>
-							</ul>
-						</li>
-						<li class="main_nav_item">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							도서관 서비스
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><center><a href="#">좌석 현황</a></center></li>
-								<li><center><a href="#">좌석 예약</a></center></li>
+								<li><center><a href="lib_search">소장자료검색</a></center></li>
+								<li><center><a href="lib_search">통합검색</a></center></li>
 							</ul>
 						</li>
 						<li class="main_nav_item">
@@ -58,20 +48,31 @@
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><center><a href="#">개요</a></center></li>
-								<li><center><a href="#">현황</a></center></li>
-								<li><center><a href="#">찾아오시는 길</a></center></li>
+								<li><center><a href="lib_summary">개요</a></center></li>
+								<li><center><a href="lib_situation">현황</a></center></li>
+								<li><center><a href="lib_map">찾아오시는 길</a></center></li>
 							</ul>
 						</li>
+						<li class="main_nav_item">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							도서관 서비스
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><center><a href="lib_seat">좌석 현황</a></center></li>
+								<li><center><a href="lib_seat">좌석 예약</a></center></li>
+							</ul>
+						</li>
+						
 						<li class="main_nav_item">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 							마이라이브러리
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><center><a href="#">대출현황 / 대출기록</a></center></li>
-								<li><center><a href="#">도서 예약 현황</a></center></li>
-								<li><center><a href="#">희망도서 신청현황</a></center></li>
+								<li><center><a href="lib_rental">대출현황 / 대출기록</a></center></li>
+								<li><center><a href="lib_reservation">도서 예약 현황</a></center></li>
+								<li><center><a href="lib_submission">희망도서 신청현황</a></center></li>
 							</ul>
 						</li>
 					</ul>

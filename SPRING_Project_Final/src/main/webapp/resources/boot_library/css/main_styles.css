@@ -683,6 +683,7 @@ section
 }
 .hero_slide_content
 {
+	margin-top: -26%;
 	max-width: 80%;
 	-webkit-transform: translateY(30px);
 	-moz-transform: translateY(30px);
@@ -698,6 +699,7 @@ section
 }
 .hero_slide_content h1 span
 {
+	color : #FFFFFF;
 	background:rgba( 232, 41, 41, 0.65 );
 	padding-left: 13px;
 	padding-right: 13px;
@@ -795,18 +797,18 @@ section
 	display: block;
 	width: 100%;
 	height: 161px;
-	background: #ffffff;
+	background: #C4E8F6;
 	padding-left: 50px;
 	cursor: pointer;
 }
 .hero_box:hover
 {
-	background: #001E42;
-	border: 2px solid #ffffff;
+	background: #ffffff;
+	border: 2px solid #C4E8F6;
 }
 .hero_box:hover > .hero_box_content > .hero_box_title
 {	
-	color: #ffffff;
+	color: #001E42;
 }
 .hero_box img
 {
@@ -1372,8 +1374,8 @@ input:last-of-type
 .footer
 {
 	width: 100%;
-	padding-top: 600px;
-	background: #001E42;
+	padding-top: 400px;
+	background: #FFFFFF;
 }
 .footer .section_title h1
 {
@@ -1522,8 +1524,8 @@ input:last-of-type
 
 .footer2_content 
 {
-	padding-top: 20px;
-	padding-bottom: 23px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	border-bottom: solid 2px #001E42;
 }
 .footer2_content .logo_container

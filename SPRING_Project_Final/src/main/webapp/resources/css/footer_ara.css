@@ -5,7 +5,7 @@
 *{
 	text-decoration:none;
 	font-family: godic;
-	font-size:12px;
+	font-size:14px;
 	letter-spacing:0.1em;
 	list-style-type:none;
 	color:#001E42;
@@ -24,7 +24,7 @@
 #div_c{
 	display:inline-block;
 	width: 20%;
-	height: 20%;;
+	height: 20%;
 }
 #div_d{
 	display:inline-block;
@@ -60,7 +60,7 @@
 }
 #div_0{
 	margin-left:4%;
-	padding-bottom: 2%;
+	/* padding-bottom: 2%; */
 	width:91%;
 }
 li{
@@ -74,7 +74,7 @@ li{
 
 #img1{
 	width:50px;
-	height: 50px;
+	height: 40px;
 }
 .img2{
 	margin-left:120px;

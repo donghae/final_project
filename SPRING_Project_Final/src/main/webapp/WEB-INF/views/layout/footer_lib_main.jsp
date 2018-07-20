@@ -87,19 +87,10 @@
 			</div>
 		</div>
 	</div>
-			<!-- Newsletter -->
-
-			
-			
-			<!-- Footer Content -->
-
-			
-
-			<!-- Footer Copyright -->
+	</div>
 
 
-		</div>
-	</footer>
+</footer>
 
 
 

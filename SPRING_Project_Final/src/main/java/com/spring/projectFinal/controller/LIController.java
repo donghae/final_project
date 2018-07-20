@@ -74,5 +74,13 @@ public class LIController {
 		System.out.println("lib_situation-도서관 현황(소개)");
 		return "library/lib_situation";
 	}
+	
+	//도서관 현황(소개)
+	@RequestMapping("lib_map")
+	public String lib_map(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_situation-도서관 현황(소개)");
+		return "library/lib_map";
+	}
 
 }

@@ -7,20 +7,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<%@include file="../layout/header_lib.jsp" %>
-	<div class="menu_container menu_mm">
+<%@include file="../layout/header_lib2.jsp" %>
+	<!-- <div class="menu_container menu_mm">
 
-		<!-- Menu Close Button -->
+		Menu Close Button
 		<div class="menu_close_container">
 			<div class="menu_close"></div>
 		</div>
 
-		<!-- Menu Items -->
+		Menu Items
 		<div class="menu_inner menu_mm">
 			<div class="menu menu_mm">
 				
 
-				<!-- Menu Social -->
+				Menu Social
 				
 				<div class="menu_social_container menu_mm">
 					<ul class="menu_social menu_mm">
@@ -39,14 +39,14 @@
 
 	</div>
 	
-	<!-- Home -->
+	Home
 
 	<div class="home">
 		<div class="home_background_container prlx_parent">
 			<div class="home_background prlx" style="background-image:url(resources/images/common_img/UNI/library.jpg)"></div>
 		</div>
 		
-	</div>
+	</div> -->
 
 	<!-- Popular -->
 

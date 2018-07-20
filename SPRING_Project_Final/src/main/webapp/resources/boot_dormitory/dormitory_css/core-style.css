@@ -699,9 +699,9 @@ img {
 
 .slide-text {
     padding: 25px 30px 15px;
-    border-left: 3px solid #fff;
-    margin-left: 200px;
-    background-color: rgba(255, 255, 255, 0.2);
+    /* border-left: 3px solid #fff; */
+    margin-left: 600px;
+   /*  background-color: rgba(255, 255, 255, 0.2); */
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1254,4 +1254,6 @@ span.accor-open {
         opacity: 0;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     }
+    
+    
 }

@@ -25,9 +25,17 @@
 1. 1600px
 ************/
 
-@media only screen and (max-width: 1600px)
+@media only screen and (max-width: 3000px)
 {
-	
+	.header
+	{
+		width: 1200px;
+	}
+	.header_content
+	{
+		
+		width: calc(100%);
+	}
 }
 
 /************
@@ -36,7 +44,15 @@
 
 @media only screen and (max-width: 1440px)
 {
-	
+	.header
+	{
+		width: 1200px;
+	}
+	.header_content
+	{
+		
+		width: calc(100%);
+	}
 }
 
 /************
@@ -58,10 +74,7 @@
 	{
 		padding-right: 63px;
 	}
-	.header_side
-	{
-		width: 219px;
-	}
+	
 	.header_side span
 	{
 		font-size: 14px;

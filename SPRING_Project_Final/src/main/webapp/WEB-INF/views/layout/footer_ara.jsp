@@ -8,13 +8,14 @@
 	<footer>
 	<div style="background-color:#001E42;color:#ffffff;">
 		<br>
-		<div style="padding-top:22px;">
+		<!--  style="padding-top:22px;" -->
+		<div>
 		
 			<div>
 				<img class="img2" src="resources/images/common_img/logo/ARA_navy.PNG">
 			</div>
 			<div style="width:90%; margin: 0 auto;">			
-			<hr>
+			<hr style="margin-top: 0px; margin-bottom: 10px;">
 			</div>
 			
 			<div id="div_0">

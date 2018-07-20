@@ -74,24 +74,23 @@
 				
 				<div class="row">
 					<div class="col-sm-2 col-xs-12">
-						<div id="gtco-logo"><a href="#"><img src="resources/images/common_img/logo/ARA_mint.PNG" height="50px"></a></div>
+						<div id="gtco-logo"><a href="ara"><img src="resources/images/common_img/logo/ARA_mint.PNG" height="50px"></a></div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<li><a href="#">대학소개</a></li>
-							<li><a href="#">입학안내</a></li>
-							<!-- <li class="has-dropdown active">
-								<a href="#">카테고리이름</a>
+							<li><a href="ara">대학소개</a></li>
+							<li><a href="admission">입학안내</a></li>
+							<li><a href="st_stu">교육</a></li>							
+							<li class="has-dropdown active">
+								<a href="#">온라인 교육</a>
 								<ul class="dropdown">
-									<li><a href="#">Web Design</a></li>
-									<li><a href="#">eCommerce</a></li>
-									<li><a href="#">Branding</a></li>
-									<li><a href="#">API</a></li>
+									<li><a href="cy_main">온라인 교육 메인</a></li>
+									<li><a href="cy_comm">커뮤니티</a></li>
+									<li><a href="cy_add">강의추가</a></li>
 								</ul>
-							</li> -->							
-							<li><a href="#">교육</a></li>
-							<li><a href="#">대학생활</a></li>
-							<li><a href="#">커뮤니티</a></li>
+							</li>
+							<li><a href="st_pro">대학생활</a></li>
+							<li><a href="st_adm">커뮤니티</a></li>
 						</ul>
 					</div>
 				</div>

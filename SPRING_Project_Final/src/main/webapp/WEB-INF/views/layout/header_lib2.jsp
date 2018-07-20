@@ -74,24 +74,32 @@
 				
 				<div class="row">
 					<div class="col-sm-2 col-xs-12">
-						<div id="gtco-logo"><a href="#"><img src="resources/images/common_img/logo/ARA_mint.PNG" height="50px"></a></div>
+						<div id="gtco-logo"><a href="ara"><img src="resources/images/common_img/logo/ARA_mint.PNG" height="50px"></a></div>
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<li><a href="#">도서 검색</a></li>
-							<li><a href="#">도서관 소개</a></li>							
+							<li><a href="lib_search">도서 검색</a></li>
+							<li class="has-dropdown active">
+								<a href="lib_search">도서관 소개</a>
+								<ul class="dropdown">
+									<li><a href="lib_summary">개요</a></li>
+									<li><a href="lib_situation">현황</a></li>
+									<li><a href="lib_map">찾아오시는 길</a></li>																
+								</ul>
+							</li>							
 							<li class="has-dropdown active">
 								<a href="#">도서관 서비스</a>
 								<ul class="dropdown">
-									<li><a href="#">좌석 현황</a></li>
-									<li><a href="#">좌석 예약</a></li>																
+									<li><a href="lib_seat">좌석 현황</a></li>
+									<li><a href="lib_seat">좌석 예약</a></li>																
 								</ul>
+							</li>
 							<li class="has-dropdown active">
 								<a href="#">마이 라이브러리</a>
 								<ul class="dropdown">
-									<li><a href="#">대출 현황/대출 기록</a></li>
-									<li><a href="#">도서 예약현황</a></li>
-									<li><a href="#">희망 도서 신청현황</a></li>									
+									<li><a href="lib_rental">대출 현황/대출 기록</a></li>
+									<li><a href="lib_reservation">도서 예약현황</a></li>
+									<li><a href="lib_submission">희망 도서 신청현황</a></li>									
 								</ul>
 							</li>														
 						</ul>

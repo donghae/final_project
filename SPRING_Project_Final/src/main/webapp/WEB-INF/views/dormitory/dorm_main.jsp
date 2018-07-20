@@ -3,6 +3,7 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,8 +25,9 @@
 </head>
 
 <body>
+<%@include file="../layout/header_dorm.jsp" %>
     <!-- Preloader -->
-    <div id="preloader">
+    <%-- <div id="preloader">
         <div class="showbox">
             <div class="loader">
                 <svg class="circular" viewBox="25 25 50 50">
@@ -57,7 +59,7 @@
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">기숙사소개</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="#">설립목적 및 연혁</a>
+                                            <a class="dropdown-item" href="dormitory_history">설립목적 및 연혁</a>
                                             <a class="dropdown-item" href="#">기숙사 시설</a>
                                             <a class="dropdown-item" href="#">오시는 길</a>
                                         </div>
@@ -103,12 +105,12 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header> --%>
     <!-- Header Area End -->
     <!-- Social Sidebar Area Start -->
-    <%-- <div class="social-sidebar-area bg-white" style=" opacity:0.4;">
-		<%@ include file="side.jsp" %>
-	</div> --%>
+    <div class="social-sidebar-area bg-white" style=" opacity:0.4;">
+		<%@ include file="../layout/side_dorm.jsp" %>
+	</div>
     
     <!-- Social Sidebar Area End -->
     	

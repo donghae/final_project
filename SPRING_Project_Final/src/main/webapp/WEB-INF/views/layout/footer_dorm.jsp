@@ -20,7 +20,7 @@
 </head>
 <body>
 
-<footer>
+<footer style="">
     <div class="footer-top"> 
     <div class="row text-center">   
             <div class="col-lg-6 col-lg-offset-3">
