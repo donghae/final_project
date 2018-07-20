@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/* 청소년체 -기본 폰트 */
+@font-face {
+  font-family: 'Youth';
+  font-style: normal;
+  font-weight: 400;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kywa/Youth/Youth.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kywa/Youth/Youth.woff') format('woff');
+}
+
+
+
+body{
+	font-family: 'Youth', sans-serif;
+	text-decoration:none;
+}
+
+
+/* 나눔바른펜 - 얇은 폰트 필요시 사용 */
+@font-face {
+	font-family: ‘Nanum Barun Gothic’;
+	font-style: normal;
+	font-weight: 400;
+	src: local(‘Nanum Barun Gothic Regular’), local(‘Nanum Barun Gothic-Regular’), local(‘NanumBarunGothic Regular’);
+	src: url(“/Font/NanumBarunGothic.eot”); /*A*/
+	src: url(“/Font/NanumBarunGothic.eot?#iefix”) format(‘embedded-opentype’), /*B*/
+	url(“/Font/NanumBarunGothic.woff”) format(‘woff’), /*C*/
+	url(“/Font/NanumBarunGothic.ttf”) format(‘truetype’)format('truetype'); /*D*/
+	
+}
+
+.nanumFont {
+	font-family: ‘Nanum Barun Gothic’,sans-serif !important;
+}
+
+
+
+
+

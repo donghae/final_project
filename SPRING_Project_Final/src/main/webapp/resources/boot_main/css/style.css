@@ -1,13 +1,4 @@
-@font-face {
-  font-family: 'Youth';
-  font-style: normal;
-  font-weight: 400;
-  src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kywa/Youth/Youth.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kywa/Youth/Youth.woff') format('woff');
-}
 
-* {
- 
-}
 /* =======================================================
 *
 * 	Template Style 
@@ -15,7 +6,6 @@
 * ======================================================= */
 
 body {
- 	font-family: 'Youth', sans-serif;
   font-weight: 400;
   font-size: 100%;
   line-height: 1.7;
@@ -68,7 +58,6 @@ p {
 
 h1, h2, h3, h4, h5, h6, figure {
   color: #000;
-  font-family: "Raleway", Arial, sans-serif;
   font-weight: 400;
   margin: 0 0 20px 0;
 }
@@ -145,6 +134,7 @@ h1, h2, h3, h4, h5, h6, figure {
   text-transform: uppercase;
   font-size: 17px !important;
   letter-spacing: .05em;
+  text-decoration:none;
 }
 .gtco-nav ul li a {
   font-size: 20px;
@@ -154,6 +144,7 @@ h1, h2, h3, h4, h5, h6, figure {
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
+  text-decoration:none;
 }
 /* .gtco-nav ul li a:hover, .gtco-nav ul li a:focus, .gtco-nav ul li a:active {
   color: red;
@@ -166,7 +157,6 @@ h1, h2, h3, h4, h5, h6, figure {
   padding-right: 20px !important;
 }
 .gtco-nav ul li.has-dropdown > a:after {
-  font-family: 'icomoon';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -183,6 +173,7 @@ h1, h2, h3, h4, h5, h6, figure {
   margin-top: -7px;
   right: 0;
   color: #ccc;
+  text-decoration:none;
 }
 .gtco-nav ul li.has-dropdown .dropdown {
   width: 130px;
@@ -773,7 +764,6 @@ h1, h2, h3, h4, h5, h6, figure {
   position: absolute;
   left: 0;
   top: .05em;
-  font-family: 'icomoon';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -1032,7 +1022,6 @@ form label {
 #gtco-offcanvas ul li.offcanvas-has-dropdown > a:after {
   position: absolute;
   right: 0px;
-  font-family: 'icomoon';
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -1205,7 +1194,6 @@ form label {
 .btn {
   margin-right: 4px;
   margin-bottom: 4px;
-  font-family: "Raleway", Arial, sans-serif;
   font-size: 13px;
   font-weight: 700 !important;
   -webkit-border-radius: 0px;

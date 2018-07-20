@@ -1,15 +1,9 @@
 @charset "UTF-8";
-@font-face {
-  font-family: 'Youth';
-  font-style: normal;
-  font-weight: 400;
-  src: url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kywa/Youth/Youth.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/orgs/othrs/kywa/Youth/Youth.woff') format('woff');
-}
+
 
 /* 전체 기본값 설정 */
 *{
 	text-decoration:none;
-	font-family: 'Youth', sans-serif;
 	font-size:14px;
 	letter-spacing:0.1em;
 	list-style-type:none;
@@ -108,7 +102,6 @@ li{
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
 	font-size:15px;
 	padding:6px 15px;
 	text-decoration:none;

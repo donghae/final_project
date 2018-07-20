@@ -22,8 +22,7 @@
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
 
-	<link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,700" rel="stylesheet">
-	
+
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="resources/boot_main/css/animate.css">
 	<!-- Icomoon Icon Fonts-->
@@ -61,7 +60,7 @@
 	<!-- 헤더-로그인 -->
 	<div id="my">
 	    <p style="text-align:center;">
-		    <span>ARA, Leading the Way to the Future</span>
+		    <span class="nanumFont">ARA, Leading the Way to the Future</span>
 		    <a style="color:black; padding-right:20px;" href="#">LOGIN</a>
 	    </p>
 	</div>

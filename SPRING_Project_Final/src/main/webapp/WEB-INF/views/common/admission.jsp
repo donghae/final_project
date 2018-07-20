@@ -42,6 +42,8 @@
         <link rel="stylesheet" href="resources/boot_addmission/css/responsive.css">
 		
 		
+		<link rel="stylesheet" href="resources/css/font_common.css">
+		
 		<!-- Modernizer Script for old Browsers -->
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 		
