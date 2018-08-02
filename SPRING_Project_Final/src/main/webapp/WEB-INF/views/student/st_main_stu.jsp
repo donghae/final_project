@@ -3,9 +3,42 @@
 <%@ include file="../setting.jsp"%>
 <jsp:include page="../layout/header_ara.jsp" />
 
-<div style="height:inherit; width: 1300px; display:inline-block;">
+<div style="height: inherit; width: 1300px; display: inline-block;">
+
 	<%@ include file="../student/st_sidebar_stu.jsp"%>
-	<%@ include file="../student/table.jsp"%>
+
+	<c:if test="${sessionScope.st_state == 10}">
+		<%@ include file="../student/st_stu/4_st_register.jsp"%>
+	</c:if>
+	<!-- 시간표 -->
+	<c:if test="${sessionScope.st_state == 21}">
+		<%@ include file="../student/st_stu/5_st_timetable.jsp"%>
+	</c:if>
+
+	<!-- 내 강의목록 -->
+	<c:if test="${sessionScope.st_state == 11}">
+		<%@ include file="../student/st_stu/5_st_MylecList.jsp"%>
+	</c:if>
+	<!-- 수강 신청 -->
+	<c:if test="${sessionScope.st_state == 13}">
+		<%@ include file="../student/st_stu/5_st_regLecCart.jsp"%>
+	</c:if>
+
+	<!-- 출결현황 -->
+	<c:if test="${sessionScope.st_state == 19}">
+		<%@ include file="../student/st_stu/5_st_attend.jsp"%>
+	</c:if>
+
+	<!-- 성적관리 > 성적조회 -->
+	<c:if test="${sessionScope.st_state == 15}">
+		<%@ include file="../student/st_stu/6_st_gpa.jsp"%>
+	</c:if>
+
+	<!-- 장학금관리 > 장학금 신청 -->
+	<c:if test="${sessionScope.st_state == 16}">
+		<%@ include file="../student/st_stu/7_st_scholarAppli.jsp"%>
+	</c:if>
+
 </div>
 
 <footer>

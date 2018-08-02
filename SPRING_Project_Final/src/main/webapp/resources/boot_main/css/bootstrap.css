@@ -317,6 +317,7 @@ th {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  text-decoration:none;
 }
 
 html {
@@ -326,7 +327,7 @@ html {
 
 body {
   font-size: 14px;
-  line-height: 1.42857;
+  line-height: 1.5;
   color: #333333;
   background-color: #fff;
 }
@@ -346,7 +347,7 @@ a {
 }
 a:hover, a:focus {
   color: #23527c;
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:focus {
   outline: thin dotted;
@@ -374,7 +375,7 @@ img {
 
 .img-thumbnail {
   padding: 4px;
-  line-height: 1.42857;
+  line-height: 1.5;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -515,7 +516,7 @@ p {
   margin-bottom: 20px;
   font-size: 16px;
   font-weight: 300;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 @media (min-width: 768px) {
   .lead {
@@ -705,7 +706,7 @@ dl {
 
 dt,
 dd {
-  line-height: 1.42857;
+  line-height: 1.5;
 }
 
 dt {
@@ -764,7 +765,7 @@ blockquote small,
 blockquote .small {
   display: block;
   font-size: 80%;
-  line-height: 1.42857;
+  line-height: 1.5;
   color: #777777;
 }
 blockquote footer:before,
@@ -801,7 +802,7 @@ blockquote.pull-right .small:after {
 address {
   margin-bottom: 20px;
   font-style: normal;
-  line-height: 1.42857;
+  line-height: 1.5;
 }
 
 /* code,
@@ -839,7 +840,7 @@ pre {
   padding: 9.5px;
   margin: 0 0 10px;
   font-size: 13px;
-  line-height: 1.42857;
+  line-height: 1.5;
   word-break: break-all;
   word-wrap: break-word;
   color: #333333;
@@ -1785,7 +1786,7 @@ th {
 .table > tfoot > tr > th,
 .table > tfoot > tr > td {
   padding: 8px;
-  line-height: 1.42857;
+  line-height: 1.5;
   vertical-align: top;
   border-top: 1px solid #ddd;
 }
@@ -2059,7 +2060,7 @@ output {
   display: block;
   padding-top: 11px;
   font-size: 14px;
-  line-height: 1.42857;
+  line-height: 1.5;
   color: #555555;
 }
 
@@ -2069,7 +2070,7 @@ output {
   height: 42px;
   padding: 10px 20px;
   font-size: 14px;
-  line-height: 1.42857;
+  line-height: 1.5;
   color: #555555;
   background-color: #fff;
   background-image: none;

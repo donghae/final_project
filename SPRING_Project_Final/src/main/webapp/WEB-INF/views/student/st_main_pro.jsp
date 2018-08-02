@@ -5,7 +5,6 @@
 
 <div style="height:inherit; width: 1300px; display:inline-block;">
 	<%@ include file="../student/st_sidebar_pro.jsp"%>
-	<%@ include file="../student/table.jsp"%>
 </div>
 
 <footer>

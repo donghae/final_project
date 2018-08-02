@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
     
 <!-- 스크립트 -->
-<script type="text/javascript" src="${Ara}script.js"></script>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="Ara" value="resources/boot_dormitory/"/>
-
+<script type="text/javascript" src="${Ara}dormitory_js/script.js"></script>
 <!-- 링크 -->
 <link type="text/css" rel="stylesheet" href="${Ara}dormitory_css/animate.css"/>
 <link type="text/css" rel="stylesheet" href="${Ara}dormitory_css/bootstrap.min.css"/>
@@ -19,6 +19,13 @@
 <link type="text/css" rel="stylesheet" href="${Ara}dormitory_css/owl.carousel.css"/>
 <link type="text/css" rel="stylesheet" href="${Ara}dormitory_css/pe-icon-7-stroke.css"/>
 <link type="text/css" rel="stylesheet" href="${Ara}dormitory_css/responsive.css"/>
+<link type="text/css" rel="stylesheet" href="${Ara}dormitory_css/stu_insert.css"/>
+<link type="text/css" rel="stylesheet" href="${Ara}dormitory_css/stu_table1.css"/>
+<link type="text/css" rel="stylesheet" href="${Ara}dormitory_css/stu_box.css"/>
+<link type="text/css" rel="stylesheet" href="${Ara}dormitory_css/dt_form.css"/>
+<link type="text/css" rel="stylesheet" href="${Ara}dormitory_css/dt_side.css"/>
+<link type="text/css" rel="stylesheet" href="${Ara}dormitory_css/dt_login.css"/>
+
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">   
@@ -30,18 +37,22 @@
 
 
 
-
+<script src="${Ara}dormitory_js/dt_admin.js"></script>
 
 <!-- jQuery (Necessary for All JavaScript Plugins) -->
 <script src="${Ara}dormitory_js/jquery/jquery-2.2.4.min.js"></script>
 <!-- Popper js -->
-<script src="${Ara}dormitory_js/popper.min.js"></script>
+<script src="r${Ara}dormitory_js/popper.min.js"></script>
 <!-- Bootstrap js -->
 <script src="${Ara}dormitory_js/bootstrap.min.js"></script>
 <!-- Plugins js -->
 <script src="${Ara}dormitory_js/plugins.js"></script>
 <!-- Active js -->
 <script src="${Ara}dormitory_js/active.js"></script>
+
+<!-- 학생조회 테이블 js -->
+<script src="${Ara}dormitory_js/dt_stu_table1.js"></script>
+
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>

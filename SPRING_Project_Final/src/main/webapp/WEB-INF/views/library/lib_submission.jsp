@@ -2,15 +2,10 @@
     pageEncoding="UTF-8"%>
     
 <%@ include file="../setting.jsp" %>  
-
 <link rel="stylesheet" href="resources/css/form-basic.css">
 
 
-<body>
-
-
-
-<%@include file="../layout/header_lib2.jsp" %>
+<%@include file="../layout/header_lib_admin.jsp" %>
 
 
 
@@ -80,5 +75,3 @@
         </form>
 	</div>
 	<%@include file="../layout/footer_lib.jsp" %>
-</body>
-</html>

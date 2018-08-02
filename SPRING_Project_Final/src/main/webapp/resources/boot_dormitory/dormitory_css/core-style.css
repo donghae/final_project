@@ -36,6 +36,7 @@
 }
 
 body {
+    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     overflow-x: hidden;
 }
@@ -48,6 +49,7 @@ h5,
 h6 {
     color: #1d1d1d;
     line-height: 1.2;
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
 }
 
@@ -55,6 +57,7 @@ p {
     color: #838383;
     font-size: 15px;
     line-height: 2;
+    font-family: 'Poppins', sans-serif;
     font-weight: 400;
 }
 
@@ -71,6 +74,7 @@ a:focus {
     outline: none;
     font-size: 14px;
     color: #000;
+    font-family: 'Poppins', sans-serif;
     font-weight: 400;
 }
 

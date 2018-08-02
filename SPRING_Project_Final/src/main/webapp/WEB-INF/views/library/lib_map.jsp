@@ -5,7 +5,7 @@
 
 
 <!-- 도서관 위치 지도 -->
-<%@include file="../layout/header_lib2.jsp" %>
+<%@include file="../layout/header_lib_admin.jsp" %>
 	<!-- <div class="menu_container menu_mm">
 
 		Menu Close Button
@@ -53,7 +53,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="section_title text-center">
-						<h1>도서관 현황</h1>
+						<h1>찾아오는 길</h1>
 					</div>
 				</div>
 			</div>

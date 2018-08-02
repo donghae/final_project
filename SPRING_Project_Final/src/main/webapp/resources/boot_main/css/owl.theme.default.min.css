@@ -20,7 +20,7 @@
 .owl-theme .owl-controls .owl-nav [class*=owl-]:hover {
 	background: #869791;
 	color: #fff;
-	text-decoration: none
+	text-decoration: none;
 }
 
 .owl-theme .owl-controls .owl-nav .disabled {

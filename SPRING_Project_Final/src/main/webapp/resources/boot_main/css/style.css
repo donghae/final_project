@@ -6,8 +6,8 @@
 
 body {
   font-weight: 400;
-  font-size: 100%;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.5;
   color: red;
   background: #fff;
 }
@@ -127,12 +127,14 @@ h1, h2, h3, h4, h5, h6, figure {
   list-style: none;
   display: inline;
   line-height: 2.5;
+  
   /* font-weight:500px; */
 }
 .gtco-nav ul li > a {
   text-transform: uppercase;
   font-size: 17px !important;
   letter-spacing: .05em;
+  text_decoration:none;
 }
 .gtco-nav ul li a {
   font-size: 20px;
@@ -142,10 +144,12 @@ h1, h2, h3, h4, h5, h6, figure {
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
+  text_decoration:none;
 }
-/* .gtco-nav ul li a:hover, .gtco-nav ul li a:focus, .gtco-nav ul li a:active {
-  color: red;
-} */
+.gtco-nav ul li a:hover, .gtco-nav ul li a:focus, .gtco-nav ul li a:active {
+  /* color: red; */
+  text_decoration:none;
+}
 .gtco-nav ul li.has-dropdown {
   position: relative;
 }
@@ -398,10 +402,6 @@ h1, h2, h3, h4, h5, h6, figure {
   *display: inline;
 }
 
-.center {
-	width:100%;
-	magin:0 auto;
-}
 
 .gtco-services {
   padding: 7em 0;
@@ -1484,7 +1484,7 @@ form label {
 #gtco-features-3 .feature p {
   color: rgba(255, 255, 255, 0.7);
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.5;
 }
 #gtco-features-3 .feature .icon {
   display: block;

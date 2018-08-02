@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!------ Include the above in your HEAD tag ---------->
 <!DOCTYPE html>
 <html>
@@ -27,12 +28,19 @@
 								</h4>
 							</div>
 							<!-- Note: By adding "in" after "collapse", it starts with that particular panel open by default; remove if you want them all collapsed by default -->
-							<div id="collapseOne" class="panel-collapse collapse in">
+							<c:choose>
+								<c:when test="${st_state==1 || st_state==2 || st_state==3 || st_state==4}">
+									<div id="collapseOne" class="panel-collapse collapse in"> 
+								</c:when>
+								<c:otherwise>
+									<div id="collapseOne" class="panel-collapse collapse">
+								</c:otherwise>
+							</c:choose>
 								<ul class="list-group">
-									<li><a href="st_adm?state=1" class="navlink">학생 관리</a></li>
-									<li><a href="st_adm?state=2" class="navlink">성적 관리</a></li>
-									<li><a href="st_adm?state=3" class="navlink">출결 관리</a></li>
-									<li><a href="st_adm?state=4" class="navlink">장학금 관리</a></li>
+									<li><a href="st_adm?st_state=1" class="navlink">학생 관리</a></li>
+									<li><a href="st_adm?st_state=2" class="navlink">성적 관리</a></li>
+									<li><a href="st_adm?st_state=3" class="navlink">출결 관리</a></li>
+									<li><a href="st_adm?st_state=4" class="navlink">장학금 관리</a></li>
 								</ul>
 							</div>
 						</div>
@@ -44,11 +52,19 @@
 									</span>입학 관리<span class="caret"></span></a>
 								</h4>
 							</div>
-							<div id="collapseTwo" class="panel-collapse collapse">
+							<c:choose>
+								<c:when test="${st_state==5 || st_state==6 || st_state==7}">
+									<div id="collapseTwo" class="panel-collapse collapse in" >
+								</c:when>
+								<c:otherwise>
+									<div id="collapseTwo" class="panel-collapse collapse"> 
+								</c:otherwise>
+							</c:choose>
+							
 								<ul class="list-group">
-									<li><a href="st_adm?state=5" class="navlink">지원서 관리</a></li>
-									<li><a href="st_adm?state=6" class="navlink">합격 관리</a></li>
-									<li><a href="st_adm?state=7" class="navlink">예비 합격자 관리</a></li>
+									<li><a href="st_adm?st_state=5&major=101" class="navlink">지원서 관리</a></li>
+									<li><a href="st_adm?st_state=6&major=101" class="navlink">합격 관리</a></li>
+									<li><a href="st_adm?st_state=7&major=101" class="navlink">예비 합격자 관리</a></li>
 								</ul>
 							</div>
 						</div>
@@ -62,9 +78,18 @@
 									</a>
 								</h4>
 							</div>
-							<div id="collapseThree" class="panel-collapse collapse">
+							<c:choose>
+								<c:when test="${st_state==8 || st_state==9}">
+									<div id="collapseThree" class="panel-collapse collapse in">
+								</c:when>
+								<c:otherwise>
+									<div id="collapseThree" class="panel-collapse collapse">
+								</c:otherwise>
+							</c:choose>
+							
 								<ul class="list-group">
-									<li><a href="st_adm?state=8" class="navlink">강의 관리</a></li>
+									<li><a href="st_adm?st_state=8" class="navlink">강의 조회 및 수정</a></li>
+									<li><a href="st_adm?st_state=9" class="navlink">강의 등록</a></li>
 								</ul>
 							</div>
 						</div>

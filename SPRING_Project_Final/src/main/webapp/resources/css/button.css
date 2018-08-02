@@ -7,10 +7,10 @@
   position: relative;
   display: inline-block;
   margin: 0;
+  padding: 5px 10px;
   background: #001E42;
   color: #ffffff;
-  font-family: inherit;
-  font-weight: 300;
+  font-family: inherit; 
   box-shadow: -1px 1px 8px rgba(0, 0, 0, 0.4);
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -28,8 +28,7 @@
 	-ms-user-select: none;
 	user-select: none;
 	border: 1px solid transparent;
-	padding: .375rem .75rem;
-	font-size: 1rem;
+	font-size:13px;
 	line-height: 1.5;
 	border-radius: .25rem;
 	transition: background-color .15s ease-in-out, border-color .15s
@@ -46,14 +45,18 @@
 .btn_navy:active {
   box-shadow: -4px 4px 24px rgba(0, 0, 0, 0.8);
 }
+
+
+
+
 .btn_mint {
   position: relative;
   display: inline-block;
   margin: 0;
+  padding: 5px 10px;
   background: #C4E8F6;
   color: #001E42;
   font-family: inherit;
-  font-weight: 300;
   box-shadow: -1px 1px 8px rgba(0, 0, 0, 0.4);
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -71,8 +74,7 @@
 	-ms-user-select: none;
 	user-select: none;
 	border: 1px solid transparent;
-	padding: .375rem .75rem;
-	font-size: 1rem;
+	font-size:13px;
 	line-height: 1.5;
 	border-radius: .25rem;
 	transition: background-color .15s ease-in-out, border-color .15s
@@ -90,10 +92,13 @@
   box-shadow: -4px 4px 24px rgba(0, 0, 0, 0.8);
 }
 
+
+
 .btn_red {
   position: relative;
   display: inline-block;
   margin: 0;
+  padding: 5px 10px;
   background: #E82929;
   color: #ffffff;
   font-family: inherit;
@@ -115,8 +120,7 @@
 	-ms-user-select: none;
 	user-select: none;
 	border: 1px solid transparent;
-	padding: .375rem .75rem;
-	font-size: 1rem;
+	font-size:13px;
 	line-height: 1.5;
 	border-radius: .25rem;
 	transition: background-color .15s ease-in-out, border-color .15s

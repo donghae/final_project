@@ -33,14 +33,8 @@
 					<ul class="main_nav_list">
 						
 						<li class="main_nav_item">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							자료검색
-								<span class="caret"></span>
-							</a>
-							<ul class="dropdown-menu">
-								<li><center><a href="lib_search">소장자료검색</a></center></li>
-								<li><center><a href="lib_search">통합검색</a></center></li>
-							</ul>
+							<a href="lib_search">도서 검색</a>
+							
 						</li>
 						<li class="main_nav_item">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -66,7 +60,7 @@
 						
 						<li class="main_nav_item">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-							마이라이브러리
+							마이 라이브러리
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">

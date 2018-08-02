@@ -28,7 +28,7 @@
 	
 	<!-- mybatis 설정시작 -->
 	<beans:bean name="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean" >
-		<beans:property name="jndiName" value="java:comp/env/jdbc/Oracle11g" /> <!-- context.xml의 컨넥션풀 lookup("java:comp/env/jdbc/Oracle11g") -->
+		<beans:property name="jndiName" value="java:comp/env/jdbc/Oracle11g_ara" /> <!-- context.xml의 컨넥션풀 lookup("java:comp/env/jdbc/Oracle11g") -->
 		<beans:property name="resourceRef" value="true"/>
 	</beans:bean>
 	
@@ -42,7 +42,7 @@
 	</beans:bean>
 	<!-- mybatis 설정종료 -->
 	
-	
+
 	
 	<!-- MultipartResolver 설정 : 파일업로드 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

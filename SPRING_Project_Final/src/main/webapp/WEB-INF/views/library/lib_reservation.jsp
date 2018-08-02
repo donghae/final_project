@@ -7,7 +7,7 @@
 
 
 
-<jsp:include page="../layout/header_lib2.jsp"/>
+<jsp:include page="../layout/header_lib_admin.jsp"/>
 
 
 <!-- 본문 -->

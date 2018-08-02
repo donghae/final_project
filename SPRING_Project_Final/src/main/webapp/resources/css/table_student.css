@@ -4,12 +4,16 @@ table {
   background: white;
   border-radius: 6px;
   overflow: hidden;
-  max-width: 800px;
+  max-width: 80%;
   width: 100%;
   margin: 0 auto;
   position: relative;
   color : #000000;
 }
+
+
+
+
 .st_mint {
   position: relative;
 }
@@ -28,9 +32,11 @@ table {
 .st_mint tbody tr:last-child {
   border: 0;
 }
-.st_mint td, .st_mint th {
-  text-align: left;
+.st_mint th, .st_mint td{
+  text-align: center;
 }
+
+
 
 
 @media screen and (max-width: 35.5em) {
@@ -77,6 +83,11 @@ table {
     content: "Box Type";
   }
 }
+
+
+
+
+
 .st_navy {
   position: relative;
 }
@@ -101,9 +112,10 @@ table {
 .st_navy tbody tr:last-child {
   border: 0;
 }
-.st_navy td, .st_navy th {
-  text-align: left;
+.st_navy th, .st_navy td{
+  text-align: center;
 }
+
 
 
 @media screen and (max-width: 35.5em) {
@@ -150,6 +162,11 @@ table {
     content: "Box Type";
   }
 }
+
+
+
+
+
 .st_red {
   position: relative;
 }
@@ -169,9 +186,10 @@ table {
 .st_red tbody tr:last-child {
   border: 0;
 }
-.st_red td, .st_red th {
-  text-align: left;
+.st_red th, .st_red td{
+  text-align: center;
 }
+
 
 
 @media screen and (max-width: 35.5em) {
@@ -218,6 +236,10 @@ table {
     content: "Box Type";
   }
 }
+
+
+
+
 .st_opacity {
   position: relative;
 }
@@ -238,9 +260,10 @@ table {
 .st_opacity tbody tr:last-child {
   border: 0;
 }
-.st_opacity td, .st_opacity th {
-  text-align: left;
+.st_opacity th, .st_opacity td{
+  text-align: center;
 }
+
 
 
 @media screen and (max-width: 35.5em) {
@@ -290,6 +313,7 @@ table {
 
 
 
+
 .st_beige {
   position: relative;
 }
@@ -309,9 +333,10 @@ table {
 .st_beige tbody tr:last-child {
   border: 0;
 }
-.st_beige td, .st_beige th {
-  text-align: left;
+.st_beige th, .st_beige td{
+  text-align: center;
 }
+
 
 
 @media screen and (max-width: 35.5em) {

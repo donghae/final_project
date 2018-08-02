@@ -65,6 +65,7 @@ body
 	font-weight: 400;
 	background: #FFFFFF;
 	color: #a5a5a5;
+	line-height:1.5;
 }
 div
 {
@@ -781,7 +782,7 @@ section
 .hero_boxes_inner
 {
 	position: absolute;
-	top: -212px;
+	top: 0px;
 	left: 0;
 	width: 100%;
 }
@@ -829,14 +830,14 @@ section
 {
 	padding-left: 13px;
 	padding-top: 11px;
-	margin-top: -6px;
+	margin-top: -6px; 
 }
-.hero_box_title
+.hero_box_title, .hero_box_title>a
 {
 	margin-right:15px;
 	font-size: 15px;
 	font-weight: 500;
-	color: #001E42;
+	color: black;
 	margin-bottom: 7px;
 }
 .hero_box_link
@@ -1367,7 +1368,7 @@ input:last-of-type
 .footer
 {
 	width: 100%;
-	padding-top: 400px;
+	padding: 150px 0px 50px;
 	background: #FFFFFF;
 }
 .footer .section_title h1
@@ -1440,7 +1441,7 @@ input:last-of-type
 
 .footer_content 
 {
-	padding-top: 80px;
+	
 	padding-bottom: 83px;
 	border-bottom: solid 2px #001E42;
 }
