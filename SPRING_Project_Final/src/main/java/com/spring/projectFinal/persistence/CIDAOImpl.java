@@ -13,14 +13,14 @@ import com.spring.projectFinal.CIVO.MajorVO;
 
 
 @Repository
-public class CIDAOImpl implements DIDAO{
+public class CIDAOImpl implements CIDAO{
 	@Autowired
 	private SqlSession sqlSession;
 
 	@Override
 	public int getMajorCnt() {
 		// TODO Auto-generated method stub
-		DIDAO dao = sqlSession.getMapper(DIDAO.class);
+		CIDAO dao = sqlSession.getMapper(CIDAO.class);
 		int selectCnt = dao.getMajorCnt();
 		
 		return selectCnt;
@@ -28,7 +28,7 @@ public class CIDAOImpl implements DIDAO{
 
 	@Override
 	public ArrayList<MajorVO> getMajorList(Map<String, Object> map) {
-		DIDAO dao = sqlSession.getMapper(DIDAO.class);
+		CIDAO dao = sqlSession.getMapper(CIDAO.class);
 		ArrayList<MajorVO> dtos = dao.getMajorList(map);
 		
 		return dtos;
@@ -36,7 +36,7 @@ public class CIDAOImpl implements DIDAO{
 
 	@Override
 	public MajorVO getMajor(int maj_cd) {
-		DIDAO dao = sqlSession.getMapper(DIDAO.class);
+		CIDAO dao = sqlSession.getMapper(CIDAO.class);
 		MajorVO vo = dao.getMajor(maj_cd);
 		
 		return vo;
@@ -44,7 +44,7 @@ public class CIDAOImpl implements DIDAO{
 
 	@Override
 	public int modifyMajor(MajorVO vo) {
-		DIDAO dao = sqlSession.getMapper(DIDAO.class);
+		CIDAO dao = sqlSession.getMapper(CIDAO.class);
 		int updateCnt = dao.modifyMajor(vo);
 		
 		return updateCnt;
@@ -52,7 +52,7 @@ public class CIDAOImpl implements DIDAO{
 
 	@Override
 	public Date getDate() {
-		DIDAO dao = sqlSession.getMapper(DIDAO.class);
+		CIDAO dao = sqlSession.getMapper(CIDAO.class);
 		Date date = dao.getDate();
 		
 		return date;
@@ -60,7 +60,7 @@ public class CIDAOImpl implements DIDAO{
 
 	@Override
 	public int addMajor(MajorVO vo) {
-		DIDAO dao = sqlSession.getMapper(DIDAO.class);
+		CIDAO dao = sqlSession.getMapper(CIDAO.class);
 		int insertCnt = dao.addMajor(vo);
 		
 		return insertCnt;
@@ -68,7 +68,7 @@ public class CIDAOImpl implements DIDAO{
 
 	@Override
 	public int deleteMajor(int maj_cd) {
-		DIDAO dao = sqlSession.getMapper(DIDAO.class);
+		CIDAO dao = sqlSession.getMapper(CIDAO.class);
 		int deleteCnt = dao.deleteMajor(maj_cd);
 		
 		return deleteCnt;

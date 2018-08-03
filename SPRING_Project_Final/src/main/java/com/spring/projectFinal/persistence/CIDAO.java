@@ -8,7 +8,7 @@ import com.spring.projectFinal.CIVO.MajorVO;
 
 
 
-public interface DIDAO {
+public interface CIDAO {
 
 	public int getMajorCnt();
 

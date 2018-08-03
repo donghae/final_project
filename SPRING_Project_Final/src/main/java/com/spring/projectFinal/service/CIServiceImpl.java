@@ -11,14 +11,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.spring.projectFinal.CIVO.MajorVO;
-import com.spring.projectFinal.persistence.DIDAO;
+import com.spring.projectFinal.persistence.CIDAO;
 
 
 
 @Service
 public class CIServiceImpl implements CIService{
 	@Autowired
-	DIDAO dao;
+	CIDAO dao;
 	
 	@Override
 	public void getMajorList(HttpServletRequest req, Model model) {
