@@ -29,10 +29,7 @@
 						</c:if>
 						<c:if test="${dto.ad_no == 018304001}">
 							이아름
-						</c:if>						
-						<c:if test="${dto.ad_no == 018104001}">
-							박희현
-						</c:if>						
+						</c:if>											
 						<c:if test="${dto.ad_no == 018401001}">
 							이승희
 						</c:if>						
@@ -70,10 +67,10 @@
 					onclick="window.location='dt_admin_notice_modify?num=${dto.dorm_n_no}&pageNum=${pageNum}'">
 					
 				<input class="inputButton" type="button" value="글삭제"
-					onclick="window.location='deleteForm?num=${dto.dorm_n_no}&pageNum=${pageNum}'">
+					onclick="window.location='#?num=${dto.dorm_n_no}&pageNum=${pageNum}'">
 					
 				<input class="inputButton" type="button" value="목록보기"
-					onclick="window.location='boardList?pageNum=${pageNum}'">
+					onclick="window.location='dt_admin_notice_sel?pageNum=${pageNum}'">
 		</tr>
 	
 	</table>

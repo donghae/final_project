@@ -19,7 +19,7 @@
 		<script type="text/javascript">
 			setTimeout(function(){
 				alert("정상적으로 공지사항 등록  되었습니다.");
-				window.location='dormitory_admin_notice';				
+				window.location='dt_admin_notice_sel';				
 			}, 1000)	
 		</script>	
 	</c:if>

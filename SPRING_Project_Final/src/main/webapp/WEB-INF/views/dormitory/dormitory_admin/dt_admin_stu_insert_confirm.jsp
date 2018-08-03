@@ -15,7 +15,7 @@
 		</script>
 	</c:if>
 
-	<c:if test="${insertCnt == 1}">
+	<c:if test="${insertCnt == 3}">
 		<script type="text/javascript">
 			setTimeout(function(){
 				alert("정상적으로 학생 등록 되었습니다.");

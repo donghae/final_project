@@ -64,7 +64,12 @@
 	
 <!-- 도서 수정 -->
 	<update id="bookupdate" parameterType="java.util.Map">
-		UPDATE tbl_book SET b_global=#{b_global,jdbcType=INTEGER},b_category=#{b_category,jdbcType=INTEGER},b_title=#{b_title,jdbcType=VARCHAR},b_price=#{b_price,jdbcType=INTEGER},b_author=#{b_author,jdbcType=VARCHAR},b_publish=#{b_publish,jdbcType=VARCHAR},b_date=#{b_date,jdbcType=VARCHAR},b_img=#{b_img,jdbcType=VARCHAR},b_state_fl=#{b_state_fl,jdbcType=INTEGER} WHERE b_no=#{b_no}
+		UPDATE tbl_book SET b_global=#{b_global,jdbcType=INTEGER},b_category=#{b_category,jdbcType=INTEGER},
+							b_title=#{b_title,jdbcType=VARCHAR},b_price=#{b_price,jdbcType=INTEGER},
+							b_author=#{b_author,jdbcType=VARCHAR},b_publish=#{b_publish,jdbcType=VARCHAR},
+							b_date=#{b_date,jdbcType=VARCHAR},b_img=#{b_img,jdbcType=VARCHAR},
+							b_state_fl=#{b_state_fl,jdbcType=INTEGER} 
+			WHERE b_no=#{b_no}
 	</update>	
 	
 	
@@ -76,7 +81,8 @@
 	
 <!-- 도서 대출 -->
 	<insert id="bookloan" parameterType="com.spring.projectFinal.LIVO.BookLoanVO">
-		INSERT INTO tbl_book_loan(loan_no,b_no,user_no,loan_dt,return_sche,overdue,loan_state) VALUES(loan_no_seq.nextval,#{b_no},#{user_no},#{loan_dt},#{return_sche},#{overdue},#{loan_state})
+		INSERT INTO tbl_book_loan(loan_no,b_no,user_no,loan_dt,return_sche,overdue,loan_state) 
+			VALUES(loan_no_seq.nextval,#{b_no},#{user_no},#{loan_dt},#{return_sche},#{overdue},#{loan_state})
 	</insert>	
 	
 <!-- 학생 증명 -->
@@ -95,12 +101,32 @@
 	</select>	
 	
 	
-<!-- 도서 대출 관련 정보 조회 -->
+<!-- 도서 대여 개수 구하기 -->
+	<select id="bookloanCnt" resultType="int">				
+		SELECT COUNT(*) FROM tbl_book_loan
+		<where>
+			<![CDATA[TO_CHAR(loan_dt,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>
+		</where>
+	</select>
+	
+<!-- 도서 대여 관련 정보 조회 -->
 	<select id="bookloanlist" resultType="com.spring.projectFinal.LIVO.BookLoanVO" parameterType="java.util.Map">
 		SELECT * FROM tbl_book_loan
 			<where>
-				b_no = #{b_no}				
-			</where>		
+				<choose>
+					<when test="b_no != null">
+						b_no = #{b_no}	
+					</when>
+					<when test="b_no == null">						
+						<![CDATA[TO_CHAR(loan_dt,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>
+						<if test="user_no != null">
+							AND user_no = #{user_no}
+						</if>
+					
+					</when>	
+				</choose>		
+			</where>
+			ORDER BY loan_dt		
 	</select>
 
 

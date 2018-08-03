@@ -1,0 +1,174 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="../setting.jsp"%>
+<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	 $(document).on("click", ".video_popup", function() {
+	   	var data = $(this).attr('id');
+	   	var file_name = data.split("|");
+	   	//빈 좌석일 시
+	  	var url = "cy_form?file_name="+file_name[0]+"&round_no="+file_name[1]+"&lec_no="+lec_no;
+		
+
+		window.open(url, "동영상", "menubar=no, width=800, height=600");
+	 });
+});
+</script>
+<style>
+.cy_1 {
+	margin-top: 21px;
+}
+
+.tab1 {
+	width: 100%;
+	height: 80%;
+	border: 1px solid;
+	border-collapse: collapse;
+	margin: 5px auto;
+}
+
+.tab1 tr td {
+	border-top: 1px solid;
+	border-left: 1px solid;
+	text-align: center;
+	border-collapse: collapse;
+	height: 10%;
+}
+
+.section_0 {
+	width: 100%;
+	height: 1000px;
+	display: inline;
+	text-align: center;
+	align-items: center;
+}
+
+.cy_2 {
+	width: 100%;
+}
+
+.cy_h4 {
+	
+}
+
+.cy_3 {
+	width: 100%;
+}
+
+.th_1 {
+	text-align: center;
+	background-color: #C4E8F6;
+}
+
+.wrap_dev1 {
+	display: inline;
+	width: 100%;
+	height: 40%;
+}
+
+.wrap_dev2 {
+	text-align: center;
+	background-color: #cacaca;
+}
+
+.left_div {
+	margin-left: -20%;
+	width: 40%;
+	display: inline-block;
+	text-align: center;
+}
+
+.right_div {
+	width: 40%;
+	display: inline-flex;
+}
+</style>
+
+
+<body>
+	<jsp:include page="../layout/header_ara.jsp" />
+
+	<div align="center">
+		<div class="cy_1">
+			<h4>강의 목록</h4>
+		</div>
+		<%@ include file="../cyber/cy_lec_sidebar_stu.jsp"%>
+		<div class="left_div">
+			<input type="button" onclick="window.location='cy_select_lec_add?lec_no=${lec_no}'" value="강의 추가">
+			
+			<table class="st_mint" style="width: 1000px; height: 70%">
+				<thead>
+					<tr>
+						<th style="width: 10%">주차</th>
+						<th style="width: 50%">강의명</th>
+						<th style="width: 15%">동영상 길이</th>
+						<th style="width: 15%">시청시간</th>
+						<th style="width: 5%">출결여부</th>
+						<th style="width: 5%">시청</th>
+					</tr>
+				</thead>
+				<!-- 게시글이 있으면 -->
+				<tbody>
+					
+					<c:if test="${requestScope.dtos!=null}">
+
+						<c:forEach var="vo" items="${dtos}">
+							<tr>
+								<td align="center">
+									${vo.round_no}주차
+								</td>
+								<td>
+									${vo.round_name}
+								</td>
+								<td align="center">${vo.file_len}</td>
+								<td align="center">	<input type="text" id="totalTime_${vo.round_no}"></td>
+								<td align="center"> </td>
+								<td align="center"><input class="video_popup" type="button" value="시청하기" id="${vo.file_name}|${vo.round_no}|${lec_no}"> </td>
+								
+
+							</tr>
+						</c:forEach>
+					</c:if>
+					<!-- 게시글이 없으면 -->
+					<c:if test="${requestScope.dtos==null}">
+						<tr>
+							
+							<th colspan="6" align="center">강의가 없습니다.</th>
+						</tr>
+					</c:if>
+				</tbody>
+			</table>
+
+			<table style="width: 1000px" align="center">
+				<tr>
+					<th align="center"><c:if test="${cnt>0}">
+							<!-- 처음 : ◀◀                                  이전 : ◀-->
+							<c:if test="${startPage > pageBlock}">
+								<a href="boardQnaList">◀◀</a>
+								<a href="boardQnaList?pageNum=${startPage-pageBlock}">&nbsp;◀</a>
+							</c:if>
+
+							<c:forEach var="i" begin="${startPage}" end="${endPage}">
+								<c:if test="${i==currentPage}">
+									<span><b>[${i}]</b></span>
+								</c:if>
+								<c:if test="${i!=currentPage}">
+									<a href="boardQnaList?pageNum=${i}">[${i}]</a>
+								</c:if>
+							</c:forEach>
+
+							<!-- 끝 : ▶▶                                       다음 : ▶-->
+							<c:if test="${pageCount > endPage}">
+								<a href="boardQnaList?pageNum=${startPage+pageBlock}">▶&nbsp;</a>
+								<a href="boardQnaList?pageNum=${pageCount}">▶▶</a>
+							</c:if>
+						</c:if></th>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+
+
+<%@ include file="../layout/footer_ara.jsp"%>

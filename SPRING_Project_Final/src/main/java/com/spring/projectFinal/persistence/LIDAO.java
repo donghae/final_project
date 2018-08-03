@@ -42,6 +42,9 @@ public interface LIDAO {
 	//교수 증명
 	public int pfCertiry(String user_no);
 	
+	//도서 대여 개수
+	public int bookloanCnt();
+	
 	//도서 대여 관련 정보 조회
 	public ArrayList<BookLoanVO> bookloanlist(Map<String,Object> map);
 	

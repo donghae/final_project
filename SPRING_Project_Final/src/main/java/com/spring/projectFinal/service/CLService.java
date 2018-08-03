@@ -1,0 +1,51 @@
+package com.spring.projectFinal.service;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+public interface CLService {
+	//test
+	public void addRound(MultipartHttpServletRequest req, Model model);
+	
+	//test
+	public void downloadFile(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException;
+	
+	//온라인 강의 공지사항 쓰기
+	public void addLecNotice(MultipartHttpServletRequest req, Model model);
+	
+	//온라인 강의 공지사항 리스트
+	public void getLecNoticeList(HttpServletRequest req, Model model);
+	
+	//온라인 강의 공지사항 하나
+	public void getLecNotice(HttpServletRequest req, Model model);
+	
+	//온라인 강의 전체 공지사항 쓰기
+	public void addNotice(MultipartHttpServletRequest req, Model model);
+	
+	//온라인 강의 전체 공지사항 리스트
+	public void getNoticeList(HttpServletRequest req, Model model);
+	
+	//온라인 강의 전체 공지사항 하나
+	public void getNotice(HttpServletRequest req, Model model);
+	
+	//온라인 강의 리스트
+	public void getLecList(HttpServletRequest req, Model model);
+	
+	//강의 회차 리스트
+	public void getRoundList(HttpServletRequest req, Model model);
+	
+	//온라인 출석 업데이트
+	public void updateCyAttendance(HttpServletRequest req, Model model);
+	
+	//온라인 출석테이블에 값있는지 확인
+	public void checkCyAttendance(HttpServletRequest req, Model model);
+	
+	//온라인 출석테이블에 값추가
+	public void addCyAttendance(HttpServletRequest req, Model model);
+}

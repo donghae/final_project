@@ -89,7 +89,7 @@ public class LIController {
 	}
 	
 	
-	//관리자 : 도서 대여/반납 페이지
+	//관리자 : 도서 대여/반납 
 	@RequestMapping("lib_bookLoanForm")
 	public String lib_bookLoanForm(HttpServletRequest req, Model model) {
 		
@@ -130,22 +130,70 @@ public class LIController {
 	}
 	
 	
-	//도서 예약 현황
-	@RequestMapping("lib_reservation")
-	public String lib_reservation(HttpServletRequest req, Model model) {
-		
-		System.out.println("lib_reservation-도서 예약 현황");
-		return "library/lib_reservation";
-	}
 	
 	
-	//도서 대여 조회
-	@RequestMapping("lib_rental")
-	public String lib_rental(HttpServletRequest req, Model model) {
+	
+	//도서 관리 페이지
+	@RequestMapping("lib_supervise")
+	public String lib_supervise(HttpServletRequest req, Model model) {
 		
-		System.out.println("lib_rental-도서 대여 현황");
-		return "library/lib_rental";
+		System.out.println("lib_supervise-도서 관리 페이지");
+		LIservice.lib_bookLoanlist(req,model);
+		return "library/lib_supervise";
 	}
+	//도서 관리 페이지 - 대여 현황
+	@RequestMapping("lib_bookLoanlist")
+	public String lib_bookLoanlist(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_bookLoanlist-대여 현황");
+		LIservice.lib_bookLoanlist(req,model);
+		return "library/lib_bookLoanlist";
+	}
+	//도서 관리 페이지 - 반납 현황
+	@RequestMapping("lib_bookReturnlist")
+	public String lib_bookReturnlist(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_returnlist-반납 현황");
+		return "library/lib_returnlist";
+	}
+	//도서 관리 페이지 - 반납 예정 현황
+	@RequestMapping("lib_bookRtPrearrangelist")
+	public String lib_bookRtPrearrangelist(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_bookRtPrearrangelist-반납 예정 현황");
+		return "library/lib_bookRtPrearrangelist";
+	}
+	//도서 관리 페이지 - 예약 현황
+	@RequestMapping("lib_bookReserlist")
+	public String lib_bookReserlist(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_bookReserlist-예약 현황");
+		return "library/lib_bookReserlist";
+	}
+	//도서 관리 페이지 - 대여
+	@RequestMapping("lib_bookLoanform")
+	public String lib_bookLoanform(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_bookLoanform-예약 현황");
+		return "library/lib_bookLoanform";
+	}
+	//도서 관리 페이지 - 반납
+	@RequestMapping("lib_bookReturnform")
+	public String lib_bookReturnform(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_bookReturnform-예약 현황");
+		return "library/lib_bookReturnform";
+	}
+	//도서 관리 페이지 - 연장
+	@RequestMapping("lib_bookRenewform")
+	public String lib_bookRenewform(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_bookRenewform-예약 현황");
+		return "library/lib_bookRenewform";
+	}
+		
+	
+	
 	
 	
 	//도서 신청 양식

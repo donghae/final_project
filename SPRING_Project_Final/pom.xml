@@ -13,7 +13,26 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+	
+	 
+	<!-- 동영상 관련1  -->
+	<repositories>
+	 <repository>
+	  <id>xuggle repo</id>
+	  <url>https://files.liferay.com/mirrors/xuggle.googlecode.com/svn/trunk/repo/share/java/</url>
+	 </repository>
+	</repositories>
+	
+	
 	<dependencies>
+		<!-- 동영상 관련2  -->
+		<dependency>
+			<groupId>xuggle</groupId>
+			<artifactId>xuggle-xuggler</artifactId>
+			<version>5.4</version>
+		</dependency>
+		
+		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>

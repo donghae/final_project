@@ -3,7 +3,7 @@
 
 
 
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
    
@@ -13,7 +13,7 @@
 
 		
 <!-- 검색 결과 -->
-<article class="back_white">
+
 	<div class="content">
 		<table class="st_beige">
 			<thead class="st_beige">

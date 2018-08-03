@@ -37,15 +37,21 @@
               <th>학번</th>
               <th>이름</th>
               <th>호실</th>
-              <th>외박신청일</th>
-              <th>외박점수</th>
-              <th>외박신청여부</th>
-              <th>외박사유</th>
+              <th>벌점점수</th>
+              <th>벌점부여일</th>
+              <th>벌점사유</th>
             </tr>
           </thead>
+          	
           	<c:if test="${dtos != null}">
           	<c:forEach var="dto" items="${dtos}">
           <tbody id="myTable">
+          <c:if test="${dto.dorm_penalty_dt == null }">
+          	<tr>
+          		<td align="center" colspan="6"> <h4>벌점 현황이 없습니다.</h4> </td>
+          	</tr>
+          	</c:if>
+          	<c:if test="${dto.dorm_penalty_dt != null}">
             <tr>
               <td>${dto.st_no}</td>
               <td>${dto.st_name}</td>
@@ -54,6 +60,7 @@
               <td>${dto.dorm_penalty_dt}</td>                            
               <td>${dto.dorm_reason}</td>          
             </tr>
+            </c:if>
           </tbody>
             </c:forEach> 
             </c:if>

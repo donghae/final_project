@@ -46,7 +46,7 @@
                                 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="admin">아라기숙사 <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link" href="dormitory">아라기숙사 <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li>
                                     	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -135,6 +135,16 @@ public class LIDAOImpl implements LIDAO {
 	}
 
 
+	//도서 대여 개수
+	@Override
+	public int bookloanCnt() {
+		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
+		int selectCnt  = lidao.bookloanCnt();
+		
+		return selectCnt;	
+	}
+	
+	
 	//도서 대여 관련 정보 조회
 	@Override
 	public ArrayList<BookLoanVO> bookloanlist(Map<String, Object> map) {
@@ -216,6 +226,9 @@ public class LIDAOImpl implements LIDAO {
 	
 		return sVO;
 	}
+
+
+	
 
 
 	

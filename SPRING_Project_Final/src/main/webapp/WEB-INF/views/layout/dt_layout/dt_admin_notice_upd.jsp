@@ -24,7 +24,6 @@
 	
 	<c:if test="${dto != null }">
 	<form action="dt_admin_notice_modify_con" name="notice_modify" method="post">
-	<input type="hidden" value="${dto.dorm_n_no}" name="dorm_n_no">
 		<table style="width:1000px" align="center" border="1">
 			<tr>
 				<td colspan="2" align="center"> 수정할 정보를 입력하세요.</td>

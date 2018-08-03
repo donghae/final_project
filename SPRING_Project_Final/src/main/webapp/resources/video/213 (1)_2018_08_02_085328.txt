@@ -1,0 +1,12 @@
+자바코드구역에서 html코드를 인식시키려면 ""안에 넣어주어야한다.
+String은 메소드결과가 저장되지않는데 StringBuffer는 메소드결과가 반영된다.그리고 더많은 메소드제공됨.
+JSP는 body생략가능
+클라이언트하나의 정보를 가지고있는것이 세션
+getAttributeNames() : 해당 내장객체의 속성명을 읽어오는 메소드로 모든속성의 이름을 얻어낸다(열거형타입으로 얻어온다.)
+request객체 : 클라이언트의 요청을 담아주는 객체
+getParameterValues(name) : String[]형태로 받는다,멀티셀렉트가 가능한곳에서 사용
+getParameterNames()어떤요소들이 서버로 넘어오는지 확인가능,열거타입으로 넘어온다.
+
+context.drawimage
+
+http://blog.naver.com/sbd38/220093775270

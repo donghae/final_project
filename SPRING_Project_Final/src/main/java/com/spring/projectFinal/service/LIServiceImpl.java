@@ -782,6 +782,107 @@ public class LIServiceImpl implements LIService{
 
 
 	
+	//도서 대여 조회
+	@Override
+	public void lib_bookLoanlist(HttpServletRequest req, Model model) {
+		
+		//검색 결과 페이지 구성
+		int pageSize = 20;		//한 페이지당 출력할 검색 결과 개수
+		int pageBlock = 10;		//한 블럭당 보여질 페이지의 수 
+		
+		int cnt = 0;			//검색결과 수
+		int start = 0;			//현재 페이지 시작 글 번호
+		int end = 0;			//현재 페이지 마지막 글 번호
+		int number = 0;			//게시글 번호
+		String pageNum = null;	//페이지 번호 
+		int currentPage = 0;	//현재 페이지
+		
+		int pageCount = 0;		//페이지 갯수
+		int startPage = 0;		//시작 페이지
+		int endPage = 0;		//마지막 페이지
+		
+		
+		
+		//관리자일 때는 전체 조회, 이용자는 본인 것만 조회  if(adId != null)
+		cnt = lidao.bookloanCnt();
+		
+
+		//검색결과 페이지 구성
+		pageNum = req.getParameter("pageNum");
+		
+		//첫 페이지를 1페이지로 설정
+		if(pageNum == null) {
+			pageNum = "1";	
+		}
+		
+		currentPage = Integer.parseInt(pageNum);
+		System.out.println("현재 페이지 : "+currentPage);
+
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1:0);
+		System.out.println("페이지 수 : " + pageCount);
+		
+		start = (currentPage - 1) * pageSize + 1;
+		
+		end = start + pageSize - 1;
+		System.out.println("시작 : " + start + " , 끝 : " + end);
+		
+		if(end > cnt) end = cnt;
+		
+		number = cnt - (currentPage - 1) * pageSize; 
+		System.out.println("글 수 : " + number + " , " + "한 페이지당 글 갯수 : " + pageSize);
+		
+		
+		//시작 페이지
+		startPage = (currentPage / pageBlock) * pageBlock + 1;
+		if(currentPage % pageBlock == 0) {
+			startPage -= pageBlock;
+		}		
+		System.out.println("블럭 첫 페이지 : " + startPage);
+		
+		
+		//마지막 페이지
+		endPage = startPage + pageBlock - 1;
+		if(endPage > pageCount) endPage = pageCount;
+		
+		System.out.println("블럭 마지막 페이지 : " + endPage);
+		
+		//검색 결과 내용 읽어오기
+		if(cnt > 0) {
+			
+			ArrayList<BookLoanVO> bloanVOs = lidao.bookloanlist(null);
+			model.addAttribute("bloanVOs",bloanVOs);
+		}
+		
+		//6단계. 처리 결과 넘기기
+		req.setAttribute("cnt", cnt);//글 갯수
+		req.setAttribute("number", number);//글번호
+		req.setAttribute("pageNum", pageNum);//페이지 번호
+		if(cnt>0) { //글이 하나 이상 있을 때 
+			req.setAttribute("startPage", startPage);//시작 페이지
+			req.setAttribute("endPage", endPage);//마지막 페이지
+			req.setAttribute("pageBlock", pageBlock);//페이지 블럭
+			req.setAttribute("pageCount", pageCount);//페이지 갯수
+			req.setAttribute("currentPage", currentPage);//현재 페이지	
+			
+		}
+	
+		/*String user_no = req.getParameter("adId");*/
+		//관리자일 때
+		/*String user_no = "";*/
+		
+		//검색할 날짜 가져가기 
+		/*Calendar cal = Calendar.getInstance();
+		
+		SimpleDateFormat fmt = new SimpleDateFormat();			         
+        fmt.applyPattern("yyyy/MM/dd");
+        
+		String searching = fmt.format(cal.getTime());*/
+	
+	}
+	
+	
+	
+	
 	
 	
 	//전체 좌석 현황 조회
@@ -911,6 +1012,10 @@ public class LIServiceImpl implements LIService{
 		}
 		model.addAttribute("certiry",certiry);
 	}
+
+
+
+	
 	
 	
 

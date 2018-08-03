@@ -162,14 +162,14 @@
 			<table class="st_beige">
 				<thead class="st_beige">
 					<tr>
-						<th>도서번호</th>
-						<th>대 분 류</th>
-						<th>중 분 류</th>
-						<th>제 목</th>
-						<th>저 자</th>
-						<th>출 판 사</th>
-						<th>대출가능</th>
-						<th></th>
+						<th style="width:12%;">도서번호</th>
+						<th style="width:7.5%;">대 분 류</th>
+						<th style="width:7.5%;">중 분 류</th>
+						<th style="width:22%;">제 목</th>
+						<th style="width:16%;">저 자</th>
+						<th style="width:13%;">출 판 사</th>
+						<th style="width:7%;">대출가능</th>
+						<th style="width:15%;"></th>
 					</tr>
 				</thead>
 				
@@ -184,14 +184,14 @@
 					<c:if test="${cnt > 0}">
 					<c:forEach var="bVOs" items="${bVOs}">
 						<tr>
-							<td>${bVOs.b_no}</td>
-							<td>${bVOs.b_global}</td>
-							<td>${bVOs.b_category}</td>
-							<td>${bVOs.b_title}</td>
-							<td>${bVOs.b_author}</td>
-							<td>${bVOs.b_publish}</td>
-							<td>${bVOs.b_state_fl}</td>
-							<td>
+							<td style="width:12%;">${bVOs.b_no}</td>
+							<td style="width:7.5%;">${bVOs.b_global}</td>
+							<td style="width:7.5%;">${bVOs.b_category}</td>
+							<td style="width:22%; text-align:left;">${bVOs.b_title}</td>
+							<td style="width:16%;">${bVOs.b_author}</td>
+							<td style="width:13%;">${bVOs.b_publish}</td>
+							<td style="width:7%;">${bVOs.b_state_fl}</td>
+							<td style="width:15%;">
 								<Button class="btn_navy" type="button" onclick="window.location='lib_bookModiForm?b_no=${bVOs.b_no}'">수정</Button>&nbsp;
 								<Button class="btn_navy" type="button" onclick="javascript:delBook('${bVOs.b_no}');">삭제</Button>
 								<%-- <c:if test="${memId != null}">

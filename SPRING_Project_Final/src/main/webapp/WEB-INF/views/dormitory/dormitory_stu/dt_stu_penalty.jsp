@@ -36,8 +36,6 @@
                 </svg>
             </div>
         </div>
-        <div class="questions-area text-center">
-        </div>
     </div>
 
     <!-- Gradient Background Overlay -->

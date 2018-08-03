@@ -57,7 +57,7 @@
 							<span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
 						</div>
                         
-						<a href="dormitory_stu_select">바로가기e</a>
+						<a href="#">바로가기e</a>
                         
 					 </div>
 				</div>	 

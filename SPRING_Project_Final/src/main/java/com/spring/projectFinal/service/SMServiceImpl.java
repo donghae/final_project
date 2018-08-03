@@ -53,7 +53,7 @@ public class SMServiceImpl implements SMService {
 
 		MultipartFile file = req.getFile("image");
 		String saveDir = req.getRealPath("/resources/images/addmission_img/");
-		String realDir = "C:\\Dev36\\workspace_final_0723\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\images\\addmission_img\\";
+		String realDir = "J:\\Dev36\\ARAuni\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\images\\addmission_img\\";
 
 		try {
 			file.transferTo(new File(saveDir + file.getOriginalFilename()));

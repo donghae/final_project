@@ -13,21 +13,17 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-     Favicon 
-	<link rel="icon" href="resources/images/core-img/favicon.ico">
 
+     Favicon 
+     <link rel="icon" href="resources/images/core-img/favicon.ico">
     Core Style CSS
     <link rel="stylesheet" href="resources/boot_dormitory/dormitory_css/core-style.css">
-
     Responsive CSS
     <link href="resources/boot_dormitory/dormitory_css/responsive.css" rel="stylesheet">
-
 
 </head>
 
 <body>
-
     <!-- Preloader -->
     <div id="preloader">
         <div class="showbox">
@@ -37,7 +33,6 @@
                 </svg>
             </div>
         </div>
-
     </div>
 
     <!-- Gradient Background Overlay -->
@@ -62,38 +57,63 @@
                                     <li>
                                     	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </li>
+                                    
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">학생관리</a>
+                                        <a class="nav-link dropdown-toggle" href="dormitory_admin_stu" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">기숙사 학생 관리</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="dormitoty_stu_selet">학생조회</a>
-                                            <a class="dropdown-item" href="dormitoty_stu_insert">학생 등록</a>
-                                            <a class="dropdown-item" href="dormitoty_stu_update">학생 수정</a>
-                                            <a class="dropdown-item" href="dormitoty_studelete">학생 삭제</a>
+                                            <a class="dropdown-item" href="dormitoty_admin_stu_sel">조회</a>
+                                            <a class="dropdown-item" href="dormitoty_admin_stu_ins">등록</a>
+                                            <a class="dropdown-item" href="dormitoty_admin_stu_upd">수정</a>
+                                            <a class="dropdown-item" href="dormitoty_admin_stu_del">삭제</a>
                                         </div>
                                     </li>
+                                    
                                     <!-- <li class="nav-item"> -->
                                     <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">생활안내</a>
+                                    <a class="nav-link dropdown-toggle" href="dormitory_admin_card" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">월별 식단표</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="#">생활관규정</a>
-                                            <a class="dropdown-item" href="#">전화번호</a>
-                                            <a class="dropdown-item" href="#">이용안내</a>
-                                            <a class="dropdown-item" href="#">생활수칙</a>
+                                            <a class="dropdown-item" href="dormitory_admin_card_sel">조회</a>
+                                            <a class="dropdown-item" href="dormitory_admin_card_ins">등록</a>
+                                            <a class="dropdown-item" href="dormitory_admin_card_upd">수정</a>
+                                            <a class="dropdown-item" href="dormitory_admin_card_del">삭제</a>
                                         </div>
                                     </li>
                                     
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">기숙사 식단표</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="dormitory_notice">공지사항</a>
+                                    <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="dormitory_admin_notice" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공지사항</a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="dormitory_admin_notice_sel">조회</a>
+                                            <a class="dropdown-item" href="dormitory_admin_notice_ins">등록</a>
+                                            <a class="dropdown-item" href="dormitory_admin_notice_upd">수정</a>
+                                            <a class="dropdown-item" href="dormitory_admin_notice_del">삭제</a>
+                                        </div>
                                     </li>
                                     
+                                    <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="dormitory_admin_sleepover" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">외박 관리</a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="dormitory_admin_sleepover_sel">조회</a>
+                                            <a class="dropdown-item" href="dormitory_admin_sleepover_ins">등록</a>
+                                            <a class="dropdown-item" href="dormitory_admin_sleepover_upd">수정</a>
+                                            <a class="dropdown-item" href="dormitory_admin_sleepover_del">삭제</a>
+                                        </div>
+                                    </li>                                    
+                                    
+                                    <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="dormitory_admin_penalty" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">벌점관리</a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="dormitoty_stu_selet">조회</a>
+                                            <a class="dropdown-item" href="dormitoty_stu_insert">등록</a>
+                                            <a class="dropdown-item" href="dormitoty_stu_update">수정</a>
+                                            <a class="dropdown-item" href="dormitoty_studelete">삭제</a>
+                                        </div>
+                                    </li>
+                                                                        
                                     <li class="nav-item dropdown" style="text-align:right;">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="#">학생 로그인</a>
-                                            <a class="dropdown-item" href="about-me.html">관리자 로그인</a>
+                                            <a class="dropdown-item" href="dormitory_stu_login">학생 로그인</a>
+                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
                                         </div>
                                     </li>
                                 </ul>

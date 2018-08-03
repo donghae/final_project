@@ -110,7 +110,7 @@
                   <div style="padding:0px;">
 					 <%@ include file="../../layout/dt_layout/box.jsp" %>
 					</div>            
-                    <%@ include file="../../layout/dt_layout/dt_stu_insert.jsp" %>
+                    <%@ include file="../../layout/dt_layout/dt_admin_update.jsp" %>
                     <div class="carousel-content h-100">
                         <div class="slide-text">
                         

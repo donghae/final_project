@@ -320,10 +320,10 @@ th {
   text-decoration:none;
 }
 
-html {
+/* html {
   font-size: 10px;
   -webkit-tap-highlight-color: transparent;
-}
+} */
 
 body {
   font-size: 14px;

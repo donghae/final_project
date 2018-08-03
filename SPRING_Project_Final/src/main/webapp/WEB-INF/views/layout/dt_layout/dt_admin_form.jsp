@@ -114,7 +114,7 @@
 							<span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
 						</div>
                         
-						<a href="dormitory_admin_sleepover">바로가기e</a>
+						<a href="#">바로가기e</a>
                         
 					 </div>
 				</div>	 
@@ -133,7 +133,7 @@
 							<span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
 						</div>
                         
-						<a href="dormitory_admin_penalty">바로가기e</a>
+						<a href="#">바로가기e</a>
                         
 					 </div>
 				</div>

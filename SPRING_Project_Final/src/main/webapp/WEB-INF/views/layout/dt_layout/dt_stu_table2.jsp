@@ -24,11 +24,8 @@
             <tr>
               <th>학번</th>
               <th>이름</th>
-              <th>전공</th>
+              <th>전공번호 </th>
               <th>호실</th>
-              <th>벌점</th>
-              <th>외박신청일</th>
-              <th>외박신청여부</th>
               <th>기숙사시작일</th>
               <th>기숙사종료일</th>
             </tr>
@@ -41,9 +38,6 @@
               <td>${dto.st_name}</td>
               <td>${dto.maj_cd}</td>
               <td>${dto.dorm_room}</td>
-              <td>${dto.dorm_penalty}</td>
-              <td>${dto.dorm_ex_dt}</td>
-              <td>${dto.dorm_ex_fl}</td>
               <td>${dto.dorm_st_dt}</td>
               <td>${dto.dorm_end_dt}</td>            
             </tr>

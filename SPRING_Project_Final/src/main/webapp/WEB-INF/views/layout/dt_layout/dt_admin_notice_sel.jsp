@@ -50,10 +50,7 @@
 						</c:if>
 						<c:if test="${dto.ad_no == 018304001}">
 							이아름
-						</c:if>						
-						<c:if test="${dto.ad_no == 018104001}">
-							박희현
-						</c:if>						
+						</c:if>											
 						<c:if test="${dto.ad_no == 018401001}">
 							이승희
 						</c:if>						
@@ -65,25 +62,7 @@
 						</c:if>																	
 					</td>																											
 					<td align="center">
-						
-<%-- 						<!-- 추가 Start -->
-						<!-- 답글인경우 : 들여쓰기 >1 -->
-						<c:if test="${dto.ref_level > 1 }"> <!-- 답글인 경우: 들여쓰기 > 1 -->
-							<c:set var="wid" value="${(dto.ref_level-1) * 10}" />
-							<img src="${path}images/level.gif" border="0" width="${wid}" height="15">
-						</c:if>
-					
-						<!-- 답글인경우: 들여쓰기 > 0 -->
-						<c:if test="${dto.ref_level > 0}">
-							<img src="${path}images/re.gif" border="0" width="20" height="15">
-						</c:if>
-					
-						<!-- hot이미지 -->
-						<c:if test="${dto.readCnt > 10}">
-							<img src="${path}images/hot.gif" border="0" width="20" height="20">
-						</c:if>
-
-						<!-- 추가 End --> --%>				
+								
 					
 						<!-- 글제목 클릭시 num,pageNum,number 를 같이 넘긴다. -->
 						<a href="dt_admin_notice_board?num=${dto.dorm_n_no}&pageNum=${pageNum}&number=${number+1}&cnt=${dto.dorm_n_cnt}"> ${dto.dorm_n_title}</a>

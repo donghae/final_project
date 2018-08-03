@@ -10,9 +10,7 @@
 <body>
 
 <div class="container">
-	<div class="row">
-
-        
+	<div class="row">     
         <form class="classNameHere" role="search" action="dormitory_stu_overnight_sel">
     	<div class="input-group">
 			<input type="text" class="form-control" placeholder="Search" name="srch" id="srch">
@@ -20,9 +18,7 @@
 				<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 			</div>
 		</div>
-		</form>
-        
-        
+		</form>    
 	</div>
 </div>
 </body>

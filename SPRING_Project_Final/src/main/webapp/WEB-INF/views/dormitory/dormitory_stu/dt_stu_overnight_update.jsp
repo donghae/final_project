@@ -23,9 +23,6 @@
                 </svg>
             </div>
         </div>
-        <div class="questions-area text-center">
-            <p>아라야 이거아라?</p>
-        </div>
     </div>
 
     <!-- Gradient Background Overlay -->
@@ -45,7 +42,7 @@
                                 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </li>
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="admin">아라기숙사 <span class="sr-only">(current)</span></a>
+                                        <a class="nav-link" href="dormitory">아라기숙사 <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li>
                                     	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

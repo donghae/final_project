@@ -29,24 +29,36 @@
               <th>외박점수</th>
               <th>외박신청여부</th>
               <th>외박사유</th>
+              <th>신청철회</th>
             </tr>
           </thead>
-          	<c:forEach var="dto" items="${dtos}">
+          	<c:forEach var="dto" items="${dtos}">          	
           <tbody id="myTable">
+            <c:if test="${dto.dorm_ex_fl != 0 }">
             <tr>
               <td>${dto.st_no}</td>
               <td>${dto.st_name}</td>
               <td>${dto.dorm_room}</td>
               <td>${dto.dorm_ex_dt}</td>
-              <td>${dto.dorm_on_sc}</td>              
-              <c:if test="${dto.dorm_ex_fl == 1 }">
-              	<td> 외박 신청 중 </td>
-              </c:if>                
-              <td>${dto.dorm_reason}</td>    
-              <td><a href="dt_stu_overnight_delete?st_no=${dto.st_no}&dorm_ex_dt=${dto.dorm_ex_dt}">신청 철회</a></td>        
+              <td>${dto.dorm_on_sc}</td>
+              <td>   
+	              <c:if test="${dto.dorm_ex_fl == 1 }">
+	              	 외박 신청 승인 대기중  
+	              </c:if>           
+	              <c:if test="${dto.dorm_ex_fl == 2 }">
+	              	 외박 신청 승인  
+	              </c:if>      
+	              <c:if test="${dto.dorm_ex_fl == 3 }">
+	              	 외박 신청 철회
+	              </c:if>	                      
+	              <td>${dto.dorm_reason}</td>    
+	              <td><a href="dt_stu_overnight_delete?st_no=${dto.st_no}&dorm_ex_dt=${dto.dorm_ex_dt}">신청 철회</a></td>                   
+              </td> 
             </tr>
+            </c:if>
           </tbody>
             </c:forEach> 
+            
          </table>
  
 	<table style="width:1000px" align="center">
@@ -55,8 +67,8 @@
 				<c:if test="${cnt > 0}">
 					<!-- 처음[◀◀] / 이전블록[◀] -->
 					<c:if test="${startPage > pageBlock}">
-						<a href="orderlist">[◀◀]</a>
-						<a href="orderlist?pageNum=${startPage - pageBlock}">[◀]</a>
+						<a href="dormitory_stu_overnight_sel">[◀◀]</a>
+						<a href="dormitory_stu_overnight_sel?pageNum=${startPage - pageBlock}">[◀]</a>
 					</c:if>
 					
 					<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -64,14 +76,14 @@
 							<span><b>[${i}]</b></span>
 						</c:if>
 						<c:if test="${i!=currentPage}">
-							<a href="orderlist?pageNum=${i}">[${i}]</a>
+							<a href="dormitory_stu_overnight_sel?pageNum=${i}">[${i}]</a>
 						</c:if>
 					</c:forEach>
 					
 					<!-- 다음블록[▶]/ 끝[▶▶] -->
 					<c:if test="${pageCount > endPage}">
-						<a href="orderlist?pageNum=${startPage + pageBlock}">[▶]</a>
-						<a href="orderlist?pageNum=${pageCount}">[▶▶]</a>
+						<a href="dormitory_stu_overnight_sel?pageNum=${startPage + pageBlock}">[▶]</a>
+						<a href="dormitory_stu_overnight_sel?pageNum=${pageCount}">[▶▶]</a>
 					</c:if>
 				</c:if>
 			</th>

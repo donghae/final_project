@@ -38,7 +38,17 @@ public interface LIService {
 	public void searchtest(HttpServletRequest req,Model model);
 
 
+	
+	//도서 대여 조회
+	public void lib_bookLoanlist(HttpServletRequest req,Model model);
 
+	
+	
+	
+	
+	
+	
+	
 	//좌석 보기
 	public void lib_viewSeat(HttpServletRequest req,Model model);
 	
