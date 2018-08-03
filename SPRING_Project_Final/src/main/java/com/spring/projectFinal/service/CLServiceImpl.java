@@ -1,6 +1,11 @@
 package com.spring.projectFinal.service;
 
 
+import com.spring.projectFinal.CLVO.CyberAttendanceVO;
+import com.spring.projectFinal.CLVO.CyberLecNoticeVO;
+import com.spring.projectFinal.CLVO.CyberNoticeVO;
+import com.spring.projectFinal.CLVO.LectureVO;
+import com.spring.projectFinal.CLVO.RoundVO;
 import com.spring.projectFinal.persistence.CLDAO;
 import com.xuggle.xuggler.IContainer;
 

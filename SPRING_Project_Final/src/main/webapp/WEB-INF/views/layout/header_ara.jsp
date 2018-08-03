@@ -80,13 +80,9 @@
 							<li><a href="ara">대학소개</a></li>
 							<li><a href="admission">입학안내</a></li>
 							<li><a href="st_stu">교육</a></li>							
-							<li class="has-dropdown active">
-								<a href="#">온라인 교육</a>
-								<ul class="dropdown">
-									<li><a href="cy_main">온라인 교육 메인</a></li>
-									<li><a href="cy_comm">커뮤니티</a></li>
-									<li><a href="cy_add">강의추가</a></li>
-								</ul>
+							<li>
+								<a href="cy_main">온라인 교육</a>
+								
 							</li>
 							<li><a href="st_pro">대학생활</a></li>
 							<li><a href="st_adm">커뮤니티</a></li>

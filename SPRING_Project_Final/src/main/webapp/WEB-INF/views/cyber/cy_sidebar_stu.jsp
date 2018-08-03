@@ -35,48 +35,7 @@
 								</h4>
 							</div>							
 						</div>
-						<div class="panel panel-defaul">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion"
-										href="#collapseThree">성적 관리<span class="caret"></span></a>
-								</h4>
-							</div>
-							<div id="collapseThree" class="panel-collapse collapse">
-								<ul class="list-group">
-									<li><a href="" class="navlink">성적 조회</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="panel panel-defaul">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion"
-										href="#collapseFour">장학금 관리<span class="caret"></span></a>
-								</h4>
-							</div>
-							<div id="collapseFour" class="panel-collapse collapse">
-								<ul class="list-group">
-									<li><a href="" class="navlink">장학금 신청</a></li>
-									<li><a href="" class="navlink">장학금 수여 내역 조회</a></li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="panel panel-defaul">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion"
-										href="#collapseFive">등록금 관리<span class="caret"></span></a>
-								</h4>
-							</div>
-							<div id="collapseFive" class="panel-collapse collapse">
-								<ul class="list-group">
-									<li><a href="" class="navlink">등록금 납부 조회</a></li>
-								</ul>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>

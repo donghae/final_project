@@ -66,8 +66,8 @@ public class CIServiceImpl implements CIService{
 		ArrayList<MajorVO> dtos = null;
 		if (cnt > 0) {
 			// 게시글 목록 조회
-			Map<String,Object> map = new HashMap<>();
-			map = new HashMap<>();
+			Map<String,Object> map = new HashMap<String, Object>();
+			map = new HashMap<String, Object>();
 			map.put("start", start);
 			map.put("end", end);			
 			dtos = dao.getMajorList(map);

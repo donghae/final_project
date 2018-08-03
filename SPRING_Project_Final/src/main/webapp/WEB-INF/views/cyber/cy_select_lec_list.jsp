@@ -8,7 +8,7 @@ $(function() {
 	   	var data = $(this).attr('id');
 	   	var file_name = data.split("|");
 	   	//빈 좌석일 시
-	  	var url = "cy_form?file_name="+file_name[0]+"&round_no="+file_name[1]+"&lec_no="+lec_no;
+	  	var url = "cy_form?file_name="+file_name[0]+"&round_no="+file_name[1]+"&lec_no="+file_name[2];
 		
 
 		window.open(url, "동영상", "menubar=no, width=800, height=600");
