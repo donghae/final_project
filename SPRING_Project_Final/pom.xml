@@ -14,8 +14,7 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	
-	 
-	<!-- 동영상 관련1  -->
+	<!-- 동영상관련  -->
 	<repositories>
 	 <repository>
 	  <id>xuggle repo</id>
@@ -25,14 +24,12 @@
 	
 	
 	<dependencies>
-		<!-- 동영상 관련2  -->
+		<!-- 동영상관련  -->
 		<dependency>
 			<groupId>xuggle</groupId>
 			<artifactId>xuggle-xuggler</artifactId>
 			<version>5.4</version>
 		</dependency>
-		
-		
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -163,23 +160,6 @@
 			<!-- 파일 업로드 등록 완료 -->
 			
 			
-			<!-- Json 변환기  -->
-			<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-			<dependency>
-			    <groupId>com.fasterxml.jackson.core</groupId>
-			    <artifactId>jackson-databind</artifactId>
-			    <version>2.9.6</version>
-			</dependency>
-					
-	
-			<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
-			<dependency>
-			    <groupId>org.codehaus.jackson</groupId>
-			    <artifactId>jackson-mapper-asl</artifactId>
-			    <version>1.9.13</version>
-			</dependency>
-
-
 			
 			
 		<!-- Test -->

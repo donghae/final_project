@@ -28,7 +28,7 @@
 					<span>도서 번호</span>
 					<input type="text" name="b_no">
 					<a href="javascript:void(0);" onclick="addloanForm();return false;">
-	    				<img src="resources/images/library_img/hand-gesture.png" style="width:50px;">
+	    				<img src="resources/images/library_img/touch.png" style="width:50px;">
 	    			</a>	
 	            </label>	           
 	        </div>

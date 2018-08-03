@@ -1,4 +1,4 @@
-package com.spring.projectFinal.vo;
+package com.spring.projectFinal.DTVO;
 
 import java.sql.Date;
 
