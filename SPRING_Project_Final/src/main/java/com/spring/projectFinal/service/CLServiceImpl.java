@@ -614,6 +614,7 @@ public class CLServiceImpl implements CLService{
 		System.out.println("pageSize : " + pageSize);
 
 		ArrayList<RoundVO> dtos = null;
+		Map<Integer,Object> watchTime = new HashMap<>();
 		if (cnt > 0) {
 			// 게시글 목록 조회
 			
@@ -621,6 +622,22 @@ public class CLServiceImpl implements CLService{
 			map.put("start", start);
 			map.put("end", end);			
 			dtos = dao.getRoundList(map);
+			for(RoundVO dto : dtos) {
+				CyberAttendanceVO vo = new CyberAttendanceVO();
+				map = new HashMap<>();
+				map.put("lec_no", dto.getLec_no());
+				System.out.println("dto.getLec_no : " + dto.getLec_no());
+				map.put("round_no", dto.getRound_no());
+				System.out.println("dto.getRound_no : " + dto.getRound_no());
+				map.put("st_no", "218202001");
+				
+				vo = dao.getCyAttendance(map);
+				if(vo!=null) {
+					watchTime.put(dto.getRound_no(), vo.getWatch_time());
+				}
+				
+			}
+			model.addAttribute("watchTime", watchTime);
 			model.addAttribute("dtos", dtos);
 		}
 
@@ -651,15 +668,15 @@ public class CLServiceImpl implements CLService{
 		
 	}
 
+
+
 	@Override
 	public void updateCyAttendance(HttpServletRequest req, Model model) {
 		// TODO Auto-generated method stub
+		int selectCnt = 0;
+		int insertCnt = 0;
+		int updateCnt = 0;
 		
-	}
-
-	@Override
-	public void checkCyAttendance(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
 		int lec_no = Integer.parseInt(req.getParameter("lec_no"));
 		int round_no = Integer.parseInt(req.getParameter("round_no"));
 		long watch_time = Long.parseLong(req.getParameter("time"));
@@ -672,13 +689,18 @@ public class CLServiceImpl implements CLService{
 		vo.setWatch_time(watch_time);
 		vo.setSt_no(st_no);
 		vo.setWatch_dt(watch_dt);
+		
+		selectCnt = dao.checkCyAttendance(vo);
+		if(selectCnt>0) {
+			updateCnt = dao.updateCyAttendance(vo);
+			model.addAttribute("updateCnt", updateCnt);
+		}else {
+			insertCnt = dao.insertCyAttendance(vo);
+			model.addAttribute("insertCnt", insertCnt);
+		}
+		model.addAttribute("selectCnt", selectCnt);
 	}
 
-	@Override
-	public void addCyAttendance(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	
 	

@@ -49,6 +49,7 @@ public class CLController {
 	public String cy_form(HttpServletRequest req, Model model) {
 		model.addAttribute("file_name", req.getParameter("file_name"));
 		model.addAttribute("round_no", req.getParameter("round_no"));
+		model.addAttribute("lec_no", req.getParameter("lec_no"));
 		return "cyber/cy_form";
 	}
 	
@@ -126,11 +127,10 @@ public class CLController {
 	}
 	
 	@RequestMapping("cy_attendance")
-	public String cy_attendance(MultipartHttpServletRequest req, Model model) {		
-		service.checkCyAttendance(req, model);
+	public String cy_attendance(HttpServletRequest req, Model model) {		
 		
 		service.updateCyAttendance(req, model);
 		
-		return "cyber/cy_lec_notice_write_pro";
+		return "cyber/cy_form";
 	}
 }

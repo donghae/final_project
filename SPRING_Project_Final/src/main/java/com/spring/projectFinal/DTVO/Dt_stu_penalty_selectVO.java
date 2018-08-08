@@ -43,12 +43,12 @@ public class Dt_stu_penalty_selectVO {
 		this.dorm_penalty = dorm_penalty;
 	}
 	
-	public Date getDorm_ex_dt() {
+	public Date getDorm_penalty_dt() {
 		return dorm_penalty_dt;
 	}
 	
-	public void setDorm_ex_dt(Date dorm_ex_dt) {
-		this.dorm_penalty_dt = dorm_ex_dt;
+	public void setDorm_penalty_dt(Date dorm_penalty_dt) {
+		this.dorm_penalty_dt = dorm_penalty_dt;
 	}
 	
 	public String getDorm_reason() {

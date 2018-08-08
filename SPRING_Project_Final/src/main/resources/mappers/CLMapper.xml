@@ -94,4 +94,17 @@
 		INSERT INTO TBL_CY_LECTURE(lec_no,round_no,round_name,file_name,file_len)
 		VALUES(#{lec_no},#{round_no},#{round_name},#{file_name},#{file_len})
 	</insert>
+	<select id="checkCyAttendance" parameterType="com.spring.projectFinal.CLVO.CyberAttendanceVO" resultType="int">
+		SELECT COUNT(*) FROM TBL_CY_ATTENDANCE WHERE lec_no=#{lec_no} AND round_no=#{round_no} AND st_no=#{st_no}
+	</select>
+	<insert id="insertCyAttendance" parameterType="com.spring.projectFinal.CLVO.CyberAttendanceVO">
+		INSERT INTO TBL_CY_ATTENDANCE(lec_no, round_no, st_no, watch_time, watch_dt)
+		VALUES(#{lec_no},#{round_no},#{st_no},#{watch_time},#{watch_dt})
+	</insert>
+	<update id="updateCyAttendance" parameterType="com.spring.projectFinal.CLVO.CyberAttendanceVO">
+		UPDATE TBL_CY_ATTENDANCE SET watch_time=#{watch_time}, watch_dt=#{watch_dt} WHERE lec_no=#{lec_no} AND round_no=#{round_no} AND st_no=#{st_no}
+	</update>
+	<select id="getCyAttendance" parameterType="java.util.Map" resultType="com.spring.projectFinal.CLVO.CyberAttendanceVO">
+		SELECT * FROM TBL_CY_ATTENDANCE WHERE lec_no=#{lec_no} AND round_no=#{round_no} AND st_no=#{st_no}
+	</select>
 </mapper>

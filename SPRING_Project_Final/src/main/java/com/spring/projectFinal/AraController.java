@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.projectFinal.controller.SMController;
+import com.spring.projectFinal.service.ARAService;
 import com.spring.projectFinal.service.SMService;
 
 @Controller
@@ -19,7 +21,10 @@ public class AraController {
 
 	@Autowired
 	SMService service;
-
+	
+	@Autowired
+	ARAService araService;
+	
 	// 로깅을 위한 변수
 	private static final Logger logger = LoggerFactory.getLogger(SMController.class);
 
@@ -73,5 +78,60 @@ public class AraController {
 		logger.info("chk2()");
 		/*service.st_profile(req, model);*/
 		return "student/2_st_applicantsResult";
+	}
+	
+	// 로그인
+	@RequestMapping("loginPage")
+	public String loginPage(HttpServletRequest req, Model model) {
+		logger.info("loginPage()");
+		/*service.st_profile(req, model);*/
+		return "common/login";
+	}
+	// 로그인
+	@RequestMapping("login")
+	public String login(HttpServletRequest req, Model model) {
+		logger.info("login()");
+		araService.login(req, model);
+		return "common/loginPro";
+	}
+	// 로그아웃
+	@RequestMapping("logout")
+	public ModelAndView logout(HttpServletRequest req, Model model) {
+		logger.info("logout()");
+		req.getSession().invalidate();
+		return new ModelAndView("redirect:/ara");
+	}
+		
+	// 아이디찾기
+	@RequestMapping("findId")
+	public String findId(HttpServletRequest req, Model model) {
+		logger.info("findId()");
+		/*service.st_profile(req, model);*/
+		return "common/findId";
+	}
+	
+	// 아이디찾기
+	@RequestMapping("findIdPro")
+	public String findIdPro(HttpServletRequest req, Model model) {
+		logger.info("findIdPro()");
+		araService.findIdPwd(req, model);
+		return "common/findIdPro";
+	}
+	
+	// 아이디찾기
+	@RequestMapping("findPwd")
+	public String findPwd(HttpServletRequest req, Model model) {
+		logger.info("findPwd()");
+		model.addAttribute("id", req.getParameter("id"));
+		/*service.st_profile(req, model);*/
+		return "common/findPwd";
+	}
+	
+	// 아이디찾기
+	@RequestMapping("findPwdPro")
+	public String findPwdPro(HttpServletRequest req, Model model) {
+		logger.info("findPwdPro()");
+		araService.findIdPwd(req, model);
+		return "common/findPwdPro";
 	}
 }

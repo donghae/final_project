@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.projectFinal.CLVO.CyberAttendanceVO;
 import com.spring.projectFinal.CLVO.CyberLecNoticeVO;
 import com.spring.projectFinal.CLVO.CyberNoticeVO;
 import com.spring.projectFinal.CLVO.LectureVO;
@@ -132,6 +133,34 @@ public class CLDAOImpl implements CLDAO{
 		// TODO Auto-generated method stub
 		CLDAO dao = sqlSession.getMapper(CLDAO.class);
 		return dao.addRound(vo);
+	}
+
+
+	@Override
+	public int checkCyAttendance(CyberAttendanceVO vo) {
+		CLDAO dao = sqlSession.getMapper(CLDAO.class);
+		return dao.checkCyAttendance(vo);
+	}
+
+
+	@Override
+	public int insertCyAttendance(CyberAttendanceVO vo) {
+		CLDAO dao = sqlSession.getMapper(CLDAO.class);
+		return dao.insertCyAttendance(vo);
+	}
+
+
+	@Override
+	public int updateCyAttendance(CyberAttendanceVO vo) {
+		CLDAO dao = sqlSession.getMapper(CLDAO.class);
+		return dao.updateCyAttendance(vo);
+	}
+
+
+	@Override
+	public CyberAttendanceVO getCyAttendance(Map<String, Object> map) {
+		CLDAO dao = sqlSession.getMapper(CLDAO.class);
+		return dao.getCyAttendance(map);
 	}
 
 

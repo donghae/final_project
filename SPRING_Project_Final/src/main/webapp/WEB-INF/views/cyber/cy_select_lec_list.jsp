@@ -121,9 +121,20 @@ $(function() {
 								<td>
 									${vo.round_name}
 								</td>
+								<c:set var="round" value="${vo.round_no}"/>
 								<td align="center">${vo.file_len}</td>
-								<td align="center">	<input type="text" id="totalTime_${vo.round_no}"></td>
-								<td align="center"> </td>
+								<td align="center">	<input type="text" id="totalTime_${vo.round_no}" value="${watchTime[round]}"></td>
+								<td align="center"> 
+									<c:choose>
+										<c:when test="${watchTime[round]>=(vo.file_len*0.9)}">
+											O
+										</c:when>
+										<c:otherwise>
+											X
+										</c:otherwise>
+									</c:choose>
+									
+								</td>
 								<td align="center"><input class="video_popup" type="button" value="시청하기" id="${vo.file_name}|${vo.round_no}|${lec_no}"> </td>
 								
 

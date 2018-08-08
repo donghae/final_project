@@ -110,9 +110,60 @@
 		
 		opener.document.getElementById("totalTime_"+round_no).value = parseInt(ts+tt);
 	}
-	function watch_time(lec_no, round_no){		
-		var time = opener.document.getElementById("totalTime_"+round_no).value;
+	function watch_time(beforeStr){		
+		var param = beforeStr.toString().split("|");
+		alert(beforeStr);
+		var lec_no = param[0];
+		var round_no = param[1];
+		alert(lec_no +" && "+ round_no);
+		var endTime = document.getElementById("endTime");
+		var playTime = document.getElementById("playTime");
+		
+		var startYear = document.getElementById("startYear").value;
+		var startMonth = document.getElementById("startMonth").value;
+		var startDate = document.getElementById("startDate").value;
+		var startHours = document.getElementById("startHours").value;
+		var startMinutes = document.getElementById("startMinutes").value;
+		var startSeconds = document.getElementById("startSeconds").value;
+		
+		var date = new Date();
+		
+		date.setFullYear(startYear);
+		date.setMonth(startMonth);
+		date.setDate(startDate);
+		date.setHours(startHours);
+		date.setMinutes(startMinutes);
+		date.setSeconds(startSeconds);
+		
+		var endDate = new Date();
+				
+		var timeGap = new Date(0, 0, 0, 0, 0, 0, endDate - date);
+
+		var time = endDate.getFullYear()+"/"+
+					(endDate.getMonth() + 1)+"/"+
+					endDate.getDate()+"-"+
+					timeGap.getHours()+":"+
+					timeGap.getMinutes()+":"+
+					timeGap.getSeconds();
+		endTime.innerHTML = time
+		playTime.innerHTML = timeGap.getHours();
+		/* var tt = opener.document.getElementById("totalTime").value * 1;
+		var ts = 0;
+		var tm = 0;
+		if(((tt%100)+timeGap.getSeconds())>59){
+			ts = ((tt%100)+timeGap.getSeconds())%60;
+			tm += 1;
+		}else{
+			ts = (tt%100)+timeGap.getSeconds()*1;
+		}
+		tm += parseInt(tt/100) + timeGap.getMinutes()*1;
+		opener.document.getElementById("totalTime").value = parseInt(tm*100 + ts); */
+		var tt = opener.document.getElementById("totalTime_"+round_no).value * 1;
+		var ts = (timeGap.getHours() * 3600) + (timeGap.getMinutes()*60) + timeGap.getSeconds();
+		
+		var time = parseInt(ts+tt);
 		window.location = "cy_attendance?lec_no="+lec_no+"&round_no="+round_no+"&time="+time;
+		opener.location.reload();
 	}
 </script>
 
@@ -136,7 +187,7 @@
 		<input type="hidden" id="startHours">
 		<input type="hidden" id="startMinutes">
 		<input type="hidden" id="startSeconds">
-		<button type="button" id="close" onclick="video.pause(); watch_time(${lec_no},${round_no}); opener.location.reload(); self.close();">종료</button>
+		<button type="button" id="close" onclick="video.pause(); watch_time('${lec_no}|${round_no}'); ">종료</button>
 		<button type="button" id="play" class="btn_play">재생</button>
 		<!-- <button type="button" id="pause" class="btn_pause" style="display:none">일시정지</button>
 		<button type="button" id="stop" class="btn_stop">정지</button>

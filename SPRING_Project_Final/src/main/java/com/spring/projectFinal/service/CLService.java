@@ -43,9 +43,5 @@ public interface CLService {
 	//온라인 출석 업데이트
 	public void updateCyAttendance(HttpServletRequest req, Model model);
 	
-	//온라인 출석테이블에 값있는지 확인
-	public void checkCyAttendance(HttpServletRequest req, Model model);
 	
-	//온라인 출석테이블에 값추가
-	public void addCyAttendance(HttpServletRequest req, Model model);
 }

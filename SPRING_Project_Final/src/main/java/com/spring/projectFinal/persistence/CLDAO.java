@@ -3,6 +3,7 @@ package com.spring.projectFinal.persistence;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.spring.projectFinal.CLVO.CyberAttendanceVO;
 import com.spring.projectFinal.CLVO.CyberLecNoticeVO;
 import com.spring.projectFinal.CLVO.CyberNoticeVO;
 import com.spring.projectFinal.CLVO.LectureVO;
@@ -42,4 +43,16 @@ public interface CLDAO {
 	public int getLecPersonCnt(int lec_no);
 	
 	public int addRound(RoundVO vo);
+	
+	//출결
+	public int checkCyAttendance(CyberAttendanceVO vo);
+	
+	//출결추가
+	public int insertCyAttendance(CyberAttendanceVO vo);
+	
+	//출결추가
+	public int updateCyAttendance(CyberAttendanceVO vo);
+	
+	//출결 가져오기
+	public CyberAttendanceVO getCyAttendance(Map<String, Object> map);
 }
