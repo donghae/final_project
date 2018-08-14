@@ -12,6 +12,9 @@
 	function focus(major){
 		loca.value=major;
 	}
+	function apply() {
+		window.location = 'applicationPro?&major=' + loca.value+'&extra=1';
+	}
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -100,7 +103,7 @@
 												var="number" value="${number-1}" /></td>
 										<td style="text-align: center"><img
 											style="width: 60px; height: 80px"
-											src="resources/images/fileUpload/${dto.ent_image}"></td>
+											src="resources/images/addmission_img/${dto.ent_image}"></td>
 										<td style="text-align: center">${dto.ent_name}</td>
 										<td style="text-align: center">${dto.ent_maj}</td>
 										<td style="text-align: center">${dto.ent_grade}</td>
@@ -118,6 +121,11 @@
 										</c:if>
 									</tr>
 								</c:forEach>
+								<tr>
+									<th colspan="10" style="text-align: center">
+										<input class="btn_navy" type="button" value="승인" onclick="apply();" style=" width: 62px; height: 39.5px;">
+									</th>
+								</tr>
 							</c:if>
 							<!-- 신청자가 없으면 -->
 							<c:if test="${cnt==0}">

@@ -16,67 +16,78 @@
 <link rel="stylesheet" href="resources/css/table_student.css">
 
 <style type="text/css">
-	.st_navy th {
-	    text-align:center;
-	    width:60px;	
-	}
-	.st_navy td {
-	    text-align:center;
-	    width:60px;	
-	}
+.st_navy th {
+	text-align: center;
+	width: 60px;
+}
+
+.st_navy td {
+	text-align: center;
+	width: 60px;
+}
 </style>
 </head>
 <body>
-	<div style="width:900px; float: left;">
+	<div style="width: 900px; float: left;">
 		<div class="container" style="margin-left: 100px;">
 			<div class="mail-box">
 				<aside class="lg-side">
 					<div class="inbox-head">
 						<div style="width: 30%; float: left;">
-							<br><br>
+							<br> <br>
 							<h1>출결현황</h1>
 						</div>
-						<div style="width: 30%; margin-left:720px;">
-							<br><br><br><br><br>
+						<div style="width: 30%; margin-left: 720px;">
+							<br> <br> <br> <br> <br>
 							<h3>강의별 출결현황</h3>
 						</div>
 					</div>
-				</aside>			
-							
-				<div class="inbox-body">	
+				</aside>
+
+				<div class="inbox-body">
 					<div class="mail-option">
-					<p>강의명 : ${lec_name}</p>
-						<table class="st_navy" style="text-align:center;">
-							<thead>	
+						<br> <br>
+						<table class="st_navy" style="text-align: center;">
+							<thead>
 								<tr>
-										<c:forEach var="i" begin="0" end="14">
-									<th>${i+1}</th>
-										</c:forEach>
+									<th>순번</th>
+									<th>수업일자</th>
+									<th>강의명 / 강의실</th>
+									<th>출석여부</th>
 								</tr>
-						</thead>
-											
-		<tbody>
-			<tr>
-				<c:forEach var="i" begin="0" end="14">	
-					<td>
-					<c:if test="${list[i].attend_fl == 0}"><!-- 결석 -->
-						Ⅹ</c:if>
-					<c:if test="${list[i].attend_fl==1}"><!-- 정상 -->
-						○</c:if>
-					<c:if test="${list[i].attend_fl==2}"><!-- 지각 -->
-						△</c:if>
-					</td>	
-				</c:forEach>
-			</tr>
-		</tbody>						
-							<tfoot>
-									<tr>
-										<td colspan="16" style="text-align:right;">O:출석, △:지각, X:결석</td>
-									</tr>		
-							</tfoot>
+							</thead>
+
+							<tbody>
+							<c:set var="i" value="0"/>
+								<c:forEach var="dtos2" items="${dtos2}">
+									
+										<tr>
+											<td>${i+1}주차</td>
+											<c:set var="dto3" value="${dto3}" />
+
+											<fmt:parseDate var="startDate" value="${dto3}"
+												pattern="yy-MM-dd" />
+											<jsp:useBean id="myDate" class="java.util.Date" />
+											<c:set target="${myDate}" property="time"
+												value="${startDate.time + (((1000*60*60*24)*7)*(i))}" />
+											<fmt:formatDate var="lec_date" value="${myDate}"
+												pattern="yy-MM-dd" />
+											<td>${lec_date}</td>
+
+											<td>${lec_name}/ ${dtos2.lec_room_no}호</td>
+
+											<td><c:choose>
+													<c:when test="${dtos2.attend_fl == 0}">결석(Ⅹ)</c:when>
+													<c:when test="${dtos2.attend_fl == 1}">출석(○)</c:when>
+													<c:when test="${dtos2.attend_fl == 2}">지각(△)</c:when>
+												</c:choose></td>
+										</tr>
+									<c:set var="i" value="${i+1}"/>
+								</c:forEach>
+							</tbody>
 						</table>
-					</div><!-- mail-box -->
-				</div><!-- container -->
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

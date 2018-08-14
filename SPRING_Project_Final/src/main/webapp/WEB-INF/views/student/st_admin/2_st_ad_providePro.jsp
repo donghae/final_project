@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="../../setting.jsp"%>
+<html>
+<body>
+<c:if test="${insertCnt==1}">
+	<script type="text/javascript">
+		alert("제공완료");
+		window.location = 'st_adm?st_state=6&major='+${dto.ent_maj};
+	</script>
+</c:if>
+<c:if test="${insertCnt!=1}">
+	<script type="text/javascript">
+		alert("이미 제공된 학생입니다.");
+		window.location = 'st_adm?st_state=6&major='+${dto.ent_maj};
+	</script>
+</c:if>
+</body>
+</html>

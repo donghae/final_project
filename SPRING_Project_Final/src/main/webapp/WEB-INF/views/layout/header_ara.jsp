@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -57,12 +61,18 @@
 		
 		
 		
-	<!-- 헤더-로그인 -->
+		<!-- 헤더-로그인 -->
 	<div id="my">
-	    <p style="text-align:center;">
-		    <span class="nanumFont">ARA, Leading the Way to the Future</span>
-		    <a style="color:black; padding-right:20px;" href="loginPage">LOGIN</a>
-	    </p>
+		<p style="text-align: center;">
+			<span class="nanumFont">ARA, Leading the Way to the Future</span>
+			<c:if test="${sessionScope.id==null}">
+				<a style="color: black; padding-right: 20px;" href="loginPage">LOGIN</a>
+			</c:if>
+			<c:if test="${sessionScope.id!=null}">
+		    	${sessionScope.name}(${sessionScope.id})님<a
+					style="color: black; padding-right: 20px;" href="logout">LOGOUT</a>
+			</c:if>
+		</p>
 	</div>
 	
 	
@@ -79,13 +89,18 @@
 						<ul>
 							<li><a href="ara">대학소개</a></li>
 							<li><a href="admission">입학안내</a></li>
-							<li><a href="st_stu">교육</a></li>							
-							<li>
-								<a href="cy_main">온라인 교육</a>
-								
-							</li>
-							<li><a href="st_pro">대학생활</a></li>
-							<li><a href="st_adm">커뮤니티</a></li>
+								<c:if test="${fn:substring(sessionScope.id,0,1)==2}">
+									<li><a href="st_stu?st_state=10">교육</a></li>							
+								</c:if>
+								<li>
+									<a href="cy_main">온라인 교육</a>
+								</li>
+							<c:if test="${fn:substring(sessionScope.id,0,1)==1}">
+								<li><a href="st_pro?st_state=50">교육</a></li>
+							</c:if>
+							<c:if test="${fn:substring(sessionScope.id,0,1)==0}">
+								<li><a href="st_adm?st_state=5&major=101">교육관리</a></li>
+							</c:if>
 						</ul>
 					</div>
 				</div>

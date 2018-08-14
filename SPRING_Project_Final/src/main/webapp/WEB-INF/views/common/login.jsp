@@ -69,6 +69,6 @@
 			</tbody>
 			</table>			
 		</form>
-	<%@ include file="../layout/footer_lib.jsp"%>
+	<%@ include file="../layout/footer_stu.jsp"%>
 </body>
 </html>

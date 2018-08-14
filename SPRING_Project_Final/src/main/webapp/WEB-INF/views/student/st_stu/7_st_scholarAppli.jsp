@@ -6,14 +6,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="resources/css/box_mon.css">
-<link rel="stylesheet" href="resources/css/button.css">
-<link rel="stylesheet" href="resources/css/font_common.css">
-<link rel="stylesheet" href="resources/css/footer_ara.css">
-<link rel="stylesheet" href="resources/css/form-basic.css">
-<link rel="stylesheet" href="resources/css/header_ara.css">
-<link rel="stylesheet" href="resources/css/table_admin.css">
-<link rel="stylesheet" href="resources/css/table_student.css">
 
 <style type="text/css">
 	table.table_student {
@@ -49,16 +41,15 @@
 					<div class="inbox-head">
 						<div style="width: 30%; float: left;">
 							<br><br>
-							<h1>장학금 신청</h1>
+							<h1>장학금 관리</h1>
 						</div>
-						<div style="width: 30%; margin-left:560px;">
+						<div style="width: 35%; margin-left:560px;">
 							<br><br><br><br><br>
-							<h3>장학금 관리 > 장학금 신청</h3>
+							<h3>장학금 관리 > 장학금 수여 내역 조회</h3>
 						</div>
 					</div>
 				</aside>			
 
-				<!-- <div class="inbox-body" style="width: 1300px; height: 1000px; margin-left:0%;"> -->							
 				<div class="inbox-body">	
 					<div class="mail-option">
 						<table class="st_navy">
@@ -66,31 +57,46 @@
 								<tr>
 									<th>학기</th>
 									<th>학년</th>
-									<th>학과</th>
-									<th>학번</th>
-									<th>이름</th>
 									<th>성적</th>
+									<th>등수</th>
+									<th>조회</th>
 								</tr>
 							</thead>
-						
 							<tbody>	
-									<tr>
-										<td>(학기)</td>
-										<td>${vo.getSt_level()}</td>
-										<td>${vo.getMaj_cd()}</td>
-										<td>${vo.getSt_no()}</td>
-										<td>${vo.getSt_name()}</td>
-										<td>(성적)</td>
-									</tr>																																																
-							</tbody>
-							
-							<tfoot>
+							<c:if test ="${cnt>0}">
+								<c:set var ="i" value="1" />
+								<c:set var ="j" value="0" />
+								<c:forEach var = "dto" items="${dtos}">
+										<tr>
+											<td>${dto.gpa_semester}</td>
+											<td>${i}학년</td>
+											<td>${dto.gpa_total}</td>
+											<td>${dto.rnum}/${total}</td>
+											<c:if test ="${dto.rnum==1}">
+												<td>전액(100%)</td>
+											</c:if>
+											<c:if test ="${dto.rnum==2}">
+												<td>반액(60%)</td>
+											</c:if>
+											<c:if test ="${dto.rnum==3}">
+												<td>해당사항없음</td>
+											</c:if>
+										</tr>		
+									<c:if test="${j==1}">
+										<c:set var="i" value="${i+1}" />
+										<c:set var="j" value="0" />
+									</c:if>
+									<c:if test="${j==0}">
+										<c:set var="j" value="1" />
+									</c:if>
+								</c:forEach>
+							</c:if>
+							<c:if test="${cnt==0}">
 								<tr>
-									<td colspan="6">
-										<input class="btn_navy" type="button" value="신청">
-									</td>
+									<td colspan="5">해당사항이 없습니다.</td>
 								</tr>
-							</tfoot>
+							</c:if>
+							</tbody>
 						</table>
 					</div>
 				</div>

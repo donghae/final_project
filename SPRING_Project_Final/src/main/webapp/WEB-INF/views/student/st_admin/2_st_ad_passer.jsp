@@ -12,6 +12,9 @@
 	function focus(major){
 		loca.value=major;
 	}
+	function st_no(ent_no) {
+		window.location = 'provideSt_no?ent_no='+ent_no;
+	}
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -81,7 +84,7 @@
 							align="center">
 							<tr>
 								<th style="width: 7%; text-align: center;">신청 번호</th>
-								<th style="width: 10%; text-align: center;">사진</th>
+								<th style="width: 6%; text-align: center;">사진</th>
 								<th style="width: 5%; text-align: center;">신청자</th>
 								<th style="width: 5%; text-align: center;">성적</th>
 								<th style="width: 7%; text-align: center;">주민번호</th>
@@ -90,6 +93,7 @@
 								<th style="width: 10%; text-align: center;">주소</th>
 								<th style="width: 5%; text-align: center;">이메일</th>
 								<th style="width: 7%; text-align: center;">장애여부</th>
+								<th style="width: 5%; text-align: center;">학번제공</th>
 							</tr>
 							<c:if test="${cnt>0}">
 								<c:forEach var="dto" items="${dtos}">
@@ -99,7 +103,7 @@
 												var="number" value="${number-1}" /></td>
 										<td style="text-align: center"><img
 											style="width: 60px; height: 80px"
-											src="resources/images/fileUpload/${dto.ent_image}"></td>
+											src="resources/images/addmission_img/${dto.ent_image}"></td>
 										<td style="text-align: center">${dto.ent_name}</td>
 										<td style="text-align: center">${dto.ent_grade}</td>
 										<td style="text-align: center">${dto.ent_regi_no}</td>
@@ -114,9 +118,11 @@
 										<c:if test="${dto.ent_disablity_fl==1}">
 											<td style="text-align: center">장애있음</td>
 										</c:if>
+										<td><input class="btn_navy" type="button" value="학번제공" 
+										onclick="st_no(${dto.ent_no});"></td>
 									</tr>
 								</c:forEach>
-							</c:if>
+							</c:if>	
 							<!-- 신청자가 없으면 -->
 							<c:if test="${cnt==0}">
 								<tr>

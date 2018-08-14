@@ -83,12 +83,12 @@ input[type=text] {
 				</tr>
 				
 				<tr>
-					<th style="text-align:center;">성명</th>
+					<th style="text-align:center;width:40%;">성명</th>
 					<td><input type="text" name="name"></td>
 				</tr>
 			
 				<tr>
-					<th style="text-align:center;">주민등록번호</th>
+					<th style="text-align:center;width:40%;">주민등록번호</th>
 					<td><input type="text" name="jumin1"> - <input type="text" name="jumin2"></td>
 				</tr>
 				

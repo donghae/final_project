@@ -23,8 +23,11 @@
 	<c:if test="${sessionScope.st_state==100}">
 		<%@ include file="../student/st_admin/3_st_ad_lectureModi.jsp"%>
 	</c:if>
+	<c:if test="${sessionScope.st_state==101}">
+		<%@ include file="../student/st_admin/3_st_ad_reg_lecture.jsp"%>
+	</c:if>
 </div>
 
 <footer>
-	<%@ include file="../layout/footer_lib.jsp"%>
+	<%@ include file="../layout/footer_stu.jsp"%>
 </footer>

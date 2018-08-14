@@ -58,7 +58,7 @@
                         <li><a href="st_stu?st_state=21" class="navlink">시간표</a></li>
                         <li><a href="st_stu?st_state=11" class="navlink">내 강의실</a></li>
                         <li><a href="st_stu?st_state=12" class="navlink">수강 신청</a></li>
-                        <li><a href="st_stu?st_state=13" class="navlink">수강 계획 도우미</a></li>
+                        <li><a href="st_stu?st_state=13&lec_day_dt=X&lec_name=X" class="navlink">수강 계획 도우미</a></li>
                         <li><a href="st_stu?st_state=14" class="navlink">강의 시간표(전체용)</a></li>
                      </ul>
                   </div>
@@ -92,7 +92,7 @@
                      </h4>
                   </div>
                   <c:choose>
-					<c:when test="${st_state==16 || st_state==17}">
+					<c:when test="${st_state==16}">
 						<div id="collapseFour" class="panel-collapse collapse in">
 					</c:when>
 					<c:otherwise>
@@ -100,8 +100,7 @@
 					</c:otherwise>
 					</c:choose>
                      <ul class="list-group">
-                        <li><a href="st_stu?st_state=16" class="navlink">장학금 신청</a></li>
-                        <li><a href="st_stu?st_state=17" class="navlink">장학금 수여 내역 조회</a></li>
+                        <li><a href="st_stu?st_state=16" class="navlink">장학금 수여 내역 조회</a></li>
                      </ul>
                   </div>
                </div>

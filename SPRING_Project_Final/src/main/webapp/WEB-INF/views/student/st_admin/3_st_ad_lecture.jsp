@@ -6,8 +6,14 @@
 <head>
 
 <script type="text/javascript">
+
 	function search() {
-		window.location = 'st_adm?st_state=8&lec_day_dt=' + date.value+'&lec_name='+lec_name.value;
+		if(${st_state==8}){
+			window.location = 'st_adm?st_state=8&lec_day_dt=' + date.value+'&lec_name='+lec_name.value;
+		}
+		if(${st_state==14}){
+			window.location = 'st_stu?st_state=14&lec_day_dt=' + date.value+'&lec_name='+lec_name.value;
+		}
 	}
 
 </script>
@@ -71,7 +77,12 @@
 									<!-- 큰바구니에서 작은 바구니를 꺼내서 아래서 출력 -->
 									<tr>
 										<td style="text-align: center">${dto.lec_no}</td>
-										<td style="text-align: center"><a href="st_adm?st_state=100&lec_no=${dto.lec_no}">${dto.lec_name}</a></td>
+										<c:if test="${st_state==8}">
+											<td style="text-align: center"><a href="st_adm?st_state=100&lec_no=${dto.lec_no}">${dto.lec_name}</a></td>
+										</c:if>
+										<c:if test="${st_state==14}">
+											<td style="text-align: center">${dto.lec_name}</td>
+										</c:if>
 										<td style="text-align: center">${dto.lec_point}</td>
 										<td style="text-align: center">${dto.prof_name}</td>
 										<td style="text-align: center">${dto.lec_day_dt}/${dto.lec_dt}:00 ~ ${dto.lec_dt+dto.lec_point}:00(${dto.lec_room_no}호)</td>

@@ -5,9 +5,10 @@
 <html>
 <body>
 	<c:if test="${selectCnt == 1}"	>
-		<c:if test="${vo.getEnt_state() == 2}">
+		<c:if test="${vo.getEnt_state() == 2 || vo.getEnt_state() == 4}">
 			<script type="text/javascript">
-				window.location='chk2'
+		//	window.location='chk2'
+				window.location='chk2?name="${vo.ent_name}"&major=${vo.ent_maj}&regi_no="${vo.ent_regi_no}"';
 			</script>
 		</c:if>
 		
@@ -17,9 +18,10 @@
 				window.location='chk'
 			</script>
 		</c:if>
+		
 	</c:if>	
 
-	<c:if test="${selectCnt == 0}"	>
+	<c:if test="${selectCnt != 1}"	>
 			<script type="text/javascript">
 				alert("이름과 주민등록번호를 다시 확인해주세요.");
 				window.location='chk'

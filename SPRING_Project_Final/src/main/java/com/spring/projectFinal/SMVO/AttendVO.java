@@ -6,10 +6,10 @@ import java.sql.Date;
 public class AttendVO {
 
 	private int attend_no; // 출석번호
-	private int st_no; // 학번
+	private String st_no; // 학번
 	private int lec_no; // 강의번호
 	private int attend_fl; // 출결여부
-	private Date lec_dt; // 강의날짜
+	private String lec_dt; // 강의날짜
 
 	public int getAttend_no() {
 		return attend_no;
@@ -17,14 +17,6 @@ public class AttendVO {
 
 	public void setAttend_no(int attend_no) {
 		this.attend_no = attend_no;
-	}
-
-	public int getSt_no() {
-		return st_no;
-	}
-
-	public void setSt_no(int st_no) {
-		this.st_no = st_no;
 	}
 
 	public int getLec_no() {
@@ -43,11 +35,19 @@ public class AttendVO {
 		this.attend_fl = attend_fl;
 	}
 
-	public Date getLec_dt() {
+	public String getSt_no() {
+		return st_no;
+	}
+
+	public void setSt_no(String st_no) {
+		this.st_no = st_no;
+	}
+
+	public String getLec_dt() {
 		return lec_dt;
 	}
 
-	public void setLec_dt(Date lec_dt) {
+	public void setLec_dt(String lec_dt) {
 		this.lec_dt = lec_dt;
 	}
 }

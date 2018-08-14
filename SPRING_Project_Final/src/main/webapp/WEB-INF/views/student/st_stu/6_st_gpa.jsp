@@ -24,10 +24,10 @@
 </style>
 <script type="text/javascript">
    function locate(){
-      window.location='st_stu?st_state=15&semester='+loca.value;
+      window.location='st_stu?st_state=15&semester='+semester.value;
    }
    function focus(semester){
-      loca.value=semester;
+	   semester.value=semester;
    }
 </script>
 </head>
@@ -56,14 +56,28 @@
 					<thead>
 						<tr>
 							<td colspan="5">
-								<select id="loca" class="input" name="semester">			
-				                     <option value="2018-1">2018-1학기</option>
-				                     <option value="2017-2">2017-2학기</option>
-				                     <option value="2017-1">2017-1학기</option>
-				                     <option value="2016-2">2016-1학기</option>
-				                     <option value="2016-1">2016-1학기</option>
-				                     <option value="2015-2">2015-1학기</option>
-				                     <option value="2015-1">2015-1학기</option>
+								<select id="semester" class="input" name="semester">
+									<option value="">학기선택</option>			
+				                     <option value="2018-1"
+				                     <c:if test="${semester eq '2018-1'}">selected="selected"</c:if>>2018-1학기</option>
+				                     
+				                     <option value="2017-2"
+				                     <c:if test="${semester eq '2017-2'}">selected="selected"</c:if>>2017-2학기</option>
+				                     
+				                     <option value="2017-1"
+				                     <c:if test="${semester eq '2017-1'}">selected="selected"</c:if>>2017-1학기</option>
+				                     
+				                     <option value="2016-2"
+				                     <c:if test="${semester eq '2016-1'}">selected="selected"</c:if>>2016-1학기</option>
+				                     
+				                     <option value="2016-1"
+				                     <c:if test="${semester eq '2016-1'}">selected="selected"</c:if>>2016-1학기</option>
+				                     
+				                     <option value="2015-2"
+				                     <c:if test="${semester eq '2015-2'}">selected="selected"</c:if>>2015-2학기</option>
+				                     
+				                     <option value="2015-1"
+				                     <c:if test="${semester eq '2015-1'}">selected="selected"</c:if>>2015-1학기</option>
 			                  </select>
 			                  <input class="btn_navy" type="button" value="조회"
 			                     onclick="locate();">
@@ -73,7 +87,7 @@
 						<tr>
 							<th>연도-학기</th>
 							<th>강의번호</th>
-							<th>강의명</th>
+							<th style="width:30%">강의명</th>
 							<th>평균평점</th>
 							<th>성적인정</th>
 						</tr>

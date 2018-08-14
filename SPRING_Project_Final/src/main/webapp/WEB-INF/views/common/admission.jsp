@@ -19,6 +19,11 @@
         <title>Kasper One Page Template</title>
         
         <!--
+        Google Fonts
+        ============================================= -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700" rel="stylesheet" type="text/css">
+		
+        <!--
         CSS
         ============================================= -->
         <!-- Fontawesome -->
@@ -214,8 +219,12 @@
         			<div class="col-md-12">
         				<div class="section-title text-center wow fadeInDown"><!-- SUBMIT &nbsp;YOUR &nbsp;APPLICATION &nbsp;NOW -->
                             <h2 style="color:black;">Submit your application now</h2><br><br>    <!-- Submit your application now -->
-                            <input class="btn_red" type="button" value="원서 접수하기">
-                        </div>                     
+                            <a href ="application"><input class="btn_red" type="button" value="원서 접수하기"></a>
+                        </div>          
+                         <div class="section-title text-center wow fadeInDown"><!-- SUBMIT &nbsp;YOUR &nbsp;APPLICATION &nbsp;NOW -->
+                            <h2 style="color:black;">Check your acceptance now</h2><br><br>    <!-- Submit your application now -->
+                            <a href="chk"><input class="btn_red" type="button" value="합격자 조회"></a>
+                        </div>  
                     </div>
         		</div>
         	</div>

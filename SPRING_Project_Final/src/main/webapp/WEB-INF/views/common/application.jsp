@@ -115,7 +115,7 @@
 										<th>이메일</th>
 										<td colspan="4">
 											<input type="text" name="email1" maxlength="10" style="width: 80px"> @ 
-											<input type="text" name="email2" maxlength="20" style="width: 80px">
+											<input type="text" name="email2" maxlength="20" style="width: 110px">
 											<select class="input" name="email3" onchange="selectEmailCheck();">
 												<option value="0">직접 입력</option>
 												<option value="gmail.com">구글</option>
@@ -164,7 +164,7 @@
 		</div>
 	</div>
 </body>
-<%@ include file="../layout/footer_lib.jsp"%>
+<%@ include file="../layout/footer_lib2.jsp"%>
 </html>
 
 

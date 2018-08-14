@@ -29,23 +29,9 @@
 							<!-- Note: By adding "in" after "collapse", it starts with that particular panel open by default; remove if you want them all collapsed by default -->
 							<div id="collapseOne" class="panel-collapse collapse in">
 								<ul class="list-group">
-									<li><a href="" class="navlink">내 강의실</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="panel panel-defaul">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion"
-										href="#collapseTwo"><span class="glyphicon glyphicon-cog">
-									</span>학사 관리<span class="caret"></span></a>
-								</h4>
-							</div>
-							<div id="collapseTwo" class="panel-collapse collapse">
-								<ul class="list-group">
-									<li><a href="" class="navlink">학생 관리</a></li>
-									<li><a href="" class="navlink">성적 관리</a></li>
-									<li><a href="" class="navlink">출결 관리</a></li>
+									<li>
+										<a href="st_pro?st_state=50" class="navlink">내 강의실</a>
+									</li>
 								</ul>
 							</div>
 						</div>

@@ -26,6 +26,18 @@ function openAddr(){
 	          }).open();
 	      });
 	  }
+	  
+function nexthp1() {
+	if(document.myForm.hp1.value.length>=3) {
+		document.myForm.hp2.focus();
+	}
+}
+
+function nexthp2() {
+	if(document.myForm.hp2.value.length>=4) {
+		document.myForm.hp3.focus();
+	}
+}	  
 </script>
 </head>
 <style>
@@ -67,10 +79,10 @@ function openAddr(){
 						<div class="mail-option">
 							<!-- <div class="container"> -->
 							<div>
-							<form action="StModiPro" method="post">
+							<form action="StModiPro" method="post" name="myForm">
 								<table>
 									<thead>
-										<tr>
+										<tr> <!-- //resources/images/addmission_img/ -->
 											<th rowspan="4"><img id="pf_img" src="${vo.getSt_img()}"></th>
 											<th class="bg-gray">이름</th>
 											<td>${vo.getSt_name()}</td>
@@ -106,10 +118,10 @@ function openAddr(){
 											<td colspan="2">
 												<c:set var="hpArr" value="${fn:split(vo.getSt_hp(), '-')}"/> 
 													<input class="input" type="text" name="hp1" maxlength="3"
-														style="width:40px" onkeyup="nexthp1_2();" value="${hpArr[0]}">
+														style="width:40px" onkeyup="nexthp1();" value="${hpArr[0]}">
 													-	
 													<input class="input" type="text" name="hp2" maxlength="4"
-														style="width:40px" onkeyup="nexthp2_2();" value="${hpArr[1]}">
+														style="width:40px" onkeyup="nexthp2();" value="${hpArr[1]}">
 													-	
 													<input class="input" type="text" name="hp3" maxlength="4"
 														style="width:40px" value="${hpArr[2]}">

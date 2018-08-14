@@ -47,19 +47,19 @@
 									<tr class="bg-gray">
 										<th style="text-align:center">교과목명</th>
 										<td style="text-align:center">
-											<input type="text" name="lec_name"> 
+											<input type="text" name="lec_name" required> 
 										</td>
 										<td></td>
 									</tr>
  									<tr>
 										<th style="text-align:center">학점</th>
-										<td style="text-align:center"><input type="text" name="lec_point"></td>
+										<td style="text-align:center"><input type="text" name="lec_point" required></td>
 										<td></td>
 									</tr>
 									<tr class="bg-gray">
 										<td style="text-align:center">담당교수</td>
 										<td style="text-align:center">
-											<input type="text" name="prof_name" readonly> 
+											<input type="text" name="prof_name" required readonly> 
 										</td>
 										<td>
 											<input style="width:100px;height:50px;" class="btn_navy" type="button" value="search" onclick="searchProf();">
@@ -103,7 +103,7 @@
 									<tr>
 										<th style="text-align:center">강의실</th>
 										<td style="text-align:center">
-											<input type="text" name="lec_room_no">
+											<input type="text" name="lec_room_no" required>
 										</td>
 										<td></td>
 									</tr>
@@ -118,7 +118,7 @@
 									<tr>
 										<th style="text-align:center">최대인원</th>
 										<td style="text-align:center">
-											<input type="text" name="max_person">
+											<input type="text" name="max_person" required>
 										</td>
 										<td></td>
 									</tr>

@@ -3,18 +3,10 @@ package com.spring.projectFinal.SMVO;
 // 성적
 public class GpaVO {
 
-	private int st_no; // 학번
+	private String st_no; // 학번
 	private int lec_no; // 강의번호
 	private String gpa_semester; // 학기
-	private int gpa; // 평점
-
-	public int getSt_no() {
-		return st_no;
-	}
-
-	public void setSt_no(int st_no) {
-		this.st_no = st_no;
-	}
+	private float gpa; // 평점
 
 	public int getLec_no() {
 		return lec_no;
@@ -32,11 +24,19 @@ public class GpaVO {
 		this.gpa_semester = gpa_semester;
 	}
 
-	public int getGpa() {
+	public String getSt_no() {
+		return st_no;
+	}
+
+	public void setSt_no(String st_no) {
+		this.st_no = st_no;
+	}
+
+	public float getGpa() {
 		return gpa;
 	}
 
-	public void setGpa(int gpa) {
+	public void setGpa(float gpa) {
 		this.gpa = gpa;
 	}
 }

@@ -18,13 +18,13 @@
 <style type="text/css">
 	.st_navy th {
 	    text-align:center;
-	    height:100px;
-	    min-width:200px;
+	    height:80px;
+	    min-width:150px;
 	}
 	.st_navy td {
 	    text-align:center;
-	    height:100px;
-	    min-width:200px;
+	    height:80px;
+	    min-width:150px;
 	}
 </style>
 </head>
@@ -38,7 +38,7 @@
 							<br><br>
 							<h1>시간표</h1>
 						</div>
-						<div style="width: 30%; margin-left:1020px;">
+						<div style="width: 30%; margin-left:700px;">
 							<br><br><br><br><br>
 							<h3> 수업관리 > 시간표</h3>
 						</div>

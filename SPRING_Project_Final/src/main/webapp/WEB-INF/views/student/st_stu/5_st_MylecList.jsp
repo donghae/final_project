@@ -38,21 +38,15 @@
 				<div class="inbox-body">	
 					<div class="mail-option">
 						<table class="st_navy" style="width:1000px; text-align:center;">
-							<thead>		
-								<%-- 	<tr>
-									<th></th>
-								<c:forEach var="i" begin="0" end="14">
-									<th>${i+1}</th>
-									</c:forEach>
-								</tr>--%>
+							<thead>	
 							<tr> 
-								<th>번호</th>
-								<th>강의번호</th>
-								<th>강의명</th>
-								<th>담당교수</th>
-								<th>강의요일</th>
-								<th>강의시각</th>
-								<th>학점</th>
+								<th style="width:10%">번호</th>
+								<th style="width:10%">강의번호</th>
+								<th style="width:30%">강의명</th>
+								<th style="width:10%">담당교수</th>
+								<th style="width:10%">강의요일</th>
+								<th style="width:20%">강의시각</th>
+								<th style="width:10%">학점</th>
 							</tr>
 						</thead>
 											
@@ -67,7 +61,11 @@
 					<td><a href="st_stu?st_state=19&lec_name=${dto.lec_name}">${dto.lec_name}</a></td>	
 					<td>${dto.prof_name}</td>
 					<td>${dto.lec_day_dt}</td>
-					<td>${dto.lec_dt}</td>
+					
+					<td>
+						${dto.lec_dt} : 00 ~ ${dto.lec_dt+dto.lec_point} : 00
+					</td>
+					
 					<td>${dto.lec_point}</td>
 				<c:set var="i" value="${i+1}" />	
 				</tr>

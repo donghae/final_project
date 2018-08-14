@@ -18,8 +18,8 @@
 					</button>
 				</div>
 				<div class="collapse navbar-collapse" id="sideNavbar">
-					<div class="panel-group" id="accordion">
-						<div class="panel panel-defaul">
+					 <div class="panel-group" id="accordion">
+					<%--	<div class="panel panel-defaul">
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
@@ -43,21 +43,21 @@
 									<li><a href="st_adm?st_state=4" class="navlink">장학금 관리</a></li>
 								</ul>
 							</div>
-						</div>
+						</div> --%>
 						<div class="panel panel-defaul">
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
-										href="#collapseTwo"><span class="glyphicon glyphicon-cog">
+										href="#collapseOne"><span class="glyphicon glyphicon-cog">
 									</span>입학 관리<span class="caret"></span></a>
 								</h4>
 							</div>
 							<c:choose>
 								<c:when test="${st_state==5 || st_state==6 || st_state==7}">
-									<div id="collapseTwo" class="panel-collapse collapse in" >
+									<div id="collapseOne" class="panel-collapse collapse in" >
 								</c:when>
 								<c:otherwise>
-									<div id="collapseTwo" class="panel-collapse collapse"> 
+									<div id="collapseOne" class="panel-collapse collapse"> 
 								</c:otherwise>
 							</c:choose>
 							
@@ -72,24 +72,25 @@
 							<div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
-										href="#collapseThree">
+										href="#collapseTwo">
 										<span class="glyphicon glyphicon-calendar"> </span>강의 관리
 										<span class="caret"></span>
 									</a>
 								</h4>
 							</div>
 							<c:choose>
-								<c:when test="${st_state==8 || st_state==9}">
-									<div id="collapseThree" class="panel-collapse collapse in">
+								<c:when test="${st_state==8 || st_state==9 ||st_state==101}">
+									<div id="collapseTwo" class="panel-collapse collapse in">
 								</c:when>
 								<c:otherwise>
-									<div id="collapseThree" class="panel-collapse collapse">
+									<div id="collapseTwo" class="panel-collapse collapse">
 								</c:otherwise>
 							</c:choose>
 							
 								<ul class="list-group">
 									<li><a href="st_adm?st_state=8" class="navlink">강의 조회 및 수정</a></li>
 									<li><a href="st_adm?st_state=9" class="navlink">강의 등록</a></li>
+									<li><a href="st_adm?st_state=101" class="navlink">수강 신청 관리</a></li>
 								</ul>
 							</div>
 						</div>

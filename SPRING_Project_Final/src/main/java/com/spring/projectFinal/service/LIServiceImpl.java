@@ -47,7 +47,7 @@ public class LIServiceImpl implements LIService{
 			String saveDir = req.getSession().getServletContext().getRealPath("/resources/images/library_img/book");
 			
 			//상품 대표이미지 저장경로
-			String realDir="J:\\Dev36\\ARAuni\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\images\\library_img\\book\\";
+			String realDir="C:\\Dev36\\git\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\images\\library_img\\book\\";
 				
 			try {
 				file.transferTo(new File(saveDir+file.getOriginalFilename()));
@@ -274,7 +274,7 @@ public class LIServiceImpl implements LIService{
 		
 		
 		//상품 대표이미지 저장경로
-		String realDir="J:\\Dev36\\ARAuni\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\images\\library_img\\";
+		String realDir="C:\\Dev36\\git\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\images\\library_img\\";
 			
 		try {
 	

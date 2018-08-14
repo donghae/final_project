@@ -20,7 +20,7 @@ import com.spring.projectFinal.service.SMService;
 public class AraController {
 
 	@Autowired
-	SMService service;
+	SMService service;	
 	
 	@Autowired
 	ARAService araService;
@@ -61,23 +61,29 @@ public class AraController {
 	@RequestMapping("chk")
 	public String chk(HttpServletRequest req, Model model) {
 		logger.info("chk()");
-		return "student/2_st_applicantsCheck";
+		return "student/st_stu/2_st_applicantsCheck";
 	}
 
 	// 합격자 조회 버튼 - 이름, 주민등록번호 확인
 	@RequestMapping("confirmJumin")
 	public String confirmJumin(HttpServletRequest req, Model model) {
 		logger.info("confirmJumin()");
-		service.passChkPro(req, model);
-		return "student/2_st_applicantsCheckPro";
+		service.passChkPro(req, model);	
+		return "student/st_stu/2_st_applicantsCheckPro";
 	}
 
 	// 합격자조회후 페이지
 	@RequestMapping("chk2")
 	public String chk2(HttpServletRequest req, Model model) {
 		logger.info("chk2()");
-		/*service.st_profile(req, model);*/
-		return "student/2_st_applicantsResult";
+		String name = req.getParameter("name");
+		int major = Integer.parseInt(req.getParameter("major"));
+		String regi_no=req.getParameter("regi_no");
+		req.setAttribute("regi_no", regi_no);
+		service.st_no(req, model);	
+		model.addAttribute("name",name);
+		model.addAttribute("major",major);
+		return "student/st_stu/2_st_applicantsResult";
 	}
 	
 	// 로그인
