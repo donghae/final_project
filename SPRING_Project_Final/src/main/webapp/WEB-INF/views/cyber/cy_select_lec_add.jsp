@@ -83,7 +83,7 @@
 		<div class="left_div">
 			<form action="cy_upload" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="lec_no" value="${lec_no}">
-			<table class="st_mint" style="width: 1000px; height: 50%">
+			<table class="st_mint" style="width: 1000px; height: 40%">
 				<tr>
 					<td>
 						<select name="round_no">
@@ -123,4 +123,4 @@
 </body>
 
 
-<%@ include file="../layout/footer_ara.jsp"%>
+<%@ include file="../layout/footer_lib.jsp"%>

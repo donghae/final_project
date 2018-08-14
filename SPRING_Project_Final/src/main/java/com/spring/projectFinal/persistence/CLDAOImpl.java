@@ -57,10 +57,10 @@ public class CLDAOImpl implements CLDAO{
 
 
 	@Override
-	public int getLecCnt() {
+	public int getLecCnt(Map<String, Object> map) {
 		CLDAO dao = sqlSession.getMapper(CLDAO.class);
 		
-		return dao.getLecCnt();
+		return dao.getLecCnt(map);
 	}
 
 

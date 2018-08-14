@@ -80,8 +80,9 @@
 			<h4>공지사항</h4>
 		</div>
 		<%@ include file="../cyber/cy_lec_sidebar_stu.jsp"%>
-		<div class="left_div">
-			<table class="st_mint" style="width: 1000px; height: 50%">
+		<div class="left_div" style="width: 800px; height: 40%;">
+			<input type="hidden" value="${lec_no}" name="lec_no">
+			<table class="st_mint">
 				<tr>
 					<th>제목</th>
 					<td>
@@ -113,4 +114,4 @@
 </body>
 
 
-<%@ include file="../layout/footer_ara.jsp"%>
+<%@ include file="../layout/footer_lib.jsp"%>

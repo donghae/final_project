@@ -88,16 +88,24 @@ $(function() {
 
 <body>
 	<jsp:include page="../layout/header_ara.jsp" />
-
+	<c:if test="${sessionScope.id == null}">
+		<script type="text/javascript">
+			alert("권한이 없습니다.");
+			window.history.back();
+		</script>	
+	</c:if>
 	<div align="center">
 		<div class="cy_1">
 			<h4>강의 목록</h4>
 		</div>
 		<%@ include file="../cyber/cy_lec_sidebar_stu.jsp"%>
 		<div class="left_div">
-			<input type="button" onclick="window.location='cy_select_lec_add?lec_no=${lec_no}'" value="강의 추가">
+			<c:if test="${fn:substring(sessionScope.id,0,1) == 0 || fn:substring(sessionScope.id,0,1) == 1}">
+				<input type="button" onclick="window.location='cy_select_lec_add?lec_no=${lec_no}'" value="강의 추가">
+			</c:if>
 			
-			<table class="st_mint" style="width: 1000px; height: 70%">
+			
+			<table class="st_mint" style="width: 1000px; height: 50%">
 				<thead>
 					<tr>
 						<th style="width: 10%">주차</th>
@@ -122,8 +130,24 @@ $(function() {
 									${vo.round_name}
 								</td>
 								<c:set var="round" value="${vo.round_no}"/>
-								<td align="center">${vo.file_len}</td>
-								<td align="center">	<input type="text" id="totalTime_${vo.round_no}" value="${watchTime[round]}"></td>
+								<td align="center">
+									<c:if test="${vo.file_len > 59}">
+										<fmt:parseNumber value="${vo.file_len/60}" integerOnly="true"/>분 <fmt:parseNumber value="${vo.file_len%60}" integerOnly="true"/>초
+									</c:if>
+									<c:if test="${vo.file_len < 60}">
+										${vo.file_len}초
+									</c:if>
+								</td>
+								<td align="center">	
+									<input type="hidden" id="totalTime_${vo.round_no}" value="${watchTime[round]}">
+									<c:if test="${watchTime[round] > 59}">
+										<fmt:parseNumber value="${watchTime[round]/60}" integerOnly="true"/>분 <fmt:parseNumber value="${watchTime[round]%60}" integerOnly="true"/>초
+										
+									</c:if>
+									<c:if test="${watchTime[round] < 60}">
+										<input style="border: none; text-align: center;" type="text" id="totalTime2_${vo.round_no}" value="${watchTime[round]}" readonly="readonly">초
+									</c:if>
+								</td>
 								<td align="center"> 
 									<c:choose>
 										<c:when test="${watchTime[round]>=(vo.file_len*0.9)}">
@@ -135,9 +159,12 @@ $(function() {
 									</c:choose>
 									
 								</td>
-								<td align="center"><input class="video_popup" type="button" value="시청하기" id="${vo.file_name}|${vo.round_no}|${lec_no}"> </td>
-								
-
+								<c:if test="${fn:substring(sessionScope.id,0,1) == 2 }">
+									<td align="center"><input class="video_popup" type="button" value="시청하기" id="${vo.file_name}|${vo.round_no}|${lec_no}"> </td>
+								</c:if>
+								<c:if test="${fn:substring(sessionScope.id,0,1) != 2 }">
+									<td></td>
+								</c:if>
 							</tr>
 						</c:forEach>
 					</c:if>
@@ -151,13 +178,13 @@ $(function() {
 				</tbody>
 			</table>
 
-			<table style="width: 1000px" align="center">
+			<table style="width: 1000px; text-align: center;">
 				<tr>
 					<th align="center"><c:if test="${cnt>0}">
 							<!-- 처음 : ◀◀                                  이전 : ◀-->
 							<c:if test="${startPage > pageBlock}">
-								<a href="boardQnaList">◀◀</a>
-								<a href="boardQnaList?pageNum=${startPage-pageBlock}">&nbsp;◀</a>
+								<a href="cy_select_lec_list?lec_no=${lec_no}">◀◀</a>
+								<a href="cy_select_lec_list?lec_no=${lec_no}&pageNum=${startPage-pageBlock}">&nbsp;◀</a>
 							</c:if>
 
 							<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -165,14 +192,14 @@ $(function() {
 									<span><b>[${i}]</b></span>
 								</c:if>
 								<c:if test="${i!=currentPage}">
-									<a href="boardQnaList?pageNum=${i}">[${i}]</a>
+									<a href="cy_select_lec_list?lec_no=${lec_no}&pageNum=${i}">[${i}]</a>
 								</c:if>
 							</c:forEach>
 
 							<!-- 끝 : ▶▶                                       다음 : ▶-->
 							<c:if test="${pageCount > endPage}">
-								<a href="boardQnaList?pageNum=${startPage+pageBlock}">▶&nbsp;</a>
-								<a href="boardQnaList?pageNum=${pageCount}">▶▶</a>
+								<a href="cy_select_lec_list?lec_no=${lec_no}&pageNum=${startPage+pageBlock}">▶&nbsp;</a>
+								<a href="cy_select_lec_list?lec_no=${lec_no}&pageNum=${pageCount}">▶▶</a>
 							</c:if>
 						</c:if></th>
 				</tr>
@@ -182,4 +209,4 @@ $(function() {
 </body>
 
 
-<%@ include file="../layout/footer_ara.jsp"%>
+<%@ include file="../layout/footer_lib.jsp"%>

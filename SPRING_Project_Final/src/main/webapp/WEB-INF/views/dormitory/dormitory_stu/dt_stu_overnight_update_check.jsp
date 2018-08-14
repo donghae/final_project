@@ -16,7 +16,7 @@
 		</script>
 	</c:if>
 
-	<c:if test="${updateCnt == 1}">
+	<c:if test="${updateCnt != 0}">
 		<script type="text/javascript">
 			setTimeout(function(){
 				alert("외박 수정 신청 되었습니다.");

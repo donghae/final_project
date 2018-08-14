@@ -8,9 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.projectFinal.service.ARAServiceImpl;
 import com.spring.projectFinal.service.LIServiceImpl;
 
 @Controller//도서관 컨트롤러
@@ -19,31 +20,95 @@ public class LIController {
 	@Autowired
 	LIServiceImpl LIservice;
 	
+	@Autowired
+	ARAServiceImpl ARAservice;
 	
+
 	
 	//도서관 홈
 	@RequestMapping("lib_home")
-	public String library(HttpServletRequest req,Model model) {
+	public String lib_home(HttpServletRequest req,Model model) {
 		
-		System.out.println("library-도서관 홈");
-		return "library/lib_home";
+		System.out.println("lib_home-도서관 홈");
+		return "library/lib_joint/lib_home";
 	}
 	
-	//도서관 관리자 홈 : 홈에서 로그인 시 연결
-	@RequestMapping("lib_admin")
-	public String lib_admin(HttpServletRequest req,Model model) {
+	
+	//도서관 로그인창
+	@RequestMapping("lib_loginForm")
+	public String lib_loginForm(HttpServletRequest req,Model model) {
 		
-		System.out.println("lib_admin-도서관 관리자 홈");
-		return "library/lib_admin";
+		System.out.println("lib_loginForm-도서관 로그인창");
+		return "library/lib_joint/lib_loginForm";
 	}
+	
+	
+	//도서관 로그인 처리
+	@RequestMapping("lib_loginPro")
+	public String lib_loginPro(HttpServletRequest req,Model model) {
+		
+		System.out.println("lib_loginPro-도서관 로그인 처리");
+		ARAservice.login(req, model);
+		return "library/lib_joint/lib_login_sub";
+	}
+
+	
+	//도서관 로그아웃 처리
+	@RequestMapping("lib_logout")
+	public ModelAndView lib_logoutPro(HttpServletRequest req,Model model) {
+		
+		System.out.println("lib_logoutPro-도서관 로그아웃 처리");
+		req.getSession().invalidate();
+		return new ModelAndView("redirect:/lib_home");
+	}
+	
+	
+	//관리자 : 도서 검색 
+	@RequestMapping("lib_bookSearch_admin")
+	public String lib_bookSearch_admin(HttpServletRequest req,Model model) {
+		
+		System.out.println("lib_bookSearch_admin-관리자 : 도서 검색 ");
+		LIservice.getBooklist(req,model);
+		return "library/lib_admin/lib_bookSearch_admin";
+	}
+	
+	
+	//관리자 : 도서 검색  결과 (ajax)
+	@RequestMapping("lib_bookSearchResult_admin")
+	public String lib_bookSearchResult_admin(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_bookSearchResult_admin-관리자 : 도서검색결과");
+		
+		LIservice.lib_bookSearchResult(req, model);
+		return "library/lib_admin/lib_bookSearchResult_admin";
+	}
+	
+	
+/*	//관리자 : 도서 관리 페이지
+	@RequestMapping("lib_bookSupervise")
+	public String lib_bookSupervise(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_bookSupervise-관리자 : 도서 관리 페이지");
+				
+		return "library/lib_admin/lib_bookSupervise";
+	}
+	
+	//관리자 : 도서 관리 조회 결과
+	@RequestMapping("lib_bookSuperlist")
+	public String lib_bookSuperlist(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_bookSuperlist-관리자 : 도서 관리 조회 결과");
+				
+		return "library/lib_admin/lib_bookSuperlist";
+	}*/
 	
 	
 	//관리자 : 도서 추가 양식
 	@RequestMapping("lib_bookAddForm")
 	public String lib_bookAddForm(HttpServletRequest req,Model model) {
 		
-		System.out.println("lib_bookAddForm-도서 추가 양식");
-		return "library/lib_bookAddForm";
+		System.out.println("lib_bookAddForm-관리자 : 도서 추가 양식");
+		return "library/lib_admin/lib_bookAddForm";
 	}
 	
 	
@@ -54,7 +119,7 @@ public class LIController {
 		System.out.println("lib_bookAddPro-도서 추가");
 		
 		LIservice.lib_bookAddPro(req, model);
-		return "library/lib_bookAddPro";
+		return "library/lib_admin/lib_bookAddPro";
 	}
 
 	
@@ -65,8 +130,9 @@ public class LIController {
 		System.out.println("lib_bookModiForm-도서 수정 양식");
 		
 		LIservice.getBookInfo(req, model);
-		return "library/lib_bookModiForm";
+		return "library/lib_admin/lib_bookModiForm";
 	}
+	
 	
 	//관리자 : 도서 수정 처리
 	@RequestMapping(value="lib_bookModiPro", method=RequestMethod.POST)
@@ -75,7 +141,7 @@ public class LIController {
 		System.out.println("lib_bookModiPro-도서 수정");
 		
 		LIservice.lib_bookModiPro(req, model);
-		return "library/lib_bookModiPro";
+		return "library/lib_admin/lib_bookModiPro";
 	}
 	
 	//관리자 : 도서 삭제 처리
@@ -85,114 +151,118 @@ public class LIController {
 		System.out.println("lib_bookDelPro-도서 삭제");
 		
 		LIservice.lib_bookDelPro(req, model);
-		return "library/lib_bookDelPro";
+		return "library/lib_admin/lib_bookDelPro";
 	}
 	
+
+
 	
-	//관리자 : 도서 대여/반납 
-	@RequestMapping("lib_bookLoanForm")
-	public String lib_bookLoanForm(HttpServletRequest req, Model model) {
+	
+	
+	//관리자 : 도서 대여 관리 페이지 - ajax
+	@RequestMapping("lib_loanSupervise")
+	public String lib_loanSupervise(HttpServletRequest req, Model model) {
 		
-		System.out.println("lib_bookLoanForm-도서 대여/반납");
-		return "library/lib_bookLoanForm";
+		System.out.println("lib_loanSupervise-관리자 : 도서 대여 관리 페이지");		
+		return "library/lib_admin/lib_loanSupervise";
 	}
 	
+	//관리자 : 도서 대여 기록 결과 페이지 - ajax 결과1
+	@RequestMapping("lib_loanSuperlist")
+	public String lib_loanSuperlist(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_loanSuperlist-관리자 : 도서 대여 기록 조회");
+		LIservice.lib_loanSuperlist(req,model);
+		return "library/lib_admin/lib_loanSuperlist";
+	}
+	
+	//관리자 : 도서 대여 양식 ajax 결과2
+	@RequestMapping("lib_loanForm")
+	public String lib_loanForm(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_loanForm-도서 대여 폼");
+		return "library/lib_admin/lib_loanForm";
+	}
 	//관리자 : 도서 대여 처리
-	@RequestMapping("lib_bookLoanPro")
-	public String lib_bookLoanPro(HttpServletRequest req, Model model) {
+	@RequestMapping("lib_loanPro")
+	public String lib_loanPro(HttpServletRequest req, Model model) {
 		
-		System.out.println("lib_bookLoanPro-도서 대여");
+		System.out.println("lib_loanPro-도서 대여");
 
-		LIservice.lib_bookLoanPro(req, model);
-		return "library/lib_bookLoanPro";
+		LIservice.lib_loanPro(req, model);
+		return "library/lib_admin/lib_loanPro";
+	}	
+		
+	
+	//관리자 : 도서 반납 양식 ajax 결과2
+	@RequestMapping("lib_returnForm")
+	public String lib_returnForm(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_returnForm-도서 반납 폼");
+		return "library/lib_admin/lib_returnForm";
 	}
-	
-	
 	//관리자 : 도서 반납 처리
-	@RequestMapping("lib_bookReturnPro")
-	public String lib_bookReturnPro(HttpServletRequest req, Model model) {
+	@RequestMapping("lib_returnPro")
+	public String lib_returnPro(HttpServletRequest req, Model model) {
 		
-		System.out.println("lib_bookReturnPro-도서 반납");
+		System.out.println("lib_returnPro-도서 반납");
 
-		LIservice.lib_bookReturnPro(req, model);
-		return "library/lib_bookReturnPro";
+		LIservice.lib_returnPro(req, model);
+		return "library/lib_admin/lib_returnPro";
 	}
 	
 	
+	//관리자 : 도서 연장 양식 ajax 결과2
+	@RequestMapping("lib_renewForm")
+	public String lib_renewForm(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_renewForm-도서 연장 폼");
+		return "library/lib_admin/lib_renewForm";
+	}
 	//관리자 : 대여 연장 처리
-	@RequestMapping("lib_bookRenewPro")
-	public String lib_bookRenewPro(HttpServletRequest req, Model model) {
+	@RequestMapping("lib_renewPro")
+	public String lib_renewPro(HttpServletRequest req, Model model) {
 		
-		System.out.println("lib_bookRenewPro-대여 연장");
+		System.out.println("lib_renewPro-대여 연장");
 
-		LIservice.lib_bookRenewPro(req, model);
-		return "library/lib_bookRenewPro";
+		LIservice.lib_renewPro(req, model);
+		return "library/lib_admin/lib_renewPro";
 	}
 	
 	
+	//관리자 : 도서 좌석 현황
+	@RequestMapping("lib_seat_admin")
+	public String lib_seat_admin(HttpServletRequest req, Model model) {
+		System.out.println("lib_seat_admin-관리자 : 도서 좌석 현황");			
+		return "library/lib_admin/lib_seat_admin";
+	}
+	@RequestMapping("lib_seat_sub_admin")
+	public String lib_seat_sub_admin(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_seat_sub_admin-좌석 현황 및 예약");	
+		LIservice.lib_viewSeat(req, model);
+		
+		return "library/lib_admin/lib_seat_sub_admin";
+	}
+	@RequestMapping("lib_seat_user")
+	public String lib_seat_user(HttpServletRequest req, Model model) {
+		System.out.println("lib_seat_user-관리자 : 유저 정보 조회");	
+		
+		LIservice.lib_seat_user(req,model);
+		return "library/lib_admin/lib_seat_user";
+	}
 	
-	
-	
-	//도서 관리 페이지
-	@RequestMapping("lib_supervise")
-	public String lib_supervise(HttpServletRequest req, Model model) {
-		
-		System.out.println("lib_supervise-도서 관리 페이지");
-		LIservice.lib_bookLoanlist(req,model);
-		return "library/lib_supervise";
-	}
-	//도서 관리 페이지 - 대여 현황
-	@RequestMapping("lib_bookLoanlist")
-	public String lib_bookLoanlist(HttpServletRequest req, Model model) {
-		
-		System.out.println("lib_bookLoanlist-대여 현황");
-		LIservice.lib_bookLoanlist(req,model);
-		return "library/lib_bookLoanlist";
-	}
-	//도서 관리 페이지 - 반납 현황
-	@RequestMapping("lib_bookReturnlist")
-	public String lib_bookReturnlist(HttpServletRequest req, Model model) {
-		
-		System.out.println("lib_returnlist-반납 현황");
-		return "library/lib_returnlist";
-	}
-	//도서 관리 페이지 - 반납 예정 현황
-	@RequestMapping("lib_bookRtPrearrangelist")
-	public String lib_bookRtPrearrangelist(HttpServletRequest req, Model model) {
-		
-		System.out.println("lib_bookRtPrearrangelist-반납 예정 현황");
-		return "library/lib_bookRtPrearrangelist";
-	}
-	//도서 관리 페이지 - 예약 현황
-	@RequestMapping("lib_bookReserlist")
-	public String lib_bookReserlist(HttpServletRequest req, Model model) {
-		
-		System.out.println("lib_bookReserlist-예약 현황");
-		return "library/lib_bookReserlist";
-	}
-	//도서 관리 페이지 - 대여
-	@RequestMapping("lib_bookLoanform")
-	public String lib_bookLoanform(HttpServletRequest req, Model model) {
-		
-		System.out.println("lib_bookLoanform-예약 현황");
-		return "library/lib_bookLoanform";
-	}
-	//도서 관리 페이지 - 반납
-	@RequestMapping("lib_bookReturnform")
-	public String lib_bookReturnform(HttpServletRequest req, Model model) {
-		
-		System.out.println("lib_bookReturnform-예약 현황");
-		return "library/lib_bookReturnform";
-	}
-	//도서 관리 페이지 - 연장
-	@RequestMapping("lib_bookRenewform")
-	public String lib_bookRenewform(HttpServletRequest req, Model model) {
-		
-		System.out.println("lib_bookRenewform-예약 현황");
-		return "library/lib_bookRenewform";
-	}
 		
 	
+	/*//도서 좌석 업데이트
+	@RequestMapping("lib_seat_update")
+	public String lib_seat_update(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_seat_update-좌석 업데이트");	
+		LIservice.lib_seat_update(req,model);
+		LIservice.lib_viewSeat(req, model);
+		return "library/lib_ara/lib_seat_sub";
+	}*/
 	
 	
 	
@@ -201,7 +271,7 @@ public class LIController {
 	public String lib_submission(HttpServletRequest req, Model model) {
 		
 		System.out.println("lib_submission-도서 신청 양식");
-		return "library/lib_submission";
+		return "library/lib_joint/lib_submission";
 	}
 	
 	
@@ -211,7 +281,7 @@ public class LIController {
 	public String lib_summary(HttpServletRequest req, Model model) {
 		
 		System.out.println("lib_summary-도서관 안내");
-		return "library/lib_summary";
+		return "library/lib_joint/lib_summary";
 	}
 	
 	//도서관 현황(소개)
@@ -219,7 +289,7 @@ public class LIController {
 	public String lib_situation(HttpServletRequest req, Model model) {
 		
 		System.out.println("lib_situation-도서관 현황(소개)");
-		return "library/lib_situation";
+		return "library/lib_joint/lib_situation";
 	}
 	
 	//도서관 위치
@@ -227,7 +297,7 @@ public class LIController {
 	public String lib_map(HttpServletRequest req, Model model) {
 		
 		System.out.println("lib_situation-도서관 위치");
-		return "library/lib_map";
+		return "library/lib_joint/lib_map";
 	}
 
 	
@@ -237,7 +307,7 @@ public class LIController {
 		
 		System.out.println("lib_bookSearch-도서검색");
 		LIservice.getBooklist(req,model);
-		return "library/lib_bookSearch";
+		return "library/lib_joint/lib_bookSearch";
 	}
 	
 	
@@ -248,7 +318,7 @@ public class LIController {
 		System.out.println("lib_bookSearchResult-도서검색결과");
 		
 		LIservice.lib_bookSearchResult(req, model);
-		return "library/lib_bookSearchResult";
+		return "library/lib_joint/lib_bookSearchResult";
 	}
 	
 	
@@ -284,7 +354,7 @@ public class LIController {
 	@RequestMapping("lib_seat")
 	public String lib_seat(HttpServletRequest req, Model model) {
 		System.out.println("lib_viewSeat-좌석 현황 및 예약");			
-		return "library/lib_seat";
+		return "library/lib_ara/lib_seat";
 	}
 	@RequestMapping("lib_seat_sub")
 	public String lib_seat_sub(HttpServletRequest req, Model model) {
@@ -292,7 +362,7 @@ public class LIController {
 		System.out.println("lib_viewSeat-좌석 현황 및 예약");	
 		LIservice.lib_viewSeat(req, model);
 		
-		return "library/lib_seat_sub";
+		return "library/lib_ara/lib_seat_sub";
 	}
 		
 	
@@ -303,7 +373,7 @@ public class LIController {
 		System.out.println("lib_seat_update-좌석 업데이트");	
 		LIservice.lib_seat_update(req,model);
 		LIservice.lib_viewSeat(req, model);
-		return "library/lib_seat_sub";
+		return "library/lib_ara/lib_seat_sub";
 	}
 	
 	

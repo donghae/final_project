@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %>    
+<%@ include file="../../setting.jsp" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -109,32 +109,28 @@
                                         </div>
                                     </li>
                                                                         
-                                    <li class="nav-item dropdown" style="text-align:right;">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="dormitory_stu_login">학생 로그인</a>
-                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
-                                        </div>
-                                    </li>
+                                    <c:if test="${sessionScope.id == null }">
+	                                    <li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link dropdown-toggle" href="dormitoty_stu_login_form" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
+	                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">학생 로그인</a>
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
+	                                        </div>
+	                                    </li>
+                                    </c:if>
+									
+									<c:if test="${sessionScope.id != null }">
+										<li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link" href="logout">${sessionScope.name}로그아웃</a>
+	                                    </li>
+									</c:if>
                                 </ul>
-                                
-                                <!-- 검색 Form -->
-                                <!-- <div class="header-search-form ml-auto">
-                                    <form action="#">
-                                        <input type="search" class="form-control" placeholder="Input your keyword then press enter..." id="search" name="search">
-                                        <input class="d-none" type="submit" value="submit">
-                                    </form>
-                                </div>
-                                <!-- Search btn -->
-                                <!-- <div id="searchbtn">
-                                    <img src="resources/images/core-img/search.png" alt=""> -->
                                 </div>
                             </div>
                         </nav>                        
                     </div>
                 </div>
             </div>
-        </div>
     </header>
     <!-- Header Area End -->
     <!-- Social Sidebar Area Start -->
@@ -166,7 +162,7 @@
                 </div>
             </div>
         </div>
-       
+       </div>
     </section>
     <!-- ***** Welcome Area End ***** -->
  

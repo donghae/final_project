@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %>    
+<%@ include file="../../setting.jsp" %>    
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -21,7 +21,7 @@
       <div class="table-responsive">
         <table class="table table-hover">
           <thead>
-            <tr>
+            <tr style="height:40px;">
               <th>학번</th>
               <th>이름</th>
               <th>호실</th>
@@ -31,11 +31,20 @@
               <th>외박사유</th>
               <th>신청철회</th>
             </tr>
-          </thead>
+          </thead>        
+          
           	<c:forEach var="dto" items="${dtos}">          	
           <tbody id="myTable">
+         <c:if test="${dto.dorm_ex_dt == null }">
+          	<tr style="height:40px;">
+          		<td colspan="8" align="center">
+          			외박 신청 현황이 없습니다.<br>
+          		</td>
+          	</tr>
+          </c:if>
+          
             <c:if test="${dto.dorm_ex_fl != 0 }">
-            <tr>
+            <tr style="height:60px;">
               <td>${dto.st_no}</td>
               <td>${dto.st_name}</td>
               <td>${dto.dorm_room}</td>

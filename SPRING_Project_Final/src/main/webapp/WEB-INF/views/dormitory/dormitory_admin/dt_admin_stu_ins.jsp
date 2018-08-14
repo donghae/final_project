@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %>    
+<%@ include file="../../setting.jsp" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,26 +17,39 @@
     Responsive CSS
     <link href="resources/boot_dormitory/dormitory_css/responsive.css" rel="stylesheet">
 
+<style>
+	.box{
+		position: absolute;
+		top:100px;
+		left:150px;
+	}
+	
+.btn-sq-lg {
+  width: 100px !important;
+  height: 100px !important;
+}
 
+.btn-sq {
+  width: 100px !important;
+  height: 100px !important;
+  font-size: 10px;
+}
+
+.btn-sq-sm {
+  width: 50px !important;
+  height: 50px !important;
+  font-size: 10px;
+}
+
+.btn-sq-xs {
+  width: 25px !important;
+  height: 25px !important;
+  padding:2px;
+}	
+</style>
 </head>
 
 <body>
-
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="showbox">
-            <div class="loader">
-                <svg class="circular" viewBox="25 25 50 50">
-                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-                </svg>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Gradient Background Overlay -->
-    <div class="gradient-background-overlay"></div>
-
     <!-- Header Area Start -->
     <header class="header-area">
         <div class="container-fluid h-100">
@@ -108,32 +121,28 @@
                                         </div>
                                     </li>
                                                                         
-                                    <li class="nav-item dropdown" style="text-align:right;">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="dormitory_stu_login">학생 로그인</a>
-                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                                
-                                <!-- 검색 Form -->
-                                <!-- <div class="header-search-form ml-auto">
-                                    <form action="#">
-                                        <input type="search" class="form-control" placeholder="Input your keyword then press enter..." id="search" name="search">
-                                        <input class="d-none" type="submit" value="submit">
-                                    </form>
-                                </div>
-                                <!-- Search btn -->
-                                <!-- <div id="searchbtn">
-                                    <img src="resources/images/core-img/search.png" alt=""> -->
+                                    <c:if test="${sessionScope.id == null }">
+	                                    <li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link dropdown-toggle" href="dormitoty_stu_login_form" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
+	                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">학생 로그인</a>
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
+	                                        </div>
+	                                    </li>
+                                    </c:if>
+									
+									<c:if test="${sessionScope.id != null }">
+										<li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link" href="logout">${sessionScope.name}로그아웃</a>
+	                                    </li>
+									</c:if>
+                                </ul>                              
                                 </div>
                             </div>
                         </nav>                        
                     </div>
                 </div>
             </div>
-        </div>
     </header>
     <!-- Header Area End -->
     <!-- Social Sidebar Area Start -->
@@ -148,11 +157,36 @@
         <div class="carousel h-100 slide" data-ride="carousel" id="welcomeSlider">
             <!-- Carousel Inner -->
             <div class="carousel-inner h-100">						   <!-- 투명도 -->
-                <div class="carousel-item h-100 bg-img active" style= "hheight:200px;  /* opacity:0.5; */  background-image: url(resources/images/common_img/UNI/dormitory.jpg); padding:0px;">
-                	<div style="padding-top: 100px;">
-               			<%-- <%@ include file="../dt_layout/dt_admin_login_form.jsp" %>
-               			<%@ include file="../dt_layout/dt_stu_form.jsp" %> --%>
-               			<%@ include file="../../layout/dt_layout/box.jsp" %>
+                <div class="carousel-item h-100 bg-img active" style= " /* opacity:0.5; */  background-image: url(resources/images/common_img/UNI/dormitory.jpg); padding:0px;">
+                	<div class="box" > 
+                	</div>
+                	<div style="padding-top: 100px;" >
+						<div>
+							<div class="container" >
+							      <div class="row" >
+							        <div class="col-lg-12">
+							          <p>
+							            <a href="dormitoty_stu_select" class="btn btn-sq-lg btn-primary"><br>
+							                <i class="fa fa-user fa-5x"></i><br/>학생 조회 <br>
+							            </a>
+							            
+							            <a href="dormitoty_stu_insert" class="btn btn-sq-lg btn-success"><br>
+							              <i class="fa fa-user fa-5x"></i><br/>학생 등록 <br>
+							            </a>
+							            
+							            <a href="dormitoty_stu_update" class="btn btn-sq-lg btn-info"><br>
+							              <i class="fa fa-user fa-5x"></i><br/>학생  수정 <br>
+							            </a>
+							            
+							            <a href="dormitoty_stu_delete" class="btn btn-sq-lg btn-warning"><br>
+							              <i class="fa fa-user fa-5x"></i><br/>학생 삭제 <br>
+							            </a>
+							            
+							          </p>
+							        </div>
+								</div>
+							</div>	
+						</div>
                		</div>
                	
                		<div id="admin_stu_sel">
@@ -165,7 +199,7 @@
                 </div>
             </div>
         </div>
-       
+       </div>
     </section>
     <!-- ***** Welcome Area End ***** -->
  
@@ -214,6 +248,10 @@
         </div>
     </div>
 
+
+<!-- 푸터 include -->          
+<%@ include file="../../layout/dt_layout/footer_dorm.jsp" %>
+
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="resources/boot_dormitory/dormitory_js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
@@ -224,5 +262,7 @@
     <script src="resources/boot_dormitory/dormitory_js/plugins.js"></script>
     <!-- Active js -->
     <script src="resources/boot_dormitory/dormitory_js/active.js"></script>
+    
+    
 </body>
 </html>

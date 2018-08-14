@@ -57,15 +57,18 @@ input.upload {
     color:#48FFFF;
 }
 
+
+
 </style>
 <title>회원가입 폼 2</title>
 </head>
 <body>
 
-<div class="container" style="margin-left:550px;">
+<div class="container" >
 	<div class="row">
     <div class="col-md-8">
-   <h1 class="entry-title" style="margin-left:350px;"><span style="font-size:x-large; color:#48FFFF;" >외 박 신 청<br></span> </h1>
+   	<br><br><br>
+   <h1 class="entry-title" style="text-align: center;"><span style="font-size:x-large; color:#48FFFF; " >외 박 신 청<br></span> </h1>
 
       <section>      
         <hr>
@@ -121,7 +124,7 @@ input.upload {
 		</div>
 
         <div class="form-group">
-          <div class="col-xs-offset-3 col-xs-10" style="margin-left:300px;">
+          <div class="col-xs-offset-3 col-xs-10">
             <br><br><input name="Submit" type="submit" value="등록" class="btn btn-primary">
           </div>
         </div>

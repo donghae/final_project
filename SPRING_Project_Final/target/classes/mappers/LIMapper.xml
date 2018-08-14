@@ -14,13 +14,30 @@
 		SELECT COUNT(*) FROM tbl_book WHERE b_isbn = #{b_isbn}
 	</select>
 
+	
+<!-- 소장중인 도서인지 확인 -->
+	<select id="bnoCheck" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*) FROM tbl_book WHERE b_no = #{b_no}
+	</select>
 
+	
 <!-- 도서 추가 -->
 	<insert id="bookadd" parameterType="com.spring.projectFinal.LIVO.BookVO">
-	INSERT INTO tbl_book(b_no,b_isbn,b_global,b_category,b_title,b_price
-						,b_author,b_publish,b_date,b_img,b_intoDate)
-	 VALUES(#{b_no},#{b_isbn},#{b_global},#{b_category},#{b_title},#{b_price},
-	 					#{b_author},#{b_publish},#{b_date},#{b_img},<![CDATA[sysdate]]>)
+	    
+	    <if test="b_img != null">
+			INSERT INTO tbl_book(b_no,b_isbn,b_global,b_category,b_title,b_price
+								,b_author,b_publish,b_date,b_img,b_intoDate)
+			 VALUES(#{b_no},#{b_isbn},#{b_global},#{b_category},#{b_title},#{b_price},
+			 					#{b_author},#{b_publish},#{b_date},#{b_img},<![CDATA[sysdate]]>)	
+		</if>
+		
+	    <if test="b_img == null">
+			INSERT INTO tbl_book(b_no,b_isbn,b_global,b_category,b_title,b_price
+								,b_author,b_publish,b_date,b_intoDate)
+			 VALUES(#{b_no},#{b_isbn},#{b_global},#{b_category},#{b_title},#{b_price},
+			 					#{b_author},#{b_publish},#{b_date},<![CDATA[sysdate]]>)	
+		</if>
+		
 	</insert>
 	
 	
@@ -29,27 +46,131 @@
 		SELECT COUNT(*) FROM tbl_book
 			<where>
 				<choose>
-					<when test="title != null">
-						b_title LIKE #{title}
-						<if test="author != null">
-							AND b_author LIKE #{author}						
+				    
+					<when test="b_title != null">
+						b_title LIKE #{b_title}
+						<if test="b_author != null">
+							AND b_author LIKE #{b_author}						
+						</if>
+						<if test="b_global != null">
+							AND b_global = #{b_global}						
+						</if>
+						<if test="b_category != null">
+							AND b_category = #{b_category}						
 						</if>
 					</when>
-					<when test="title == null">
-						<if test="author != null">
-							b_author LIKE #{author}						
-						</if>						
-					</when>											
+					
+					<otherwise>	
+					    <choose>
+					        <when test="b_author != null">
+					            b_author LIKE #{b_author}
+					            	<if test="b_global != null">
+										AND b_global = #{b_global}						
+									</if>
+									<if test="b_category != null">
+										AND b_category = #{b_category}						
+									</if>					            
+					        </when>
+					        
+					        <otherwise>
+					                <!-- b_global에 값이 있으면 -->
+					                <if test="b_global != null">
+					                     b_global = #{b_global}
+							            <if test="b_category != null">
+												AND b_category = #{b_category}						
+										</if>						                    
+					                </if>
+					                
+					                <!-- b_global에 값이 없으면 -->
+					                <if test="b_global == null">
+					                    <if test="b_category != null">
+					                    	b_category = #{b_category}
+					                    </if>						                    
+					                </if>					                
+					            				           
+					        </otherwise>
+					        					        
+					    </choose>				   				
+					</otherwise>	
+															
 				</choose>				
 			</where>
 	</select>
+
 	
+<!-- 도서 검색 -->
+	<select id="booksearch" resultType="com.spring.projectFinal.LIVO.BookVO" parameterType="java.util.Map">
+		
+		SELECT * FROM(SELECT b_no,b_isbn,b_global,b_category,
+							b_title,b_price,b_author,b_publish,
+							b_date,b_img,b_intoDate,b_state_fl,
+							rownum rnum
+				FROM (SELECT * FROM tbl_book 
+				
+				<where>
+				   
+				<choose>
+				    
+					<when test="b_title != null">
+						b_title LIKE #{b_title}
+						<if test="b_author != null">
+							AND b_author LIKE #{b_author}						
+						</if>
+						<if test="b_global != null">
+							AND b_global = #{b_global}						
+						</if>
+						<if test="b_category != null">
+							AND b_category = #{b_category}						
+						</if>
+					</when>
+					
+					<otherwise>	
+					    <choose>
+					        <when test="b_author != null">
+					            b_author LIKE #{b_author}
+					            	<if test="b_global != null">
+										AND b_global = #{b_global}						
+									</if>
+									<if test="b_category != null">
+										AND b_category = #{b_category}						
+									</if>					            
+					        </when>
+					        
+					        <otherwise>
+					                <!-- b_global에 값이 있으면 -->
+					                <if test="b_global != null">
+					                     b_global = #{b_global}
+							            <if test="b_category != null">
+												AND b_category = #{b_category}						
+										</if>						                    
+					                </if>
+					                
+					                <!-- b_global에 값이 없으면 -->
+					                <if test="b_global == null">
+					                    <if test="b_category != null">
+					                    	b_category = #{b_category}
+					                    </if>						                    
+					                </if>					                
+					            				           
+					        </otherwise>
+					        					        
+					    </choose>				   				
+					</otherwise>	
+															
+				</choose>	
+				 
+			</where>
+			)) WHERE <![CDATA[rnum >= #{start} AND rnum <= #{end}]]>	
+	</select>
+		
 	
 <!-- 도서 전체 리스트 -->
 	<select id="booklist" resultType="com.spring.projectFinal.LIVO.BookVO" parameterType="java.util.Map">		
 		<![CDATA[
-		SELECT * FROM(SELECT b_no,b_isbn,b_global,b_category,b_title,b_price,b_author,b_publish,
-						b_date,b_img,b_intoDate,b_state_fl,rownum rnum
+		SELECT * FROM(SELECT b_no,b_isbn,b_global,b_category,
+							b_title,b_price,b_author,b_publish,
+							b_date,b_img,b_intoDate,b_state_fl,
+							rownum rnum
 				FROM (SELECT * FROM tbl_book ORDER BY b_global ASC, b_category ASC, b_date ASC, b_no ASC)
 			)WHERE rnum >= #{start} AND rnum <= #{end}
 		]]>
@@ -58,17 +179,22 @@
 	
 <!-- 도서별 세부 정보 -->
 	<select id="bookinfo" resultType="com.spring.projectFinal.LIVO.BookVO">
-		SELECT * FROM tbl_book WHERE b_no = #{b_no}
+		SELECT * FROM tbl_book 
+			WHERE b_no = #{b_no}
 	</select>
 	
 	
 <!-- 도서 수정 -->
 	<update id="bookupdate" parameterType="java.util.Map">
-		UPDATE tbl_book SET b_global=#{b_global,jdbcType=INTEGER},b_category=#{b_category,jdbcType=INTEGER},
-							b_title=#{b_title,jdbcType=VARCHAR},b_price=#{b_price,jdbcType=INTEGER},
-							b_author=#{b_author,jdbcType=VARCHAR},b_publish=#{b_publish,jdbcType=VARCHAR},
-							b_date=#{b_date,jdbcType=VARCHAR},b_img=#{b_img,jdbcType=VARCHAR},
-							b_state_fl=#{b_state_fl,jdbcType=INTEGER} 
+		UPDATE tbl_book SET b_global=#{bVO.b_global,jdbcType=INTEGER},
+							b_category=#{bVO.b_category,jdbcType=INTEGER},
+							b_title=#{bVO.b_title,jdbcType=VARCHAR},
+							b_price=#{bVO.b_price,jdbcType=INTEGER},
+							b_author=#{bVO.b_author,jdbcType=VARCHAR},
+							b_publish=#{bVO.b_publish,jdbcType=VARCHAR},
+							b_date=#{bVO.b_date,jdbcType=VARCHAR},
+							b_img=#{bVO.b_img,jdbcType=VARCHAR},
+							b_state_fl=#{bVO.b_state_fl,jdbcType=INTEGER} 
 			WHERE b_no=#{b_no}
 	</update>	
 	
@@ -79,50 +205,70 @@
 	</delete>
 	
 	
-<!-- 도서 대출 -->
-	<insert id="bookloan" parameterType="com.spring.projectFinal.LIVO.BookLoanVO">
-		INSERT INTO tbl_book_loan(loan_no,b_no,user_no,loan_dt,return_sche,overdue,loan_state) 
-			VALUES(loan_no_seq.nextval,#{b_no},#{user_no},#{loan_dt},#{return_sche},#{overdue},#{loan_state})
-	</insert>	
+	
+	
 	
 <!-- 학생 증명 -->
 	<select id="stCertiry" resultType="int">
-		SELECT COUNT(*) FROM tbl_student WHERE st_no = #{user_no}
+		SELECT COUNT(*) FROM tbl_student 
+			WHERE st_no = #{user_no}
 	</select>
 	
 <!-- 관리자 증명 -->
 	<select id="adCertiry" resultType="int">
-		SELECT COUNT(*) FROM tbl_admin WHERE ad_no = #{user_no}
+		SELECT COUNT(*) FROM tbl_admin 
+			WHERE ad_no = #{user_no}
 	</select>
 
 <!-- 교수 증명 -->
 	<select id="pfCertiry" resultType="int">
-		SELECT COUNT(*) FROM tbl_prof WHERE prof_no = #{user_no}
+		SELECT COUNT(*) FROM tbl_prof 
+			WHERE prof_no = #{user_no}
 	</select>	
 	
 	
+	
 <!-- 도서 대여 개수 구하기 -->
-	<select id="bookloanCnt" resultType="int">				
+	<select id="loanCnt" resultType="int" parameterType="java.util.Map">				
 		SELECT COUNT(*) FROM tbl_book_loan
 		<where>
-			<![CDATA[TO_CHAR(loan_dt,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>
+			loan_state = #{loan_state}
+			<if test="loan_state == 1 || loan_state == 2">
+				AND <![CDATA[TO_CHAR(loan_dt,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>				
+			</if>
+			<if test="loan_state == 12">
+				AND <![CDATA[TO_CHAR(return_dt,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>				
+			</if>	
+			<if test="loan_state == 11">
+				AND <![CDATA[TO_CHAR(return_sche,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>				
+			</if>		
 		</where>
 	</select>
 	
 <!-- 도서 대여 관련 정보 조회 -->
-	<select id="bookloanlist" resultType="com.spring.projectFinal.LIVO.BookLoanVO" parameterType="java.util.Map">
+	<select id="loanlist" resultType="com.spring.projectFinal.LIVO.BookLoanVO" parameterType="java.util.Map">
 		SELECT * FROM tbl_book_loan
 			<where>
 				<choose>
-					<when test="b_no != null">
+					<!-- <when test="b_no != null">
 						b_no = #{b_no}	
-					</when>
-					<when test="b_no == null">						
-						<![CDATA[TO_CHAR(loan_dt,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>
+					</when> -->
+					<when test="b_no == null">												
 						<if test="user_no != null">
 							AND user_no = #{user_no}
 						</if>
-					
+						<if test="loan_state != null">
+							loan_state = #{loan_state}
+							<if test="loan_state == 1 || loan_state == 2">
+								AND <![CDATA[TO_CHAR(loan_dt,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>				
+							</if>
+							<if test="loan_state == 12">
+								AND <![CDATA[TO_CHAR(return_dt,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>				
+							</if>	
+							<if test="loan_state == 11">
+								AND <![CDATA[TO_CHAR(return_sche,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>				
+							</if>											
+						</if>
 					</when>	
 				</choose>		
 			</where>
@@ -130,12 +276,18 @@
 	</select>
 
 
+<!-- 도서 대출 -->
+	<insert id="loan" parameterType="com.spring.projectFinal.LIVO.BookLoanVO">
+		INSERT INTO tbl_book_loan(loan_no,b_no,user_no,loan_dt,return_sche,overdue,loan_state) 
+			VALUES(loan_no_seq.nextval,#{b_no},#{user_no},#{loan_dt},#{return_sche},#{overdue},#{loan_state})
+	</insert>
+	
+
 <!-- 도서 대여 한 건 조회 -->	
-	<select id="bookloanOne" resultType="com.spring.projectFinal.LIVO.BookLoanVO">
+	<select id="loanlistOne" resultType="com.spring.projectFinal.LIVO.BookLoanVO">
 		SELECT * FROM tbl_book_loan 
 			<where>
-				b_no = #{b_no}
-				
+				b_no = #{b_no}				
 				<if test="user_no != null">
 					AND user_no=#{user_no}
 				</if>
@@ -144,46 +296,31 @@
 					<foreach collection="loan_state" item="state" open="(" separator="," close=")">
 						#{state}
 					</foreach>					
-				</if>
+				</if>				
 			</where>
 	</select>
 	
 	
+<!-- 도서별 최근 대여 정보 가져오기 -->
+	<select id="loanlistlast" resultType="com.spring.projectFinal.LIVO.BookLoanVO">
+	   SELECT * FROM(
+					SELECT * FROM tbl_book_loan 
+						WHERE b_no=#{b_no} 
+						ORDER BY loan_dt DESC
+					) 
+			WHERE ROWNUM = 1   	    
+	</select>	
+	
 <!-- 도서 반납,연장 -->
 	<update id="loanupdate" parameterType="com.spring.projectFinal.LIVO.BookLoanVO">	
-		UPDATE tbl_book_loan SET loan_dt=#{loan_dt,jdbcType=DATE},return_sche=#{return_sche,jdbcType=VARCHAR},overdue=#{overdue,jdbcType=INTEGER},return_dt=#{return_dt,jdbcType=DATE},loan_state=#{loan_state,jdbcType=INTEGER} WHERE b_no=#{b_no,jdbcType=VARCHAR}
+		UPDATE tbl_book_loan SET loan_dt=#{loan_dt,jdbcType=DATE},
+								return_sche=#{return_sche,jdbcType=VARCHAR},
+								overdue=#{overdue,jdbcType=INTEGER},
+								return_dt=#{return_dt,jdbcType=DATE},
+								loan_state=#{loan_state,jdbcType=INTEGER} 
+			WHERE b_no=#{b_no,jdbcType=VARCHAR} AND user_no=#{user_no,jdbcType=VARCHAR}
 	</update> 
 	
-	
-	
-<!-- 도서 검색 -->
-	<select id="booksearch" resultType="com.spring.projectFinal.LIVO.BookVO" parameterType="java.util.Map">
-		
-		SELECT * FROM(SELECT b_no,b_isbn,b_global,b_category,b_title,b_price,b_author,b_publish,
-						b_date,b_img,b_intoDate,b_state_fl,rownum rnum
-				FROM (SELECT * FROM tbl_book 
-				<where>
-					<choose>
-						<when test="title != null">
-							b_title LIKE #{title}
-							<if test="author != null">
-								AND b_author LIKE #{author}						
-							</if>
-						</when>
-						<when test="title == null">
-							<if test="author != null">
-								b_author LIKE #{author}						
-							</if>						
-						</when>											
-					</choose>				
-				</where>				
-				ORDER BY b_global ASC, b_category ASC, b_date ASC, b_no ASC)
-			)
-		<![CDATA[
-			WHERE rnum >= #{start} AND rnum <= #{end}
-		]]>
-			
-	</select>	
 	
 	
 	
@@ -197,8 +334,10 @@
 <!-- 좌석 업데이트 -->	
 	<update id="seatupdate" parameterType="com.spring.projectFinal.LIVO.SeatVO">
 		UPDATE tbl_lib_seat 
-			SET user_no=#{user_no,jdbcType=VARCHAR},seat_st_dt=<![CDATA[sysdate]]>,
-				seat_end_dt=<![CDATA[sysdate+10/1440]]>,seat_usetime=#{seat_usetime,jdbcType=VARCHAR},
+			SET user_no=#{user_no,jdbcType=VARCHAR},
+				seat_st_dt=<![CDATA[sysdate]]>,
+				seat_end_dt=<![CDATA[sysdate+10/1440]]>,
+				seat_usetime=#{seat_usetime,jdbcType=VARCHAR},
 				seat_state=#{seat_state,jdbcType=INTEGER} 
 			WHERE seat_no=#{seat_no} AND rdRoom_no=#{rdRoom_no}
 	</update>
@@ -206,13 +345,35 @@
 	
 <!-- 중복 유저 확인 -->	
 	<select id="seatUserCnt" resultType="int">
-		SELECT COUNT(*) FROM tbl_lib_seat WHERE user_no=#{user_no}
+		SELECT COUNT(*) FROM tbl_lib_seat 
+			WHERE user_no=#{user_no}
 	</select>
 	
 	
 <!-- 한 좌석 보기 -->
 	<select id="seatOne" resultType="com.spring.projectFinal.LIVO.SeatVO">
-		SELECT * FROM tbl_lib_seat WHERE seat_no = #{seat_no} AND rdRoom_no = #{rdRoom_no}
+		SELECT *
+			FROM tbl_lib_seat	
+			WHERE seat_no = #{seat_no} 
+			AND rdRoom_no = #{rdRoom_no}
+	</select>
+	
+
+<!-- 이용 중 좌석 정보조회 -->
+	<select id="seatUser" resultType="com.spring.projectFinal.LIVO.SeatVO">
+		SELECT seat_no,
+				seat.user_no,
+				rdRoom_no,
+				seat_st_dt,
+				seat_end_dt,
+				seat_usetime,
+				seat_state,				
+				st.st_name user_name
+			FROM tbl_lib_seat seat, 
+				tbl_student st			
+			WHERE seat.user_no = st.st_no
+			AND seat_no = #{seat_no} 
+			AND rdRoom_no = #{rdRoom_no}
 	</select>
 	
 </mapper>

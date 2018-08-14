@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %>    
+<%@ include file="../../setting.jsp" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,16 +20,7 @@
 <div class="container">
     <div class="row">
       <div class="table-responsive">
-       <%-- <c:forEach var="dto" items="${dtos}">
-			<c:if test="${dto.dorm_penalty == 0}">
-				<script type="text/javascript">
-					setTimeout(function(){	
-						alert("벌점 현황이 없습니다." + "\n" + "목록으로 돌아갑니다.");
-						window.location="dormitory";
-					}, 1000)
-				</script>
-			</c:if>
-       </c:forEach> --%>
+
        
         <table class="table table-hover">
           <thead>
@@ -46,11 +37,13 @@
           	<c:if test="${dtos != null}">
           	<c:forEach var="dto" items="${dtos}">
           <tbody id="myTable">
+          
           <c:if test="${dto.dorm_penalty_dt == null }">
           	<tr>
           		<td align="center" colspan="6"> <h4>벌점 현황이 없습니다.</h4> </td>
           	</tr>
-          	</c:if>
+          </c:if>
+          
           	<c:if test="${dto.dorm_penalty_dt != null}">
             <tr>
               <td>${dto.st_no}</td>
@@ -66,7 +59,7 @@
             </c:if>
          </table>
  
-	<table style="width:1000px" align="center">
+<%-- 	<table style="width:1000px" align="center">
 		<tr>
 			<th align="center">
 				<c:if test="${cnt > 0}">
@@ -93,7 +86,7 @@
 				</c:if>
 			</th>
 		</tr>
-	</table>
+	</table> --%>
 	
       </div>
       <div class="col-md-12 text-center">

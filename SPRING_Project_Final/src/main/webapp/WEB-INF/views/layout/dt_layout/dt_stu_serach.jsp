@@ -6,9 +6,27 @@
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+<style>
+	#srch{
+		border-top-width: 3px;
+		border-bottom-color: purple;	
+		height:40px;
+		}
+		
+	.glyphicon{
+		width:80px;
+		height:25px;
+	}	
+	
+	.glyphicon-search{
+		width:60px;
+		height:25px;
+	}
+	
+</style>
+
 </head>
 <body>
-
 <div class="container">
 	<div class="row">     
         <form class="classNameHere" role="search" action="dormitory_stu_overnight_sel">

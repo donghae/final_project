@@ -29,6 +29,33 @@ public interface DTService {
 	// 학생 벌점 조회
 	 public void dtStuPenalty(HttpServletRequest req, Model model);
 	 
+	 // 학생 공지사항 조회
+	 public void dtStuNotice(HttpServletRequest req, Model model);
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 // ara 동아리 목록 뿌리기..
+	 public void circleSelect(HttpServletRequest req, Model model);
+	 
+	 // ara 동아리 수정 목록 클릭
+	 public void araCircleBefore(HttpServletRequest req, Model model);
+	 
+	 // ara 동아리 수정 등록
+	 public void araCircleAfter(HttpServletRequest req, Model model);
+	 
+	 // ara 동아리 목록 삭제
+	 public void araCircleDelete(HttpServletRequest req, Model model);
+	 
+	 
+	 
+	 
+	 // 관리자 로그인
+	 public void dormitory_login(HttpServletRequest req, Model model);
 	 
 	// 관리자 로그인 
 	public void dtAdminLogin(HttpServletRequest req, Model model);
@@ -56,6 +83,18 @@ public interface DTService {
 	
 	// 관리자 공지사항 글 등록
 	public void addDormNotice(HttpServletRequest req, Model model);
+	
+	// 관리자 벌점 조회 , 관리자 벌점 수정 목록
+	public void dtAdminPenaltySel(HttpServletRequest req, Model model);
+	
+	// 관리자 벌점 부여
+	public void addPenaltyInsert(HttpServletRequest req, Model model);
+		
+	// 관리자 벌점 수정 목록
+	public void selectPenalty(HttpServletRequest req, Model model);
+	
+	// 관리자 벌점 수정 이름 클릭
+	public void updatePenalty(HttpServletRequest req, Model model);
 	
 	/*// 관리자 공지사항 글 수정 
 	public void addAdminNoticeModify(HttpServletRequest req, Model model);*/

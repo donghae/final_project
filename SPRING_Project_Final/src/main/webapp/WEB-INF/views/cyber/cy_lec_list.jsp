@@ -74,66 +74,73 @@
 
 <body>
 	<jsp:include page="../layout/header_ara.jsp" />
-
-	<div align="center">
-		<div class="cy_1">
-			<h4>온라인 강의 수강신청 목록</h4>
-		</div>
-		<%@ include file="../cyber/cy_sidebar_stu.jsp"%>
-		<div class="left_div">
-			<table class="st_mint" style="width: 1000px; height: 50%">
-				<thead>
-					<tr>
-						<th style="width: 10%">강의번호</th>
-						<th style="width: 50%">강의명</th>
-						<th style="width: 20%">교수명</th>
-						<th style="width: 10%">학점</th>
-						<th style="width: 10%">수강인원</th>
-					</tr>					
-				</thead>
-				<!-- 게시글이 있으면 -->
-				<tbody>
-					<c:if test="${requestScope.dtos!=null}">
-
-						<c:forEach var="vo" items="${dtos}">
-							<tr>
-								<td align="center">
-									${vo.lec_no}
-								</td>
-								<td>
-									<c:set var="l_no" value="${vo.lec_no}" /> 
-									<a href="cy_lec_main?lec_no=${vo.lec_no}" style="color:black;">
-										${vo.lec_name} 										
-									</a>
-								</td>
-								<td align="center">${vo.prof_no}</td>
-								<td align="center">${vo.lec_point}</td>
-								<td align="center">
-									<c:if test="${lecPersonCnt[l_no]!=0}">
-										${lecPersonCnt[l_no]} 
-									</c:if>
-									<c:if test="${lecPersonCnt[l_no]==0}">
-										0 
-									</c:if>
-									/ ${vo.max_person}
-								</td>
-
-							</tr>
-						</c:forEach>
-					</c:if>
-					<!-- 게시글이 없으면 -->
-					<c:if test="${requestScope.dtos==null}">
+	<c:if test="${sessionScope.id == null}">
+		<script type="text/javascript">
+			alert("권한이 없습니다.");
+			window.history.back();
+		</script>	
+	</c:if>
+	
+		<div align="center">
+			<div class="cy_1">
+				<h4>온라인 강의 수강신청 목록</h4>
+			</div>
+			<%@ include file="../cyber/cy_sidebar_stu.jsp"%>
+			<div class="left_div"  style="width: 800px; height: 40%;">
+				<table class="st_mint">
+					<thead>
 						<tr>
-							<th colspan="6" align="center">강의가 없습니다.</th>
-						</tr>
-					</c:if>
-				</tbody>
-			</table>
-
-			
+							<th style="width: 10%">강의번호</th>
+							<th style="width: 50%">강의명</th>
+							<th style="width: 20%">교수명</th>
+							<th style="width: 10%">학점</th>
+							<th style="width: 10%">수강인원</th>
+						</tr>					
+					</thead>
+					<!-- 게시글이 있으면 -->
+					<tbody>
+						<c:if test="${requestScope.dtos!=null}">
+	
+							<c:forEach var="vo" items="${dtos}">
+								<tr>
+									<td align="center">
+										${vo.lec_no}
+									</td>
+									<td>
+										<c:set var="l_no" value="${vo.lec_no}" /> 
+										<a href="cy_lec_main?lec_no=${vo.lec_no}" style="color:black;">
+											${vo.lec_name} 										
+										</a>
+									</td>
+									<td align="center">${vo.prof_name}(${vo.prof_no})</td>
+									<td align="center">${vo.lec_point}</td>
+									<td align="center">
+										<c:if test="${lecPersonCnt[l_no]!=0}">
+											${lecPersonCnt[l_no]} 
+										</c:if>
+										<c:if test="${lecPersonCnt[l_no]==0}">
+											0 
+										</c:if>
+										/ ${vo.max_person}
+									</td>
+	
+								</tr>
+							</c:forEach>
+						</c:if>
+						<!-- 게시글이 없으면 -->
+						<c:if test="${requestScope.dtos==null}">
+							<tr>
+								<th colspan="6" align="center">강의가 없습니다.</th>
+							</tr>
+						</c:if>
+					</tbody>
+				</table>
+	
+				
+			</div>
 		</div>
-	</div>
+	
 </body>
 
 
-<%@ include file="../layout/footer_ara.jsp"%>
+<%@ include file="../layout/footer_lib.jsp"%>

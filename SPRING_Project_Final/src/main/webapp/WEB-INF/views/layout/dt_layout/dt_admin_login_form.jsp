@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %>    
+<%@ include file="../../setting.jsp" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,12 +28,12 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="dormitory_admin_login" method="post" role="form" style="display: block;">
+								<form id="login-form" action="dormitory_login" method="post" role="form" style="display: block;">
 									<div class="form-group">
-										<input type="text" name="userId" id="userId" tabindex="1" class="form-control" placeholder="아이디" value="">
+										<input type="text" name="userId" id="userId" tabindex="1" class="form-control" placeholder="아이디">
 									</div>
 									<div class="form-group">
-										<input type="password" name="userPassword" id="userPassword" tabindex="2" class="form-control" placeholder="비밀번호">
+										<input type="password" name="passwd" id="passwd" tabindex="2" class="form-control" placeholder="비밀번호">
 									</div>
 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
@@ -48,12 +48,12 @@
 									</div>
 								</form>
 								
-								<form id="register-form" action="dormitory_admin_login" method="post" role="form" style="display: none;">
+								<form id="register-form" action="dormitory_login" method="post" role="form" style="display: none;">
 									<div class="form-group">
-										<input type="text" name="userId" id="userId" tabindex="1" class="form-control" placeholder="아이디" value="">
+										<input type="text" name="userId" id="userId"  class="form-control" placeholder="아이디" value="">
 									</div>
 									<div class="form-group">
-										<input type="password" name="userPassword" id="userPassword" tabindex="2" class="form-control" placeholder="비밀번호">
+										<input type="password" name="passwd" id="passwd"  class="form-control" placeholder="비밀번호">
 									</div>
 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">

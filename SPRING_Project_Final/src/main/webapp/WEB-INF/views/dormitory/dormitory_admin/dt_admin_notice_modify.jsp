@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %> 
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../../setting.jsp" %> 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -109,13 +107,21 @@
                                         </div>
                                     </li>
                                                                         
-                                    <li class="nav-item dropdown" style="text-align:right;">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="dormitory_stu_login">학생 로그인</a>
-                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
-                                        </div>
-                                    </li>
+                                    <c:if test="${sessionScope.id == null }">
+	                                    <li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link dropdown-toggle" href="dormitoty_stu_login_form" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
+	                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">학생 로그인</a>
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
+	                                        </div>
+	                                    </li>
+                                    </c:if>
+									
+									<c:if test="${sessionScope.id != null }">
+										<li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link" href="logout">${sessionScope.name}로그아웃</a>
+	                                    </li>
+									</c:if>
                                 </ul>
                                 
                                 <!-- 검색 Form -->

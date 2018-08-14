@@ -33,13 +33,6 @@
 						<div class="panel panel-defaul">
 							<div class="panel-heading">
 								<h4 class="panel-title">
-									<a href="cy_lec_homework_list?lec_no=${lec_no}">과제목록</a>
-								</h4>
-							</div>							
-						</div>
-						<div class="panel panel-defaul">
-							<div class="panel-heading">
-								<h4 class="panel-title">
 									<a href="cy_main">돌아가기</a>
 								</h4>
 							</div>							

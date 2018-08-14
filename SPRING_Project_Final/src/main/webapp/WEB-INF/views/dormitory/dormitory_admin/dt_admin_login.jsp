@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %>    
+<%@ include file="../../setting.jsp" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -75,13 +75,21 @@
                                         <a class="nav-link" href="dormitory_notice">공지사항</a>
                                     </li>
                                     
-                                    <li class="nav-item dropdown" style="text-align:right;">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="qwer">학생 로그인</a>
-                                            <a class="dropdown-item" href="dormitory_login">관리자 로그인</a>
-                                        </div>
-                                    </li>
+                                    <c:if test="${sessionScope.id == null }">
+	                                    <li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link dropdown-toggle" href="dormitoty_stu_login_form" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
+	                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">학생 로그인</a>
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
+	                                        </div>
+	                                    </li>
+                                    </c:if>
+									
+									<c:if test="${sessionScope.id != null }">
+										<li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link" href="logout">${sessionScope.name}로그아웃</a>
+	                                    </li>
+									</c:if>
                                 </ul>
                                 
                                 <!-- 검색 Form -->
@@ -132,7 +140,7 @@
     <!-- ***** Welcome Area End ***** -->
  
     <!-- ***** Contact Area Start ***** -->
-    <div class="contact-popup-form" id="contact-modal-lg">
+<!--     <div class="contact-popup-form" id="contact-modal-lg">
         <div class="modal fade contact-modal-lg" tabindex="-1" role="dialog" aria-labelledby="contact-modal-lg" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
@@ -174,7 +182,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 <%-- <%@ include file="../dt_layout/table.jsp" %> --%>
 <%@ include file="../../layout/dt_layout/footer_dorm.jsp" %>

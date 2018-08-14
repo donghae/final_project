@@ -1,5 +1,6 @@
 package com.spring.projectFinal.persistence;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -98,16 +99,17 @@ public class LIDAOImpl implements LIDAO {
 
 	//도서 대여
 	@Override
-	public int bookloan(BookLoanVO bloanVO) {
+	public int loan(BookLoanVO bloanVO) {
 		
 		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
-		int insertCnt = lidao.bookloan(bloanVO);
+		int insertCnt = lidao.loan(bloanVO);
 		
 		return insertCnt;
 	}
 	
 	
 	//학생 증명
+	@Override
 	public int stCertiry(String user_no) {
 		
 		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
@@ -116,7 +118,9 @@ public class LIDAOImpl implements LIDAO {
 		return stCertiry_fl;	
 	};
 	
+	
 	//관리자 증명
+	@Override
 	public int adCertiry(String user_no) {
 		
 		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
@@ -126,6 +130,7 @@ public class LIDAOImpl implements LIDAO {
 	};
 	
 	//교수 증명
+	@Override
 	public int pfCertiry(String user_no) {
 		
 		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
@@ -134,12 +139,22 @@ public class LIDAOImpl implements LIDAO {
 		return pfCertiry_fl;	
 	}
 
+	
+	//소장 중인 도서인지 
+	@Override
+	public int bnoCheck(Map<String,Object> map) {
+		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
+		int isb_Cnt = lidao.bnoCheck(map);
+		
+		return isb_Cnt;
+	}
 
+	
 	//도서 대여 개수
 	@Override
-	public int bookloanCnt() {
+	public int loanCnt(Map<String,Object> map) {
 		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
-		int selectCnt  = lidao.bookloanCnt();
+		int selectCnt  = lidao.loanCnt(map);
 		
 		return selectCnt;	
 	}
@@ -147,19 +162,28 @@ public class LIDAOImpl implements LIDAO {
 	
 	//도서 대여 관련 정보 조회
 	@Override
-	public ArrayList<BookLoanVO> bookloanlist(Map<String, Object> map) {
+	public ArrayList<BookLoanVO> loanlist(Map<String, Object> map) {
 		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
-		ArrayList<BookLoanVO> bloanVOs = lidao.bookloanlist(map);
+		ArrayList<BookLoanVO> bloanVOs = lidao.loanlist(map);
 		
 		return bloanVOs;	
 	}
 
+	
+	//도서 대여 전체 조회
+	@Override
+	public ArrayList<BookLoanVO> loanAllList() {
+		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
+		ArrayList<BookLoanVO> bloanVOs = lidao.loanAllList();
+		
+		return bloanVOs;	
+	}
 
 	//도서 대여 한 건 조회
 	@Override
-	public BookLoanVO bookloanOne(Map<String,Object> map) {
+	public BookLoanVO loanlistOne(Map<String,Object> map) {
 		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
-		BookLoanVO bloanVO = lidao.bookloanOne(map);
+		BookLoanVO bloanVO = lidao.loanlistOne(map);
 		
 		return bloanVO;
 	}
@@ -225,6 +249,25 @@ public class LIDAOImpl implements LIDAO {
 		SeatVO sVO = lidao.seatOne(map);
 	
 		return sVO;
+	}
+
+	
+	//이용 중 좌석 정보조회
+	@Override
+	public SeatVO seatUser(Map<String,Object> map) {
+		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
+		SeatVO sVO = lidao.seatUser(map);
+	
+		return sVO;
+	}
+	
+	//최근 대여일 
+	@Override
+	public BookLoanVO loanlistlast(Map<String, Object> map) {
+		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
+		BookLoanVO laonVO = lidao.loanlistlast(map);
+	
+		return laonVO;
 	}
 
 

@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %>    
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../../setting.jsp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,6 +13,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>학생 정보 조회</title>
 
+<style>
+.btn-sq-lg {
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.btn-sq {
+  width: 100px !important;
+  height: 100px !important;
+  font-size: 10px;
+}
+
+.btn-sq-sm {
+  width: 50px !important;
+  height: 50px !important;
+  font-size: 10px;
+}
+
+.btn-sq-xs {
+  width: 50px !important;
+  height: 50px !important;
+  padding:2px;
+}
+
+	.box1{
+		position: absolute;
+	}
+	
+	.box2{
+		position: relative;
+		top:-50px;
+		left:300px;
+	}
+</style>
 </head>
 <body>
     <!-- Preloader -->
@@ -102,13 +135,21 @@
                                         </div>
                                     </li>
                                                                         
-                                    <li class="nav-item dropdown" style="text-align:right;">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="dormitory_stu_login">학생 로그인</a>
-                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
-                                        </div>
-                                    </li>
+                                    <c:if test="${sessionScope.id == null }">
+	                                    <li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link dropdown-toggle" href="dormitoty_stu_login_form" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
+	                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">학생 로그인</a>
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
+	                                        </div>
+	                                    </li>
+                                    </c:if>
+									
+									<c:if test="${sessionScope.id != null }">
+										<li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link" href="logout">${sessionScope.name}로그아웃</a>
+	                                    </li>
+									</c:if>
                                 </ul>
                                 
                                 <!-- 검색 Form -->
@@ -142,14 +183,122 @@
         <div class="carousel h-100 slide" data-ride="carousel" id="welcomeSlider">
             <!-- Carousel Inner -->
             <div class="carousel-inner h-100">						   <!-- 투명도 -->
-                <div class="carousel-item h-100 bg-img active" style= "hheight:200px;  /* opacity:0.5; */  background-image: url(resources/images/common_img/UNI/dormitory.jpg);">
-                 
-                 	<div>
+                <div class="carousel-item h-100 bg-img active" style= "/* opacity:0.5; */  background-image: url(resources/images/common_img/UNI/dormitory.jpg);">
+					<div>
+						<div class="container">
+						      <div class="row">
+						        <div class="col-lg-12">
+						          <p>
+						            <a href="dormitoty_stu_select" class="btn btn-sq-lg btn-primary"><br>
+						                <i class="fa fa-user fa-5x"></i><br/>
+						                                학생 조회 <br>
+						            </a>
+						            <a href="dormitoty_stu_insert" class="btn btn-sq-lg btn-success"><br>
+						              <i class="fa fa-user fa-5x"></i><br/>
+						              	학생 등록 <br>
+						            </a>
+						            <a href="dormitoty_stu_update" class="btn btn-sq-lg btn-info"><br>
+						              <i class="fa fa-user fa-5x"></i><br/>
+						              	학생  수정 <br>
+						            </a>
+						            <a href="dormitoty_stu_delete" class="btn btn-sq-lg btn-warning"><br>
+						              <i class="fa fa-user fa-5x"></i><br/>
+						              	학생 삭제 <br>
+						            </a>
+						          </p>
+						        </div>
+							</div>
+						</div>	
+					</div>                 
+                 	<%-- <div>
 						<%@ include file="../../layout/dt_layout/box.jsp" %>
-					</div> 
-					<div style="background-color:white; width:1200px; height:200px; margin-left:450px;">
+					</div> --%> 
+					<div class="box1">
+					</div>
+					<div style="background-color:white; width:1200px; height:200px;" class="box2">
 					 <div style="margin-top:100px; height:400px;">
-						<%@ include file="../../layout/dt_layout/dt_stu_table2.jsp" %>
+						<%-- <%@ include file="../../layout/dt_layout/dt_stu_table2.jsp" %> --%>
+						
+						<div id="list">
+						<!-- 목록 조회 -->
+						<article class="back_white">
+							<div class="content">
+								<table class="st_beige">
+									<thead class="st_beige">
+										<tr>
+											<th style="width:12%;">학번</th>
+											<th style="width:7.5%;">이름</th>
+											<th style="width:7.5%;">전공번호</th>
+											<th style="width:22%;">호실</th>
+											<th style="width:16%;">기숙사 시작일</th>
+											<th style="width:13%;">기숙사 종료일</th>
+										</tr>
+									</thead>
+									
+									<tbody class="st_beige">
+										<c:if test="${cnt == 0}">
+											<tr>
+												<td></td>
+												<td colspan="7">검색 결과가 없습니다</td>							
+											</tr>
+										</c:if>
+										
+										<c:if test="${cnt > 0}">
+										<c:forEach var="dto" items="${dtos}">
+											<tr>
+												<td style="width:12%;">${dto.st_no}</td>
+												<td style="width:7.5%;">${dto.st_name}</td>
+												<td style="width:7.5%;">${dto.maj_cd}</td>
+												<td style="width:22%;">${dto.dorm_room}</td>
+												<td style="width:16%;">${dto.dorm_st_dt}</td>
+												<td style="width:13%;">${dto.dorm_end_dt}</td>
+												<td style="width:15%;">
+													<Button class="btn_navy" type="button" onclick="window.location='lib_bookModiForm?b_no=${dto.st_no}'">수정</Button>&nbsp;
+													<Button class="btn_navy" type="button" onclick="javascript:delBook('${dto.st_no}');">삭제</Button>
+													<%-- <c:if test="${memId != null}">
+														<Button class="btn_navy" type="button" onclick="window.location='#'">도서 예약</Button>							
+													</c:if> --%>
+												</td>								
+											</tr>
+										</c:forEach>
+										</c:if>	
+									</tbody>
+								</table>
+
+								
+								
+								<br><br>
+								<!-- 페이지 컨트롤 버튼 -->
+								<div class="cen_middle">
+									<c:if test="${cnt > 0}">
+										<!-- 처음 블럭[◀◀] / 이전 블럭[◀] -->
+										<c:if test="${startPage > pageBlock}">
+											<a href="lib_bookSearch">[◀◀]</a>
+											<a href="lib_bookSearch?pageNum=${startPage - pageBlock}">[◀]</a>
+										</c:if>
+									
+										<!-- 페이지 -->
+										<c:forEach var="i" begin="${startPage}" end="${endPage}">
+											<!-- 현재 페이지와 i가 같은 경우 -->
+											<c:if test="${i == currentPage}">
+												<span><b>[${i}]</b></span>
+											</c:if>
+											<!-- 현재 페이지와 i가 다를 경우 -->
+											<c:if test="${i != currentPage}">
+												<a href="lib_bookSearch?pageNum=${i}">[${i}]</a>
+											</c:if>
+										</c:forEach>
+										
+										<!-- 다음 블럭[▶] / 마지막 블럭[▶▶] -->
+										<c:if test="${pageCount > endPage}">
+											<a href="lib_bookSearch?pageNum=${startPage + pageBlock}">[▶]</a>
+											<a href="lib_bookSearch?pageNum=${pageCount}">[▶▶]</a>
+										</c:if>
+									</c:if>
+								</div>			
+							</div>
+						</article>
+						</div>						
 			    	</div>
 			    	</div>   
                     <div class="carousel-content h-100">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %>    
+<%@ include file="../../circle_setting.jsp" %>
+<%@ include file="../../setting.jsp" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,7 +15,6 @@
 </head>
 <body>
 
-
 <!--
     instagram: www.instagram.com/programmingtutorial
     site: programlamadersleri.net
@@ -23,7 +23,7 @@
 <div class="box">
     <div class="container">
      	<div class="row">
-			 
+			 <c:if test="${sessionScope.id == null}">
 			    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                
 					<div class="box-part text-center">
@@ -42,7 +42,29 @@
                         
 					 </div>
 				</div>	 
-				
+			 </c:if>
+			 
+			 <c:if test="${sessionScope.id != null}">
+			    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+               
+					<div class="box-part text-center">
+                        
+                        <i class="fa  fa-3x" aria-hidden="true"></i>
+                        
+						<div class="title">
+							<h3>${sessionScope.name} 로그아웃</h3>
+						</div>
+                        
+						<div class="text">
+							<span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
+						</div>
+                        
+						<a href="logout">바로가기e</a>
+                        
+					 </div>
+				</div>	 
+			 </c:if>
+			 
 				 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                
 					<div class="box-part text-center">
@@ -133,7 +155,7 @@
 							<span>Lorem ipsum dolor sit amet, id quo eruditi eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui ad.</span>
 						</div>
                         
-						<a href="#">바로가기e</a>
+						<a href="dormitory_admin_penalty">바로가기e</a>
                         
 					 </div>
 				</div>

@@ -59,7 +59,7 @@ public class CLServiceImpl implements CLService{
         }
         
 		
-        String realDir="J:\\Dev36\\ARAuni\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\video\\"; // 저장 경로
+        String realDir="C:\\Dev36\\git\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\video\\"; // 저장 경로
         try {
 	        if(!file.isEmpty()) {
 	        	file.transferTo(new File(saveDir+fileName));
@@ -178,7 +178,7 @@ public class CLServiceImpl implements CLService{
         }
         
 		
-        String realDir="J:\\Dev36\\ARAuni\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\video\\"; // 저장 경로
+        String realDir="C:\\Dev36\\git\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\video\\"; // 저장 경로
         try {
 	        if(!file.isEmpty()) {
 	        	file.transferTo(new File(saveDir+fileName));
@@ -201,7 +201,7 @@ public class CLServiceImpl implements CLService{
 	            vo.setLec_no(lec_no);
 	            vo.setCy_lec_n_title(req.getParameter("title"));
 	            vo.setCy_lec_n_content(req.getParameter("content"));
-	            vo.setProf_no("118202001");
+	            vo.setProf_no((String)req.getSession().getAttribute("id"));
 	            vo.setCy_lec_n_dt(new java.sql.Date(new Timestamp(System.currentTimeMillis()).getTime()));
 	            vo.setCy_lec_n_file(fileName);
 	            vo.setCy_lec_n_cnt(0);
@@ -342,8 +342,21 @@ public class CLServiceImpl implements CLService{
 		int pageCount = 0; // 페이지 개수
 		int startPage = 0; // 시작 페이지
 		int endPage = 0;
-
-		cnt = dao.getLecCnt();
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		String id = (String) req.getSession().getAttribute("id");
+		if(id != null) {
+			if(id.substring(0, 1).equals("0")) {
+				map.put("adminId", id);
+			}else if(id.substring(0, 1).equals("1")) {
+				map.put("profId", id);
+			}else if(id.substring(0, 1).equals("2")) {
+				map.put("studentId", id);
+			}
+		}
+		cnt = dao.getLecCnt(map);
+		
 		System.out.println("cnt : " + cnt); // 먼저 테이블에 30건을 insert할것
 		pageNum = req.getParameter("pageNum");
 		System.out.println("pageNum : " + pageNum);
@@ -374,7 +387,8 @@ public class CLServiceImpl implements CLService{
 		HashMap<Integer, Integer> lecPersonCnt = null;
 		if (cnt > 0) {
 			// 게시글 목록 조회
-			Map<String, Object> map = new HashMap<>();
+			
+			
 			map.put("start", start);
 			map.put("end", end);
 			dtos = dao.getLecList(map);
@@ -427,7 +441,7 @@ public class CLServiceImpl implements CLService{
         }
         
 		
-        String realDir="J:\\Dev36\\ARAuni\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\video\\"; // 저장 경로
+        String realDir="C:\\Dev36\\git\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\video\\"; // 저장 경로
         try {
 	        if(!file.isEmpty()) {
 	        	file.transferTo(new File(saveDir+fileName));
@@ -447,7 +461,7 @@ public class CLServiceImpl implements CLService{
 	            CyberNoticeVO vo = new CyberNoticeVO();
 	            vo.setCy_n_title(req.getParameter("title"));
 	            vo.setCy_n_content(req.getParameter("content"));
-	            vo.setAd_no("018202001");
+	            vo.setAd_no((String)req.getSession().getAttribute("id"));
 	            vo.setCy_n_dt(new java.sql.Date(new Timestamp(System.currentTimeMillis()).getTime()));
 	            vo.setCy_n_file(fileName);
 	            vo.setCy_n_cnt(0);
@@ -629,7 +643,7 @@ public class CLServiceImpl implements CLService{
 				System.out.println("dto.getLec_no : " + dto.getLec_no());
 				map.put("round_no", dto.getRound_no());
 				System.out.println("dto.getRound_no : " + dto.getRound_no());
-				map.put("st_no", "218202001");
+				map.put("st_no", (String)req.getSession().getAttribute("id"));
 				
 				vo = dao.getCyAttendance(map);
 				if(vo!=null) {
@@ -680,7 +694,7 @@ public class CLServiceImpl implements CLService{
 		int lec_no = Integer.parseInt(req.getParameter("lec_no"));
 		int round_no = Integer.parseInt(req.getParameter("round_no"));
 		long watch_time = Long.parseLong(req.getParameter("time"));
-		String st_no = "218202001";
+		String st_no = (String)req.getSession().getAttribute("id");
 		Date watch_dt = new java.sql.Date(new Timestamp(System.currentTimeMillis()).getTime());
 		
 		CyberAttendanceVO vo = new CyberAttendanceVO();
@@ -698,6 +712,8 @@ public class CLServiceImpl implements CLService{
 			insertCnt = dao.insertCyAttendance(vo);
 			model.addAttribute("insertCnt", insertCnt);
 		}
+		model.addAttribute("lec_no", lec_no);
+		model.addAttribute("watch_time", watch_time);
 		model.addAttribute("selectCnt", selectCnt);
 	}
 

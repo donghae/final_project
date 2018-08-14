@@ -6,11 +6,7 @@
     margin: 0 auto;
     padding: 55px;
     box-sizing: border-box;
-
-    background-color:  #ffffff;
-    /* box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); */
-
-    font: bold 14px sans-serif;
+    background-color:  #ffffff; 
     text-align: center;
 }
 
@@ -24,15 +20,16 @@
     margin-bottom: 55px;
 }
 
-/* The form title */
 
+
+/* The form title */
 .form-basic h1{
     display: inline-block;
     box-sizing: border-box;
     color:  #4c565e;
     font-size: 24px;
     padding: 0 10px 15px;
-    border-bottom: 2px solid #6caee0;
+    border-bottom: 2px solid #C4E8F6;
     margin: 0;
 }
 
@@ -55,18 +52,22 @@
     border: 1px solid #dbdbdb;
 }
 
-.form-basic input[type=radio],
-.form-basic input[type=checkbox]{
+
+.form-basic input[type=radio]{
     box-shadow: none;
     width: auto;
 }
 
 .form-basic input[type=checkbox]{
+	box-shadow: none;
+    width: auto;
     margin-top: 13px;
 }
 
+
+/* 버튼 */
 .form-basic input[type=button]{
-    position: relative;
+    /* position: relative; */
   display: inline-block;
   width:100px;
   margin: 0;
@@ -101,7 +102,7 @@
 
 .form-basic input[type=submit]{
 	width:100px;
-    position: relative;
+    /* position: relative; */
   display: inline-block;
   margin: 0;
   padding: 0px;
@@ -132,6 +133,7 @@
 	transition: background-color .15s ease-in-out, border-color .15s
 		ease-in-out, box-shadow .15s ease-in-out
 }
+
 .form-basic input[type=submit]:hover {
   background: #C4E8F6;
   color: #001E42; 
@@ -152,6 +154,7 @@
 .form-basic input[type=button]:active {
   box-shadow: -4px 4px 24px rgba(0, 0, 0, 0.8);
 }
+
 
 
 .form-basic select{
@@ -196,7 +199,7 @@
 }
 
 .form-basic button{
-    /* display: block; */
+    display: block;
     border-radius: 2px;
     background-color:  #C4E8F6;
     color: #001E42;

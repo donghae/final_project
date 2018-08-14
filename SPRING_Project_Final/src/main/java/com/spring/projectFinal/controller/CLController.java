@@ -131,6 +131,6 @@ public class CLController {
 		
 		service.updateCyAttendance(req, model);
 		
-		return "cyber/cy_form";
+		return "cyber/cy_attendancePro";
 	}
 }

@@ -80,8 +80,8 @@
 			<h4>온라인 강의 전체 공지사항</h4>			
 		</div>
 		<%@ include file="../cyber/cy_sidebar_stu.jsp"%>
-		<div class="left_div">
-			<table class="st_mint" style="width: 1000px; height: 50%">
+		<div class="left_div" style="width: 800px; height: 40%;">
+			<table class="st_mint" >
 				<thead>
 					<tr>
 						<th style="width: 10%">글번호</th>
@@ -125,13 +125,13 @@
 				</tbody>
 			</table>
 		
-			<table style="width: 1000px;">
+			<table style="text-align: center">
 				<tr>
 					<th align="center"><c:if test="${cnt>0}">
 							<!-- 처음 : ◀◀                                  이전 : ◀-->
 							<c:if test="${startPage > pageBlock}">
-								<a href="boardQnaList">◀◀</a>
-								<a href="boardQnaList?pageNum=${startPage-pageBlock}">&nbsp;◀</a>
+								<a href="cy_main">◀◀</a>
+								<a href="cy_main?pageNum=${startPage-pageBlock}">&nbsp;◀</a>
 							</c:if>
 
 							<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -139,14 +139,14 @@
 									<span><b>[${i}]</b></span>
 								</c:if>
 								<c:if test="${i!=currentPage}">
-									<a href="boardQnaList?pageNum=${i}">[${i}]</a>
+									<a href="cy_main?pageNum=${i}">[${i}]</a>
 								</c:if>
 							</c:forEach>
 
 							<!-- 끝 : ▶▶                                       다음 : ▶-->
 							<c:if test="${pageCount > endPage}">
-								<a href="boardQnaList?pageNum=${startPage+pageBlock}">▶&nbsp;</a>
-								<a href="boardQnaList?pageNum=${pageCount}">▶▶</a>
+								<a href="cy_main?pageNum=${startPage+pageBlock}">▶&nbsp;</a>
+								<a href="cy_main?pageNum=${pageCount}">▶▶</a>
 							</c:if>
 						</c:if></th>
 				</tr>
@@ -156,4 +156,4 @@
 </body>
 
 
-<%@ include file="../layout/footer_ara.jsp"%>
+<%@ include file="../layout/footer_lib.jsp"%>

@@ -121,4 +121,5 @@ public class BookVO {
 		this.b_state_fl = b_state_fl;
 	}
 
+
 }

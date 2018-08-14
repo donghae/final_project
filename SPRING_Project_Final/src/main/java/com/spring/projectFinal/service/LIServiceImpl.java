@@ -38,14 +38,16 @@ public class LIServiceImpl implements LIService{
 		int insertCnt = 0;
 		long b_isbn = Long.parseLong(req.getParameter("isbn"));
 		
+		
 		for(int i=0; i<amt; i++) {
+		
 			
 			MultipartFile file = req.getFile("img");
 			//저장 경로
-			String saveDir = req.getSession().getServletContext().getRealPath("/resources/images/library_img/");
+			String saveDir = req.getSession().getServletContext().getRealPath("/resources/images/library_img/book");
 			
 			//상품 대표이미지 저장경로
-			String realDir="J:\\Dev36\\ARAuni\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\images\\library_img\\";
+			String realDir="J:\\Dev36\\ARAuni\\final_project\\SPRING_Project_Final\\src\\main\\webapp\\resources\\images\\library_img\\book\\";
 				
 			try {
 				file.transferTo(new File(saveDir+file.getOriginalFilename()));
@@ -116,7 +118,11 @@ public class LIServiceImpl implements LIService{
 					bVO.setB_date((year+"/"+month+"/"+day));
 					
 					//도서 이미지
-					bVO.setB_img(file.getOriginalFilename());
+					if(file.getOriginalFilename() != null) {
+						bVO.setB_img(file.getOriginalFilename());
+					} else {
+						bVO.setB_img(null);
+					}
 					
 					//반입일
 					java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());			
@@ -133,6 +139,7 @@ public class LIServiceImpl implements LIService{
 		}
 		model.addAttribute("amt", amt);
 		model.addAttribute("insertCnt",insertCnt);	
+		
 		System.out.println("insertCnt:" + insertCnt);
 		System.out.println("amt : "+ amt);
 	}
@@ -175,18 +182,40 @@ public class LIServiceImpl implements LIService{
 		number = cnt-(currentPage-1) * pageSize;
 		
 	
-		//목록조회
+		//도서 정보 조회
 		if(cnt > 0) {
 			
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("start", start);
-			map.put("end", end);
-			/*if(req.getParameter("b_global") != null) {
-				map.put("b_global", req.getParameter("b_global"));
-			}*/
+			map.put("end", end);			
 			
 			ArrayList<BookVO> bVOs = lidao.booklist(map);
 			model.addAttribute("bVOs", bVOs);
+			
+			
+			//관리자일 시에는 해당 도서의 대여정보도 가져온다
+			String id = (String)req.getSession().getAttribute("id");
+			
+			System.out.println("관리자있음 id : " + id);
+			if(id != null && id.substring(0,1).equals("0")) {
+				
+				ArrayList<BookLoanVO> bloanVOs = new ArrayList<BookLoanVO>();
+				
+				for(int i=0; i<bVOs.size(); i++) {
+					
+					Map<String,Object> loanmap = new HashMap<String,Object>();
+					loanmap.put("b_no",bVOs.get(i).getB_no());
+					
+
+					System.out.println("b_no : " + bVOs.get(i).getB_no());
+					
+					BookLoanVO bloanVO = lidao.loanlistlast(loanmap);					
+					bloanVOs.add(bloanVO);									
+				}
+				
+				model.addAttribute("bloanVOs",bloanVOs);
+				System.out.println("bloanVOs.loan_state : " + bloanVOs.toString());
+			}
 		}
 		
 		
@@ -267,7 +296,7 @@ public class LIServiceImpl implements LIService{
 
 			BookVO bVO = new BookVO();
 			
-			
+			System.out.println("globla:" + req.getParameter("global"));
 			bVO.setB_global(Integer.parseInt(req.getParameter("global")));
 			bVO.setB_category(Integer.parseInt(req.getParameter("category")));
 			bVO.setB_title(req.getParameter("title"));
@@ -291,24 +320,26 @@ public class LIServiceImpl implements LIService{
 			Map<String,Object> map = new HashMap<String,Object>();
 			map.put("b_no", req.getParameter("b_no"));
 			
-			bloanVOs = lidao.bookloanlist(map);
+			bloanVOs = lidao.loanlist(map);
 			
-			
-			for(int i=0; i<bloanVOs.size(); i++) {
-				
-				BookLoanVO vo = bloanVOs.get(i);
-				//loan_state (0:정상반납, 1:대여중, 11:반납예정, 12:미반납, 2:예약중, 3:장기미납)
-				if(vo.getLoan_state() == 0) {
-					bVO.setB_state_fl(1);	//대여가능
-				} else {
-					bVO.setB_state_fl(2);	//대여불가
-				} 
-				
+			if(bloanVOs.size() > 0) {
+				for(int i=0; i<bloanVOs.size(); i++) {
+					
+					BookLoanVO vo = bloanVOs.get(i);
+					//loan_state (0:정상반납, 1:대여중, 11:반납예정, 12:정상반납, 2:예약중, 3:미반납, 31:장기미납)
+					if(vo.getLoan_state() == 0 || vo.getLoan_state() == 12) {
+						bVO.setB_state_fl(1);	//대여가능
+					} else {
+						bVO.setB_state_fl(2);	//대여불가
+					} 					
+				}
+			}else {
+				bVO.setB_state_fl(1);	//대여가능
 			}
+			
 			
 		
 			map.put("bVO", bVO);
-			map.put("b_no", req.getParameter("b_no"));
 			/*map.put("confirmImage", Integer.parseInt(req.getParameter("confirmImage")));*/
 			
 			int updateCnt = lidao.bookupdate(map);
@@ -340,7 +371,7 @@ public class LIServiceImpl implements LIService{
 
 	//도서 대여 처리
 	@Override
-	public void lib_bookLoanPro(HttpServletRequest req, Model model) {
+	public void lib_loanPro(HttpServletRequest req, Model model) {
 		
 		String[] b_nos = req.getParameterValues("b_no");		
 		System.out.println("책 번호 : "+req.getParameterValues("b_no"));
@@ -348,7 +379,7 @@ public class LIServiceImpl implements LIService{
 		String user_no = req.getParameter("user_no"); 
 		System.out.println("사용자 번호 : "+user_no);
 		
-		//교수,관리자,학생이 맞는지 확인
+		//1. 교수,관리자,학생이 맞는지 확인
 		int certiry = 0;	//증명완료 : 1, 증명실패:-1
 		int stCertiry_fl = lidao.stCertiry(user_no);
 		int adCertiry_fl = lidao.adCertiry(user_no);
@@ -360,97 +391,139 @@ public class LIServiceImpl implements LIService{
 		} else {
 			certiry = -1;	//증명실패:-1
 		}
-		System.out.println("certiry : "+certiry);
-				
-		
-		//증명 완료시, 대여 처리
-		if(certiry == 1) {
-			
-			int loanCnt=0;
-			
-			//1권씩 대여 처리
-			for(int i=0; i<b_nos.length; i++) {
-				
-				String b_no = b_nos[i];
-				System.out.println("b_nos :"+b_no );
-				
-				BookVO bVO = new BookVO();				
-				bVO = lidao.bookinfo(b_no);
-				
-				//해당 도서가 db에 있고, 대여가능 상태면
-				if(bVO != null && bVO.getB_state_fl()==1) {
-															
-					BookLoanVO bloanVO = new BookLoanVO();
-					System.out.println("user_no : "+user_no);					
-					bloanVO.setB_no(b_no);
-					bloanVO.setUser_no(user_no);
-					
-					//대여일					
-					Calendar calendar = Calendar.getInstance();
-			        SimpleDateFormat format = new SimpleDateFormat();
-			         
-			        format.applyPattern("yyyy/MM/dd");
-			        			        
-			        bloanVO.setLoan_dt(calendar.getTime());
-			        System.out.println("대여일:"+format.format(calendar.getTime()));
-
-			        
-			        //반납일 +3일
-			        calendar.add(Calendar.DAY_OF_MONTH, 3);
-			        
-			        String returndate = format.format(calendar.getTime());					
-					bloanVO.setReturn_sche(returndate);
-					System.out.println("반납일 : "+format.format(calendar.getTime()));
-					
-					
-					bloanVO.setOverdue(0);
-					
-					bloanVO.setLoan_state(1);	//대여중	
-					
-					loanCnt += lidao.bookloan(bloanVO);
-					
-					
-					//bVO의 도서 대여 상태를 대여 불가능으로 업데이트한다					
-					
-					Map<String,Object> map = new HashMap<String,Object>();
-					map.put("b_no", b_no);
-					map.put("b_isbn", bVO.getB_isbn());
-					map.put("b_global", bVO.getB_global());
-					map.put("b_category", bVO.getB_category());
-					map.put("b_title", bVO.getB_title());
-					map.put("b_price", bVO.getB_price());
-					map.put("b_author", bVO.getB_author());
-					map.put("b_publish", bVO.getB_publish());
-					map.put("b_date", bVO.getB_date());
-					map.put("b_img", bVO.getB_img());
-					map.put("b_intoDate", bVO.getB_intoDate());
-					map.put("b_state_fl", 2);
-					
-					lidao.bookupdate(map);
-				
-				}								
-				
-			}
-			//대여된 책의 권수 누적
-			model.addAttribute("loanCnt",loanCnt);				
-		}
 		//증명완료 : 1, 증명실패:-1
 		model.addAttribute("certiry",certiry);
 		
+				
+		//2. 도서관에 소장중인 도서인지 확인		
+		int b_certiry = 0;	
+		if(b_nos != null) {			
+					
+			Map<String,Object> map = new HashMap<String,Object>();
+			
+			for(int i=0; i<b_nos.length; i++) {
+				
+				map.put("b_no",b_nos[i]);
+				int count = lidao.bnoCheck(map);
+				
+				if(count > 0) {
+					b_certiry = 1;
+				} else {
+					b_certiry = 0;
+				}			
+			}			
+			model.addAttribute("b_certiry",b_certiry);			
+		}
+		
+		
+		//증명 완료시, 대여 처리
+		if(certiry == 1) {
+			if(b_certiry == 1) {
+			
+				int loanCnt=0;
+				
+				ArrayList<String> loan_unable = new ArrayList<String>();
+				
+				//1권씩 대여 처리
+				for(int i=0; i<b_nos.length; i++) {
+					
+					
+					String b_no = b_nos[i];
+					System.out.println("b_nos :"+b_no );
+					
+					BookVO bVO = new BookVO();				
+					bVO = lidao.bookinfo(b_no);
+										
+					//3. 대여 중인 도서인지 (1:대여가능 , 2:대여불가)
+					int loaning = bVO.getB_state_fl();			
+					
+					//해당 도서가 db에 있고,
+					if(bVO != null) { 						
+						//대여 불가 상태일 시, 대여 처리할 수 없는 도서 번호들을 담는다
+						if(loaning==2) {
+							loan_unable.add(b_no);						
+							
+							System.out.println("대여x:"+loan_unable);
+						//대여 가능 상태일 시, 대여 처리한다
+						} else if(loaning==1) {
+							
+							BookLoanVO bloanVO = new BookLoanVO();
+							System.out.println("user_no : "+user_no);					
+							bloanVO.setB_no(b_no);
+							bloanVO.setUser_no(user_no);
+							
+							//대여일					
+							Calendar calendar = Calendar.getInstance();
+					        SimpleDateFormat format = new SimpleDateFormat();
+					         
+					        format.applyPattern("yyyy/MM/dd");
+					        			        
+					        bloanVO.setLoan_dt(calendar.getTime());
+					        System.out.println("대여일:"+format.format(calendar.getTime()));
+		
+					        
+					        //반납일 +3일
+					        calendar.add(Calendar.DAY_OF_MONTH, 3);
+					        
+					        String returndate = format.format(calendar.getTime());					
+							bloanVO.setReturn_sche(returndate);
+							System.out.println("반납일 : "+format.format(calendar.getTime()));
+													
+							bloanVO.setOverdue(0);
+							
+							bloanVO.setLoan_state(1);	//대여중	
+							
+							loanCnt += lidao.loan(bloanVO);				
+														
+							//bVO의 도서 대여 상태를 대여 불가능으로 업데이트한다											
+							Map<String,Object> map = new HashMap<String,Object>();
+							bVO.setB_no(bVO.getB_no());
+							bVO.setB_isbn(bVO.getB_isbn());
+							bVO.setB_global(bVO.getB_global());
+							bVO.setB_category(bVO.getB_category());
+							bVO.setB_title(bVO.getB_title());
+							bVO.setB_price(bVO.getB_price());
+							bVO.setB_author(bVO.getB_author());
+							bVO.setB_publish(bVO.getB_publish());
+							bVO.setB_date(bVO.getB_date());
+							bVO.setB_img(bVO.getB_img());
+							bVO.setB_intoDate(bVO.getB_intoDate());
+							bVO.setB_state_fl(2);
+							
+							map.put("b_no", bVO.getB_no());	
+							map.put("bVO", bVO);						
+							int bookupdate = lidao.bookupdate(map);	
+							System.out.println("도서 상태 변경:"+bookupdate);
+						}
+						
+					} 
+				}			
+				
+				if(loan_unable.size() > 0) {
+					//대여 처리안된 도서들(대여 중인 도서들)
+					model.addAttribute("loan_unable",loan_unable);	
+				}
+				
+				
+				//대여된 책의 권수 누적
+				model.addAttribute("loanCnt",loanCnt);	
+				System.out.println("loanCnt:"+loanCnt);
+			}						
+		}				
 	}
 
 
 	//도서 반납 처리
 	@Override
-	public void lib_bookReturnPro(HttpServletRequest req, Model model) {
+	public void lib_returnPro(HttpServletRequest req, Model model) {
 		
 		String[] b_nos = req.getParameterValues("b_no");		
-		System.out.println("책 번호 : "+req.getParameterValues("b_no"));
+		System.out.println("책 번호 : "+req.getParameterValues("b_no")[0]);
 		
 		String user_no = req.getParameter("user_no"); 
 		System.out.println("사용자 번호 : "+user_no);
 		
-		//교수,관리자,학생이 맞는지 확인
+		//1. 교수,관리자,학생이 맞는지 확인
 		int certiry = 0;	//증명완료 : 1, 증명실패:-1
 		int stCertiry_fl = lidao.stCertiry(user_no);
 		int adCertiry_fl = lidao.adCertiry(user_no);
@@ -462,88 +535,136 @@ public class LIServiceImpl implements LIService{
 		} else {
 			certiry = -1;	//증명실패:-1
 		}
+		//증명완료 : 1, 증명실패:-1
+		model.addAttribute("certiry",certiry);
+		System.out.println("certiry:"+certiry);
+		
+		
+		//2. 도서관에 소장중인 도서인지 확인
+		int b_certiry = 0;
+		
+		if(b_nos != null) {
+		
+			Map<String,Object> map = new HashMap<String,Object>();
+			
+			for(int i=0; i<b_nos.length; i++) {
+				
+				map.put("b_no",b_nos[i]);
+				int count = lidao.bnoCheck(map);
+				
+				if(count > 0) {
+					b_certiry = 1;
+				} else {
+					b_certiry = 0;
+				}
+			}			
+			model.addAttribute("b_certiry",b_certiry);	
+			System.out.println("b_certiry:"+b_certiry);
+		}
 		
 				
 		//증명 완료시, 반납 처리
 		if(certiry == 1) {
+			if(b_certiry == 1) {
+				int returnCnt=0;
 			
-			int returnCnt=0;
-			
-			//1권씩 반납 처리
-			for(int i=0; i<b_nos.length; i++) {
 				
-				String b_no = b_nos[i];
-				
-				BookVO bVO = new BookVO();				
-				bVO = lidao.bookinfo(b_no);
-				
-				//해당 도서가 db에 있고, 대여불가 상태면
-				if(bVO != null && bVO.getB_state_fl()==2) {		
+				ArrayList<String> return_unable = new ArrayList<String>();
+				//1권씩 반납 처리
+				for(int i=0; i<b_nos.length; i++) {
 					
-					Map<String,Object> map = new HashMap<String,Object>();
-					map.put("b_no", b_no);
-					map.put("user_no", user_no);
+					String b_no = b_nos[i];
+					System.out.println("b_no:"+b_no);
 					
-					BookLoanVO bloanVO = lidao.bookloanOne(map);
-				
-					/*bloanVO.setB_no(b_no);
-					bloanVO.setUser_no(user_no);*/
-					
-					//대여일										
-			        bloanVO.setLoan_dt(bloanVO.getLoan_dt());
-		        
-			        //반납일예정일	        				
-					bloanVO.setReturn_sche(bloanVO.getReturn_sche());
-					
-					bloanVO.setOverdue(bloanVO.getOverdue());
-					
-					//반납일
-					Calendar cal = Calendar.getInstance();
-					
-			    /*    SimpleDateFormat fmt = new SimpleDateFormat();			         
-			        fmt.applyPattern("yyyy/MM/dd");*/
-			        			        
-			        bloanVO.setReturn_dt(cal.getTime());
-					
-			        //대여상태
-					bloanVO.setLoan_state(0);	//정상반납
-					
-					returnCnt += lidao.loanupdate(bloanVO);
-					
-					
-					//bVO의 도서 대여 상태를 대여 가능으로 업데이트한다
-					bVO.setB_state_fl(1);
-					
-					Map<String,Object> map1 = new HashMap<String,Object>();
-					map1.put("b_no", b_no);
-					map1.put("b_isbn", bVO.getB_isbn());
-					map1.put("b_global", bVO.getB_global());
-					map1.put("b_category", bVO.getB_category());
-					map1.put("b_title", bVO.getB_title());
-					map1.put("b_price", bVO.getB_price());
-					map1.put("b_author", bVO.getB_author());
-					map1.put("b_publish", bVO.getB_publish());
-					map1.put("b_date", bVO.getB_date());
-					map1.put("b_img", bVO.getB_img());
-					map1.put("b_intoDate", bVO.getB_intoDate());
-					map1.put("b_state_fl", bVO.getB_state_fl());
-					
-					lidao.bookupdate(map1);
-				
-				}								
-			}
-			//반납된 책의 권수 누적
-			model.addAttribute("returnCnt",returnCnt);				
-		}
-		//증명완료 : 1, 증명실패:-1
-		model.addAttribute("certiry",certiry);
+					BookVO bVO = new BookVO();				
+					bVO = lidao.bookinfo(b_no);
+						
+					//3. 대여 중인 도서인지 (1:대여가능 , 2:대여불가)
+					//해당 도서가 db에 있고
+					if(bVO != null) {		
+						
+						int loaning = bVO.getB_state_fl();
+						model.addAttribute("loaning",loaning);
+						
+						if(loaning == 1) {
+							return_unable.add(b_no);						
+							
+							System.out.println("반납x:"+return_unable);
+							
+						//대여 불가 상태일 시, 반납 처리한다
+						} else if(loaning==2) {
+
+							BookLoanVO bloanVO = new BookLoanVO();
+							bloanVO.setB_no(b_no);
+							bloanVO.setUser_no(user_no);
+							
+							Map<String,Object> map = new HashMap<String,Object>();
+							map.put("b_no", b_no);
+							map.put("user_no", user_no);
+								
+							bloanVO = lidao.loanlistlast(map);								
+								
+							//대여일										
+					        bloanVO.setLoan_dt(bloanVO.getLoan_dt());
+				        
+					        //반납일예정일	        				
+							bloanVO.setReturn_sche(bloanVO.getReturn_sche());
+							
+							bloanVO.setOverdue(bloanVO.getOverdue());
+							
+							//반납일
+							Calendar cal = Calendar.getInstance();
+							
+					    /*    SimpleDateFormat fmt = new SimpleDateFormat();			         
+					        fmt.applyPattern("yyyy/MM/dd");*/
+					        			        
+					        bloanVO.setReturn_dt(cal.getTime());
+							
+					        //대여상태
+							bloanVO.setLoan_state(12);	//정상반납
+													
+							returnCnt += lidao.loanupdate(bloanVO);						
+							
+							
+							//bVO의 도서 대여 상태를 대여 가능으로 업데이트한다
+							bVO.setB_no(bVO.getB_no());
+							bVO.setB_isbn(bVO.getB_isbn());
+							bVO.setB_global(bVO.getB_global());
+							bVO.setB_category(bVO.getB_category());
+							bVO.setB_title(bVO.getB_title());
+							bVO.setB_price(bVO.getB_price());
+							bVO.setB_author(bVO.getB_author());
+							bVO.setB_publish(bVO.getB_publish());
+							bVO.setB_date(bVO.getB_date());
+							bVO.setB_img(bVO.getB_img());
+							bVO.setB_intoDate(bVO.getB_intoDate());
+							bVO.setB_state_fl(1);
 	
+							Map<String,Object> map1 = new HashMap<String,Object>();
+							map1.put("b_no", bVO.getB_no());		
+							map1.put("bVO", bVO);
+							
+							lidao.bookupdate(map1);		
+						}
+					}
+				}
+				
+				//반납 처리안된 도서들(대여 중이 아닌 도서들)
+				if(return_unable.size() > 0) {					
+					model.addAttribute("return_unable",return_unable);	
+				}
+				
+				//반납된 책의 권수 누적
+				model.addAttribute("returnCnt",returnCnt);	
+				System.out.println("반납 성공:"+returnCnt);
+			}				
+		}
 	}
 
 
 	//대여 연장 처리
 	@Override
-	public void lib_bookRenewPro(HttpServletRequest req, Model model) {
+	public void lib_renewPro(HttpServletRequest req, Model model) {
 		
 		String[] b_nos = req.getParameterValues("b_no");		
 		System.out.println("책 번호 : "+req.getParameterValues("b_no"));
@@ -588,7 +709,7 @@ public class LIServiceImpl implements LIService{
 					int[] array = {1,11};//1:대여 중, 11:반납예정
 					map.put("loan_state", array);
 													
-					BookLoanVO bloanVO = lidao.bookloanOne(map);
+					BookLoanVO bloanVO = lidao.loanlistOne(map);
 					
 										
 					bloanVO.setB_no(b_no);
@@ -597,7 +718,7 @@ public class LIServiceImpl implements LIService{
 					//대여일										
 			        bloanVO.setLoan_dt(bloanVO.getLoan_dt());
 		        
-			        //반납일예정일	        											
+			        //반납 예정일	        											
 					String schedule = bloanVO.getReturn_sche();
 					
 					String[] date = schedule.split("/");
@@ -631,8 +752,7 @@ public class LIServiceImpl implements LIService{
 			model.addAttribute("renewCnt",renewCnt);				
 		}
 		//증명완료 : 1, 증명실패:-1
-		model.addAttribute("certiry",certiry);
-		
+		model.addAttribute("certiry",certiry);		
 	}
 
 
@@ -661,24 +781,39 @@ public class LIServiceImpl implements LIService{
 		//검색 단어, start,end 맵에 넣기
 		Map<String,Object> map = new HashMap<String,Object>();
 		
-		String title = req.getParameter("title");
-		String author = req.getParameter("author");
+		String b_title = req.getParameter("b_title");
+		String b_author = req.getParameter("b_author");
+		String b_global = req.getParameter("b_global");
+		String b_category = req.getParameter("b_category");
+		
+		System.out.println("제목:" + b_title);
+		System.out.println("작가:" + b_author);
+		System.out.println("대분류:" + b_global);
+		System.out.println("중분류:" + b_category);
 		
 		
-		if(title != null) {
-			map.put("title", title + "%");
+		if(b_title != null) {
+			map.put("b_title", "%" + b_title + "%");
+		} 	
+		
+		if(b_author != null) {
+			map.put("b_author", "%" + b_author + "%");
 		} 
 		
-		if(author != null) {
-			map.put("author", author + "%");
+		if(!b_global.equals("0")) {
+			map.put("b_global", Integer.parseInt(b_global));
+			System.out.println("대분류:" +Integer.parseInt(b_global));
+		} 
+		
+		if(!b_category.equals("0")) {
+			System.out.println("중분류:");
+			map.put("b_category", Integer.parseInt(b_category));
 		} 
 		
 		//검색 결과 개수 구하기
 		cnt = lidao.bookcnt(map);	
 		System.out.println("총 검색 결과의 수 : " + cnt);	
 			
-		
-		
 
 		//검색결과 페이지 구성
 		pageNum = req.getParameter("pageNum");
@@ -725,12 +860,36 @@ public class LIServiceImpl implements LIService{
 			map.put("start", start);
 			map.put("end", end);
 			
+			//책 정보 가져오기
 			ArrayList<BookVO> bVOs = lidao.booksearch(map);
 			
-			if((author == null || author.equals("")) && (title == null || title.equals(""))) {
-				model.addAttribute("bVOs",null);
-			} else {
-				model.addAttribute("bVOs",bVOs);
+			
+			model.addAttribute("bVOs",bVOs);
+			
+			
+			
+			//관리자일 시에는 해당 도서의 대여정보도 가져온다
+			String id = (String)req.getSession().getAttribute("id");
+			
+			System.out.println("관리자있음 id : " + id);
+			if(id != null && id.substring(0,1).equals("0")) {
+				
+				ArrayList<BookLoanVO> bloanVOs = new ArrayList<BookLoanVO>();
+				
+				for(int i=0; i<bVOs.size(); i++) {
+					
+					Map<String,Object> loanmap = new HashMap<String,Object>();
+					loanmap.put("b_no",bVOs.get(i).getB_no());
+					
+
+					System.out.println("b_no : " + bVOs.get(i).getB_no());
+					
+					BookLoanVO bloanVO = lidao.loanlistOne(loanmap);					
+					bloanVOs.add(bloanVO);									
+				}
+				
+				model.addAttribute("bloanVOs",bloanVOs);
+				System.out.println("bloanVOs.loan_state : " + bloanVOs.toString());
 			}
 		}
 		
@@ -782,9 +941,9 @@ public class LIServiceImpl implements LIService{
 
 
 	
-	//도서 대여 조회
+	//관리자 : 도서 대여 기록 조회
 	@Override
-	public void lib_bookLoanlist(HttpServletRequest req, Model model) {
+	public void lib_loanSuperlist(HttpServletRequest req, Model model) {
 		
 		//검색 결과 페이지 구성
 		int pageSize = 20;		//한 페이지당 출력할 검색 결과 개수
@@ -802,10 +961,23 @@ public class LIServiceImpl implements LIService{
 		int endPage = 0;		//마지막 페이지
 		
 		
+		int loan_state = Integer.parseInt(req.getParameter("loan_state"));
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		if(loan_state == 1) {//대여목록 
+			map.put("loan_state", 1);
+		} else if(loan_state == 12) {//반납목록
+			map.put("loan_state", 12);
+		} else if(loan_state == 11) {//반납예정 목록
+			map.put("loan_state", 11);
+		} else if(loan_state == 2) {//예약목록
+			map.put("loan_state", 2);
+		}
+		
 		
 		//관리자일 때는 전체 조회, 이용자는 본인 것만 조회  if(adId != null)
-		cnt = lidao.bookloanCnt();
-		
+		cnt = lidao.loanCnt(map);
+		System.out.println("출력될 목록 개수 : "+ cnt);
 
 		//검색결과 페이지 구성
 		pageNum = req.getParameter("pageNum");
@@ -848,21 +1020,26 @@ public class LIServiceImpl implements LIService{
 		
 		//검색 결과 내용 읽어오기
 		if(cnt > 0) {
+			System.out.println("1111");
+			map.put("start", start);
+			map.put("end", end);
 			
-			ArrayList<BookLoanVO> bloanVOs = lidao.bookloanlist(null);
+			ArrayList<BookLoanVO> bloanVOs = lidao.loanlist(map);
+
 			model.addAttribute("bloanVOs",bloanVOs);
 		}
 		
 		//6단계. 처리 결과 넘기기
-		req.setAttribute("cnt", cnt);//글 갯수
-		req.setAttribute("number", number);//글번호
-		req.setAttribute("pageNum", pageNum);//페이지 번호
+		model.addAttribute("cnt", cnt);//글 갯수
+		model.addAttribute("number", number);//글번호
+		model.addAttribute("pageNum", pageNum);//페이지 번호
+		model.addAttribute("loan_state",loan_state);
 		if(cnt>0) { //글이 하나 이상 있을 때 
-			req.setAttribute("startPage", startPage);//시작 페이지
-			req.setAttribute("endPage", endPage);//마지막 페이지
-			req.setAttribute("pageBlock", pageBlock);//페이지 블럭
-			req.setAttribute("pageCount", pageCount);//페이지 갯수
-			req.setAttribute("currentPage", currentPage);//현재 페이지	
+			model.addAttribute("startPage", startPage);//시작 페이지
+			model.addAttribute("endPage", endPage);//마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);//페이지 블럭
+			model.addAttribute("pageCount", pageCount);//페이지 갯수
+			model.addAttribute("currentPage", currentPage);//현재 페이지	
 			
 		}
 	
@@ -881,7 +1058,8 @@ public class LIServiceImpl implements LIService{
 	}
 	
 	
-	
+
+
 	
 	
 	
@@ -905,14 +1083,15 @@ public class LIServiceImpl implements LIService{
 	public void lib_seat_update(HttpServletRequest req, Model model) {
 		
 		String rdRoom_no = req.getParameter("rdRoom_no");
-		int seat_no = Integer.parseInt(req.getParameter("seat_no"));	
-		/*String user_no = req.getParameter("user_no");	*/	
-		String user_no = "218401001";
+		int seat_no = Integer.parseInt(req.getParameter("seat_no"));			 		
 		int updateCnt = 0;
 		
 		
 		//교수,관리자,학생이 맞는지 확인
 		int certiry = 0;	//증명완료 : 1, 증명실패:-1
+		
+		String user_no = (String)req.getSession().getAttribute("id");
+		
 		int stCertiry_fl = lidao.stCertiry(user_no);
 		int adCertiry_fl = lidao.adCertiry(user_no);
 		int pfCertiry_fl = lidao.pfCertiry(user_no);
@@ -930,6 +1109,7 @@ public class LIServiceImpl implements LIService{
 		if(certiry == 1) {
 			//해당 이용자가 이미 이용 중인 좌석이 있는지 확인			
 			int selectCnt = lidao.seatUserCnt(user_no);
+			System.out.println("selectCnt:"+selectCnt);
 			
 			//중복되지 않는다면
 			if(selectCnt == 0) {
@@ -943,10 +1123,10 @@ public class LIServiceImpl implements LIService{
 				
 				
 				int state = sVO.getSeat_state();
-								        
+				System.out.println("state:"+state);	        
 		        switch(state) {
 			        case 0 : //빈좌석 -> 이용중
-
+			        	System.out.println("state:"+state);
 			        	sVO.setUser_no(user_no);
 			        	
 						//시작 시각 : 현재 시간
@@ -969,16 +1149,18 @@ public class LIServiceImpl implements LIService{
 						updateCnt = lidao.seatupdate(sVO);
 						break;
 						
-			        case 1: //이용 취소			        	
+			        case 1: //이용 취소		
+			        	System.out.println("state:"+state);
 			        	break;
 			        	
-			        case 2: //이용불가 	        	
+			        case 2: //이용불가 	  
+			        	System.out.println("state:"+state);
 			        	break;		        	
 		        }
 				
 				
 				
-			} else {
+			} else if(selectCnt != 0){
 				//선택된 좌석의 정보 가져오기		
 				Map<String,Object> map = new HashMap<String,Object>();
 				map.put("seat_no", seat_no);
@@ -1014,6 +1196,26 @@ public class LIServiceImpl implements LIService{
 	}
 
 
+	
+	//좌석 이용 정보 보기
+	@Override
+	public void lib_seat_user(HttpServletRequest req, Model model) {
+		
+		int seat_no = Integer.parseInt(req.getParameter("seat_no"));
+		String rdRoom_no = req.getParameter("rdRoom_no");
+				
+		Map<String,Object> map = new HashMap<>();
+		
+		map.put("seat_no", seat_no);
+		map.put("rdRoom_no", rdRoom_no);	
+		
+		SeatVO sVO = lidao.seatUser(map);
+		req.setAttribute("sVO", sVO);
+		model.addAttribute("sVO",sVO);
+	}
+
+
+	
 
 	
 	

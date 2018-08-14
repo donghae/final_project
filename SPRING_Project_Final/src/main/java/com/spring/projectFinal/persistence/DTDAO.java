@@ -3,8 +3,12 @@ package com.spring.projectFinal.persistence;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.spring.projectFinal.ARAVO.AdminVO;
+import com.spring.projectFinal.ARAVO.ProfessorVO;
+import com.spring.projectFinal.ARAVO.StudentVO;
 import com.spring.projectFinal.DTVO.Admin_notice_selectVO;
 import com.spring.projectFinal.DTVO.Admin_stu_selectVO;
+import com.spring.projectFinal.DTVO.AraCircleVO;
 import com.spring.projectFinal.DTVO.Dt_stu_overnight_selectVO;
 import com.spring.projectFinal.DTVO.Dt_stu_penalty_selectVO;
 
@@ -12,6 +16,14 @@ import com.spring.projectFinal.DTVO.Dt_stu_penalty_selectVO;
 
 public interface DTDAO {
 
+	// 관리자 
+	public AdminVO getAdminInfo1(Map<String,Object> map);
+	
+	// 교수 로그인
+	public ProfessorVO getProfInfo1(Map<String,Object> map);
+	
+	// 학생 로그인
+	public StudentVO getStudentInfo1(Map<String,Object> map);
 	
 	// 관리자 로그인
 	public int dtAdminLogin(Map<String, Object> map);
@@ -49,6 +61,17 @@ public interface DTDAO {
 /*	// 관리자 공지사항 수정 목록 가져오기
 	public Admin_notice_selectVO addAdminNoticeModify(int ad_no);*/
 	
+	// 관리자 벌점 조회 , 관리자 벌점 수정 목록
+	public ArrayList<Dt_stu_penalty_selectVO> dtAdminPenaltySel();
+	
+	// 관리자 벌점 등록
+	public int addPenaltyInsert(Map<String,Object> map);
+	
+	// 관리자 벌점 수정 목록
+	public ArrayList<Dt_stu_penalty_selectVO> selectPenalty();
+	
+	// 관리자 벌점 수정 이름 클릭
+	public Dt_stu_penalty_selectVO updatePenalty(Map<String,Object> map);
 	
 	
 	
@@ -77,6 +100,25 @@ public interface DTDAO {
 
 	// 학생 벌점 조회
 	public ArrayList<Dt_stu_penalty_selectVO> dtStuPenalty(String st_no);
+	
+	
+	
+	
+	// ara 동아리 수 조회
+	public int getCircleListCnt();
+	
+	// ara 동아리 목록 조회
+	public ArrayList<AraCircleVO> getCircleList(Map<String, Integer> map);
+	
+	// ara 동아리 수정 목록 클릭
+	public ArrayList<AraCircleVO> araCircleBefore(String cc_name);
+	
+	// ara 동아리 수정 등록
+	public int araCircleAfter(Map<String,Object> map);
+	
+	// ara 동아리 목록 삭제
+	public int araCircleDelete(String cc_name);
+	
 	
 }
 

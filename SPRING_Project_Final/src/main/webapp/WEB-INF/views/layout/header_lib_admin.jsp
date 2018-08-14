@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,19 +52,34 @@
 	<!--[if lt IE 9]>
 	<script src="resources/boot_main/js/respond.min.js"></script>
 	<![endif]-->
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-	</head>
-	<body>
+
 		
+	<!-- 헤더-로그인 -->	
+	<c:choose>
+	
+		<c:when test="${sessionScope.id == null}">
+			<div id="my">
+				<p style="text-align:center;font-size:14px;">
+				    <span>ARA, Leading the Way to the Future</span>
+				    <a style="color:black; padding-right:20px;" onclick="javascript:librarylogin();">LOGIN</a>
+			    </p>
+			</div>					
+		</c:when>
 		
+		<c:when test="${sessionScope.id != null}">
+			<div id="my">
+				<p style="text-align:center;font-size:14px;">
+				    <span>${name} 관리자   페이지 입니다</span>
+				    <a style="color:black; padding-right:20px;" href="lib_logout">LOGOUT</a>
+			    </p>
+			</div>					
+		</c:when>
 		
-	<!-- 헤더-로그인 -->
-	<div id="my">
-	    <p style="text-align:center;font-size:14px;">
-		    <span>ARA, Leading the Way to the Future</span>
-		    <a style="color:black; padding-right:20px;" href="#">LOGIN</a>
-	    </p>
-	</div>
+	</c:choose>
+	
 	
 	
 	<div class="gtco-loader"></div>
@@ -79,28 +94,27 @@
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
 							<li>
-								<a href="lib_bookSearch">도서 검색</a>
+								<a href="lib_bookSearch_admin">도서 검색</a>
 							</li>
+							<li class="has-dropdown active">
+								<a href="#">도서 관리</a>
+								<ul class="dropdown">
+									<li><a href="lib_bookAddForm">도서 등록</a></li>								
+									<li><a href="lib_bookSupervise">도서 현황</a></li>									
+								</ul>
+							</li>		
 							<li>
-								<a href="lib_bookAddForm">도서 등록</a>
-							</li>
-							<li>
-								<a href="lib_bookLoanForm">도서 대출납</a>
+								<a href="lib_loanSupervise">대여 관리</a>
 							</li>
 							<li>
 								<a href="#">희망 도서 관리</a>
 							</li>
 							<li>
-								<a href="lib_seat">좌석 현황</a>
+								<a href="lib_seat_admin">좌석 현황</a>
 							</li>							
-							<li class="has-dropdown active">
-								<a href="#">도서관 안내</a>
-								<ul class="dropdown">
-									<li><a href="lib_summary">개요</a></li>
-									<li><a href="lib_situation">현황</a></li>
-									<li><a href="lib_map">위치</a></li>									
-								</ul>
-							</li>														
+							<li>
+								<a href="lib_home">도서관홈으로</a>
+							</li>													
 						</ul>
 					</div>
 				</div>

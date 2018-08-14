@@ -4,7 +4,9 @@ public class LectureVO {
 	private int lec_no; // 강의번호
 
 	private String prof_no; // 교수번호
-
+	
+	private String prof_name; // 교수명
+	
 	private String lec_name; // 강의명
 
 	private String lec_room_no; // 강의실명
@@ -20,6 +22,14 @@ public class LectureVO {
 	private int max_person; // 수강최대인원
 
 	private int limit_cnt; // 강의실 수용최대인원
+
+	public String getProf_name() {
+		return prof_name;
+	}
+
+	public void setProf_name(String prof_name) {
+		this.prof_name = prof_name;
+	}
 
 	public int getLec_no() {
 

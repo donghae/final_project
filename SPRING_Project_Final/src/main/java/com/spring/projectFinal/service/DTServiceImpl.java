@@ -11,10 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.spring.projectFinal.ARAVO.AdminVO;
+import com.spring.projectFinal.ARAVO.ProfessorVO;
+import com.spring.projectFinal.ARAVO.StudentVO;
 import com.spring.projectFinal.DTVO.Admin_notice_selectVO;
 import com.spring.projectFinal.DTVO.Admin_stu_selectVO;
+import com.spring.projectFinal.DTVO.AraCircleVO;
 import com.spring.projectFinal.DTVO.Dt_stu_overnight_selectVO;
 import com.spring.projectFinal.DTVO.Dt_stu_penalty_selectVO;
+import com.spring.projectFinal.persistence.ARADAO;
 import com.spring.projectFinal.persistence.DTDAOImpl;
 
 
@@ -24,6 +29,10 @@ public class DTServiceImpl implements DTService{
 
 	@Autowired
 	DTDAOImpl dao;
+	
+	@Autowired
+	ARADAO aradao;
+	
 
 	// 학생 서비스	
 	//학생 외박 조회
@@ -177,6 +186,222 @@ public class DTServiceImpl implements DTService{
 		model.addAttribute("dtos",dtos);		
 	}	
 	
+	// 학생 공지사항 조회
+	@Override
+	public void dtStuNotice(HttpServletRequest req, Model model) {
+		int pageSize = 7;		// 한 페이지당 출력할 글 갯수
+		int pageBlock = 3;		// 한 블럭당 페이지 갯수
+		
+		int cnt = 0 ;			// 글 갯수
+		int start = 0;			// 현재 페이지 시작 글번호
+		int end = 0;			// 현재 페이지 마지막 글번호
+		int number = 0;			// 출력용 글번호
+		String pageNum = null;	// 페이지 번호
+		int currentPage = 0;	// 현재 페이지
+		
+		int pageCount = 0;		// 페이지 갯수
+		int startPage = 0;		// 시작 페이지
+		int endPage = 0;		// 마지막 페이지
+		
+		//4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
+		//BoardDAO dao = BoardDAOImpl.getInstance();
+		//5단계. 글갯수 구하기
+		cnt = dao.getDormNoticeCnt();
+		System.out.println("cnt : "+cnt);	// 테이블에 30건을 insert 할것
+		
+		pageNum = req.getParameter("pageNum");
+		if(req.getParameter("pageNum") == null) {
+			pageNum = "1";
+		}		
+		
+		// 글 30건 기준
+		currentPage = Integer.parseInt(pageNum);	// 현재 페이지 : 1
+		System.out.println("currentPage : "+currentPage);
+		
+		// 페이지 갯수 계산
+		pageCount = (cnt/pageSize)+(cnt%pageSize > 0 ? 1:0);
+		
+		start = (currentPage - 1) * pageSize + 1;	// 현재 페이지 시작번호
+		end = start + pageSize - 1;					// 현재 페이지 끝번호
+		
+		System.out.println("start : "+ start);
+		System.out.println("end : "+ end);
+		
+		if(end > cnt) end = cnt;
+		
+		// 30 = 30 - (1 - 1) * 5
+		number = cnt - (currentPage - 1) * pageSize;	// 출력용 글번호
+		 
+		System.out.println("number : "+number);
+		System.out.println("pageSize : "+pageSize);
+		
+		//6단계. request나 session으로 처리 결과 저장
+		if(cnt > 0) {
+			// 게시글 목록 조회
+			Map<String, Integer> map = new HashMap<String, Integer>();
+			map.put("start", start);
+			map.put("end", end);
+			ArrayList<Admin_notice_selectVO> dtos = dao.getDormNotice(map); 
+			model.addAttribute("dtos", dtos);
+		}
+		
+		startPage = (currentPage / pageBlock) * pageBlock + 1;	// 시작 페이지
+		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+		System.out.println("startPage : "+startPage);
+		System.out.println("pageBlock : "+pageBlock);
+		endPage = startPage + pageBlock - 1;	// 마지막 페이지
+		if(endPage > pageCount) endPage = pageCount;	
+		
+		//model.addAttribute("cnt",cnt);			// 글갯수
+		//model.addAttribute("number",number);		// 글번호
+		//model.addAttribute("pageNum",pageNum);	// 페이지 번호
+		
+		model.addAttribute("cnt",cnt);			// 글갯수
+		model.addAttribute("number",number);		// 글번호
+		model.addAttribute("pageNum",pageNum);	// 페이지 번호
+				
+		if(cnt > 0) {
+			//model.addAttribute("startPage",startPage);	// 시작 페이지
+			//model.addAttribute("endPage",endPage);		// 마지막 페이지
+			//model.addAttribute("pageBlock",pageBlock);	// 출력할 페이지 갯수
+			//model.addAttribute("pageCount",pageCount);	// 페이지 갯수
+			//model.addAttribute("currentPage",currentPage);// 현재 페이지
+			
+			model.addAttribute("startPage",startPage);	// 시작 페이지
+			model.addAttribute("endPage",endPage);		// 마지막 페이지
+			model.addAttribute("pageBlock",pageBlock);	// 출력할 페이지 갯수
+			model.addAttribute("pageCount",pageCount);	// 페이지 갯수
+			model.addAttribute("currentPage",currentPage);// 현재 페이지
+		}
+	}
+		
+	
+	
+	// ara 동아리 목록 출력
+	@Override
+	public void circleSelect(HttpServletRequest req, Model model) {
+		int pageSize = 5;		// 한 페이지당 출력할 글 갯수
+		int pageBlock = 3;		// 한 블럭당 페이지 갯수
+		
+		int cnt = 0 ;			// 글 갯수
+		int start = 0;			// 현재 페이지 시작 글번호
+		int end = 0;			// 현재 페이지 마지막 글번호
+		int number = 0;			// 출력용 글번호
+		String pageNum = null;	// 페이지 번호
+		int currentPage = 0;	// 현재 페이지
+		
+		int pageCount = 0;		// 페이지 갯수
+		int startPage = 0;		// 시작 페이지
+		int endPage = 0;		// 마지막 페이지
+		
+		//4단계. 다형성 적용, 싱글톤 방식으로 dao 객체 생성
+		//BoardDAO dao = BoardDAOImpl.getInstance();
+		//5단계. 글갯수 구하기
+		cnt = dao.getCircleListCnt();
+		System.out.println(cnt);
+		
+		pageNum = req.getParameter("pageNum");
+		if(req.getParameter("pageNum") == null) {
+			pageNum = "1";
+		}		
+		
+		// 글 30건 기준
+		currentPage = Integer.parseInt(pageNum);	// 현재 페이지 : 1
+		System.out.println("currentPage : "+currentPage);
+		
+		// 페이지 갯수 계산
+		pageCount = (cnt/pageSize)+(cnt%pageSize > 0 ? 1:0);
+		
+		start = (currentPage - 1) * pageSize + 1;	// 현재 페이지 시작번호
+		end = start + pageSize - 1;					// 현재 페이지 끝번호
+		
+		System.out.println("start : "+ start);
+		System.out.println("end : "+ end);
+		
+		if(end > cnt) end = cnt;
+		
+		// 30 = 30 - (1 - 1) * 5
+		number = cnt - (currentPage - 1) * pageSize;	// 출력용 글번호
+		 
+		System.out.println("number : "+number);
+		System.out.println("pageSize : "+pageSize);
+		
+		//6단계. request나 session으로 처리 결과 저장
+		if(cnt > 0) {
+			// 게시글 목록 조회
+			Map<String, Integer> map = new HashMap<String, Integer>();
+			map.put("start", start);
+			map.put("end", end);
+			ArrayList<AraCircleVO> dtos = dao.getCircleList(map); 
+			model.addAttribute("dtos", dtos);
+		}
+		
+		startPage = (currentPage / pageBlock) * pageBlock + 1;	// 시작 페이지
+		if(currentPage % pageBlock == 0) startPage -= pageBlock;
+		System.out.println("startPage : "+startPage);
+		System.out.println("pageBlock : "+pageBlock);
+		endPage = startPage + pageBlock - 1;	// 마지막 페이지
+		if(endPage > pageCount) endPage = pageCount;	
+		
+		model.addAttribute("cnt",cnt);			// 글갯수
+		model.addAttribute("number",number);		// 글번호
+		model.addAttribute("pageNum",pageNum);	// 페이지 번호
+				
+		if(cnt > 0) {			
+			model.addAttribute("startPage",startPage);	// 시작 페이지
+			model.addAttribute("endPage",endPage);		// 마지막 페이지
+			model.addAttribute("pageBlock",pageBlock);	// 출력할 페이지 갯수
+			model.addAttribute("pageCount",pageCount);	// 페이지 갯수
+			model.addAttribute("currentPage",currentPage);// 현재 페이지
+		}
+		
+	}	
+	
+	// ara 동아리 수정 목록 클릭
+	@Override
+	public void araCircleBefore(HttpServletRequest req, Model model) {
+		String cc_name = req.getParameter("cc_name");
+		
+		ArrayList<AraCircleVO> dtos = dao.araCircleBefore(cc_name);
+		
+		model.addAttribute("dtos",dtos);
+	}	
+	
+	// ara 관리자 동아리 수정 등록
+	@Override
+	public void araCircleAfter(HttpServletRequest req, Model model) {
+		String cc_name = req.getParameter("cc_name");
+		String prof_no = req.getParameter("prof_no");
+		String cc_loc = req.getParameter("cc_loc");
+		String cc_content = req.getParameter("cc_content");
+		
+		System.out.println(cc_name);
+		System.out.println(prof_no);
+		System.out.println(cc_loc);
+		System.out.println(cc_content);
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("cc_name", cc_name);
+		map.put("prof_no", prof_no);
+		map.put("cc_loc", cc_loc);
+		map.put("cc_content", cc_content);
+		
+		int updateCnt = dao.araCircleAfter(map);
+	
+		model.addAttribute("updateCnt",updateCnt);
+	}	
+	
+	// ara 관리자 동아리 목록 삭제
+	@Override
+	public void araCircleDelete(HttpServletRequest req, Model model) {
+		String cc_name = req.getParameter("cc_name");
+		
+		int deleteCnt = dao.araCircleDelete(cc_name);
+		
+		model.addAttribute("deleteCnt",deleteCnt);
+		
+	}
 	
 	
 	
@@ -189,15 +414,47 @@ public class DTServiceImpl implements DTService{
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// 관리자 로그인
+	public void dormitory_login(HttpServletRequest req, Model model) {
+		// TODO Auto-generated method stub
+		System.out.println("login");
+		int selectCnt = 0;
+		
+		String id = req.getParameter("userId");
+		String pwd = req.getParameter("passwd");
+		Map<String,Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("pwd", pwd);
+		if(id.substring(0, 1).equals("0")) {
+			AdminVO vo = new AdminVO();
+			vo = dao.getAdminInfo1(map);
+			if(vo!=null) {
+				System.out.println("AdminVO");
+				req.getSession().setAttribute("id", id);
+				req.getSession().setAttribute("name", vo.getAd_name());
+			}
+		}else if(id.substring(0, 1).equals("1")) {
+			ProfessorVO vo = new ProfessorVO();
+			vo = dao.getProfInfo1(map);
+			if(vo!=null) {
+				System.out.println("ProfessorVO");
+				req.getSession().setAttribute("id", id);
+				req.getSession().setAttribute("name", vo.getProf_name());
+			}
+		}else if(id.substring(0, 1).equals("2")) {
+			StudentVO vo = new StudentVO();
+			vo = dao.getStudentInfo1(map);
+			if(vo!=null) {
+				System.out.println("StudentVO");
+				req.getSession().setAttribute("id", id);
+				req.getSession().setAttribute("name", vo.getSt_name());
+			}
+		}else {
+			req.getSession().setAttribute("id", null);
+		}
+			
+		model.addAttribute("selectCnt", selectCnt);
+	}	
 	
 	
 	
@@ -522,9 +779,78 @@ public class DTServiceImpl implements DTService{
 		int insertCnt = dao.addDormNotice(dto);
 		
 		model.addAttribute("insertCnt",insertCnt);
+	}
+
+	// 관리자 벌점 조회 , 관리자 벌점 수정 목록
+	@Override
+	public void dtAdminPenaltySel(HttpServletRequest req, Model model) {
 		
+		ArrayList<Dt_stu_penalty_selectVO> dtos = dao.dtAdminPenaltySel();
+		
+		model.addAttribute("dtos", dtos);		
+	}
+
+	// 관리자 벌점 등록
+	@Override
+	public void addPenaltyInsert(HttpServletRequest req, Model model) {
+		String st_no = req.getParameter("st_no");
+		int dorm_penalty = Integer.parseInt(req.getParameter("dorm_penalty"));
+		String penalty_dd = req.getParameter("penalty_dd");
+		String penalty_mm = req.getParameter("penalty_mm");
+		String penalty_yy = req.getParameter("penalty_yy");
+		if(penalty_dd.length()<2) {
+			penalty_dd = "0" + penalty_dd;
+		}
+		if(penalty_mm.length()<2) {
+			penalty_mm = "0" + penalty_mm;
+		}
+		String tbl_penalty = penalty_yy +"-" + penalty_mm +"-" + penalty_dd;
+		java.sql.Date dorm_penalty_dt = java.sql.Date.valueOf(tbl_penalty);
+		
+		String textarea = req.getParameter("textarea");
+				
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("st_no",st_no);
+		map.put("dorm_penalty",dorm_penalty);
+		map.put("dorm_penalty_dt",dorm_penalty_dt);
+		map.put("textarea",textarea);
+
+		int insertCnt = dao.addPenaltyInsert(map);
+		model.addAttribute("insertCnt",insertCnt);
 		
 	}
+
+	// 관리자 벌점 수정 목록
+	@Override
+	public void selectPenalty(HttpServletRequest req, Model model) {
+		ArrayList<Dt_stu_penalty_selectVO> dtos = dao.selectPenalty();
+		
+		model.addAttribute("dtos",dtos);
+		
+	}
+
+	// 관리자 벌점 수정 이름 클릭
+	@Override
+	public void updatePenalty(HttpServletRequest req, Model model) {
+		String st_no = req.getParameter("st_no");
+		String dorm_reason = req.getParameter("dorm_reason");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("st_no", st_no);
+		map.put("dorm_reason", dorm_reason);
+		
+		Dt_stu_penalty_selectVO dto = dao.updatePenalty(map);
+		
+		model.addAttribute("dto",dto);
+	}
+
+
+
+
+
+
+
+
 
 /*	// 관리자 공지사항 수정 목록 뿌리기
 	@Override

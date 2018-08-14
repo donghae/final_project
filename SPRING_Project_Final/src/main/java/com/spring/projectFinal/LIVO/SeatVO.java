@@ -7,6 +7,7 @@ public class SeatVO {
 	private int seat_no;
 	private String rdRoom_no;
 	private String user_no;
+	private String user_name;
 	private Date seat_st_dt;
 	private Date seat_end_dt;
 	private String seat_usetime;
@@ -42,7 +43,15 @@ public class SeatVO {
 	public void setUser_no(String user_no) {
 		this.user_no = user_no;
 	}
+	
+	public String getUser_name() {
+		return user_name;
+	}
 
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+	
 	public Date getSeat_st_dt() {
 		return seat_st_dt;
 	}

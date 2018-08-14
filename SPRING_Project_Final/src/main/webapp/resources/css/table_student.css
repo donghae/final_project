@@ -317,8 +317,8 @@ table {
 .st_beige {
   position: relative;
 }
-.st_beige td, th {
-  padding-left: 8px;
+.st_beige th, .st_beige td{
+  text-align: center;
 }
 .st_beige thead tr {
   height: 60px;
@@ -333,9 +333,7 @@ table {
 .st_beige tbody tr:last-child {
   border: 0;
 }
-.st_beige th, .st_beige td{
-  text-align: center;
-}
+
 
 
 
@@ -383,82 +381,3 @@ table {
     content: "Box Type";
   }
 }
-  .st_navy_login {
-  margin-top:5%;
-  width: 25%;
-  position: relative;
-}
-.st_navy_login th{
-	color: #fff;
-	padding-left: 8px;
-}
-.st_navy_login td {
-  padding-left: 8px;
-  background: #fff;
-}
-.st_navy_login thead tr {
-  height: 60px;
-  background: #001E42;
-  font-size: 16px;
-  color:#ffffff;
-}
-.st_navy_login tbody tr {
-  height: 48px;
-  border-bottom: 1px solid #001E42;
-}
-.st_navy_login tbody tr:last-child {
-  border: 0;
-}
-.st_navy_login th, .st_navy td{
-  text-align: center;
-}
-
-
-
-@media screen and (max-width: 35.5em) {
-  .st_navy_login {
-    width: 60%;
-    display: block;
-  }
-  .st_navy_login > *, .st_navy_login tr, .st_navy_login td, .st_navy_login th {
-    display: block;
-  }
-  .st_navy_login thead {
-    display: none;
-  }
-  .st_navy_login tbody tr {
-    height: auto;
-    padding: 8px 0;
-  }
-  .st_navy_login tbody tr td {
-    padding-left: 45%;
-    margin-bottom: 12px;
-  }
-  .st_navy_login tbody tr td:last-child {
-    margin-bottom: 0;
-  }
-  .st_navy_login tbody tr td:before {
-    position: absolute;
-    font-weight: 700;
-    width: 40%;
-    left: 10px;
-    top: 0;
-  }
-  .st_navy_login tbody tr td:nth-child(1):before {
-    content: "Code";
-  }
-  .st_navy_login tbody tr td:nth-child(2):before {
-    content: "Stock";
-  }
-  .st_navy_login tbody tr td:nth-child(3):before {
-    content: "Cap";
-  }
-  .st_navy_login tbody tr td:nth-child(4):before {
-    content: "Inch";
-  }
-  .st_navy_login tbody tr td:nth-child(5):before {
-    content: "Box Type";
-  }
-}
-  
-  

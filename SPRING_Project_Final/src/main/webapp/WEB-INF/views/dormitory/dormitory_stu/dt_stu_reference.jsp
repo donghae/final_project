@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %> 
+<%@ include file="../../setting.jsp" %> 
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -90,13 +90,21 @@
                                         <a class="nav-link" href="dormitory_notice">벌점관리</a>
                                     </li>
                                     
-                                    <li class="nav-item dropdown" style="text-align:right;">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="#">학생 로그인</a>
-                                            <a class="dropdown-item" href="dormitory_login">관리자 로그인</a>
-                                        </div>
-                                    </li>
+                                    <c:if test="${sessionScope.id == null }">
+	                                    <li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link dropdown-toggle" href="dormitoty_stu_login_form" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
+	                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">학생 로그인</a>
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
+	                                        </div>
+	                                    </li>
+                                    </c:if>
+									
+									<c:if test="${sessionScope.id != null }">
+										<li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link" href="logout">${sessionScope.name}로그아웃</a>
+	                                    </li>
+									</c:if>
                                 </ul>
                                 
                                 <!-- 검색 Form -->
@@ -122,36 +130,6 @@
       <div class="social-sidebar-area bg-white" style=" opacity:0.7;">
 		<%@ include file="../../layout/dt_layout/side_dorm.jsp" %>
 	</div> 
-	
-
-	
-<!-- 	<div>
-		<div class="container" style="margin-left:485px;">
-		      <div class="row">
-		        <div class="col-lg-12">
-		          <p>
-		            <a href="dt_stu_insert" class="btn btn-sq-lg btn-primary">
-		                <i class="fa fa-user fa-5x"></i><br/>
-		                	학생등록 <br>Button
-		            </a>
-		            <a href="#" class="btn btn-sq-lg btn-success">
-		              <i class="fa fa-user fa-5x"></i><br/>
-		              	학생 수정 <br>Button
-		            </a>
-		            <a href="#" class="btn btn-sq-lg btn-info">
-		              <i class="fa fa-user fa-5x"></i><br/>
-		              	학생 조회 <br>Button
-		            </a>
-		            <a href="#" class="btn btn-sq-lg btn-warning">
-		              <i class="fa fa-user fa-5x"></i><br/>
-		              	학생 삭제 <br>Button
-		            </a>
-		          </p>
-		        </div>
-			</div>
-		</div>	
-	</div> -->
-    <!-- Social Sidebar Area End -->
     	
     <!-- ***** Welcome Area Start ***** -->
     <section class="welcome-area">

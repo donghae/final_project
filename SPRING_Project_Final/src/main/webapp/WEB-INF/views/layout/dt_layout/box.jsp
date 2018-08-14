@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %>
+<%@ include file="../../setting.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,7 +39,7 @@
 </head>
 <body>
 <div>
-	<div class="container" style="margin-left:485px;">
+	<div class="container" >
 	      <div class="row">
 	        <div class="col-lg-12">
 	          <p>

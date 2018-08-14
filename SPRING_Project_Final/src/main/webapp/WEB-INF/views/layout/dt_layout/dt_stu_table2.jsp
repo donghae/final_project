@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %>    
+<%@ include file="../../setting.jsp" %>    
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -45,35 +45,6 @@
             </c:forEach>
           </c:if>  
          </table>
- 
-<%-- 	<table style="width:1000px" align="center">
-		<tr>
-			<th align="center">
-				<c:if test="${cnt > 0}">
-					<!-- 처음[◀◀] / 이전블록[◀] -->
-					<c:if test="${startPage > pageBlock}">
-						<a href="dormitoty_stu_select">[◀◀]</a>
-						<a href="dormitoty_stu_select?pageNum=${startPage - pageBlock}">[◀]</a>
-					</c:if>
-					
-					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<c:if test="${i==currentPage}">
-							<span><b>[${i}]</b></span>
-						</c:if>
-						<c:if test="${i!=currentPage}">
-							<a href="dormitoty_stu_select?pageNum=${i}">[${i}]</a>
-						</c:if>
-					</c:forEach>
-					
-					<!-- 다음블록[▶]/ 끝[▶▶] -->
-					<c:if test="${pageCount > endPage}">
-						<a href="dormitoty_stu_select?pageNum=${startPage + pageBlock}">[▶]</a>
-						<a href="dormitoty_stu_select?pageNum=${pageCount}">[▶▶]</a>
-					</c:if>
-				</c:if>
-			</th>
-		</tr>
-	</table> --%>
 	
       </div>
       <div class="col-md-12 text-center">

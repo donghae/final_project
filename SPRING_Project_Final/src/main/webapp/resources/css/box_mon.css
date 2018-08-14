@@ -29,11 +29,14 @@ article {
 .back_beige {
 	background-color:#FDF8F5;
 }
+.back_navy {
+	background-color:#001E42;
+}
 
 /* 섹션안의 박스 */
 .content {
 	width:90%;
-	margin:50px auto 30px;
+	margin:50px auto 50px;
 	padding:0px auto;
 }
 /* div안의 버튼 등을 가운데 정렬 */
@@ -170,8 +173,7 @@ article {
 
 
 /* 실제 내용이 담긴 div 요소 스타일 지정 */
-.content_w50 .tab1_content, .content_w50 .tab2_content, 
-.content_w50 .tab3_content, .content_w50 .tab4_content {
+/* .content_w50 .viewList{
 	magin:0;
     padding:2em;
     border:1px solid #ddd;
@@ -180,7 +182,7 @@ article {
     background:#FDF8F5;
     clear:both;
 } 
-
+ */
 
 
 /* 탭 메뉴 컨텐트 사이즈 */
@@ -197,7 +199,7 @@ article {
 .content_w50_2 input:nth-of-type(1), .content_w50_2 input:nth-of-type(1) ~ div:nth-of-type(1),
 .content_w50_2 input:nth-of-type(2), .content_w50_2 input:nth-of-type(2) ~ div:nth-of-type(2),
 .content_w50_2 input:nth-of-type(3), .content_w50_2 input:nth-of-type(3) ~ div:nth-of-type(3){
-    display:none;
+    display:none; 
     magin:100px auto;
 }
 .content_w50_2 input:nth-of-type(1):checked ~ div:nth-of-type(1),
@@ -252,14 +254,17 @@ article {
 
 
 
+
+.form-row input{
+	 display:inline-block;
+}
+
 /* 실제 내용이 담긴 div 요소 스타일 지정 */
-.content_w50_2 .tab1_2_content, .content_w50_2 .tab2_2_content, 
-.content_w50_2 .tab3_2_content {
+/* .content_w50_2 .viewForm{
 	magin:0;
     padding:2em;
     border:1px solid #ddd;
-    width:90%;
-    height:800px;
+    width:80%;
     background:#FDF8F5;
     clear:both;
-} 
+}  */

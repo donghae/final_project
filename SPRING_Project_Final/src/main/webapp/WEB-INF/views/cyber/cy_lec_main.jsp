@@ -78,11 +78,20 @@
 	<div align="center">
 		<div class="cy_1">
 			<h4>온라인 강의 공지사항</h4>
-			<input type="button" value="글 작성" onclick="window.location='cy_lec_notice_write_form?lec_no=${lec_no}'">
+			<c:if test="${sessionScope.id == null}">
+				<script type="text/javascript">
+					alert("권한이 없습니다.");
+					window.history.back();
+				</script>	
+			</c:if>
+			<c:if test="${fn:substring(sessionScope.id,0,1) == 0 || fn:substring(sessionScope.id,0,1) == 1}">
+				<input type="button" value="글 작성" onclick="window.location='cy_lec_notice_write_form?lec_no=${lec_no}'">
+			</c:if>
+				
 		</div>
 		<%@ include file="../cyber/cy_lec_sidebar_stu.jsp"%>
-		<div class="left_div">
-			<table class="st_mint" style="width: 1000px; height: 50%">
+		<div class="left_div" style="width: 800px; height: 40%;">
+			<table class="st_mint">
 				<thead>
 					<tr>
 						<th style="width: 10%">글번호</th>
@@ -126,13 +135,13 @@
 				</tbody>
 			</table>
 		
-			<table style="width: 1000px;">
+			<table style="width: 800px; text-align: center">
 				<tr>
 					<th align="center"><c:if test="${cnt>0}">
 							<!-- 처음 : ◀◀                                  이전 : ◀-->
 							<c:if test="${startPage > pageBlock}">
-								<a href="boardQnaList">◀◀</a>
-								<a href="boardQnaList?pageNum=${startPage-pageBlock}">&nbsp;◀</a>
+								<a href="cy_lec_main?lec_no=${lec_no}">◀◀</a>
+								<a href="cy_lec_main?lec_no=${lec_no}&pageNum=${startPage-pageBlock}">&nbsp;◀</a>
 							</c:if>
 
 							<c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -140,14 +149,14 @@
 									<span><b>[${i}]</b></span>
 								</c:if>
 								<c:if test="${i!=currentPage}">
-									<a href="boardQnaList?pageNum=${i}">[${i}]</a>
+									<a href="cy_lec_main?lec_no=${lec_no}&pageNum=${i}">[${i}]</a>
 								</c:if>
 							</c:forEach>
 
 							<!-- 끝 : ▶▶                                       다음 : ▶-->
 							<c:if test="${pageCount > endPage}">
-								<a href="boardQnaList?pageNum=${startPage+pageBlock}">▶&nbsp;</a>
-								<a href="boardQnaList?pageNum=${pageCount}">▶▶</a>
+								<a href="cy_lec_main?lec_no=${lec_no}&pageNum=${startPage+pageBlock}">▶&nbsp;</a>
+								<a href="cy_lec_main?lec_no=${lec_no}&pageNum=${pageCount}">▶▶</a>
 							</c:if>
 						</c:if></th>
 				</tr>
@@ -157,4 +166,4 @@
 </body>
 
 
-<%@ include file="../layout/footer_ara.jsp"%>
+<%@ include file="../layout/footer_lib.jsp"%>

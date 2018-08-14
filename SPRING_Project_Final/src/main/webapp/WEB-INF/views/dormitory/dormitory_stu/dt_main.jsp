@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %>     
+<%@ include file="../../setting.jsp" %>     
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,32 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-<!--     Favicon 
-    <!-- <link rel="icon" href="resources/images/core-img/favicon.ico">
-
-    Core Style CSS
-    <link rel="stylesheet" href="resources/boot_dormitory/dormitory_css/core-style.css">
-
-    Responsive CSS
-    <link href="resources/boot_dormitory/dormitory_css/responsive.css" rel="stylesheet"> -->
-
-
 </head>
 
 <body>
-
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="showbox">
-            <div class="loader">
-                <svg class="circular" viewBox="25 25 50 50">
-                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-                </svg>
-            </div>
-        </div>
-
-    </div>
-
     <!-- Gradient Background Overlay -->
     <div class="gradient-background-overlay"></div>
 
@@ -89,13 +66,22 @@
                                         <a class="nav-link" href="dormitory_notice">벌점관리</a>
                                     </li>
                                     
-                                    <li class="nav-item dropdown" style="text-align:right;">
-                                    <a class="nav-link dropdown-toggle" href="dormitoty_stu_login_form" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="#dormitory_login">학생 로그인</a>
-                                            <a class="dropdown-item" href="dormitory_login">관리자 로그인</a>
-                                        </div>
-                                    </li>
+                                    <c:if test="${sessionScope.id == null }">
+	                                    <li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link dropdown-toggle" href="dormitoty_stu_login_form" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
+	                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">학생 로그인</a>
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
+	                                        </div>
+	                                    </li>
+                                    </c:if>
+									
+									<c:if test="${sessionScope.id != null }">
+										<li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link" href="dormitory_notice">${sessionScope.name}로그아웃</a>
+
+	                                    </li>
+									</c:if>
                                 </ul>
                                 
                                 <!-- 검색 Form -->
@@ -141,10 +127,8 @@
                         <div class="slide-text">
  
   <div class="wrapper" style="margin-bottom: 100px;">
-       <div >
-        
-               	
-                        </div>
+       <div>
+                     </div>
                     </div>
                 </div>
             </div>

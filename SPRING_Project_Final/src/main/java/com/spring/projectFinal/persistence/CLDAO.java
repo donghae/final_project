@@ -36,7 +36,7 @@ public interface CLDAO {
 	//주차별 강의 목록
 	public ArrayList<RoundVO> getRoundList(Map<String, Object> map);
 	
-	public int getLecCnt();
+	public int getLecCnt(Map<String, Object> map);
 	
 	public ArrayList<LectureVO> getLecList(Map<String, Object> map);
 	

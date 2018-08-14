@@ -81,7 +81,7 @@
 		</div>
 		<%@ include file="../cyber/cy_sidebar_stu.jsp"%>
 		<div class="left_div">
-			<table class="st_mint" style="width: 1000px; height: 50%">
+			<table class="st_mint" style="width: 1000px; height: 40%">
 				<tr>
 					<th>제목</th>
 					<td>
@@ -113,4 +113,4 @@
 </body>
 
 
-<%@ include file="../layout/footer_ara.jsp"%>
+<%@ include file="../layout/footer_lib.jsp"%>

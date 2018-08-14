@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../dorm_setting.jsp" %>    
+<%@ include file="../../setting.jsp" %>    
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,10 +10,31 @@
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>학생 정보 조회</title>
+    
+<style>
+	.overnight_sel{
+		position: absolute;
+		left:550px;
+	}
+	
+	.overnight_sel1{
+		position: relative;
+		top:500px;
+		left:100px;
+	}
+	
+	.overnight_sel2{
+		position: relative;
+		top:550px;
+		left:100px;
+	}
+</style>
+
 
 </head>
+
 <body>
+
     <!-- Preloader -->
     <div id="preloader">
         <div class="showbox">
@@ -50,77 +69,52 @@
                                     <li>
                                     	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     </li>
-                                    
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="dormitory_admin_stu" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">기숙사 학생 관리</a>
+                                        <a class="nav-link dropdown-toggle" href="dormitory_stu_select" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">기숙사 정보 조회</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="dormitoty_admin_stu_sel">조회</a>
-                                            <a class="dropdown-item" href="dormitoty_admin_stu_ins">등록</a>
-                                            <a class="dropdown-item" href="dormitoty_admin_stu_upd">수정</a>
-                                            <a class="dropdown-item" href="dormitoty_admin_stu_del">삭제</a>
+                                            <a class="dropdown-item" href="dormitory_stu_select">기숙사생 학생정보</a>
                                         </div>
+                                        
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="dormitory_stu_card">기숙사 월별 식단표</a>
                                     </li>
-                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="dormitory_stu_notice">공지사항</a>
+                                    </li>
+                                                                            
+                                    </li>
                                     <!-- <li class="nav-item"> -->
                                     <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="dormitory_admin_card" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">월별 식단표</a>
+                                    <a class="nav-link dropdown-toggle" href="dormitory_stu_sleepover" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">외박관리</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="dormitory_admin_card_sel">조회</a>
-                                            <a class="dropdown-item" href="dormitory_admin_card_ins">등록</a>
-                                            <a class="dropdown-item" href="dormitory_admin_card_upd">수정</a>
-                                            <a class="dropdown-item" href="dormitory_admin_card_del">삭제</a>
+                                            <a class="dropdown-item" href="dormitory_stu_sleepover_sel">조회</a>
+                                            <a class="dropdown-item" href="dormitory_stu_sleepover_ins">신청</a>
+                                            <a class="dropdown-item" href="dormitory_stu_sleepover_upd">수정</a>
+                                            <a class="dropdown-item" href="dormitory_stu_sleepover_del">삭제</a>
                                         </div>
                                     </li>
                                     
-                                    <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="dormitory_admin_notice" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">공지사항</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="dormitory_admin_notice_sel">조회</a>
-                                            <a class="dropdown-item" href="dormitory_admin_notice_ins">등록</a>
-                                            <a class="dropdown-item" href="dormitory_admin_notice_upd">수정</a>
-                                            <a class="dropdown-item" href="dormitory_admin_notice_del">삭제</a>
-                                        </div>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="dormitory_notice">벌점관리</a>
                                     </li>
                                     
-                                    <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="dormitory_admin_sleepover" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">외박 관리</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="dormitory_admin_sleepover_sel">조회</a>
-                                            <a class="dropdown-item" href="dormitory_admin_sleepover_ins">등록</a>
-                                            <a class="dropdown-item" href="dormitory_admin_sleepover_upd">수정</a>
-                                            <a class="dropdown-item" href="dormitory_admin_sleepover_del">삭제</a>
-                                        </div>
-                                    </li>                                    
-                                    
-                                    <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="dormitory_admin_penalty" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">벌점관리</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="dormitoty_stu_selet">조회</a>
-                                            <a class="dropdown-item" href="dormitoty_stu_insert">등록</a>
-                                            <a class="dropdown-item" href="dormitoty_stu_update">수정</a>
-                                            <a class="dropdown-item" href="dormitoty_studelete">삭제</a>
-                                        </div>
-                                    </li>
-                                                                        
-                                    <li class="nav-item dropdown" style="text-align:right;">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="dormitory_stu_login">학생 로그인</a>
-                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
-                                        </div>
-                                    </li>
+                                    <c:if test="${sessionScope.id == null }">
+	                                    <li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link dropdown-toggle" href="dormitoty_stu_login_form" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
+	                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">학생 로그인</a>
+	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
+	                                        </div>
+	                                    </li>
+                                    </c:if>
+									
+									<c:if test="${sessionScope.id != null }">
+										<li class="nav-item dropdown" style="text-align:right;">
+	                                    <a class="nav-link" href="logout">${sessionScope.name}로그아웃</a>
+	                                    </li>
+									</c:if>
                                 </ul>
                                 
-                                <!-- 검색 Form -->
-                                <!-- <div class="header-search-form ml-auto">
-                                    <form action="#">
-                                        <input type="search" class="form-control" placeholder="Input your keyword then press enter..." id="search" name="search">
-                                        <input class="d-none" type="submit" value="submit">
-                                    </form>
-                                </div>
-                                <!-- Search btn -->
-                                <!-- <div id="searchbtn">
-                                    <img src="resources/images/core-img/search.png" alt=""> -->
                                 </div>
                             </div>
                         </nav>                        
@@ -134,9 +128,8 @@
     <div class="social-sidebar-area bg-white" style=" opacity:0.7;">
 		<%@ include file="../../layout/dt_layout/side_dorm.jsp" %>
 	</div>
-
-
-    	
+    <!-- Social Sidebar Area End -->
+   	
     <!-- ***** Welcome Area Start ***** -->
     <section class="welcome-area">
         <div class="carousel h-100 slide" data-ride="carousel" id="welcomeSlider">
@@ -144,14 +137,14 @@
             <div class="carousel-inner h-100">						   <!-- 투명도 -->
                 <div class="carousel-item h-100 bg-img active" style= "hheight:200px;  /* opacity:0.5; */  background-image: url(resources/images/common_img/UNI/dormitory.jpg);">
                  
-                  <div style="padding:0px;">
+                  <div class="overnight_sel">      
 					 <%@ include file="../../layout/dt_layout/dt_stu_box.jsp" %>
 				  </div>  
-  			    	<div style="margin-left:220px; margin-top:70px; margin-bottom: -50px; ">
+  			    	<div class="overnight_sel1">
 						<%@ include file="../../layout/dt_layout/dt_stu_serach.jsp" %>
 					</div>					
-					<div style="background-color:white; width:1200px; height:200px; margin-left:450px;">
-					 <div style="margin-top:100px; height:400px;">
+					<div >
+					 <div class="overnight_sel2">
 						<%@ include file="../../layout/dt_layout/dt_stu_night_sel.jsp" %>
 			    	</div>
 			    	</div>  

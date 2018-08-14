@@ -7,8 +7,12 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.projectFinal.ARAVO.AdminVO;
+import com.spring.projectFinal.ARAVO.ProfessorVO;
+import com.spring.projectFinal.ARAVO.StudentVO;
 import com.spring.projectFinal.DTVO.Admin_notice_selectVO;
 import com.spring.projectFinal.DTVO.Admin_stu_selectVO;
+import com.spring.projectFinal.DTVO.AraCircleVO;
 import com.spring.projectFinal.DTVO.Dt_stu_overnight_selectVO;
 import com.spring.projectFinal.DTVO.Dt_stu_penalty_selectVO;
 
@@ -18,6 +22,27 @@ public class DTDAOImpl implements DTDAO{
 
 	@Autowired
 	SqlSession sqlsession;
+
+	// 관리자 로그인
+	@Override
+	public AdminVO getAdminInfo1(Map<String, Object> map) {
+		ARADAO dao = sqlsession.getMapper(ARADAO.class);
+		return dao.getAdminInfo(map);
+	}
+
+	// 교수 로그인
+	@Override
+	public ProfessorVO getProfInfo1(Map<String, Object> map) {
+		ARADAO dao = sqlsession.getMapper(ARADAO.class);
+		return dao.getProfInfo(map);
+	}
+
+	// 학생 로그인
+	@Override
+	public StudentVO getStudentInfo1(Map<String, Object> map) {
+		ARADAO dao = sqlsession.getMapper(ARADAO.class);
+		return dao.getStudentInfo(map);
+	}
 	
 	//관리자 로그인
 	@Override
@@ -126,6 +151,43 @@ public class DTDAOImpl implements DTDAO{
 		return dao.addAdminNoticeModify(ad_no);
 	}	*/
 	
+	// 관리자 벌점 조회
+	@Override
+	public ArrayList<Dt_stu_penalty_selectVO> dtAdminPenaltySel() {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);
+		
+		return dao.dtAdminPenaltySel();
+	}
+	
+	// 관리자 벌점 등록
+	@Override
+	public int addPenaltyInsert(Map<String, Object> map) {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);		
+		
+		return dao.addPenaltyInsert(map);
+	}
+	
+	// 관리자 벌점 수정 목록
+	@Override
+	public ArrayList<Dt_stu_penalty_selectVO> selectPenalty() {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);
+		
+		return dao.selectPenalty();
+	}
+	
+	// 관리자 벌점 수정 이름 클릭
+	@Override
+	public Dt_stu_penalty_selectVO updatePenalty(Map<String, Object> map) {
+
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);
+		
+		return dao.updatePenalty(map);
+	}	
+	
+	
 	
 	
 	
@@ -201,6 +263,60 @@ public class DTDAOImpl implements DTDAO{
 		
 		return dao.dtStuPenalty(st_no);
 	}
+
+	// ara 동아리 수 조회
+	@Override
+	public int getCircleListCnt() {
+
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);		
+		
+		return dao.getCircleListCnt();
+	}
+
+	// ara 동아리 목록 게시판
+	@Override
+	public ArrayList<AraCircleVO> getCircleList(Map<String, Integer> map) {
+	
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);		
+		
+		return dao.getCircleList(map);
+	}
+
+	// ara 동아리 목록 수정 클릭
+	@Override
+	public ArrayList<AraCircleVO> araCircleBefore(String cc_name) {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);		
+		
+		return dao.araCircleBefore(cc_name);
+	}
+
+	// ara 동아리 수정 등록
+	@Override
+	public int araCircleAfter(Map<String,Object> map) {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);	
+		
+		return dao.araCircleAfter(map);
+	}
+
+	// ara 동아리 목록 삭제
+	@Override
+	public int araCircleDelete(String cc_name) {
+
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);	
+		
+		return dao.araCircleDelete(cc_name);
+	}
+
+
+
+
+
+
+
+
+
 
 
 

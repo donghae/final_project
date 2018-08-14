@@ -41,14 +41,42 @@
 	<select id="getLecNotice" resultType="com.spring.projectFinal.CLVO.CyberLecNoticeVO">
 		SELECT * FROM TBL_CYBER_LEC_NOTICE WHERE cy_lec_n_no=#{cy_lec_n_no}
 	</select>
-	<select id="getLecCnt" resultType="int">
-		SELECT count(*) FROM TBL_LECTURE WHERE lec_cy_fl=1
+	<select id="getLecCnt" resultType="int" parameterType="java.util.Map">
+		SELECT COUNT(*) FROM TBL_LECTURE l, (SELECT prof_name, prof_no FROM TBL_prof) p
+		<if test="studentId != null || adminId !=null">
+		, (SELECT st_no, lec_no FROM TBL_REG_LECTURE) r 
+		</if>
+		WHERE l.lec_cy_fl=1 AND l.prof_no=p.prof_no
+		<if test="studentId != null">
+			AND r.st_no=#{studentId} AND l.lec_no=r.lec_no
+		</if>
+		<if test="profId != null">
+			AND l.prof_no=#{profId}
+		</if>
+		<if test="adminId != null">
+			AND l.lec_no=r.lec_no
+		</if>
 	</select>
 	<select id="getLecList" parameterType="java.util.Map" resultType="com.spring.projectFinal.CLVO.LectureVO" >
-		SELECT * FROM TBL_LECTURE WHERE lec_cy_fl=1
+		
+	
+		SELECT * FROM TBL_LECTURE l, (SELECT prof_name, prof_no FROM TBL_prof) p
+		<if test="studentId != null || adminId !=null">
+		, (SELECT st_no, lec_no FROM TBL_REG_LECTURE) r 
+		</if>
+		WHERE l.lec_cy_fl=1 AND l.prof_no=p.prof_no
+		<if test="studentId != null">
+			AND r.st_no=#{studentId} AND l.lec_no=r.lec_no
+		</if>
+		<if test="profId != null">
+			AND l.prof_no=#{profId}
+		</if>
+		<if test="adminId != null">
+			AND l.lec_no=r.lec_no
+		</if>
 	</select>
 	<select id="getLecPersonCnt" resultType="int">
-		SELECT COUNT(*) FROM TBL_REG_LECTURE r, TBL_LECTURE l WHERE r.lec_no=l.lec_no
+		SELECT COUNT(*) FROM TBL_REG_LECTURE r, TBL_LECTURE l WHERE r.lec_no=l.lec_no AND l.lec_cy_fl=1
 	</select>
 	
 	<insert id="addNotice" parameterType="java.util.Map">

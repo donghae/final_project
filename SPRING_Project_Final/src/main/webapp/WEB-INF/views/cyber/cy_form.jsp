@@ -109,13 +109,14 @@
 		var ts = (timeGap.getHours() * 3600) + (timeGap.getMinutes()*60) + timeGap.getSeconds();
 		
 		opener.document.getElementById("totalTime_"+round_no).value = parseInt(ts+tt);
+		opener.document.getElementById("totalTime2_"+round_no).value = (parseInt(ts+tt)/60)+"분 "+(parseInt(ts+tt)%60)+"초";
 	}
 	function watch_time(beforeStr){		
 		var param = beforeStr.toString().split("|");
-		alert(beforeStr);
+		/* alert(beforeStr); */
 		var lec_no = param[0];
 		var round_no = param[1];
-		alert(lec_no +" && "+ round_no);
+		/* alert(lec_no +" && "+ round_no); */
 		var endTime = document.getElementById("endTime");
 		var playTime = document.getElementById("playTime");
 		
@@ -162,8 +163,9 @@
 		var ts = (timeGap.getHours() * 3600) + (timeGap.getMinutes()*60) + timeGap.getSeconds();
 		
 		var time = parseInt(ts+tt);
+		
 		window.location = "cy_attendance?lec_no="+lec_no+"&round_no="+round_no+"&time="+time;
-		opener.location.reload();
+		
 	}
 </script>
 

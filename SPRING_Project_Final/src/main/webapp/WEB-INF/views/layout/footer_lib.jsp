@@ -14,52 +14,38 @@
 <link rel="stylesheet" type="text/css" href="resources/boot_library/css/main_styles.css">
 <link rel="stylesheet" type="text/css" href="resources/boot_library/css/responsive.css">
 
-</head>
-<body>
-<footer class="footer2">
-		
-		
-			<!-- Newsletter -->
-	<div class="container">
-			
-			
-			<!-- footer2 Content -->
 
-			<div class="footer2_content">
-				<div class="row">
-					<div class="logo_container">
-						<div class="logo">
-							<img src="resources/images/common_img/logo/ARA_navy.PNG" alt="" width="51px" height="43px">
-							<span>아라대학교</span>
-						</div>
+
+<!-- 도서관 푸터 -->
+<footer class="footer">
+	
+	<!-- Newsletter -->
+	<div class="content">
+	<div class="container" style="max-width:80%; width:100%; magin:0 auto; padding:0px;">
+	
+		
+		<!-- footer Content -->
+		<div class="footer_content" style="padding:0px;">
+			<div class="row" >
+<!-- 				<div class="logo_container">
+					<div class="logo">
+						<img src="resources/images/common_img/logo/ARA_navy.PNG" alt="" width="51px" height="43px">
+						<span>아라대학교</span>
 					</div>
-				</div>
-				
-			</div>
+				</div> -->
+			</div>				
+		</div>
 
-			<!-- footer2 Copyright -->
-
-			<div class="footer2_bar d-flex flex-column flex-sm-row align-items-center">
-				<div class="footer2_copyright">
-					<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+		<!-- footer2 Copyright -->
+		<div class="footer_bar d-flex flex-column flex-sm-row align-items-center">
+			<div class="footer2_copyright">
+				<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
-				</div>
-				<div class="footer2_social ml-sm-auto">
-					<ul class="menu_social">
-						<li class="menu_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-						<li class="menu_social_item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-						<li class="menu_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-						<li class="menu_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-						<li class="menu_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-					</ul>
-				</div>
 			</div>
-
+			
 		</div>
-	</footer>
 
-
-
-</body>
-</html>
+	</div>
+	</div>
+</footer>
