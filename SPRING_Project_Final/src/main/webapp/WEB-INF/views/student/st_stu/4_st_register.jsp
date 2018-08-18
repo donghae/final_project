@@ -83,7 +83,7 @@ function nexthp2() {
 								<table>
 									<thead>
 										<tr> <!-- //resources/images/addmission_img/ -->
-											<th rowspan="4"><img id="pf_img" src="${vo.getSt_img()}"></th>
+											<th rowspan="4"><img id="pf_img" src="resources/images/addmission_img/${vo.getSt_img()}"></th>
 											<th class="bg-gray">이름</th>
 											<td>${vo.getSt_name()}</td>
 											<th class="bg-gray">생년월일</th>

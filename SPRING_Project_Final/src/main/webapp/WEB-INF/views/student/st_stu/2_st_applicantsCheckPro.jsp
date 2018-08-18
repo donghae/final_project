@@ -7,14 +7,14 @@
 	<c:if test="${selectCnt == 1}"	>
 		<c:if test="${vo.getEnt_state() == 2 || vo.getEnt_state() == 4}">
 			<script type="text/javascript">
-		//	window.location='chk2'
 				window.location='chk2?name="${vo.ent_name}"&major=${vo.ent_maj}&regi_no="${vo.ent_regi_no}"';
 			</script>
 		</c:if>
 		
 		<c:if test="${vo.getEnt_state() == 1}">
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script type="text/javascript">
-				alert("귀하는 합격자 명단에 없습니다.");
+				swal("귀하는 합격자 명단에 없습니다.");
 				window.location='chk'
 			</script>
 		</c:if>
@@ -22,8 +22,9 @@
 	</c:if>	
 
 	<c:if test="${selectCnt != 1}"	>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script type="text/javascript">
-				alert("이름과 주민등록번호를 다시 확인해주세요.");
+				swal("이름과 주민등록번호를 다시 확인해주세요.");
 				window.location='chk'
 			</script>
 	</c:if>		

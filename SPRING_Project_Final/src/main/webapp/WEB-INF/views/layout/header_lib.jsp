@@ -68,9 +68,10 @@
 								</li>
 																	
 								<li class="main_nav_item">
-									<a onclick="javascript:librarylogin();" style="color:#001E42;">로그인</a>	
+									<a onclick="javascript:librarylogin();">로그인</a>	
 								</li>							
 							</c:if>
+							
 							
 							
 							<c:if test="${sessionScope.id != null}">
@@ -109,9 +110,7 @@
 										</a>
 									
 										<ul class="dropdown-menu">
-											<li><center><a href="lib_rental">도서 대여</a></center></li>
-											<li><center><a href="lib_reservation">도서 예약</a></center></li>
-											<li><center><a href="lib_submission">희망도서 신청</a></center></li>
+											<li><center><a href="lib_myLibrary">대여 내역</a></center></li>											
 										</ul>
 									</li>
 									

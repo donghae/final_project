@@ -4,14 +4,16 @@
 <html>
 <body>
 <c:if test="${insertCnt==1}">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
-		alert("제공완료");
+		swal("제공완료");
 		window.location = 'st_adm?st_state=6&major='+${dto.ent_maj};
 	</script>
 </c:if>
 <c:if test="${insertCnt!=1}">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
-		alert("이미 제공된 학생입니다.");
+		swal("이미 제공된 학생입니다.");
 		window.location = 'st_adm?st_state=6&major='+${dto.ent_maj};
 	</script>
 </c:if>

@@ -11,15 +11,20 @@
 
 		
 	<c:if test="${updateCnt == null && insertCnt == null}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			alert("입력실패");
+			swal("입력실패");
 		</script>	
 	</c:if>
 	<c:if test="${updateCnt != null || insertCnt != null}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
 			opener.location.reload();
-			alert("시청시간 반영되었습니다.");
-			self.close();
+			swal("시청시간 반영되었습니다.");
+			setTimeout(function() {
+				self.close();
+			}, 500);
+			
 		</script>	
 		
 	</c:if>

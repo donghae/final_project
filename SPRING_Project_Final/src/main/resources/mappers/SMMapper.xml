@@ -194,7 +194,7 @@ SELECT * FROM(SELECT ENT_NO,ENT_NAME,ENT_REGI_NO,ENT_HP,ENT_ZIPCODE,ENT_ADDR1,EN
 		lec_cy_fl=#{lec_cy_fl},max_person=#{max_person}
 		where lec_no=#{lec_no}
 	</update>
-
+   
 	<!-- 강의 삭제 처리 -->
 	<delete id="lectureDel" parameterType="int">
 		delete tbl_lecture where
@@ -211,7 +211,7 @@ SELECT * FROM(SELECT ENT_NO,ENT_NAME,ENT_REGI_NO,ENT_HP,ENT_ZIPCODE,ENT_ADDR1,EN
 		update tbl_reg set state=0
 	</update>
 	
-	<!-- 수강신청 상태 조회 -->
+	<!--  상태 조회 -->
 	<select id ="regfl" resultType="int">
 		select state from tbl_reg
 	</select>
@@ -280,11 +280,22 @@ SELECT * FROM(SELECT ENT_NO,ENT_NAME,ENT_REGI_NO,ENT_HP,ENT_ZIPCODE,ENT_ADDR1,EN
 			(select count(*) from tbl_reg_lecture where lec_no=#{lec_no})+1)
 	</insert>
 	
+	<!--수강 신청시 성적 초기화 -->
+	<insert id="gpaPlus" >
+		insert into tbl_gpa values(#{id},#{lec_no},'2018-1',0)
+	</insert>
+	
+	<!--수강 신청시  삭제시 성적 삭제 -->
+	<delete id="gpaDel" >	
+		delete tbl_gpa where lec_no=#{lec_no} and st_no=#{id}
+	</delete>
+	
 	<!--수강 신청 추가 - 현재인원 초과 체크 -->
-	<select id="personChk" resultType="com.spring.projectFinal.SMVO.Reg_Lec_LectureVO">
-		select max_person,lec_now_person from tbl_lecture l join tbl_reg_lecture r on l.lec_no = r.lec_no
-			where l.lec_no=#{lec_no} and st_no=#{id}
+ 	<select id="personChk" parameterType="java.util.Map" resultType="com.spring.projectFinal.SMVO.Reg_Lec_LectureVO">
+		select distinct max_person,lec_now_person from tbl_lecture l join tbl_reg_lecture r on l.lec_no = r.lec_no
+			where l.lec_no=#{lec_no}
 	</select>
+
 	
 	<!--수강 신청 삭제 -->
 	<delete id="regDel" >	

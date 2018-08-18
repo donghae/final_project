@@ -70,12 +70,13 @@
 	<!-- 내 강의실 - 해당 강의를 듣는 학생 목록 --><!-- NVL2(g.gpa, g.gpa,0) -->
 	<select id="proStuList" parameterType="String"
 		resultType="com.spring.projectFinal.SMVO.Gpa_Lec_Stu_VO">
-		select distinct s.st_no, s.maj_cd, s.st_name, g.gpa, l.lec_no
-		from tbl_student s, tbl_gpa g, tbl_lecture l, tbl_reg_lecture r
-		where s.st_no = g.st_no
-		and l.lec_no = g.lec_no
-		and r.lec_no = g.lec_no
-		and l.lec_name=#{lec_name}
+	   select distinct s.st_no, s.maj_cd, s.st_name, g.gpa, l.lec_no
+	      from tbl_student s, tbl_gpa g, tbl_lecture l, tbl_reg_lecture r
+	      where s.st_no = g.st_no
+	      and l.lec_no = g.lec_no
+	      and r.lec_no = g.lec_no
+	      and l.lec_name=#{lec_name}
+	      order by s.st_no
 	</select>
 
 	<!-- 내 강의실 - 해당 강의를 듣는 학생 목록 --><!-- NVL2(g.gpa, g.gpa,0) -->
@@ -129,13 +130,14 @@
 		order by a.lec_dt </select> -->
 	<select id="getAttendLi" parameterType="java.util.Map"
 		resultType="com.spring.projectFinal.SMVO.Attend_Lec_VO">
-		select a.attend_fl, a.lec_no, a.lec_dt, l.lec_room_no
-		from tbl_attendance a, tbl_lecture l
-		where a.lec_no=l.lec_no
-		and a.st_no=#{st_no}
-		and l.lec_no=#{lec_no}
-		order by l.lec_dt
+		  select a.attend_fl, a.lec_no, a.lec_dt, l.lec_room_no
+		      from tbl_attendance a, tbl_lecture l
+		      where a.lec_no=l.lec_no
+		      and a.st_no=#{st_no}
+		      and l.lec_no=#{lec_no}
+		      order by TO_DATE(a.lec_dt)
 	</select>
+	
 	<!-- 수업관리 > 내 강의실 > 강의목록 > 출결 조회 -->
 	<select id="lecStart" parameterType="int" resultType="String">
 		select distinct lec_startDate

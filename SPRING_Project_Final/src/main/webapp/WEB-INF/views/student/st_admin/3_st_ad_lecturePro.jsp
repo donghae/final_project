@@ -3,8 +3,9 @@
 <%@ include file="../../setting.jsp"%>
 <html>
 <body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
-		alert("등록완료")
+		swal("등록완료")
 		window.location = 'st_adm?st_state=8';
 	</script>
 </body>

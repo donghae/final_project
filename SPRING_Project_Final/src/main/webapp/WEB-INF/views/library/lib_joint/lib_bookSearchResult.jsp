@@ -24,8 +24,7 @@
 					<th style="width:22%; text-align:left;">제 목</th>
 					<th style="width:16%;">저 자</th>
 					<th style="width:13%;">출 판 사</th>
-					<th style="width:7%;">대출가능</th>
-					<th style="width:15%;"></th>
+					<th style="width:7%;">대출가능</th>					
 				</tr>
 			</thead>
 			
@@ -71,10 +70,7 @@
 						<td style="width:13%;">${bVOs.b_publish}</td>
 						
 						<c:if test="${bVOs.b_state_fl == 1}">
-							<td style="width:7%;">대여 가능</td>
-							<td style="width:15%;">
-								<Button class="btn_navy" type="button" onclick="window.location='#'">도서 예약</Button>	
-							</td>
+							<td style="width:7%;">대여 가능</td>							
 						</c:if>
 						<c:if test="${bVOs.b_state_fl == 2}">
 							<td style="width:7%;">대여 불가</td>

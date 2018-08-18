@@ -245,11 +245,25 @@ public class SMDAOImpl implements SMDAO {
 		dao.regPlus(map);
 	}
 	
+	//수강 신청시 성적 초기화
+	@Override
+	public void gpaPlus(Map<String,Object> map) {
+		SMDAO dao = sqlSession.getMapper(SMDAO.class);
+		dao.gpaPlus(map);
+	}
+	
+	//수강 신청시  삭제시 성적 삭제
+	@Override
+	public void gpaDel(Map<String,Object> map) {
+		SMDAO dao = sqlSession.getMapper(SMDAO.class);
+		dao.gpaDel(map);
+	}
+	
 	//수강 신청 사람수 초과 체크
 	@Override
-	public Reg_Lec_LectureVO personChk(int lec_no) {
+	public Reg_Lec_LectureVO personChk(Map<String,Object> map) {
 		SMDAO dao = sqlSession.getMapper(SMDAO.class);
-		Reg_Lec_LectureVO vo=dao.personChk(lec_no);
+		Reg_Lec_LectureVO vo=dao.personChk(map);
 		return vo;
 	}
 	

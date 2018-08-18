@@ -221,7 +221,16 @@ public class LIDAOImpl implements LIDAO {
 	}
 
 
+	//좌석 이용 등록
+	@Override
+	public int seatinsert(SeatVO sVO) {
+		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
+		int insertCnt = lidao.seatinsert(sVO);
 	
+		return insertCnt;
+	}
+		
+		
 	//좌석 업데이트
 	@Override
 	public int seatupdate(SeatVO sVO) {
@@ -271,11 +280,24 @@ public class LIDAOImpl implements LIDAO {
 	}
 
 
+	//마이 라이브러리 - 대여 개수
+	@Override
+	public int myloanCnt(String user_no) {
+		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
+		int loancnt = lidao.myloanCnt(user_no);
 	
+		return loancnt;
+	}
 
 
+	//마이 라이브러리 - 대여 목록
+	@Override
+	public ArrayList<BookLoanVO> myloan(String user_no) {
+		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
+		ArrayList<BookLoanVO> bloanVOs = lidao.myloan(user_no);
 	
+		return bloanVOs;
+	}
 
 
-	
 }

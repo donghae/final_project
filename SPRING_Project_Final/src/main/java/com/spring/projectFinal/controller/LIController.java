@@ -168,12 +168,12 @@ public class LIController {
 	}
 	
 	//관리자 : 도서 대여 기록 결과 페이지 - ajax 결과1
-	@RequestMapping("lib_loanSuperlist")
+	@RequestMapping("lib_loanSuperlistb")
 	public String lib_loanSuperlist(HttpServletRequest req, Model model) {
 		
 		System.out.println("lib_loanSuperlist-관리자 : 도서 대여 기록 조회");
 		LIservice.lib_loanSuperlist(req,model);
-		return "library/lib_admin/lib_loanSuperlist";
+		return "library/lib_admin/lib_loanSuperlistb";
 	}
 	
 	//관리자 : 도서 대여 양식 ajax 결과2
@@ -251,7 +251,23 @@ public class LIController {
 		LIservice.lib_seat_user(req,model);
 		return "library/lib_admin/lib_seat_user";
 	}
-	
+	//관리자 : 좌석이용 중지
+	@RequestMapping("lib_seat_stopPro")
+	public String lib_seat_stopPro(HttpServletRequest req, Model model) {
+		System.out.println("lib_seat_stopPro-관리자 : 좌석이용 중지");	
+		
+		LIservice.lib_seat_stopPro(req,model);
+		return "library/lib_admin/lib_seat_stopPro";
+	}
+	//관리자:좌석 이용 등록
+	@RequestMapping("lib_seat_use_admin")
+	public String lib_seat_use_admin(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_seat_use_admin-관리자:좌석 이용등록");	
+		LIservice.lib_seat_use(req,model);
+
+		return "library/lib_admin/lib_seat_use_admin";
+	}
 		
 	
 	/*//도서 좌석 업데이트
@@ -356,36 +372,49 @@ public class LIController {
 		System.out.println("lib_viewSeat-좌석 현황 및 예약");			
 		return "library/lib_ara/lib_seat";
 	}
+	//좌석 현황 결과 
 	@RequestMapping("lib_seat_sub")
 	public String lib_seat_sub(HttpServletRequest req, Model model) {
 		
 		System.out.println("lib_viewSeat-좌석 현황 및 예약");	
-		LIservice.lib_viewSeat(req, model);
-		
-		return "library/lib_ara/lib_seat_sub";
-	}
-		
-	
-	//도서 좌석 업데이트
-	@RequestMapping("lib_seat_update")
-	public String lib_seat_update(HttpServletRequest req, Model model) {
-		
-		System.out.println("lib_seat_update-좌석 업데이트");	
-		LIservice.lib_seat_update(req,model);
-		LIservice.lib_viewSeat(req, model);
+		LIservice.lib_viewSeat(req, model);		
 		return "library/lib_ara/lib_seat_sub";
 	}
 	
 	
+	//좌석 이용 등록
+	@RequestMapping("lib_seat_use")
+	public String lib_seat_use(HttpServletRequest req, Model model) {
+		
+		System.out.println("lib_seat_use-좌석 이용등록");	
+		LIservice.lib_seat_use(req,model);
+		
+		/*String selectCnt = model.mergeAttributes("selectCnt");
+		model.addAttribute("selectCnt",model.toString());*/
+		
+		LIservice.lib_viewSeat(req,model);
+		return "library/lib_ara/lib_seat_sub";
+	}
 	
-/*	//관리자 : 이용자를 위한 좌석 업데이트 폼
-	@RequestMapping("lib_seat_info")
-	public String lib_seat_info(HttpServletRequest req, Model model) {
+	//이용자 : 좌석이용 중지,취소
+	@RequestMapping("lib_seat_useCancle")
+	public String lib_seat_useCancle(HttpServletRequest req, Model model) {
+		System.out.println("lib_seat_useCancle- 이용자 : 좌석이용 중지");	
 		
-		System.out.println("lib_seat_info-좌석 업데이트 양식");	
+		LIservice.lib_seat_stopPro(req,model);
+		LIservice.lib_viewSeat(req,model);
+		return "library/lib_ara/lib_seat_sub";
+	}
+	
+	
+	//이용자 : 마이라이브러리
+	@RequestMapping("lib_myLibrary")
+	public String lib_myLibrary(HttpServletRequest req, Model model) {
+		System.out.println("lib_myLibrary- 마이라이브러리");	
 		
-		return "library/lib_seat_info";
-	}*/
+		LIservice.lib_myLibrary(req,model);		
+		return "library/lib_ara/lib_myLibrary";
+	}
 	
 	
 	//실시간 검색기능
@@ -403,5 +432,12 @@ public class LIController {
 		
 		return "library/searchResult";
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

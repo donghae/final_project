@@ -27,7 +27,7 @@
 				<c:forEach var="i" begin="0" end="${cnt}">
 				
 					<tr>
-						<td><fmt:formatDate value="${bloanVOs[i].loan_dt}" pattern="yyyy/MM/dd"/></td>
+						<td><fmt:formatDate value="${bloanVOs[i].loan_dt}" pattern="yyyy-MM-dd"/></td>
 						<td>${bloanVOs[i].b_no}</td>
 						<td>${bloanVOs[i].user_no}</td>
 						<td>${bloanVOs[i].return_sche}</td>												

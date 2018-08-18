@@ -32,7 +32,8 @@ public class SM2ServiceImpl implements SM2Service {
    
    @Override
    public void inputTotal(HttpServletRequest req, Model model) {
-	   String st_no = (String)req.getSession().getAttribute("id");
+	   String st_no = (String) req.getAttribute("st_no");
+	   System.out.println("qweds : "+st_no);
 	   Gpa_Total_VO vo = new Gpa_Total_VO();
 	   float gpa_total = dao2.total(st_no);
 	   vo.setGpa_total(gpa_total);
@@ -88,7 +89,6 @@ public class SM2ServiceImpl implements SM2Service {
       
       String dto3 = dao2.lecStart(dao2.changeLec(lec_name));
       req.setAttribute("dto3", dto3);
-      System.out.println("dto3 : " + dto3);
       model.addAttribute("dto3", dto3);      
       
       int cnt = dao2.proStuCnt(lec_name);
@@ -108,8 +108,6 @@ public class SM2ServiceImpl implements SM2Service {
    public void inputPro(HttpServletRequest req, Model model) {
       String st_no = (String) req.getAttribute("st_no");
       String lec_name = (String) req.getAttribute("lec_name");
-      System.out.println("성적st_no : " + st_no);
-      System.out.println("성적lec_name : " + lec_name);      
       GpaVO vo = new GpaVO();
       vo.setSt_no(st_no);
       vo.setLec_no(dao2.changeLec(lec_name));

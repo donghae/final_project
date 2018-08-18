@@ -5,7 +5,7 @@
 <html>
 <head>
 
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	function search() {
 		window.location = 'st_stu?st_state=13&lec_day_dt=' + date.value
@@ -29,7 +29,7 @@
 					$('#result').html(msg);
 				},
 				error : function() {
-					alert('오류');
+					swal('오류');
 				}
 			});
 		});
@@ -48,7 +48,7 @@
 					$('#result').html(msg);
 				},
 				error : function() {
-					alert('오류');
+					swal('오류');
 				}
 			});
 		});

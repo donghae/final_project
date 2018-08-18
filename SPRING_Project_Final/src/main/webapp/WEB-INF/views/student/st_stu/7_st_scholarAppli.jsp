@@ -78,7 +78,7 @@
 											<c:if test ="${dto.rnum==2}">
 												<td>반액(60%)</td>
 											</c:if>
-											<c:if test ="${dto.rnum==3}">
+											<c:if test ="${dto.rnum>=3}">
 												<td>해당사항없음</td>
 											</c:if>
 										</tr>		

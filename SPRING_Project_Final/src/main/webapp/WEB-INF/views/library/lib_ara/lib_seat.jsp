@@ -31,7 +31,7 @@ function seat_callback() {
 	if(httpRequest.readyState == 4) { 
 		
 		if(httpRequest.status == 200) { //200 : 정상종료
-			
+		
 			var data = httpRequest.responseText;
 			view.innerHTML = data;
 			
@@ -46,52 +46,45 @@ function seat_callback() {
 
 $(function() {
 	$(document).on("click", ".seat_color", function() {
-	
 		
 		//열람실 번호
-			var rdRoom_no = document.getElementById("floor").value;
-			//좌석 번호- attr('속성명') : 속성의 이름을 가져온다
-			var data = $(this).attr('id');
-			var seat_no = data.split("_")[0];
-			var seat_state = data.split("_")[1];
-			//빈 좌석일 시
-			if(seat_state == 0) {
-				var really = confirm(rdRoom_no+"호 "+seat_no+" 좌석을 이용하시겠습니까?");
+		var rdRoom_no = document.getElementById("floor").value;
+		//좌석 번호- attr('속성명') : 속성의 이름을 가져온다
+		var data = $(this).attr('id');
+		var seat_no = data.split("_")[0];
+		var seat_state = data.split("_")[1];
+		
+		//빈 좌석일 시
+		if(seat_state == 0) {
+			var really = confirm(rdRoom_no+"호 "+seat_no+" 좌석을 이용하시겠습니까?");
+			
+			if(really == true) {
 				
-				if(really == true) {
-					
-					var params = "seat_no="+ seat_no+"&rdRoom_no="+rdRoom_no;
-					sendRequest(seat_callback, "lib_seat_update","post",params);			
-					
-				} else {
-					return false;
-				}
-			}
-			//이용중 좌석일 시
-			if(seat_state == 1) {
-				var really = confirm(rdRoom_no+"호 "+seat_no+" 좌석을 이용 중지 하시겠습니까?");
+				var params = "seat_no="+ seat_no+"&rdRoom_no="+rdRoom_no;
+				sendRequest(seat_callback, "lib_seat_use","post",params);			
 				
-				if(really == true) {				
-					var params = "seat_no="+ seat_no+"&rdRoom_no="+rdRoom_no;
-					sendRequest(seat_callback, "lib_seat_update","post",params);			
-					
-				} else {
-					return false;
-				}
+			} else {
+				return false;
 			}
-		 
+		}
+		
+		//이용 취소,중지
+		if(seat_state == 1) {
+			var really = confirm(rdRoom_no+"호 "+seat_no+" 좌석을 이용 중지 하시겠습니까?");
+			
+			if(really == true) {				
+				var params = "seat_no="+ seat_no+"&rdRoom_no="+rdRoom_no;
+				sendRequest(seat_callback, "lib_seat_useCancle","post",params);			
+				
+			} else {
+				return false;
+			}
+		}
+	 
 		 
 	 });
 });
-/* function seat_for(seat_state){ */
-		
- 
 
-/* function ad_regi(rdRoom_no,seat_no) {
-	document.domain = "localhost"; 
-	var url = "lib_seat_info?rdRoom_no="+rdRoom_no+"&seat_no="+seat_no;
-	window.open(url, "lib_seat","menubar=no, width=500, height=350");
-} */
 	
 </script>
 

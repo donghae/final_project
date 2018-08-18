@@ -344,6 +344,7 @@ public class SMController {
       req.setAttribute("lec_name", lec_name);
       model.addAttribute("st_no", st_no);
       service2.inputPro(req, model);
+      service2.inputTotal(req, model);
       return "student/st_pro/53_pro_inputPro";
    }
 

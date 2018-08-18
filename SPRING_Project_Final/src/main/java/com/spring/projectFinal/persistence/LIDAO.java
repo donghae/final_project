@@ -76,13 +76,17 @@ public interface LIDAO {
 	
 	
 	//전체 좌석 보기
-	public ArrayList<SeatVO> viewSeat(String rdRoom_no);
+	public ArrayList<SeatVO> viewSeat(String rdRoom_no);	
+	
+	//좌석 이용 등록
+	public int seatinsert(SeatVO sVO);
 	
 	//좌석 업데이트
 	public int seatupdate(SeatVO sVO);
 	
 	//중복 유저 확인
 	public int seatUserCnt(String user_no);
+
 	
 	//한 좌석 정보 보기
 	public SeatVO seatOne(Map<String,Object> map);
@@ -90,4 +94,12 @@ public interface LIDAO {
 	//이용 중 좌석 정보조회
 	public SeatVO seatUser(Map<String,Object> map);
 
+	
+	
+	
+	//마이 라이브러리 - 대여 개수
+	public int myloanCnt(String user_no);
+	
+	//마이 라이브러리 - 대여 목록
+	public ArrayList<BookLoanVO> myloan(String user_no);
 }

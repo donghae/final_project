@@ -114,8 +114,14 @@ public interface SMDAO {
 	// 수강 신청 추가
 	public void regPlus(Map<String,Object> map);
 	
+	//수강 신청시 성적 초기화
+	public void gpaPlus(Map<String,Object> map);
+	
+	//수강 신청시  삭제시 성적 삭제
+	public void gpaDel(Map<String,Object> map);
+	
 	//수강 신청 추가 - 인원초과 체크
-	public Reg_Lec_LectureVO personChk(int lec_no);
+	public Reg_Lec_LectureVO personChk(Map<String,Object> map);
 
 	// 수강 신청 삭제
 	public void regDel(Map<String,Object> map);

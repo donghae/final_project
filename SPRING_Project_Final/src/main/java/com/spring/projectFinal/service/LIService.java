@@ -53,9 +53,15 @@ public interface LIService {
 	//좌석 보기
 	public void lib_viewSeat(HttpServletRequest req,Model model);
 	
-	//좌석 업데이트 
-	public void lib_seat_update(HttpServletRequest req,Model model);
+	//좌석 이용 등록
+	public void lib_seat_use(HttpServletRequest req,Model model);
 	
 	//좌석 이용 정보 보기
 	public void lib_seat_user(HttpServletRequest req,Model model);
+	
+	//좌석 이용 중지
+	public void lib_seat_stopPro(HttpServletRequest req,Model model);
+	
+	//마이 라이브러리
+	public void lib_myLibrary(HttpServletRequest req,Model model);
 }

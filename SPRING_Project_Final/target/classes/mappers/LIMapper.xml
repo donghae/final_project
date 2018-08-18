@@ -232,16 +232,7 @@
 	<select id="loanCnt" resultType="int" parameterType="java.util.Map">				
 		SELECT COUNT(*) FROM tbl_book_loan
 		<where>
-			loan_state = #{loan_state}
-			<if test="loan_state == 1 || loan_state == 2">
-				AND <![CDATA[TO_CHAR(loan_dt,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>				
-			</if>
-			<if test="loan_state == 12">
-				AND <![CDATA[TO_CHAR(return_dt,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>				
-			</if>	
-			<if test="loan_state == 11">
-				AND <![CDATA[TO_CHAR(return_sche,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>				
-			</if>		
+			loan_state = #{loan_state}				
 		</where>
 	</select>
 	
@@ -258,21 +249,20 @@
 							AND user_no = #{user_no}
 						</if>
 						<if test="loan_state != null">
-							loan_state = #{loan_state}
+							loan_state = #{loan_state}	
 							<if test="loan_state == 1 || loan_state == 2">
-								AND <![CDATA[TO_CHAR(loan_dt,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>				
+								ORDER BY loan_dt DESC			
 							</if>
 							<if test="loan_state == 12">
-								AND <![CDATA[TO_CHAR(return_dt,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>				
+								ORDER BY return_dt DESC					
 							</if>	
 							<if test="loan_state == 11">
-								AND <![CDATA[TO_CHAR(return_sche,'YYYY/MM/DD') = TO_CHAR(sysdate,'YYYY/MM/DD')]]>				
-							</if>											
+								ORDER BY loan_dt DESC	
+							</if>																	
 						</if>
 					</when>	
 				</choose>		
-			</where>
-			ORDER BY loan_dt		
+			</where>				
 	</select>
 
 
@@ -330,13 +320,25 @@
 		SELECT * FROM tbl_lib_seat WHERE rdRoom_no=#{rdRoom_no}		
 	</select>
 	
-	
+
 <!-- 좌석 업데이트 -->	
-	<update id="seatupdate" parameterType="com.spring.projectFinal.LIVO.SeatVO">
+	<update id="seatinsert" parameterType="com.spring.projectFinal.LIVO.SeatVO">
 		UPDATE tbl_lib_seat 
 			SET user_no=#{user_no,jdbcType=VARCHAR},
 				seat_st_dt=<![CDATA[sysdate]]>,
 				seat_end_dt=<![CDATA[sysdate+10/1440]]>,
+				seat_usetime=#{seat_usetime,jdbcType=VARCHAR},
+				seat_state=#{seat_state,jdbcType=INTEGER} 
+			WHERE seat_no=#{seat_no} AND rdRoom_no=#{rdRoom_no}
+	</update>
+		
+		
+<!-- 좌석 업데이트 -->	
+	<update id="seatupdate" parameterType="com.spring.projectFinal.LIVO.SeatVO">
+		UPDATE tbl_lib_seat 
+			SET user_no=#{user_no,jdbcType=VARCHAR},
+				seat_st_dt=#{seat_st_dt,jdbcType=DATE},
+				seat_end_dt=#{seat_end_dt,jdbcType=DATE},
 				seat_usetime=#{seat_usetime,jdbcType=VARCHAR},
 				seat_state=#{seat_state,jdbcType=INTEGER} 
 			WHERE seat_no=#{seat_no} AND rdRoom_no=#{rdRoom_no}
@@ -351,11 +353,13 @@
 	
 	
 <!-- 한 좌석 보기 -->
-	<select id="seatOne" resultType="com.spring.projectFinal.LIVO.SeatVO">
-		SELECT *
-			FROM tbl_lib_seat	
+	<select id="seatOne" resultType="com.spring.projectFinal.LIVO.SeatVO" parameterType="java.util.Map">
+		SELECT * FROM tbl_lib_seat	
 			WHERE seat_no = #{seat_no} 
 			AND rdRoom_no = #{rdRoom_no}
+			<if test="user_no != null">
+				AND user_no = #{user_no}
+			</if>
 	</select>
 	
 
@@ -372,8 +376,29 @@
 			FROM tbl_lib_seat seat, 
 				tbl_student st			
 			WHERE seat.user_no = st.st_no
-			AND seat_no = #{seat_no} 
-			AND rdRoom_no = #{rdRoom_no}
+			<if test="seat_no != null">
+				AND seat_no = #{seat_no} 
+				AND rdRoom_no = #{rdRoom_no}
+			</if>	
+			<if test="user_no != null">
+				AND user_no = #{user_no} 				
+			</if>		
 	</select>
 	
+	
+	
+<!-- 마이 라이브러리 : 대여 개수 -->	
+	<select id="myloanCnt" resultType="int">
+		SELECT COUNT(*) FROM tbl_book_loan
+			WHERE user_no = #{user_no}	
+	</select>
+
+<!-- 마이 라이브러리 : 대여 목록 -->
+	<select id="myloan" resultType="com.spring.projectFinal.LIVO.BookLoanVO">
+		SELECT * FROM tbl_book_loan
+			WHERE user_no = #{user_no}
+			ORDER BY loan_dt DESC	
+	</select>
+
+
 </mapper>

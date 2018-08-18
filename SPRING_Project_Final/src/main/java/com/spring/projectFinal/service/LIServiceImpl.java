@@ -1043,17 +1043,8 @@ public class LIServiceImpl implements LIService{
 			
 		}
 	
-		/*String user_no = req.getParameter("adId");*/
-		//관리자일 때
-		/*String user_no = "";*/
-		
-		//검색할 날짜 가져가기 
-		/*Calendar cal = Calendar.getInstance();
-		
-		SimpleDateFormat fmt = new SimpleDateFormat();			         
-        fmt.applyPattern("yyyy/MM/dd");
-        
-		String searching = fmt.format(cal.getTime());*/
+		String viewNum = req.getParameter("viewNum");
+		model.addAttribute("viewNum",viewNum);
 	
 	}
 	
@@ -1070,27 +1061,43 @@ public class LIServiceImpl implements LIService{
 		String rdRoom_no = req.getParameter("rdRoom_no");
 		System.out.println("rdRoom_no : "+rdRoom_no);
 		
-		ArrayList<SeatVO> sVOs = lidao.viewSeat(rdRoom_no);
-					
+		String id = (String)req.getSession().getAttribute("id");		
+		//관리자가 아닐 시, 본인이 이용 중인 좌석 읽어오기
+		if(id.substring(0, 1) != "0") {
+			Map<String,Object> map = new HashMap<String,Object>();	
+			map.put("user_no", id);
+			
+			SeatVO mySeat = lidao.seatUser(map);			
+			model.addAttribute("mySeat",mySeat);
+		} 
 		
+		ArrayList<SeatVO> sVOs = lidao.viewSeat(rdRoom_no);		
 		model.addAttribute("sVOs", sVOs);
 	}
 
 
 
-	//좌석 업데이트
+	//좌석 이용 등록
 	@Override
-	public void lib_seat_update(HttpServletRequest req, Model model) {
+	public void lib_seat_use(HttpServletRequest req, Model model) {
+		
+		int insertCnt = 0;
 		
 		String rdRoom_no = req.getParameter("rdRoom_no");
-		int seat_no = Integer.parseInt(req.getParameter("seat_no"));			 		
-		int updateCnt = 0;
-		
+		int seat_no = Integer.parseInt(req.getParameter("seat_no"));
+				
+		String user_no = null;
+		String id = (String)req.getSession().getAttribute("id");
+		//관리자일 시
+		if(id.substring(0, 1) == "0") {
+			//화면에서 입력받은 아이디를 가져온다
+			user_no = req.getParameter("user_no"); 
+		} else {
+			user_no = id;
+		}
 		
 		//교수,관리자,학생이 맞는지 확인
 		int certiry = 0;	//증명완료 : 1, 증명실패:-1
-		
-		String user_no = (String)req.getSession().getAttribute("id");
 		
 		int stCertiry_fl = lidao.stCertiry(user_no);
 		int adCertiry_fl = lidao.adCertiry(user_no);
@@ -1103,13 +1110,14 @@ public class LIServiceImpl implements LIService{
 			certiry = -1;	//증명실패:-1
 		}
 		System.out.println("certiry : "+certiry);
-				
+		model.addAttribute("certiry",certiry);		
 		
 		//증명 완료 시, 업데이트 처리
 		if(certiry == 1) {
 			//해당 이용자가 이미 이용 중인 좌석이 있는지 확인			
 			int selectCnt = lidao.seatUserCnt(user_no);
 			System.out.println("selectCnt:"+selectCnt);
+			model.addAttribute("selectCnt",selectCnt);
 			
 			//중복되지 않는다면
 			if(selectCnt == 0) {
@@ -1120,79 +1128,38 @@ public class LIServiceImpl implements LIService{
 				
 				SeatVO sVO = new SeatVO();
 				sVO = lidao.seatOne(map);
-				
-				
+								
 				int state = sVO.getSeat_state();
-				System.out.println("state:"+state);	        
-		        switch(state) {
-			        case 0 : //빈좌석 -> 이용중
-			        	System.out.println("state:"+state);
-			        	sVO.setUser_no(user_no);
-			        	
-						//시작 시각 : 현재 시간
-						/*java.sql.Date sqldate = new java.sql.Date(new java.util.Date().getTime());
-						sVO.setSeat_st_dt(sqldate);
-						
-						SimpleDateFormat fmt = new SimpleDateFormat();			         
-				        fmt.applyPattern("yyyy/MM/dd HH:MM:SS");
-				        
-						System.out.println(fmt.format(cal.getTime()));*/
-						
-						//종료 시각 : 현재에서 2분 +
-						/*Calendar cal = Calendar.getInstance();
-						cal.add(Calendar.MINUTE, 10);
-						sVO.setSeat_end_dt(cal.getTime());
-						*/
-						sVO.setseat_usetime("10MI");
-						sVO.setSeat_state(1);
-						
-						updateCnt = lidao.seatupdate(sVO);
-						break;
-						
-			        case 1: //이용 취소		
-			        	System.out.println("state:"+state);
-			        	break;
-			        	
-			        case 2: //이용불가 	  
-			        	System.out.println("state:"+state);
-			        	break;		        	
-		        }
+				System.out.println("state:"+state);	
 				
-				
-				
-			} else if(selectCnt != 0){
-				//선택된 좌석의 정보 가져오기		
-				Map<String,Object> map = new HashMap<String,Object>();
-				map.put("seat_no", seat_no);
-				map.put("rdRoom_no", rdRoom_no);
-				
-				SeatVO sVO = new SeatVO();
-				sVO = lidao.seatOne(map);
-				
-				
-				int state = sVO.getSeat_state();
-								        
-		        switch(state) {
-			        case 0 : //빈좌석 -> 이용중
-			        	break;
-			        case 1: //이용 취소
-			        	if(sVO.getUser_no().equals(user_no)) {
-				        	
-							sVO.setSeat_state(0);							
-							updateCnt = lidao.seatupdate(sVO);
-			        	}
-			        	break;
-			        	
-			        case 2: //이용불가 	        	
-			        	break;	
-		        }
-		        
-			}
-			model.addAttribute("updateCnt",updateCnt);
-			System.out.println("업데이트 성공여부 : "+updateCnt);
-			model.addAttribute("selectCnt",selectCnt);						
+		        if(state == 0) {			        
+		        	System.out.println("state:"+state);
+		        	sVO.setUser_no(user_no);
+		        	
+					//시작 시각 : 현재 시간
+					/*java.sql.Date sqldate = new java.sql.Date(System.currentTimeMillis());
+					sVO.setSeat_st_dt(sqldate);*/
+					
+					/*SimpleDateFormat fmt = new SimpleDateFormat();			         
+			        fmt.applyPattern("yyyy/MM/dd HH:MM:SS");
+			        
+					System.out.println(fmt.format(cal.getTime()));*/
+					
+					//종료 시각 : 현재에서 10분 +
+				/*	Calendar cal = Calendar.getInstance();
+					cal.add(Calendar.MINUTE, 10);
+					sVO.setSeat_end_dt(cal.getTime());*/
+					
+					sVO.setseat_usetime("10MI");
+					sVO.setSeat_state(1);
+					
+					insertCnt = lidao.seatinsert(sVO);
+					model.addAttribute("insertCnt",insertCnt);
+					model.addAttribute("rdRoom_no",rdRoom_no);	
+					model.addAttribute("seat_no",seat_no);	
+		        }					
+			}			
 		}
-		model.addAttribute("certiry",certiry);
 	}
 
 
@@ -1204,7 +1171,7 @@ public class LIServiceImpl implements LIService{
 		int seat_no = Integer.parseInt(req.getParameter("seat_no"));
 		String rdRoom_no = req.getParameter("rdRoom_no");
 				
-		Map<String,Object> map = new HashMap<>();
+		Map<String,Object> map = new HashMap<String, Object>();
 		
 		map.put("seat_no", seat_no);
 		map.put("rdRoom_no", rdRoom_no);	
@@ -1215,11 +1182,150 @@ public class LIServiceImpl implements LIService{
 	}
 
 
-	
+	//좌석 이용 중지
+	@Override
+	public void lib_seat_stopPro(HttpServletRequest req, Model model) {
+		
+		int updateCnt=0;
+		
+		int seat_no = Integer.parseInt(req.getParameter("seat_no"));
+		String rdRoom_no = req.getParameter("rdRoom_no");
+		
+		String user_no = null;
+		String id = (String)req.getSession().getAttribute("id");
+		//관리자일 시
+		if(id.substring(0, 1).equals("0")) {			
+			user_no = req.getParameter("user_no"); 
+		} else {
+			user_no = id;
+		}
+		
+		System.out.println("seat_no:"+seat_no);
+		System.out.println("rdRoom_no:"+rdRoom_no);
+		System.out.println("user_no:"+user_no);
+		
+		//선택된 좌석의 정보 가져오기		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("seat_no", seat_no);
+		map.put("rdRoom_no", rdRoom_no);
+		map.put("user_no", user_no);
+		
+		SeatVO sVO = new SeatVO();
+		sVO = lidao.seatOne(map);
+		
+		System.out.println("state:"+sVO.getSeat_state());	  		
+		int state = sVO.getSeat_state();
+		
+		if(state == 1) {
+			System.out.println("state:"+state);
+        	sVO.setSeat_st_dt(null);
+        	sVO.setSeat_end_dt(null);
+        	sVO.setUser_no(null);
+        	sVO.setseat_usetime(null);
+        	sVO.setSeat_state(0);
+        	
+        	updateCnt = lidao.seatupdate(sVO);
+        	model.addAttribute("updateCnt",updateCnt);
+		}
+ 	
+		model.addAttribute("rdRoom_no",rdRoom_no);
+		model.addAttribute("seat_no",seat_no);
+	}
 
-	
-	
-	
 
+	//마이 라이브러리
+	@Override
+	public void lib_myLibrary(HttpServletRequest req, Model model) {
+		
+		String user_no = (String)req.getSession().getAttribute("id");
+		
+		//검색 결과 페이지 구성
+		int pageSize = 20;		//한 페이지당 출력할 검색 결과 개수
+		int pageBlock = 10;		//한 블럭당 보여질 페이지의 수 
+		
+		int cnt = 0;			//검색결과 수
+		int start = 0;			//현재 페이지 시작 글 번호
+		int end = 0;			//현재 페이지 마지막 글 번호
+		int number = 0;			//게시글 번호
+		String pageNum = null;	//페이지 번호 
+		int currentPage = 0;	//현재 페이지
+		
+		int pageCount = 0;		//페이지 갯수
+		int startPage = 0;		//시작 페이지
+		int endPage = 0;		//마지막 페이지
+		
+	
+		cnt = lidao.myloanCnt(user_no);
+		System.out.println("출력될 목록 개수 : "+ cnt);
 
+		//검색결과 페이지 구성
+		pageNum = req.getParameter("pageNum");
+		
+		//첫 페이지를 1페이지로 설정
+		if(pageNum == null) {
+			pageNum = "1";	
+		}
+		
+		currentPage = Integer.parseInt(pageNum);
+		System.out.println("현재 페이지 : "+currentPage);
+
+		pageCount = (cnt / pageSize) + (cnt % pageSize > 0 ? 1:0);
+		System.out.println("페이지 수 : " + pageCount);
+		
+		start = (currentPage - 1) * pageSize + 1;
+		
+		end = start + pageSize - 1;
+		System.out.println("시작 : " + start + " , 끝 : " + end);
+		
+		if(end > cnt) end = cnt;
+		
+		number = cnt - (currentPage - 1) * pageSize; 
+		System.out.println("글 수 : " + number + " , " + "한 페이지당 글 갯수 : " + pageSize);
+		
+		
+		//시작 페이지
+		startPage = (currentPage / pageBlock) * pageBlock + 1;
+		if(currentPage % pageBlock == 0) {
+			startPage -= pageBlock;
+		}		
+		System.out.println("블럭 첫 페이지 : " + startPage);
+		
+		
+		//마지막 페이지
+		endPage = startPage + pageBlock - 1;
+		if(endPage > pageCount) endPage = pageCount;
+		
+		System.out.println("블럭 마지막 페이지 : " + endPage);
+		
+		//검색 결과 내용 읽어오기
+		if(cnt > 0) {
+			
+			ArrayList<BookLoanVO> bloanVOs = lidao.myloan(user_no);
+			model.addAttribute("bloanVOs",bloanVOs);
+			
+			ArrayList<BookVO> bVOs = new ArrayList<BookVO>();
+			//대여한 책의 정보 가져오기
+			for(int i=0; i<bloanVOs.size(); i++) {
+				String b_no = bloanVOs.get(i).getB_no();
+				BookVO bVO = lidao.bookinfo(b_no);
+				bVOs.add(bVO);
+				System.out.println("bVOs:" + bVOs.get(i).getB_isbn());	
+			}
+			model.addAttribute("bVOs",bVOs);
+		}
+		
+		//6단계. 처리 결과 넘기기
+		model.addAttribute("cnt", cnt);//글 갯수
+		model.addAttribute("number", number);//글번호
+		model.addAttribute("pageNum", pageNum);//페이지 번호
+		
+		if(cnt>0) { //글이 하나 이상 있을 때 
+			model.addAttribute("startPage", startPage);//시작 페이지
+			model.addAttribute("endPage", endPage);//마지막 페이지
+			model.addAttribute("pageBlock", pageBlock);//페이지 블럭
+			model.addAttribute("pageCount", pageCount);//페이지 갯수
+			model.addAttribute("currentPage", currentPage);//현재 페이지				
+		}		
+	}
+	
 }

@@ -16,18 +16,30 @@
 <link rel="stylesheet" href="resources/css/table_student.css">
 </head>
 <body>
-		
-		<c:if test="${insertCnt == 0}">
-			<script type="text/javascript">
-				alert("입력 실패");
-			</script>
-		</c:if>
-		
-		<c:if test="${insertCnt != 0}">
-			<script type="text/javascript">
-				alert("입력 완료");
-				window.location='st_pro?st_state=50';
-			</script>	
-		</c:if>		
+      <input type="hidden" value="${lec_name}" name="lec_name">
+      <input type="hidden" value="${st_no}" name="st_no">
+            
+      <c:if test="${insertCnt == 0}">
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+         <script type="text/javascript">
+            swal("입력 실패").then((okay) => {
+			  if (okay) {
+				  window.location='st_pro?st_state=51&lec_name=${lec_name}&st_no=${st_no}';
+				  }
+				});
+         </script>
+      </c:if>
+      
+      <c:if test="${insertCnt != 0}">
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+         <script type="text/javascript">
+            swal("입력 완료").then((okay) => {
+			  if (okay) {
+				  window.location='st_pro?st_state=51&lec_name=${lec_name}&st_no=${st_no}';
+				  }
+				});
+           
+         </script>   
+      </c:if>      
 </body>
 </html>

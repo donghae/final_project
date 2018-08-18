@@ -4,13 +4,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	function timeTable() {
 		var url = "regTimeTable";
 		window.open(url, "regTimeTable", "menubar=no, width=1400, height=1000");
 	}
-
+	
 	$(function() {
 		$('input[name=regPlus]').click(function() {
 			var id = $(this).attr('id');
@@ -23,7 +23,7 @@
 					$('#result').html(msg);
 				},
 				error : function() {
-					alert('오류');
+					swal('오류');
 				}
 			});
 		});
@@ -42,7 +42,7 @@
 					$('#result').html(msg);
 				},
 				error : function() {
-					alert('오류');
+					swal('오류');
 				}
 			});
 		});
@@ -54,9 +54,10 @@
 <link rel="stylesheet" href="resources/css/table_student.css">
 <body>
 <c:if test="${regfl==0}">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
-	alert("수강신청 기간이 아닙니다. 기간을 확인하세요")
-	window.location = 'admission'
+		swal("수강신청 기간이 아닙니다. 기간을 확인하세요")
+		window.location = 'admission'
 	</script>
 </c:if>
 	<div style="width: 900px; float: left;">

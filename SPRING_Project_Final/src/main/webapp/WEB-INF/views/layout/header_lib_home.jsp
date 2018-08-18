@@ -102,9 +102,7 @@
 											</a>
 										
 											<ul class="dropdown-menu">
-												<li><center><a href="lib_rental">도서 대여</a></center></li>
-												<li><center><a href="lib_reservation">도서 예약</a></center></li>
-												<li><center><a href="lib_submission">희망도서 신청</a></center></li>
+												<li><center><a href="lib_myLibrary">도서 내역</a></center></li>											
 											</ul>
 										</li>
 										

@@ -443,23 +443,31 @@ public class SMServiceImpl implements SMService {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("lec_no", lec_no);
 		map.put("id", id);
+		Map<String,Object> map2 = new HashMap<String,Object>();
+		map2.put("lec_no", lec_no);
+		map2.put("id", id);
 		dao.regPlus(map);
+		dao.gpaPlus(map2);
 	}
 	
 	// 수강신청 > 추가버튼 - 인원초과 체크
 	@Override
 	public int personChk(HttpServletRequest req, Model model) {
+		String id = (String)req.getSession().getAttribute("id");
 		int lec_no = Integer.parseInt(req.getParameter("lec_no"));
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("lec_no", lec_no);
+		map.put("id", id);
 		int personChk=0;
 		int maxPerson=0,nowPerson=0;
-		Reg_Lec_LectureVO vo=dao.personChk(lec_no);
+		Reg_Lec_LectureVO vo=dao.personChk(map);
 		if(vo!=null) {
 			maxPerson=vo.getMax_person();
 			nowPerson=vo.getLec_now_person();
 		}
 		if(maxPerson==nowPerson&&maxPerson!=0)
 			personChk=1;
-//		System.out.println("현재인원 : "+nowPerson + "최대인원 : "+maxPerson);
+		System.out.println("현재인원 : "+nowPerson + "최대인원 : "+maxPerson);
 		return personChk;
 	}
 
@@ -467,11 +475,15 @@ public class SMServiceImpl implements SMService {
 	@Override
 	public void regDel(HttpServletRequest req, Model model) {
 		Map<String,Object> map = new HashMap<String,Object>();
+		Map<String,Object> map2 = new HashMap<String,Object>();
 		String id = (String)req.getSession().getAttribute("id");
 		int lec_no = Integer.parseInt(req.getParameter("lec_no"));
 		map.put("id", id);
 		map.put("lec_no", lec_no);
+		map2.put("id", id);
+		map2.put("lec_no", lec_no);
 		dao.regDel(map);
+		dao.gpaDel(map2);
 	}
 
 	// 수강신청 > 신청인원수 업데이트

@@ -16,24 +16,24 @@ function tab_change(){
 	if(document.getElementById("tab1").checked) {
 		
 		var state = "loan_state=1&viewNum=1";
-		sendRequest(loanlist_callback, "lib_loanSuperlistb","post",state);
+		sendRequest(loanlist_callback, "lib_loanSuperlist","post",state);
 	}
  	//반납 현황
 	if(document.getElementById("tab2").checked) {
 		
 		var state = "loan_state=12&viewNum=2";
-		sendRequest(loanlist_callback, "lib_loanSuperlistb","post",state);
+		sendRequest(loanlist_callback, "lib_loanSuperlist","post",state);
 	}
 	//반납 예정 현황
 	if(document.getElementById("tab3").checked) {
 		var state = "loan_state=11&viewNum=3";
-		sendRequest(loanlist_callback, "lib_loanSuperlistb","post",state);
+		sendRequest(loanlist_callback, "lib_loanSuperlist","post",state);
 	}
-	//예약 현황
+	//미반납 도서 현황
 	if(document.getElementById("tab4").checked) {
 		
-		var state = "loan_state=2&viewNum=4";
-		sendRequest(loanlist_callback, "lib_loanSuperlistb","post",state);
+		var state = "loan_state=3&viewNum=4";
+		sendRequest(loanlist_callback, "lib_loanSuperlist","post",state);
 	}
 	
 } 
@@ -126,12 +126,7 @@ function loanForm_callback() {
 	
 		<div class="content_w50" >		
 			<!-- <div class="tab_box">	 -->
-				<input id="tab1" type="radio" name="tab" checked="checked" onclick="tab_change();"/>
-				<%-- <input type="radio" name="tab" id="tab1" value="Y" onclick="tab_change();" 
-					<c:if test="${ bean.radio eq 'Y'}">checked="checked"</c:if>
-				/> --%>
-
-
+				<input id="tab1" type="radio" name="tab" checked="checked" onclick="tab_change();"/>				
 		        <input id="tab2" type="radio" name="tab" onclick="tab_change();"/>
 		        <input id="tab3" type="radio" name="tab" onclick="tab_change();"/>
 				<input id="tab4" type="radio" name="tab" onclick="tab_change();"/>
@@ -140,7 +135,7 @@ function loanForm_callback() {
 		        <label for="tab1">대여 현황</label>
 		        <label for="tab2">반납 현황</label>
 		        <label for="tab3">반납 예정 현황</label>
-		        <label for="tab4">미반납 도서</label>
+		        <label for="tab4">뭘 조회할까</label>
 			<!-- </div> -->
 			
 	        <!-- 탭 내용 : 탭 제목을 선택했을 때 표시되는 본문 -->     
@@ -153,7 +148,7 @@ function loanForm_callback() {
 			<div class="viewList"><!-- 반납 예정 현황 -->				
 			</div>
 			
-			<div class="viewList"><!-- 예약 현황 -->				
+			<div class="viewList"><!-- 미반납 도서 현황 -->				
 			</div>
 			
 		</div>

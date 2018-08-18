@@ -100,15 +100,12 @@
 								<a href="#">도서 관리</a>
 								<ul class="dropdown">
 									<li><a href="lib_bookAddForm">도서 등록</a></li>								
-									<li><a href="lib_bookSupervise">도서 현황</a></li>									
+									<!-- <li><a href="lib_bookSupervise">도서 현황</a></li>	 -->								
 								</ul>
 							</li>		
 							<li>
 								<a href="lib_loanSupervise">대여 관리</a>
-							</li>
-							<li>
-								<a href="#">희망 도서 관리</a>
-							</li>
+							</li>							
 							<li>
 								<a href="lib_seat_admin">좌석 현황</a>
 							</li>							

@@ -4,15 +4,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 	function regStart() {
-		alert("수강신청을 시작합니다.")
-		window.location = 'regStart';
+		swal("수강신청을 시작합니다.").then((okay) => {
+			  if (okay) {
+				  window.location = 'regStart';
+				  }
+				});
 	}
 	function regEnd() {
-		alert("수강신청을 종료합니다.")
-		window.location = 'regEnd';
+		swal("수강신청을 종료합니다.").then((okay) => {
+			  if (okay) {
+				    window.location = 'regEnd';
+				  }
+				});
 	}
 </script>
 

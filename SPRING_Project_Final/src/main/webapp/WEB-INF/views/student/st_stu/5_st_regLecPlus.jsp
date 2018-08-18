@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 function timeTable() {
 	var url = "regTimeTable";
@@ -24,7 +24,7 @@ $(function() {
 				$('#result').html(msg);
 			},
 			error : function() {
-				alert('오류');
+				swal('오류');
 			}
 		});
 	});
@@ -37,20 +37,23 @@ $(function() {
 <link rel="stylesheet" href="resources/css/table_student.css">
 <body>
 	<c:if test="${cnt!=0}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			alert("등록된 강의입니다")
+			swal("등록된 강의입니다")
 		</script>
 	</c:if>
 	<c:if test="${cnt==0}">
 		<c:if test="${chk!=0}">
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script type="text/javascript">
-				alert("같은 시간에 강의가 있습니다.")
+				swal("같은 시간에 강의가 있습니다.")
 			</script>
 		</c:if>
 		<c:if test="${chk==0}">
 			<c:if test ="${personChk==1}">
+			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 				<script type="text/javascript">
-					alert("등록 최대 인원수를 초과했습니다.")
+					swal("등록 최대 인원수를 초과했습니다.")
 				</script>
 			</c:if>
 		</c:if>

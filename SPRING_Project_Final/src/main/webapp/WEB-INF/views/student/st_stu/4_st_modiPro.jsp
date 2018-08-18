@@ -12,15 +12,24 @@
 </head>
 <body>
 		<c:if test="${updateCnt == 0}">
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script type="text/javascript">
-				errorAlert(updateError);
+			swal("정보수정실패");
+			setTimeout(function() {
+				window.location="st_stu?st_state=10";
+			}, 1000);
+				
 			</script>
 		</c:if>
 		
+		
 		<c:if test="${updateCnt != 0}">
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 			<script type="text/javascript">
-				alert("내 정보가 수정되었습니다.");
+			swal("내 정보가 수정되었습니다.");
+			setTimeout(function() {
 				window.location="st_stu?st_state=10";
+			}, 500);
 			</script>
 		</c:if>	
 </body>

@@ -75,8 +75,9 @@
 <body>
 	<jsp:include page="../layout/header_ara.jsp" />
 	<c:if test="${sessionScope.id == null}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			alert("권한이 없습니다.");
+			swal("권한이 없습니다.");
 			window.history.back();
 		</script>	
 	</c:if>

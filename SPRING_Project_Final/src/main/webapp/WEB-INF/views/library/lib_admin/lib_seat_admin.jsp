@@ -47,6 +47,7 @@ function seat_callback() {
 $(function() {
 	$(document).on("click", ".seat_color", function() {
 		
+		
 		//열람실 번호
 		var rdRoom_no = document.getElementById("floor").value;
 		//좌석 번호- attr('속성명') : 속성의 이름을 가져온다
@@ -54,15 +55,27 @@ $(function() {
 		var seat_no = data.split("_")[0];
 		var seat_state = data.split("_")[1];
 
-		//이용중 좌석일 시
+		//이용중 좌석일 시, 이용자의 정보를 확인
 		if(seat_state == 1) {
 			
 			var params = "seat_no="+ seat_no+"&rdRoom_no="+rdRoom_no;
 			sendRequest(user_callback, "lib_seat_user","post",params);						
-		}		 		 
-	 });
+		}
+		
+		//이용중 좌석이 아닐 시, 이용등록
+		if(seat_state == 0) {
+			
+			var id = prompt("아이디를 입력하세요.", "ARA UNIVERSITY LIBRARY");
+			
+			
+	    	window.location="lib_seat_use_admin?seat_no="+seat_no+"&rdRoom_no="+rdRoom_no+"&user_no="+id;
+			
+		}
+		
+	 }); 
 });
 
+//빈 줄 없애기
 function trim(stringToTrim) {
     return stringToTrim.replace(/^\s+|\s+$/g,"");
 }
@@ -74,16 +87,27 @@ function user_callback() {
 			
 			var data = trim(httpRequest.responseText);
 			var result = data.split("|");
-			
-			alert(result[0]+"\n"+result[1]+"\n"+result[2]+"\n"+result[3]+"\n"+result[4]); 
-			/* 
-			window.open("lib_seat_userInfo?",'userInfo',data); */
 
+			var seat_stop = confirm(result[0]+result[1]+"\n"+result[2]+"\n"+result[3]+"\n"+result[4]+"\n"+result[5]);			
+			if(seat_stop == true) {				
+				
+				var room = result[1].split(":")[1];
+				var seat = result[2].split(":")[1];
+				var userr = result[3].split("(")[1];
+				var user = userr.split(")")[0];
+				
+				window.location="lib_seat_stopPro?user_no="+user+"&seat_no="+seat+"&rdRoom_no="+room;
+			} else {
+				return false;
+			}
+		
 		} else {
 			alert("에러발생");
 		}
 	}
 }
+
+
 	
 </script>
 
