@@ -75,17 +75,17 @@
 <body>
 	<jsp:include page="../layout/header_ara.jsp" />
 
-	<div align="center">
+	<div align="center" style="    height: 600px;   margin-top: 50px;">
 		<div class="cy_1">
-			<h4>온라인 강의 전체 공지사항</h4>			
+			<h4 style="margin-left: 700px;">공지사항</h4>	
 		</div>
 		<%@ include file="../cyber/cy_sidebar_stu.jsp"%>
-		<div class="left_div" style="width: 800px; height: 40%;">
+		<div class="left_div" style="width: 1000px;height: 40%;margin-left: -450;">
 			<table class="st_mint" >
 				<thead>
 					<tr>
-						<th style="width: 10%">글번호</th>
-						<th style="width: 50%">글제목</th>
+						<th style="width: 10%">번호</th>
+						<th style="width: 50%">제목</th>
 						<th style="width: 10%">작성자</th>
 						<th style="width: 20%">작성일</th>
 						<th style="width: 10%">조회수</th>
@@ -136,10 +136,10 @@
 
 							<c:forEach var="i" begin="${startPage}" end="${endPage}">
 								<c:if test="${i==currentPage}">
-									<span><b>[${i}]</b></span>
+									<span><b>${i}</b></span>
 								</c:if>
 								<c:if test="${i!=currentPage}">
-									<a href="cy_main?pageNum=${i}">[${i}]</a>
+									<a href="cy_main?pageNum=${i}">${i}</a>
 								</c:if>
 							</c:forEach>
 
@@ -156,4 +156,4 @@
 </body>
 
 
-<%@ include file="../layout/footer_lib.jsp"%>
+<%@ include file="../layout/footer_stu.jsp"%>

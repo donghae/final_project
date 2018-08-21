@@ -48,6 +48,12 @@
 	SELECT * FROM DUAL
 </insert>
 
+<!-- 관리자 기숙사 학생 수정 -->
+<update id="dtAdminStuUpdate" parameterType="com.spring.projectFinal.DTVO.Admin_stu_selectVO">
+	UPDATE TBL_DORM_STUDENT SET dorm_room=#{dorm_room}, dorm_st_dt=#{dorm_st_dt}, dorm_end_dt=#{dorm_end_dt}
+	WHERE st_no=#{st_no} AND dorm_room=#{dorm_room}
+</update>
+
 <!-- 관리자 공지사항 게시 건수 조회 -->
 <select id="getDormNoticeCnt" resultType="int">
 	SELECT count(*) FROM TBL_DORM_NOTICE
@@ -60,7 +66,7 @@
 	 	 FROM (SELECT dorm_n_no, ad_no, dorm_n_title, dorm_n_content, dorm_n_dt, dorm_n_file, dorm_n_cnt, rownum as rNum
 				FROM(
 				     SELECT * FROM TBL_DORM_NOTICE
-				     ORDER BY dorm_n_no DESC
+				     ORDER BY dorm_n_no DESC, dorm_n_dt DESC
 				     )   
 			   ) 
 		 WHERE rNum >= #{start} AND rNum <=#{end}
@@ -79,22 +85,45 @@
 
 <!-- 관리자 공지사항 수정 값 뿌리기 select -->
 <select id="updateDormNotice" resultType="com.spring.projectFinal.DTVO.Admin_notice_selectVO">
-	SELECT * FROM TBL_DORM_NOTICE WHERE dorm_n_no=#{dorm_n_no}
+	SELECT * FROM TBL_DORM_NOTICE WHERE dorm_n_no=#{dorm_n_no} AND ad_no=#{ad_no}
 </select>
 
 <!-- 관리자 공지사항 수정 update -->
 <update id="updateDormNoticeCon" parameterType="java.util.Map">
-	UPDATE TBL_DORM_NOTICE SET dorm_n_title=#{dorm_n_title}, dorm_n_content=#{dorm_n_content}, dorm_n_dt=#{dorm_n_dt}, dorm_n_file=#{dorm_n_file} WHERE dorm_n_no=#{dorm_n_no}
+	UPDATE TBL_DORM_NOTICE SET ad_no=#{ad_no}, dorm_n_title=#{dorm_n_title}, dorm_n_content=#{dorm_n_content}, dorm_n_dt=#{dorm_n_dt} 
+	WHERE dorm_n_no=#{dorm_n_no}
 </update>
 
 <!-- 관리자 공지사항 등록 insert -->
 <insert id="addDormNotice" parameterType="com.spring.projectFinal.DTVO.Admin_notice_selectVO">
-	INSERT INTO TBL_DORM_NOTICE(dorm_n_no, ad_no, dorm_n_title, dorm_n_content, dorm_n_dt, dorm_n_file, dorm_n_cnt)
-	VALUES(tbl_dorm_notice_seq.nextval,#{ad_no},#{dorm_n_title},#{dorm_n_content},TO_DATE(SYSDATE,'yyyy/mm/dd'),#{dorm_n_file},0)
+	INSERT INTO TBL_DORM_NOTICE(dorm_n_no, ad_no, dorm_n_title, dorm_n_content, dorm_n_dt, dorm_n_cnt)
+	VALUES(tbl_dorm_notice_seq.nextval,#{ad_no},#{dorm_n_title},#{dorm_n_content},TO_DATE(SYSDATE,'YYYY/MM/DD'),0)
 </insert>
 
+<!-- 관리자 벌점관리 클릭시 벌점 현황 게시판 -->
+<select id="getDormPenaltyCnt" resultType="int">
+	SELECT count(*) FROM TBL_PENALTY
+</select>
+
+<!-- 관리자 벌점현황 목록 -->
+<select id="getDormPenalty" resultType="com.spring.projectFinal.DTVO.Dt_stu_penalty_selectVO" parameterType="java.util.Map">	
+	<![CDATA[
+		SELECT p.st_no, st_name, dorm_penalty, dorm_penalty_dt, dorm_reason
+	 			FROM (SELECT st_no, dorm_penalty, dorm_penalty_dt, dorm_reason, ROWNUM rNum 
+	                   FROM (
+	                         SELECT * FROM TBL_PENALTY 
+	                         ORDER BY dorm_penalty_dt DESC
+	                         )
+	                ) p JOIN TBL_DORM_STUDENT ds 
+	 			ON p.st_no = ds.st_no
+	           JOIN TBL_STUDENT s
+	           ON s.st_no = ds.st_no
+	 			WHERE (rNum >= #{start} AND rNum <= #{end})   			
+   	]]>   	
+</select>
+
 <!-- 관리자 벌점 조회 -->
-<select id="dtAdminPenaltySel" resultType="com.spring.projectFinal.DTVO.Dt_stu_penalty_selectVO">
+<!-- <select id="dtAdminPenaltySel" resultType="com.spring.projectFinal.DTVO.Dt_stu_penalty_selectVO">
 	SELECT pe.st_no, st_name, dorm_room, dorm_penalty, dorm_penalty_dt, dorm_reason
 	FROM TBL_STUDENT st JOIN TBL_DORM_STUDENT ds
 	ON st.st_no = ds.st_no
@@ -103,13 +132,19 @@
 	WHERE dorm_penalty_dt IS NOT NULL
 	AND dorm_penalty_dt BETWEEN to_date('20180101','YYYYMMDD') AND to_date('20181231','YYYYMMDD')	
 	ORDER BY dorm_penalty_dt DESC, dorm_room ASC
-</select>
+</select> -->
 
 <!-- 관리자 벌점 등록 -->
 <insert id="addPenaltyInsert" parameterType="java.util.Map">
-	INSERT INTO TBL_PENALTY
+	INSERT INTO TBL_PENALTY(st_no,dorm_penalty,dorm_penalty_dt,dorm_reason)
 	VALUES(#{st_no},#{dorm_penalty},#{dorm_penalty_dt},#{textarea})
 </insert>
+
+<!-- 관리자 벌점 수정 클릭 -->
+<select id="dtAdminPenaltyUp" parameterType="java.util.Map" resultType="com.spring.projectFinal.DTVO.Dt_stu_penalty_selectVO">
+	SELECT * FROM TBL_PENALTY
+	WHERE st_no = ${st_no} AND dorm_penalty_dt = #{dorm_penalty_dt}
+</select>
 
 <!-- 관리자 벌점 수정  목록-->
 <select id="selectPenalty" resultType="com.spring.projectFinal.DTVO.Dt_stu_penalty_selectVO">
@@ -131,6 +166,62 @@
 	 ON ds.st_no = p.st_no
 	 WHERE p.st_no=#{st_no} AND dorm_reason=#{dorm_reason}
 </select>
+
+<!-- 관리자 외박신청 목록 갯수 -->
+<select id="getDormOvernightCnt" resultType="int">
+	SELECT count(*) FROM TBL_OVERNIGHT
+	WHERE dorm_ex_fl = 1
+</select>
+
+<!-- 관리자 외박신청 목록 dtos -->
+<select id="getDormOvernightList" parameterType="java.util.Map" resultType="com.spring.projectFinal.DTVO.Dt_stu_overnight_selectVO">
+<![CDATA[
+	SELECT o.st_no, st_name,dorm_on_sc,dorm_ex_dt,dorm_ex_fl,dorm_reason  
+	 FROM (SELECT st_no,dorm_on_sc,dorm_ex_dt,dorm_ex_fl,dorm_reason,rownum as rNum
+	        FROM(
+	             SELECT * FROM TBL_OVERNIGHT
+	             ORDER BY dorm_ex_dt ASC
+	             )   
+	       )o JOIN TBL_DORM_STUDENT ds
+	 ON o.st_no = ds.st_no
+	 JOIN TBL_STUDENT s
+	 ON s.st_no = o.st_no      
+	 WHERE rNum >=#{start} AND rNum <=#{end}
+	 ORDER BY dorm_ex_dt ASC
+]]>
+</select>
+
+<!-- 관리자 외박신청 승인 -->
+<update id="dtAdminOvernightIns" parameterType="java.util.Map">
+	UPDATE TBL_OVERNIGHT SET dorm_ex_fl = 2
+	WHERE st_no=#{st_no} AND dorm_ex_dt=#{dorm_ex_dt}
+</update>
+
+<!-- 관리자 외박신청 승인 목록 건수 조회 -->
+<select id="getDormOvernightSelect" resultType="int">
+	SELECT count(*) FROM TBL_OVERNIGHT
+</select>
+
+<!-- 관리자 외박신청 승인 목록 가져오기 -->
+<select id="getDormOvernightSelectList" parameterType="java.util.Map" resultType="com.spring.projectFinal.DTVO.Dt_stu_overnight_selectVO">
+<![CDATA[
+	SELECT o.st_no, st_name,dorm_on_sc,dorm_ex_dt,dorm_ex_fl,dorm_reason  
+	 FROM (SELECT st_no,dorm_on_sc,dorm_ex_dt,dorm_ex_fl,dorm_reason,rownum as rNum
+	        FROM(
+	             SELECT * FROM TBL_OVERNIGHT
+	             ORDER BY dorm_ex_dt DESC
+	             )   
+	       )o JOIN TBL_DORM_STUDENT ds
+	 ON o.st_no = ds.st_no
+	 JOIN TBL_STUDENT s
+	 ON s.st_no = o.st_no      
+	 WHERE rNum >=#{start} AND rNum <=#{end}
+	 AND dorm_ex_fl IN(2,3)
+	 ORDER BY dorm_ex_dt DESC
+]]>	 
+</select>
+
+
 
 
 

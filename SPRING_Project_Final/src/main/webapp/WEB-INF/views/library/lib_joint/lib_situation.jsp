@@ -35,32 +35,44 @@
 								<div class="card-title" style="height:50px;"></div>
 								
 								<div class="card-text">
-									<label>도서자료</label>
-									<table class="table">
-										<thead class="thead-dark">
-											<tr style="padding: 15px;">
-												<th style="padding: 5px;">구분</th>
-												<th style="padding: 5px;">소설</th>
-												<th style="padding: 5px;">수필</th>
-												<th style="padding: 5px;">전문</th>
-												<th style="padding: 5px;">기타</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr style="padding: 15px;">
-												<td style="padding: 5px;">국내</td>
-												<td style="padding: 5px;">31,930</td>
-												<td style="padding: 5px;">24,818</td>
-												<td style="padding: 5px;">9,316</td>
-												<td style="padding: 5px;">120,586</td>
-											</tr>
-											<tr style="padding: 15px;">
-												<td style="padding: 5px;">국외</td>
-												<td style="padding: 5px;">12,207</td>
-												<td style="padding: 5px;">4,819</td>
-												<td style="padding: 5px;">1,916</td>
-												<td style="padding: 5px;">29,203</td>
-											</tr>
+									<!-- <label>도서자료</label> -->
+									<table class="table" style="text-align:center;">
+										
+											<thead class="thead-dark">
+												<tr style="padding:15px;">
+													<th style="padding:5px;width:10%;">구 분</th>
+													<th style="padding:5px;width:10%;">소 설</th>
+													<th style="padding:5px;width:10%;">예 술</th>
+													<th style="padding:5px;width:10%;">외 국 어</th>
+													<th style="padding:5px;width:10%;">과 학</th>
+													<th style="padding:5px;width:10%;">시/에세이</th>
+													<th style="padding:5px;width:10%;">합 계</th>
+													<th style="padding:5px;width:10%;">총 계</th>
+												</tr>
+											</thead>
+											<tbody>
+								
+													
+												<tr style="padding:15px;">
+													<td style="padding:5px;width:10%;">국 외</td>
+													<td style="padding:5px;width:10%;">${stuVOs[0].booksum}</td>
+													<td style="padding:5px;width:10%;">${stuVOs[1].booksum}</td>
+													<td style="padding:5px;width:10%;">${stuVOs[2].booksum}</td>
+													<td style="padding:5px;width:10%;">${stuVOs[3].booksum}</td>
+													<td style="padding:5px;width:10%;">${stuVOs[4].booksum}</td>
+													<td style="padding:5px;width:10%;">${stuVOs[5].booksum}</td>
+													<td rowspan="2" style="vertical-align:center;width:10%;">${stuVOs[12].booksum}</td>
+												</tr>
+											
+												<tr style="padding:15px;">
+													<td style="padding:5px;width:10%;">국 외</td>
+													<td style="padding:5px;width:10%;">${stuVOs[6].booksum}</td>
+													<td style="padding:5px;width:10%;">${stuVOs[7].booksum}</td>
+													<td style="padding:5px;width:10%;">${stuVOs[8].booksum}</td>
+													<td style="padding:5px;width:10%;">${stuVOs[9].booksum}</td>
+													<td style="padding:5px;width:10%;">${stuVOs[10].booksum}</td>
+													<td style="padding:5px;width:10%;">${stuVOs[11].booksum}</td>													
+												</tr>
 										</tbody>
 										
 									</table>

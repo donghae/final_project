@@ -4,31 +4,33 @@
 
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<body>
 	<!-- 로그인 성공 시 -->
 	<c:if test="${id != null}">
 		<c:set var="admin" value="${id.substring(0,1)}"/>
 		
 		<c:choose> 
 			<c:when test="${admin.equals('0')}">
+			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 				<script type="text/javascript">
 				<!-- 1초 후에 alert창 띄운 후, 이동 -->
 					setTimeout(function() {
-						alert('${name} 관리자님 로그인되었습니다');
-						opener.parent.location.href="lib_bookAddForm";
+						swal('${name} 관리자님 로그인되었습니다');
+						opener.parent.location.href="lib_bookSearch_admin";
 						self.close();				
-					}, 300);
+					}, 500);
 				</script>			
 			</c:when>
 			
 			<c:otherwise>
+			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 				<script type="text/javascript">
 				<!-- 1초 후에 alert창 띄운 후, 이동 -->
 					setTimeout(function() {
-						alert('${name} 님 로그인되었습니다');
+						swal('${name} 님 로그인되었습니다');
 						opener.parent.location.reload();
 						self.close();				
-					}, 300);
+					}, 500);
 				</script>
 			</c:otherwise>
 		</c:choose>
@@ -50,3 +52,4 @@
 			}					
 		</script>
 	</c:if>	
+</body>

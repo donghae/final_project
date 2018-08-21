@@ -32,22 +32,30 @@
 		<tr>			
 		<c:forEach var="sVO" items="${sVOs}">				
 			<td>		
-				<!-- 빈 좌석 -->		
+				<!-- 내 좌석이 있을 경우 -->
+				<c:if test="${mySeat != null}">
+					<c:set var="myrd" value="${mySeat.rdRoom_no}"/>
+					<c:set var="myseat" value="${mySeat.seat_no}"/>
+				</c:if>	
+					
+				<!-- 빈 좌석/이용가능 좌석 -->		
 				<c:if test="${sVO.seat_state == 0}">
-					<a class="seat_color" id="${sVO.seat_no}_${sVO.seat_state}">
+					<c:if test="${myrd != null && myseat != null}">
+					<!-- 내 좌석이 있을 시에는 다른 좌석 등록 못함 -->
 						${sVO.seat_no}
 						<img src="${path}resources/images/library_img/seat/seat.png" width="60px">
-					</a>
+					</c:if>
+					
+					<c:if test="${myrd == null && myseat == null}">
+						<a class="seat_color" id="${sVO.seat_no}_${sVO.seat_state}">
+							${sVO.seat_no}
+							<img src="${path}resources/images/library_img/seat/seat.png" width="60px">
+						</a>
+					</c:if>
 				</c:if>	
 				
 				<!-- 이용중 좌석 -->
-				<c:if test="${sVO.seat_state == 1}">
-					<!-- 내 좌석이 있을 경우 -->
-					<c:if test="${mySeat != null}">
-						<c:set var="myrd" value="${mySeat.rdRoom_no}"/>
-						<c:set var="myseat" value="${mySeat.seat_no}"/>
-					</c:if>	
-					
+				<c:if test="${sVO.seat_state == 1}">				
 					<c:choose>						
 						<c:when test="${myrd == sVO.rdRoom_no && myseat == sVO.seat_no}">
 						<!-- 내 좌석 -->
@@ -64,6 +72,7 @@
 						</c:otherwise>	
 					</c:choose>		
 				</c:if>	
+				
 				<!-- 사용불가 좌석 -->
 				<c:if test="${sVO.seat_state == 2}">
 							

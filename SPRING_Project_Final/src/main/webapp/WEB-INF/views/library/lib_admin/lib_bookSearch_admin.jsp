@@ -4,7 +4,7 @@
 <%@ include file="../../setting.jsp" %>  
 
 <script src="resources/js/request.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 
 	var checkFirst = true; 
@@ -15,6 +15,53 @@
 	var searchSelect2 = null;	//category
 	
 	
+	$(function() {		
+		$('a[name=pageNum_nm]').click(function(e) {//데이터 입력이 끝났을 때:keyup(),  데이터 입력 중:keydown()
+			e.preventDefault();
+			var search=$(this).attr('id'); //입력한 키워드
+			hide("list");
+			var title = $('input[name=title]').val();
+			var author = $('input[name=author]').val();
+			var global = $('select[name=global]').val();
+			var category = $('select[name=category]').val();
+			
+		
+			if(author != lastKeyword1 || title != lastKeyword2){
+				if(author != lastKeyword1){
+					lastKeyword1 = title;
+				}
+				if(title != lastKeyword2){
+					lastKeyword2 = author;
+				}
+				if(global != searchSelect1){
+					searchSelect1 = global;
+				}
+				if(category != searchSelect2){
+					searchSelect2 = category;
+				}		
+				
+				var params = "b_title="+title+"&b_author="+author+"&b_global="+global+"&b_category="+category+"&pageNum="+search;
+				
+				
+				$.ajax({
+					type : 'get',
+					url : 'lib_bookSearchResult_admin',
+					data : params,
+					
+					success : function(data) {
+						$('#suggestlistAdmin').html(data);
+					},
+					error : function() {
+						alert('검색 오류');
+					}
+					
+				});
+			}		
+		});
+	});
+	
+	
+		
 	//검색입력시
 	function startSuggestAdmin() {
 		
@@ -22,7 +69,7 @@
 		
 		if(checkFirst == true) {
 			loopSendKeyword = true; 
-			setTimeout("sendKeywordAdmin()", 500);
+			/* setTimeout("sendKeywordAdmin()", 500); */
 		}
 		checkFirst = false; 
 	}
@@ -31,10 +78,11 @@
 	 
 	function sendKeywordAdmin() {
 		
-		if(loopSendKeywordAdmin == false) {
+		/* if(loopSendKeywordAdmin == false) {
 			return false;
-		} 
+		}  */
 	
+		hide("list");
 		var title = document.booksearch.title.value;
 		var author = document.booksearch.author.value;		
 		var global = document.booksearch.global.value;
@@ -59,7 +107,43 @@
 			sendRequest(adminresult_callback, "lib_bookSearchResult_admin", "GET", params);
 		} 
 	
-		setTimeout("sendKeywordAdmin()", 500);
+		/* setTimeout("sendKeywordAdmin()", 500); */
+	}
+	
+	
+function sendKeyword2(pageNum) {
+		
+		/* if(loopSendKeyword == false) {
+			return false;
+		}  */
+		hide("list");
+		var title = document.booksearch.title.value;
+		var author = document.booksearch.author.value;		
+		var global = document.booksearch.global.value;
+		var category = document.booksearch.category.value;
+		
+	
+		if(author != lastKeyword1 || title != lastKeyword2){
+			if(author != lastKeyword1){
+				lastKeyword1 = title;
+			}
+			if(title != lastKeyword2){
+				lastKeyword2 = author;
+			}
+			if(global != searchSelect1){
+				searchSelect1 = global;
+			}
+			if(category != searchSelect2){
+				searchSelect2 = category;
+			}		
+			
+			var params = "b_title="+title+"&b_author="+author+"&b_global="+global+"&b_category="+category+"&pageNum="+pageNum;
+			
+			sendRequest(adminresult_callback, "lib_bookSearchResult_admin", "GET", params);
+		} 
+	 
+		/* setTimeout("sendKeyword()", 500); */
+		
 	}
 	
 	
@@ -157,7 +241,7 @@
 					</span>&nbsp;
 							
 					<span style="padding:0px 3px;">	
-						<input class="btn_red" type="submit" value="검 색" style="height:45px; width:80px;font-size:15px;">
+						<input class="btn_red" value="검 색" style="height:45px; width:80px;font-size:15px;">
 					</span>	
 				</div>
 			</div>	
@@ -168,7 +252,7 @@
 	<div id="list">
 	<!-- 목록 조회 -->
 	<article class="back_white" >
-		<div class="content" >
+		<div class="content" id="suggestlist_main">
 			<table class="st_beige" >
 				<thead class="st_beige">
 					<tr>

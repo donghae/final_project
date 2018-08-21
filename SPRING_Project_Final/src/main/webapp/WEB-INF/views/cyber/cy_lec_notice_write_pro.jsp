@@ -11,14 +11,22 @@
 	<c:if test="${insertCnt == 0}">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			swal("입력실패");
+			swal("입력실패").then((okay) => {
+				  if (okay) {
+					  window.location="cy_lec_main?lec_no=${lec_no}";
+					  }
+					});
 		</script>	
 	</c:if>
 	<c:if test="${insertCnt != 0}">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			swal("입력되었습니다");
-			window.location="cy_lec_main?lec_no=${lec_no}";
+			swal("입력되었습니다").then((okay) => {
+				  if (okay) {
+					  window.location="cy_lec_main?lec_no=${lec_no}";
+					  }
+					});
+			
 		</script>	
 		
 	</c:if>

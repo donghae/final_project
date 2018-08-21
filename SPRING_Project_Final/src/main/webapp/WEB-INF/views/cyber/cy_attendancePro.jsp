@@ -20,10 +20,11 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
 			opener.location.reload();
-			swal("시청시간 반영되었습니다.");
-			setTimeout(function() {
-				self.close();
-			}, 500);
+			swal("시청시간 반영되었습니다.").then((okay) => {
+				  if (okay) {
+					  self.close();
+					  }
+					});
 			
 		</script>	
 		

@@ -60,6 +60,6 @@
 		<a href="cy_download?fileName=cyber1_2018_07_27_074355.mp4">cyber1_2018_07_27_074355.mp4</a>
 
     </div>
-	<%@include file="../layout/footer_lib.jsp"%>
+	<%@include file="../layout/footer_stu.jsp"%>
 </body>
 </html>

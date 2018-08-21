@@ -63,7 +63,7 @@
 										<span class="caret"></span>
 									</a>
 									<ul class="dropdown-menu">
-										<li><center><a href="lib_seat">좌석 현황</a></center></li>
+										<li><center>&nbsp;&nbsp;로그인 후, 이용해 주세요&nbsp;&nbsp;</center></li>
 									</ul>
 								</li>
 																	

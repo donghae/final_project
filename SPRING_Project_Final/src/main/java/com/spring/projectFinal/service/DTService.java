@@ -84,18 +84,28 @@ public interface DTService {
 	// 관리자 공지사항 글 등록
 	public void addDormNotice(HttpServletRequest req, Model model);
 	
-	// 관리자 벌점 조회 , 관리자 벌점 수정 목록
+	// 관리자 벌점 조회
 	public void dtAdminPenaltySel(HttpServletRequest req, Model model);
 	
 	// 관리자 벌점 부여
 	public void addPenaltyInsert(HttpServletRequest req, Model model);
 		
+	// 관리자 벌점 수정 클릭
+	public void dtAdminPenaltyUp(HttpServletRequest req, Model model);
+	
 	// 관리자 벌점 수정 목록
 	public void selectPenalty(HttpServletRequest req, Model model);
 	
 	// 관리자 벌점 수정 이름 클릭
 	public void updatePenalty(HttpServletRequest req, Model model);
 	
-	/*// 관리자 공지사항 글 수정 
-	public void addAdminNoticeModify(HttpServletRequest req, Model model);*/
+	// 관리자 외박 신청 목록
+	public void dtAdminOvernight(HttpServletRequest req, Model model);
+	
+	// 관리자 외박 신청 승인
+	public void dtAdminOvernightIns(HttpServletRequest req, Model model);
+	
+	// 관리자 외박 신청 승인 조회
+	public void dtAdminOvernightSel(HttpServletRequest req, Model model);
+	
 }

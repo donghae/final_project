@@ -23,21 +23,10 @@
 	
 <!-- 도서 추가 -->
 	<insert id="bookadd" parameterType="com.spring.projectFinal.LIVO.BookVO">
-	    
-	    <if test="b_img != null">
-			INSERT INTO tbl_book(b_no,b_isbn,b_global,b_category,b_title,b_price
-								,b_author,b_publish,b_date,b_img,b_intoDate)
-			 VALUES(#{b_no},#{b_isbn},#{b_global},#{b_category},#{b_title},#{b_price},
-			 					#{b_author},#{b_publish},#{b_date},#{b_img},<![CDATA[sysdate]]>)	
-		</if>
-		
-	    <if test="b_img == null">
-			INSERT INTO tbl_book(b_no,b_isbn,b_global,b_category,b_title,b_price
-								,b_author,b_publish,b_date,b_intoDate)
-			 VALUES(#{b_no},#{b_isbn},#{b_global},#{b_category},#{b_title},#{b_price},
-			 					#{b_author},#{b_publish},#{b_date},<![CDATA[sysdate]]>)	
-		</if>
-		
+		INSERT INTO tbl_book(b_no,b_isbn,b_global,b_category,b_title,b_price
+							,b_author,b_publish,b_date,b_intoDate)
+		 VALUES(#{b_no},#{b_isbn},#{b_global},#{b_category},#{b_title},#{b_price},
+		 					#{b_author},#{b_publish},#{b_date},<![CDATA[sysdate]]>)		
 	</insert>
 	
 	
@@ -103,7 +92,7 @@
 		
 		SELECT * FROM(SELECT b_no,b_isbn,b_global,b_category,
 							b_title,b_price,b_author,b_publish,
-							b_date,b_img,b_intoDate,b_state_fl,
+							b_date,b_intoDate,b_state_fl,
 							rownum rnum
 				FROM (SELECT * FROM tbl_book 
 				
@@ -169,7 +158,7 @@
 		<![CDATA[
 		SELECT * FROM(SELECT b_no,b_isbn,b_global,b_category,
 							b_title,b_price,b_author,b_publish,
-							b_date,b_img,b_intoDate,b_state_fl,
+							b_date,b_intoDate,b_state_fl,
 							rownum rnum
 				FROM (SELECT * FROM tbl_book ORDER BY b_global ASC, b_category ASC, b_date ASC, b_no ASC)
 			)WHERE rnum >= #{start} AND rnum <= #{end}
@@ -192,8 +181,7 @@
 							b_price=#{bVO.b_price,jdbcType=INTEGER},
 							b_author=#{bVO.b_author,jdbcType=VARCHAR},
 							b_publish=#{bVO.b_publish,jdbcType=VARCHAR},
-							b_date=#{bVO.b_date,jdbcType=VARCHAR},
-							b_img=#{bVO.b_img,jdbcType=VARCHAR},
+							b_date=#{bVO.b_date,jdbcType=VARCHAR},							
 							b_state_fl=#{bVO.b_state_fl,jdbcType=INTEGER} 
 			WHERE b_no=#{b_no}
 	</update>	
@@ -301,17 +289,23 @@
 			WHERE ROWNUM = 1   	    
 	</select>	
 	
-<!-- 도서 반납,연장 -->
-	<update id="loanupdate" parameterType="com.spring.projectFinal.LIVO.BookLoanVO">	
+<!-- 도서 반납 -->
+	<update id="loanreturn" parameterType="com.spring.projectFinal.LIVO.BookLoanVO">	
 		UPDATE tbl_book_loan SET loan_dt=#{loan_dt,jdbcType=DATE},
 								return_sche=#{return_sche,jdbcType=VARCHAR},
 								overdue=#{overdue,jdbcType=INTEGER},
 								return_dt=#{return_dt,jdbcType=DATE},
 								loan_state=#{loan_state,jdbcType=INTEGER} 
-			WHERE b_no=#{b_no,jdbcType=VARCHAR} AND user_no=#{user_no,jdbcType=VARCHAR}
+			WHERE b_no=#{b_no,jdbcType=VARCHAR} AND user_no=#{user_no,jdbcType=VARCHAR} AND loan_state=1
 	</update> 
 	
 	
+<!-- 도서 연장 -->
+	<update id="loanrenew" parameterType="com.spring.projectFinal.LIVO.BookLoanVO">	
+		UPDATE tbl_book_loan SET return_sche=<![CDATA[TO_DATE(return_sche,'yyyy-mm-dd HH24:mi:ss')+3]]>,								
+								loan_state=#{loan_state,jdbcType=INTEGER} 
+			WHERE b_no=#{b_no,jdbcType=VARCHAR} AND user_no=#{user_no,jdbcType=VARCHAR}
+	</update> 	
 	
 	
 	
@@ -401,4 +395,12 @@
 	</select>
 
 
+
+<!-- 도서 현황 - 카테고리별 도서 개수 -->
+	<select id="bookCateSum" resultType="com.spring.projectFinal.LIVO.SituationVO">
+		SELECT b_global,b_category,SUM(b_category) booksum
+    		FROM TBL_BOOK
+			WHERE b_no IS NOT NULL
+			GROUP BY ROLLUP(b_global,b_category)
+	</select>
 </mapper>

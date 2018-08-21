@@ -75,23 +75,24 @@
 <body>
 	<jsp:include page="../layout/header_ara.jsp" />
 
-	<div align="center">
+	<div align="center" style="    height: 600px;   margin-top: 50px;">
 		<div class="cy_1">
-			<h4>온라인 강의 공지사항</h4>
+			<h4 style="margin-left: 700px;">공지사항</h4>
 			<c:if test="${sessionScope.id == null}">
 			<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 				<script type="text/javascript">
-					swal("권한이 없습니다.");
-					window.history.back();
+					swal("권한이 없습니다.").then((okay) => {
+						  if (okay) {
+							  window.history.back();
+							  }
+							});
+					
 				</script>	
-			</c:if>
-			<c:if test="${fn:substring(sessionScope.id,0,1) == 0 || fn:substring(sessionScope.id,0,1) == 1}">
-				<input type="button" value="글 작성" onclick="window.location='cy_lec_notice_write_form?lec_no=${lec_no}'">
 			</c:if>
 				
 		</div>
 		<%@ include file="../cyber/cy_lec_sidebar_stu.jsp"%>
-		<div class="left_div" style="width: 800px; height: 40%;">
+		<div class="left_div" style="width: 1000px;height: 40%;margin-left: -450;">
 			<table class="st_mint">
 				<thead>
 					<tr>
@@ -147,10 +148,10 @@
 
 							<c:forEach var="i" begin="${startPage}" end="${endPage}">
 								<c:if test="${i==currentPage}">
-									<span><b>[${i}]</b></span>
+									<span><b>${i}</b></span>
 								</c:if>
 								<c:if test="${i!=currentPage}">
-									<a href="cy_lec_main?lec_no=${lec_no}&pageNum=${i}">[${i}]</a>
+									<a href="cy_lec_main?lec_no=${lec_no}&pageNum=${i}">${i}</a>
 								</c:if>
 							</c:forEach>
 
@@ -162,9 +163,12 @@
 						</c:if></th>
 				</tr>
 			</table>
+			<c:if test="${fn:substring(sessionScope.id,0,1) == 0 || fn:substring(sessionScope.id,0,1) == 1}">
+				<input class="btn_mint" type="button" value="글 작성" onclick="window.location='cy_lec_notice_write_form?lec_no=${lec_no}'">
+			</c:if>
 		</div>
 	</div>
 </body>
 
 
-<%@ include file="../layout/footer_lib.jsp"%>
+<%@ include file="../layout/footer_stu.jsp"%>

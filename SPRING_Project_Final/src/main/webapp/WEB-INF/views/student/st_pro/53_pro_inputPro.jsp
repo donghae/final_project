@@ -22,15 +22,23 @@
       <c:if test="${insertCnt == 0}">
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
          <script type="text/javascript">
-            swal("다시 입력해주세요.");
+            swal("다시 입력해주세요.").then((okay) => {
+			  if (okay) {
+				  window.location='st_pro?st_state=51&lec_name=${lec_name}&st_no=${st_no}';
+				  }
+				});
          </script>
       </c:if>
 
       <c:if test="${insertCnt != 0}">
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
          <script type="text/javascript">
-       		swal("입력 완료");
-            window.location='st_pro?st_state=51&lec_name=${lec_name}&st_no=${st_no}';
+       		swal("입력 완료").then((okay) => {
+			  if (okay) {
+				  window.location='st_pro?st_state=51&lec_name=${lec_name}&st_no=${st_no}';
+				  }
+				});
+            
          </script>         
       </c:if>   
 </body>

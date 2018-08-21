@@ -14,7 +14,7 @@
 	</c:if>
 	
 	<c:if test="${insertCnt != 1}">
-		실패했씁ㄴ디ㅏ.
+		실패했습니다.
 	</c:if>
 </body>
 </html>

@@ -64,4 +64,11 @@ public interface LIService {
 	
 	//마이 라이브러리
 	public void lib_myLibrary(HttpServletRequest req,Model model);
+	
+	
+	
+	
+	//도서 현황(도서 안내페이지)
+	public void lib_situation(HttpServletRequest req,Model model);
+	
 }

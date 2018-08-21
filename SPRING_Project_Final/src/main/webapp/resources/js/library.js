@@ -8,7 +8,7 @@ var msg_noLogin = "로그인 후 이용가능합니다";
 
 /*로그인 창 유도*/
 function libnologin() {
-	alert(msg_noLogin);
+	swal(msg_noLogin);
 	librarylogin();
 }
 
@@ -27,57 +27,57 @@ function librarylogin() {
 /*도서 등록 양식 입력확인*/
 function bookAddForm_written() {
 	if (!document.bookAddForm.global.value || document.bookAddForm.global.value == 0) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookAddForm.global.focus();
 		return false;
 	}
 	if (!document.bookAddForm.category.value || document.bookAddForm.category.value == 0) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookAddForm.category.focus();
 		return false;
 	}
 	if (!document.bookAddForm.isbn.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookAddForm.isbn.focus();
 		return false;
 	}
 	if (!document.bookAddForm.title.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookAddForm.title.focus();
 		return false;
 	}
 	if (!document.bookAddForm.price.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookAddForm.price.focus();
 		return false;
 	}
 	if (!document.bookAddForm.amt.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookAddForm.amt.focus();
 		return false;
 	}
 /*	if (!document.bookAddForm.img.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookAddForm.img.focus();
 		return false;
 	}*/
 	if (!document.bookAddForm.publish.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookAddForm.publish.focus();
 		return false;
 	}
 	if (!document.bookAddForm.year.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookAddForm.year.focus();
 		return false;
 	}
 	if (!document.bookAddForm.month.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookAddForm.month.focus();
 		return false;
 	}
 	if (!document.bookAddForm.day.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookAddForm.day.focus();
 		return false;
 	}
@@ -92,14 +92,24 @@ function bookAddForm_written() {
 
 /*도서 삭제 시 컨펌*/
 function delBook(b_no) {
-	var really = confirm("선택하신 도서를 삭제하시겠습니까?");
 	
-	if(really == true) {
-		window.location='lib_bookDelPro?b_no='+b_no;
-	} else {
-		return false;
-	}
-	
+	swal({
+		  title: "선택하신 도서를 삭제하시겠습니까?",
+		  buttons: true,
+		  dangerMode: true,
+		})
+		.then((willDelete) => {
+		  if (willDelete) {
+		    swal("삭제합니다.").then((okay) => {
+				  if (okay) {
+					  window.location='lib_bookDelPro?b_no='+b_no;
+					  }
+					});
+		  } else {
+		    swal("삭제를 취소합니다.");
+		    return false;
+		  }
+		});
 }
 
 
@@ -111,12 +121,12 @@ function delBook(b_no) {
 /*관리자 : 대여/반납 페이지 - 입력여부*/
 function loanForm_written() {
 	if(!document.loanForm.user_no.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.loanForm.user_no.focus();
 		return false;
 	}
 	if(!document.loanForm.b_no.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.loanForm.b_no.focus();
 		return false;
 	}
@@ -126,12 +136,12 @@ function loanForm_written() {
 /*관리자 : 대여/반납 페이지 - 입력여부, 반납처리*/
 function return_written() {
 	if(!document.bookLoanForm.user_no.value) {
-		alert(msg_text); 
+		swal(msg_text); 
 		document.bookLoanForm.user_no.focus();
 		return false;
 	}
 	if(!document.bookLoanForm.b_no.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookLoanForm.b_no.focus();
 		return false;
 	}
@@ -146,12 +156,12 @@ function return_written() {
 /*관리자 : 대여/반납 페이지 - 입력여부, 연장처리*/
 function renew_written() {
 	if(!document.bookLoanForm.user_no.value) {
-		alert(msg_text); 
+		swal(msg_text); 
 		document.bookLoanForm.user_no.focus();
 		return false;
 	}
 	if(!document.bookLoanForm.b_no.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookLoanForm.b_no.focus();
 		return false;
 	}

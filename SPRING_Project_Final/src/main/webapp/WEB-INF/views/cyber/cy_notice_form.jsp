@@ -75,15 +75,12 @@
 <body>
 	<jsp:include page="../layout/header_ara.jsp" />
 
-	<div align="center">
-		<div class="cy_1">
-			<h4>공지사항</h4>
-		</div>
+	<div align="center" style="    height: 600px;   margin-top: 50px;">
 		<%@ include file="../cyber/cy_sidebar_stu.jsp"%>
 		<div class="left_div">
 			<table class="st_mint" style="width: 1000px; height: 40%">
 				<tr>
-					<th>제목</th>
+					<th style="width:15%">제목</th>
 					<td>
 						${vo.cy_n_title}
 					</td>
@@ -97,7 +94,7 @@
 				<tr>
 					<th>내용</th>
 					<td>
-						<textarea class="input" rows="10" cols="40" name="content" style="width:270px;resize:none" readonly="readonly">${vo.cy_n_content}</textarea>
+						<textarea class="input" rows="10" cols="40" name="content" style="width:80%;resize:none;height: 302px;" readonly="readonly">${vo.cy_n_content}</textarea>
 					</td>
 				</tr>
 				<tr>
@@ -106,11 +103,9 @@
 					</th>
 				</tr>
 			</table>
-			
-			
 		</div>
 	</div>
 </body>
 
 
-<%@ include file="../layout/footer_lib.jsp"%>
+<%@ include file="../layout/footer_stu.jsp"%>

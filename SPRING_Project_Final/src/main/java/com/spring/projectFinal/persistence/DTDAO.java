@@ -50,7 +50,7 @@ public interface DTDAO {
 	public Admin_notice_selectVO getDormNoticeDetail(int dorm_n_no);
 	
 	// 관리자 공지사항 수정 값 뿌리기
-	public Admin_notice_selectVO updateDormNotice(int dorm_n_no);
+	public Admin_notice_selectVO updateDormNotice(Map<String, Object> map);
 	
 	// 관리자 공지사항 수정 처리 update
 	public int updateDormNoticeCon(Map<String,Object> map);
@@ -61,8 +61,20 @@ public interface DTDAO {
 /*	// 관리자 공지사항 수정 목록 가져오기
 	public Admin_notice_selectVO addAdminNoticeModify(int ad_no);*/
 	
-	// 관리자 벌점 조회 , 관리자 벌점 수정 목록
-	public ArrayList<Dt_stu_penalty_selectVO> dtAdminPenaltySel();
+	// 관리자 벌점관리 클릭시 벌점 현황 게시판 글 수
+	public int getDormPenaltyCnt();
+	
+	// 관리자 벌점현황 목록
+	public ArrayList<Dt_stu_penalty_selectVO> getDormPenalty(Map<String, Object> map);
+	
+	// 관리자 벌점 수정 클릭
+	public Dt_stu_penalty_selectVO dtAdminPenaltyUp(Map<String,Object> map);
+	
+	// 관리자 벌점 수정 처리
+	public int dtAdminStuUpdate (Map<String,Object> map);
+	
+	/*// 관리자 벌점 조회 
+	public ArrayList<Dt_stu_penalty_selectVO> dtAdminPenaltySel();*/
 	
 	// 관리자 벌점 등록
 	public int addPenaltyInsert(Map<String,Object> map);
@@ -73,8 +85,20 @@ public interface DTDAO {
 	// 관리자 벌점 수정 이름 클릭
 	public Dt_stu_penalty_selectVO updatePenalty(Map<String,Object> map);
 	
+	// 관리자 외박신청 목록 갯수
+	public int getDormOvernightCnt();
 	
+	// 관리자 외박신청 목록 dtos
+	public ArrayList<Dt_stu_overnight_selectVO> getDormOvernightList(Map<String, Object> map);
 	
+	// 관리자 외박신청 승인
+	public int dtAdminOvernightIns(Map<String, Object> map);
+	
+	// 관리자 외박신청 승인 목록 건수 조회
+	public int getDormOvernightSelect();
+	
+	// 관리자 외박신청 승인 목록 가져오기
+	public ArrayList<Dt_stu_overnight_selectVO> getDormOvernightSelectList(Map<String, Object> map);
 	
 	
 	// 학생 외박 조회

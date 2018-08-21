@@ -13,7 +13,6 @@
 
 		
 <!-- 검색 결과 -->
-
 	<div class="content">
 		<table class="st_beige">
 			<thead class="st_beige">
@@ -85,37 +84,39 @@
 			</tbody>
 		</table>
 		
-					<br><br>
-			<!-- 페이지 컨트롤 버튼 -->
-			<div class="cen_middle">
-				<c:if test="${cnt > 0}">
-					<!-- 처음 블럭[◀◀] / 이전 블럭[◀] -->
-					<c:if test="${startPage > pageBlock}">
-						<a href="" id="1" name="pageNum_nm">[◀◀]</a>
-						
-						<a href="" name="pageNum_nm" id="${startPage - pageBlock}">[◀]</a>
-					</c:if>
-				
-					<!-- 페이지 -->
-					<c:forEach var="i" begin="${startPage}" end="${endPage}">
-						<!-- 현재 페이지와 i가 같은 경우 -->
-						<c:if test="${i == currentPage}">
-							<span><b>[${i}]</b></span>
-						</c:if>
-						<!-- 현재 페이지와 i가 다를 경우 -->
-						<c:if test="${i != currentPage}">
-							<a href="" name="pageNum_nm" id="${i}">[${i}]</a>
-						</c:if>
-					</c:forEach>
+		
+		
+		<br><br>
+		<!-- 페이지 컨트롤 버튼 -->
+		<div class="cen_middle">
+			<c:if test="${cnt > 0}">
+				<!-- 처음 블럭[◀◀] / 이전 블럭[◀] -->
+				<c:if test="${startPage > pageBlock}">
+					<a href="" id="1" name="pageNum_nm">[◀◀]</a>
 					
-					<!-- 다음 블럭[▶] / 마지막 블럭[▶▶] -->
-					<c:if test="${pageCount > endPage}">
-						<a href="" name="pageNum_nm" id="${startPage + pageBlock}">[▶]</a>
-						<a href="" name="pageNum_nm" id="${pageCount}">[▶▶]</a>
-					</c:if>
+					<a href="" name="pageNum_nm" id="${startPage - pageBlock}">[◀]</a>
 				</c:if>
-			</div>			
-		</div>
+			
+				<!-- 페이지 -->
+				<c:forEach var="i" begin="${startPage}" end="${endPage}">
+					<!-- 현재 페이지와 i가 같은 경우 -->
+					<c:if test="${i == currentPage}">
+						<span><b>[${i}]</b></span>
+					</c:if>
+					<!-- 현재 페이지와 i가 다를 경우 -->
+					<c:if test="${i != currentPage}">
+						<a href="" name="pageNum_nm" id="${i}">[${i}]</a>
+					</c:if>
+				</c:forEach>
+				
+				<!-- 다음 블럭[▶] / 마지막 블럭[▶▶] -->
+				<c:if test="${pageCount > endPage}">
+					<a href="" name="pageNum_nm" id="${startPage + pageBlock}">[▶]</a>
+					<a href="" name="pageNum_nm" id="${pageCount}">[▶▶]</a>
+				</c:if>
+			</c:if>
+		</div>			
+	</div>
 
 	
 	

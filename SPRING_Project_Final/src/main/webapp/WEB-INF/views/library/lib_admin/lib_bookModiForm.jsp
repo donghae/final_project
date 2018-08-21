@@ -6,63 +6,64 @@
 
 
 <jsp:include page="../../layout/header_lib_admin.jsp"/>
+<body>
 
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 /*도서 수정 양식 입력여부*/
 function bookModiForm_written() {
 	if (!document.bookModiForm.global.value || document.bookModiForm.global.value == 0) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookModiForm.global.focus();
 		return false;
 	}
 	if (!document.bookModiForm.category.value || document.bookModiForm.category.value == 0) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookModiForm.category.focus();
 		return false;
 	}
 	if (!document.bookModiForm.isbn.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookModiForm.isbn.focus();
 		return false;
 	}
 	if (!document.bookModiForm.title.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookModiForm.title.focus();
 		return false;
 	}
 	if (!document.bookModiForm.price.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookModiForm.price.focus();
 		return false;
 	}
 	if (!document.bookModiForm.amt.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookModiForm.amt.focus();
 		return false;
 	}
 /*	if (!document.bookModiForm.img.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookModiForm.img.focus();
 		return false;
 	}*/
 	if (!document.bookModiForm.publish.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookModiForm.publish.focus();
 		return false;
 	}
 	if (!document.bookModiForm.year.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookModiForm.year.focus();
 		return false;
 	}
 	if (!document.bookModiForm.month.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookModiForm.month.focus();
 		return false;
 	}
 	if (!document.bookModiForm.day.value) {
-		alert(msg_text);
+		swal(msg_text);
 		document.bookModiForm.day.focus();
 		return false;
 	}
@@ -87,7 +88,7 @@ function bookModiForm_written() {
 			<label>
 				<span>이 미 지</span>
 				<input type="hidden">
-				<input type="file" name="img" value="${bVO.b_img}" style="display:inline-block;">
+				<input type="file" name="img" value="${bVO.b_img}" style="display:inline-block;" required="required">
             </label>
         </div>
           
@@ -138,7 +139,7 @@ function bookModiForm_written() {
 		<div class="form-row">
             <label>
                 <span>도 서 명</span>
-                <input type="text" name="title" value="${bVO.b_title}">
+                <input type="text" name="title" value="${bVO.b_title}" required="required">
             </label>
         </div>
 		
@@ -146,7 +147,7 @@ function bookModiForm_written() {
 		<div class="form-row">
             <label>
                 <span>가 격</span>
-                <input type="text" name="price" value="${bVO.b_price}">
+                <input type="text" name="price" value="${bVO.b_price}" required="required">
             </label>
         </div>
 		
@@ -154,7 +155,7 @@ function bookModiForm_written() {
         <div class="form-row">
             <label>
                 <span>저 자</span>
-                <input type="text" name="author" value="${bVO.b_author}">
+                <input type="text" name="author" value="${bVO.b_author}" required="required">
             </label>
         </div>
 
@@ -162,7 +163,7 @@ function bookModiForm_written() {
         <div class="form-row">
             <label>
                 <span>출 판 사</span>
-                <input type="text" name="publish" value="${bVO.b_publish}">
+                <input type="text" name="publish" value="${bVO.b_publish}" required="required">
             </label>
         </div>
         
@@ -195,9 +196,12 @@ function bookModiForm_written() {
                 </script>
                 
                 
-                <input type="text" name="year" style="width:100px">&nbsp;년&nbsp;&nbsp;
-                <input type="text" name="month" style="width:50px">&nbsp;월&nbsp;&nbsp;
-                <input type="text" name="day" style="width:50px">&nbsp;일
+                <input type="text" name="year" style="width:100px" placeholder="YYYY" required="required"
+                	pattern="\d{4}" title="YYYY">&nbsp;년&nbsp;&nbsp;
+                <input type="text" name="month" style="width:50px" placeholder="MM" required="required"
+                	pattern="\d{2}" title="MM">&nbsp;월&nbsp;&nbsp;
+                <input type="text" name="day" style="width:50px" placeholder="DD" required="required"
+                	pattern="\d{2}" title="DD">&nbsp;일
             </label>
         </div>
         
@@ -214,3 +218,4 @@ function bookModiForm_written() {
 </section>
 
 <%@include file="../../layout/footer_lib.jsp" %>
+</body>

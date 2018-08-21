@@ -56,8 +56,12 @@
 <c:if test="${regfl==0}">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
-		swal("수강신청 기간이 아닙니다. 기간을 확인하세요")
-		window.location = 'admission'
+		swal("수강신청 기간이 아닙니다. 기간을 확인하세요").then((okay) => {
+			  if (okay) {
+				  window.location = 'st_stu?st_state=10'
+				  }
+				});
+		
 	</script>
 </c:if>
 	<div style="width: 900px; float: left;">

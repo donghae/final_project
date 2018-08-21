@@ -199,6 +199,7 @@ public class CLServiceImpl implements CLService{
 	            System.out.println("lec_no : "+req.getParameter("lec_no"));
 	            int lec_no = Integer.parseInt(req.getParameter("lec_no"));
 	            vo.setLec_no(lec_no);
+	            System.out.println("?"+lec_no);
 	            vo.setCy_lec_n_title(req.getParameter("title"));
 	            vo.setCy_lec_n_content(req.getParameter("content"));
 	            vo.setProf_no((String)req.getSession().getAttribute("id"));
@@ -329,8 +330,6 @@ public class CLServiceImpl implements CLService{
 
 	@Override
 	public void getLecList(HttpServletRequest req, Model model) {
-		// TODO Auto-generated method stub
-// 게시판관련
 		int pageSize = 10; // 한페이지당 출력할 글 개수
 		int pageBlock = 5; // 한 블럭당 페이지 개수
 		int cnt = 0; // 전체 글 개수

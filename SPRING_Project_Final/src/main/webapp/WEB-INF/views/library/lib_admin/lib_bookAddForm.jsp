@@ -22,7 +22,7 @@
 		<div class="form-row" >
 			<label>
 				<span>이 미 지</span>
-				<input type="file" name="img" style="display:inline-block;">
+				<input type="file" name="img" style="display:inline-block;" required="required">
             </label>
         </div>
           
@@ -54,14 +54,14 @@
 		<div class="form-row">
             <label>
                 <span>ISBN</span>
-                <input type="text" name="isbn">
+                <input type="text" name="isbn" required="required">
             </label>
         </div>
 
 		<div class="form-row">
             <label>
                 <span>도 서 명</span>
-                <input type="text" name="title">
+                <input type="text" name="title" required="required">
             </label>
         </div>
 		
@@ -69,7 +69,7 @@
 		<div class="form-row">
             <label>
                 <span>가 격</span>
-                <input type="text" name="price">
+                <input type="text" name="price" required="required">
             </label>
         </div>
 		
@@ -77,7 +77,7 @@
 		<div class="form-row">
             <label>
                 <span>수 량</span>
-                <input type="text" name="amt">
+                <input type="text" name="amt" required="required">
             </label>
         </div>
 		
@@ -85,7 +85,7 @@
         <div class="form-row">
             <label>
                 <span>저 자</span>
-                <input type="text" name="author">
+                <input type="text" name="author" required="required">
             </label>
         </div>
 
@@ -93,7 +93,7 @@
         <div class="form-row">
             <label>
                 <span>출 판 사</span>
-                <input type="text" name="publish">
+                <input type="text" name="publish" required="required">
             </label>
         </div>
         
@@ -101,9 +101,12 @@
         <div class="form-row">
             <label>
                 <span>발 행 일</span>
-                <input type="text" name="year" style="width:100px">&nbsp;년&nbsp;&nbsp;
-                <input type="text" name="month" style="width:50px">&nbsp;월&nbsp;&nbsp;
-                <input type="text" name="day" style="width:50px">&nbsp;일
+                <input type="text" name="year" placeholder="YYYY" style="width:100px" required="required"
+                	pattern="\d{4}" title="YYYY">&nbsp;년&nbsp;&nbsp;
+                <input type="text" name="month" placeholder="MM" style="width:50px" required="required"
+                	pattern="\d{2}" title="MM">&nbsp;월&nbsp;&nbsp;
+                <input type="text" name="day" placeholder="DD" style="width:50px" required="required"
+                	pattern="\d{2}" title="DD">&nbsp;일
             </label>
         </div>
         

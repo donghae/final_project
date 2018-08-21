@@ -7,6 +7,7 @@ import java.util.Map;
 import com.spring.projectFinal.LIVO.BookLoanVO;
 import com.spring.projectFinal.LIVO.BookVO;
 import com.spring.projectFinal.LIVO.SeatVO;
+import com.spring.projectFinal.LIVO.SituationVO;
 
 public interface LIDAO {
 
@@ -69,10 +70,13 @@ public interface LIDAO {
 	//도서 대여 한 건 조회    ------
 	public BookLoanVO loanlistOne(Map<String,Object> map);
 	
-	//도서 반납,연장--
-	public int loanupdate(BookLoanVO bloanVO);
+	//도서 반납
+	public int loanreturn(BookLoanVO bloanVO);
 	
-
+	//도서 연장
+	public int loanrenew(BookLoanVO bloanVO);
+	
+	
 	
 	
 	//전체 좌석 보기
@@ -102,4 +106,9 @@ public interface LIDAO {
 	
 	//마이 라이브러리 - 대여 목록
 	public ArrayList<BookLoanVO> myloan(String user_no);
+	
+	
+	
+	//도서 현황 : 카테고리별 도서 개수
+	public ArrayList<SituationVO> bookCateSum();
 }

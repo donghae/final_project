@@ -16,9 +16,13 @@
 	<h2 align="center">글 수정</h2>
 	<h2 align="center"> </h2>
 	<c:if test="${dto == null}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			alert("글 수정 중 오류가 발생 했습니다.");
-			window.location="dormitory_admin_notice";
+			swal("글 수정 중 오류가 발생 했습니다.").then((okay) => {
+				  if (okay) {
+					  window.location="dormitory_admin_notice";
+					  }
+					});
 		</script>
 	</c:if>
 	

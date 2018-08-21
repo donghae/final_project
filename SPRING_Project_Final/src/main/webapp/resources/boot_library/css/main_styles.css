@@ -62,9 +62,9 @@ COLOR PALETTE
 body
 {
 	font-size: 14px;
-	font-weight: 400;
+	/* font-weight: 400; */
 	background: #FFFFFF;
-	color: #a5a5a5;
+	color: #001E42;
 	line-height:1.5;
 }
 div
@@ -342,7 +342,7 @@ section
 }
 .logo span
 {
-	font-size: 30px;
+	font-size: 15px;
 	font-weight: 900;
 	color: #001E42;
 	vertical-align: middle;

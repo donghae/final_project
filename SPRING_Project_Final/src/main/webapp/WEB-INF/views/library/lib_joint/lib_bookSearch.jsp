@@ -12,6 +12,7 @@
 	var lastKeyword2 = null;	//author
 	var searchSelect1 = null;	//global
 	var searchSelect2 = null;	//category
+	
 	$(function() {		
 		$('a[name=pageNum_nm]').click(function(e) {//데이터 입력이 끝났을 때:keyup(),  데이터 입력 중:keydown()
 			e.preventDefault();
@@ -49,13 +50,14 @@
 						$('#suggestlist').html(data);
 					},
 					error : function() {
-						alert('오류');
+						alert('검색 오류');
 					}
 					
 				});
 			}		
 		});
 	});
+	
 	
 	//검색입력시	
 	function startSuggest() {
@@ -77,6 +79,7 @@
 		/* if(loopSendKeyword == false) {
 			return false;
 		}  */
+		
 		hide("list");
 		var title = document.search.title.value;
 		var author = document.search.author.value;		
@@ -106,6 +109,8 @@
 		/* setTimeout("sendKeyword()", 500); */
 		
 	}
+	
+		
 	function sendKeyword2(pageNum) {
 		
 		/* if(loopSendKeyword == false) {
@@ -238,7 +243,7 @@
 					</span>
 							
 					<span style="padding:0px 3px;">	
-						<input class="btn_red" type="submit" value="검 색" style="height:45px; width:80px;font-size:15px;">
+						<input class="btn_red" value="검 색" style="height:45px; width:80px;font-size:15px;">
 					</span>	
 				</div>
 			</div>	

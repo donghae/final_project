@@ -139,6 +139,7 @@ public class SM2ServiceImpl implements SM2Service {
       vo.setGpa(b);
       vo.setGpa_semester("2018-1");
       int cnt = dao2.gradeCnt(st_no);
+      System.out.println("cnt??????"+cnt);
       if(cnt == 0) {   //성적이 없을때
          int insertCnt = dao2.insertGrade(vo);
          model.addAttribute("insertCnt", insertCnt);

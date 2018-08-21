@@ -8,19 +8,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${insertCnt == 0}">
+	<c:if test="${insertCnt != 3}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			alert("학생 등록에 실패하였습니다." +"\n" + "다시 시도해 주세요");
-			window.location="history.back()";
+			alert("학생 등록에 실패하였습니다." +"\n" + "다시 시도해 주세요").then((okay) => {
+				  if (okay) {
+					  window.location="history.back()";
+					  }
+					});
 		</script>
 	</c:if>
 
 	<c:if test="${insertCnt == 3}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			setTimeout(function(){
-				alert("정상적으로 학생 등록 되었습니다.");
-				window.location='admin';				
-			}, 1000)	
+				alert("정상적으로 학생 등록 되었습니다.").then((okay) => {
+					  if (okay) {
+						  window.location='dormitoty_stu_select';	
+						  }
+						});
 		</script>	
 	</c:if>
 </body>

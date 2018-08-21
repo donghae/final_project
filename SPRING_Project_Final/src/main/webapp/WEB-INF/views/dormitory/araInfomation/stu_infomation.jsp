@@ -42,18 +42,35 @@
 		color: black;
 	}	
 </style>     
-<script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+			<script type="text/javascript">
 	function circleDelete(){
 		if(document.getElementById('circleDelete')){
-			circle = confirm("삭제 처리하시겠습닊?");
+			
+			swal({
+				  title: "삭제 처리하시겠습니까?",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((okay) => {
+				  if (okay) {
+				    swal("삭제 처리되었습니다.", {
+				    });
+				  } else {
+				    swal("삭제를 취소합니다.");
+				  }
+				});
 		}
 		
 		if(circle == true){
-			alert("삭제를 선택하셨군요");			
+			swal("삭제를 선택하셨군요");			
 		}else{
-			alert("삭제처리 되지 않았습니다.");
-			location.href="ara";
-			return false;
+			swal("삭제처리 되지 않았습니다.").then((okay) => {
+				  if (okay) {
+					  window.location="ara";
+					  return false;
+					  }
+					});
 		}
 		
 		
@@ -67,8 +84,9 @@
  <c:if test="${fn:substring(sessionScope.id,0,1) != 0}">
 <%-- <c:if test="${fn:substring(sessionScope.id,0,1) == 2}">  --%>
 <%-- <c:if test="${sessionScope.id == null}"> --%>
-	<script>
-		alert("동아리 소개를 시작한다 홍홍홍~");
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+			<script type="text/javascript">
+		swal("동아리 소개를 시작한다 홍홍홍~");
 	</script>
 
 <jsp:include page="../../layout/header_ara.jsp"/>    

@@ -68,7 +68,7 @@
 				                     <c:if test="${semester eq '2017-1'}">selected="selected"</c:if>>2017-1학기</option>
 				                     
 				                     <option value="2016-2"
-				                     <c:if test="${semester eq '2016-1'}">selected="selected"</c:if>>2016-1학기</option>
+				                     <c:if test="${semester eq '2016-2'}">selected="selected"</c:if>>2016-2학기</option>
 				                     
 				                     <option value="2016-1"
 				                     <c:if test="${semester eq '2016-1'}">selected="selected"</c:if>>2016-1학기</option>

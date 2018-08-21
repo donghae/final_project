@@ -5,15 +5,38 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
+<% 
+
+%>
 <!-- 대여 현황 -->
 	<table class="responsive-table">
 		<thead class="responsive-table">
-			<tr>
-				<th>대 여 일</th>
-				<th>도서번호</th>
-				<th>이 름</th>
-				<th>반 납 예 정 일</th>
-			</tr>
+		
+			
+				<c:choose>
+				
+					<c:when test="${viewNum == 1}"><!-- 대여 목록 -->
+						<tr>
+							<th style="width:15%">대 여 일</th>
+							<th style="width:10%">도서번호</th>
+							<th style="width:10%">아 이 디</th>
+							<th style="width:15%">반 납 예 정 일</th>
+							<th style="width:10%"></th>
+						</tr>
+					</c:when>
+				
+					<c:when test="${viewNum == 2}"><!-- 반납 목록 -->
+						<tr>
+							<th style="width:15%">반 납 일</th>
+							<th style="width:10%">도서번호</th>
+							<th style="width:10%">아 이 디</th>
+							<th style="width:15%">대 여 일</th>
+							<th style="width:10%"></th>
+						</tr>
+					</c:when>
+					
+				</c:choose>
+								
 		</thead>
 		<tbody >
 			<c:if test="${cnt == 0}">
@@ -25,17 +48,42 @@
 			
 			<c:if test="${cnt > 0}">					
 				<c:forEach var="i" begin="0" end="${cnt}">
-				
-					<tr>
-						<td><fmt:formatDate value="${bloanVOs[i].loan_dt}" pattern="yyyy-MM-dd"/></td>
-						<td>${bloanVOs[i].b_no}</td>
-						<td>${bloanVOs[i].user_no}</td>
-						<td>${bloanVOs[i].return_sche}</td>												
-					</tr>
+					<c:choose>
+						<c:when test="${bloanVOs[i].loan_state == 1}"><!-- 대여 목록 -->
+							<tr>
+								<td style="width:15%"><fmt:formatDate value="${bloanVOs[i].loan_dt}" 
+									pattern="yyyy/MM/dd HH:mm:ss"/></td>
+								<td style="width:10%">${bloanVOs[i].b_no}</td>
+								<td style="width:10%">${bloanVOs[i].user_no}</td>
+								<td style="width:15%">${bloanVOs[i].return_sche}</td>	
+								<td style="width:10%">
+									<button type="button" onclick="window.location='lib_returnPro?b_no=${bloanVOs[i].b_no}&user_no=${bloanVOs[i].user_no}'">
+									대여 취소</button>
+								</td>											
+							</tr>
+						</c:when>
+					
+						<c:when test="${bloanVOs[i].loan_state == 12}"><!-- 반납 목록 -->
+							<tr>
+								<td style="width:15%"><fmt:formatDate value="${bloanVOs[i].return_dt}" 
+									pattern="yyyy/MM/dd HH:mm:ss"/></td>
+								<td style="width:10%">${bloanVOs[i].b_no}</td>
+								<td style="width:10%">${bloanVOs[i].user_no}</td>
+								<td style="width:15%"><fmt:formatDate value="${bloanVOs[i].loan_dt}" 
+									pattern="yyyy/MM/dd HH:mm:ss"/></td>	
+								<td style="width:10%">
+									<button type="button" onclick="window.location='lib_loanPro?b_no=${bloanVOs[i].b_no}&user_no=${bloanVOs[i].user_no}'">
+									반납 취소</button>
+								</td>											
+							</tr>
+						</c:when>
+						
+					</c:choose>
+					
 				</c:forEach>
 			
 				<tr>
-					<td colspan="4">
+					<td colspan="5">
 						<!-- 처음 블럭[◀◀] / 이전 블럭[◀] -->
 						<c:if test="${startPage > pageBlock}">
 							<a href="lib_bookLoanlist">[◀◀]</a>

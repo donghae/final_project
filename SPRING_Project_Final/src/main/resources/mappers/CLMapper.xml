@@ -60,9 +60,12 @@
 	<select id="getLecList" parameterType="java.util.Map" resultType="com.spring.projectFinal.CLVO.LectureVO" >
 		
 	
-		SELECT * FROM TBL_LECTURE l, (SELECT prof_name, prof_no FROM TBL_prof) p
-		<if test="studentId != null || adminId !=null">
-		, (SELECT st_no, lec_no FROM TBL_REG_LECTURE) r 
+		SELECT distinct * FROM TBL_LECTURE l, (SELECT prof_name, prof_no FROM TBL_prof) p
+		<if test="studentId != null">
+		, (SELECT st_no,lec_no FROM TBL_REG_LECTURE) r
+		</if>
+		<if test="adminId !=null">
+		, (SELECT lec_no FROM TBL_REG_LECTURE) r
 		</if>
 		WHERE l.lec_cy_fl=1 AND l.prof_no=p.prof_no
 		<if test="studentId != null">
@@ -76,7 +79,7 @@
 		</if>
 	</select>
 	<select id="getLecPersonCnt" resultType="int">
-		SELECT COUNT(*) FROM TBL_REG_LECTURE r, TBL_LECTURE l WHERE r.lec_no=l.lec_no AND l.lec_cy_fl=1
+		SELECT COUNT(*) FROM TBL_REG_LECTURE r, TBL_LECTURE l WHERE r.lec_no=l.lec_no AND l.lec_cy_fl=1 and r.lec_no=#{lec_no}
 	</select>
 	
 	<insert id="addNotice" parameterType="java.util.Map">

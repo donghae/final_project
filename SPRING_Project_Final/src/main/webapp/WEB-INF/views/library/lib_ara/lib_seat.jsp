@@ -4,10 +4,11 @@
 <%@ include file="../../setting.jsp" %>  
 <link rel="stylesheet" href="resources/css/box_mon.css">
 
+<body>
 <!-- request.js를 resources 폴더안에 넣는다 -->
 <script src="resources/js/request.js"></script>
 <script type="text/javascript" src="${path}resources/js/jquery-3.3.1.min.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 
 function floor_change(){
@@ -56,32 +57,43 @@ $(function() {
 		
 		//빈 좌석일 시
 		if(seat_state == 0) {
-			var really = confirm(rdRoom_no+"호 "+seat_no+" 좌석을 이용하시겠습니까?");
-			
-			if(really == true) {
-				
-				var params = "seat_no="+ seat_no+"&rdRoom_no="+rdRoom_no;
-				sendRequest(seat_callback, "lib_seat_use","post",params);			
-				
-			} else {
-				return false;
-			}
+			swal({
+				  title: rdRoom_no+"호 "+seat_no+" 좌석을 이용하시겠습니까?",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((okay) => {
+				  if (okay) {
+					  var params = "seat_no="+ seat_no+"&rdRoom_no="+rdRoom_no;
+					  sendRequest(seat_callback, "lib_seat_use","post",params);
+						swal("좌석을 등록하였습니다.");
+				  } else {
+					  swal("좌석 등록을 취소합니다.");
+				    return false;
+				  }
+				});
 		}
+		
 		
 		//이용 취소,중지
 		if(seat_state == 1) {
-			var really = confirm(rdRoom_no+"호 "+seat_no+" 좌석을 이용 중지 하시겠습니까?");
 			
-			if(really == true) {				
-				var params = "seat_no="+ seat_no+"&rdRoom_no="+rdRoom_no;
-				sendRequest(seat_callback, "lib_seat_useCancle","post",params);			
-				
-			} else {
-				return false;
-			}
+			swal({
+				  title: rdRoom_no+"호 "+seat_no+" 좌석을 이용 중지 하시겠습니까?",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((okay) => {
+				  if (okay) {
+					  var params = "seat_no="+ seat_no+"&rdRoom_no="+rdRoom_no;
+						sendRequest(seat_callback, "lib_seat_useCancle","post",params);
+						swal("좌석이용을 취소합니다.");
+				  } else {
+					  swal("좌석을 계속 이용합니다.");
+				    return false;
+				  }
+				});
 		}
-	 
-		 
 	 });
 });
 
@@ -118,7 +130,6 @@ $(function() {
 				</div>
 				<br><br><br>
 				
-				
 				<div id="view" style="magin:0px; padding:0px; height:800px;"></div>
 			</div>					
 		</article>
@@ -129,3 +140,4 @@ $(function() {
 
 
 <jsp:include page="../../layout/footer_lib.jsp"/>
+</body>

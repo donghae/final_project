@@ -1,148 +1,105 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../../setting.jsp" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>학생 수정</title>
-</head>
+  
+<%@ include file="../../setting.jsp" %>  
+<%-- <%@ include file="../dorm_setting.jsp" %> --%>
+
+ <style>
+	.penalty{
+		position: relative;
+		top:320px;
+
+	} 
+	
+	.footer{
+		position: relative;
+		top:400px;
+	}
+	
+	.side{
+	position: relative;
+	}
+	
+	table td{
+		font-size: 20px;
+		padding:28px;
+		margin-bottom: 5px;
+	}
+	
+	 input{
+		height:40px;
+		 border-radius:0.5em;
+		 moz-border-radius: 0.5em;
+		 webkit-border-radius: 0.5em;
+		 text-align: center;
+		 
+	}
+	
+	table{
+		text-align: center;
+	}	
+	
+	form{
+		position:relative;
+		top:-70px;
+		margin-left:250px;
+		
+	}
+</style>
 <body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="showbox">
-            <div class="loader">
-                <svg class="circular" viewBox="25 25 50 50">
-                    <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-                </svg>
-            </div>
-        </div>
+<c:if test="${fn:substring(sessionScope.id,0,2) == 01}">	
+<%@include file="../../layout/header_dormitory_home.jsp" %> 	
+	
+	<div align="center" class="penalty">
+		<div class="side">		
+			 <%@ include file="../../layout/dt_admin_side.jsp"%> <!-- 사이드바 -->
+		</div>
+		
+		<div  style="width: 1200px; height: 40%;">
+			<form action="dt_admin_stu_update?st_no=${st_no}" name="notice_modify" method="post">
+				<table>			
+					<tr>
+						<td align="center" >학번</td>
+						<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							${st_no}</td>	
+					</tr>
+					
+					<tr>
+						<td align="center" >이름</td>
+						<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							${st_name}</td>
+					</tr>				
+					
+					<tr>
+						<td align="center">호실</td>
+						<td align="left"><input type="text" name="dorm_room" value="${dorm_room}" style="width:300px;"></td>
+					</tr>
+					
+					<tr>
+						<td align="center" style="width:110px;">기숙사 시작일</td>
+						<td align="left"><input type="date" name="dorm_st_dt" value="${dorm_st_dt}" style="width:300px;"></td>
+					</tr>
+					
+					<tr>
+						<td align="center" style="width:110px;">기숙사 종료일</td>
+						<td align="left"><input type="date" name="dorm_end_dt" value="${dorm_end_dt}" style="width:300px;"></td>
+					</tr>																										
+				</table>
+			
+		        <br><br>
+				<div class="form-row" style="margin-left:-180px;">
+		            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                <input type="submit" value="수정" style="text-align: center; width:80px; color: navy; background-color: white;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                <input type="button" value="목록" style="text-align: center; width:80px; color: navy; background-color: white;" onclick="history.back()">
+		            </label>
+		        </div>
+		        </form>			
+			</div>	
+		</div>
+</c:if>
 
-    </div>
-
-    <!-- Gradient Background Overlay -->
-    <div class="gradient-background-overlay"></div>
-
-   <!-- 기숙사 헤더-->
-   <header class="header-area">
-        <div class="container-fluid h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12 h-100">
-                    <div class="main-menu h-100">
-                        <nav class="navbar h-100 navbar-expand-lg">
-                            <div class="collapse navbar-collapse" id="studioMenu">
-                                <!-- Menu Area Start  -->
-                                <ul class="navbar-nav ml-auto">
-                                	<li>
-                                		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </li>
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="admin">아라기숙사 <span class="sr-only">(current)</span></a>
-                                    </li>
-                                    <li>
-                                    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">학생관리</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="dormitoty_stu_selet">학생조회</a>
-                                            <a class="dropdown-item" href="dormitoty_stu_insert">학생 등록</a>
-                                            <a class="dropdown-item" href="dormitoty_stu_update">학생 수정</a>
-                                            <a class="dropdown-item" href="dormitoty_studelete">학생 삭제</a>
-                                        </div>
-                                    </li>
-                                    <!-- <li class="nav-item"> -->
-                                    <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">생활안내</a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="#">생활관규정</a>
-                                            <a class="dropdown-item" href="#">전화번호</a>
-                                            <a class="dropdown-item" href="#">이용안내</a>
-                                            <a class="dropdown-item" href="#">생활수칙</a>
-                                        </div>
-                                    </li>
-                                    
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">기숙사 식단표</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">공지사항</a>
-                                    </li>
-                                    
-                                    <c:if test="${sessionScope.id == null }">
-	                                    <li class="nav-item dropdown" style="text-align:right;">
-	                                    <a class="nav-link dropdown-toggle" href="dormitoty_stu_login_form" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">로그인</a>
-	                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">학생 로그인</a>
-	                                            <a class="dropdown-item" href="dormitoty_admin_login_form">관리자 로그인</a>
-	                                        </div>
-	                                    </li>
-                                    </c:if>
-									
-									<c:if test="${sessionScope.id != null }">
-										<li class="nav-item dropdown" style="text-align:right;">
-	                                    <a class="nav-link" href="logout">${sessionScope.name}로그아웃</a>
-	                                    </li>
-									</c:if>
-                                </ul>
-                                
-                                <!-- 검색 Form -->
-                                <!-- <div class="header-search-form ml-auto">
-                                    <form action="#">
-                                        <input type="search" class="form-control" placeholder="Input your keyword then press enter..." id="search" name="search">
-                                        <input class="d-none" type="submit" value="submit">
-                                    </form>
-                                </div>
-                                <!-- Search btn -->
-                                <!-- <div id="searchbtn">
-                                    <img src="resources/images/core-img/search.png" alt=""> -->
-                                </div>
-                            </div>
-                        </nav>                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    
-	<!-- 학생 정보 수정,등록,조회,삭제 이미지 -->
-    <div class="social-sidebar-area bg-white" style=" opacity:1;">
-		<%@ include file="../../layout/dt_layout/side_dorm.jsp" %>
-	</div>
-
-   <section class="welcome-area">
-        <div class="carousel h-100 slide" data-ride="carousel" id="welcomeSlider">
-            <!-- Carousel Inner -->
-            <div class="carousel-inner h-100">						         			 <!-- 투명도 --> 
-                <div class="carousel-item h-100 bg-img active" style= "/* opacity:0.5; */  background-image: url(resources/images/common_img/UNI/dormitory.jpg);">
-                  <div style="padding:0px;">
-					 <%@ include file="../../layout/dt_layout/box.jsp" %>
-					</div>            
-                    <%@ include file="../../layout/dt_layout/dt_admin_update.jsp" %>
-                    <div class="carousel-content h-100">
-                        <div class="slide-text">
-                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-                        		
-<!-- 푸터 include -->          
-<%@ include file="../../layout/dt_layout/footer_dorm.jsp" %>
-                        		
-    <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="resources/boot_dormitory/dormitory_js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="resources/boot_dormitory/dormitory_js/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="resources/boot_dormitory/dormitory_js/bootstrap.min.js"></script>
-    <!-- Plugins js -->
-    <script src="resources/boot_dormitory/dormitory_js/plugins.js"></script>
-    <!-- Active js -->
-    <script src="resources/boot_dormitory/dormitory_js/active.js"></script>
-    <!-- 테이블 js -->
-    <script src="${Ara}dormitory_js/dt_stu_table2.js"></script>
-
-</body>
-</html>
+</body>	
+<!-- 푸터 -->
+<div class="footer">
+	<%@include file="../../layout/footer_lib2.jsp" %>		
+</div>

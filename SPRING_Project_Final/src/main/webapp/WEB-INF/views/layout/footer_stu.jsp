@@ -18,7 +18,6 @@
 <body>
 <footer class="footer2">
 		
-		
 			<!-- Newsletter -->
 	<div class="container">
 			
@@ -47,15 +46,14 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				</div>
 				<div class="footer2_social ml-sm-auto">
 					<ul class="menu_social">
-						<li class="menu_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-						<li class="menu_social_item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-						<li class="menu_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-						<li class="menu_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-						<li class="menu_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+						<li class="menu_social_item"><a href="https://www.youtube.com/?gl=KR&hl=ko"><i class="fab fa-pinterest"></i></a></li>
+						<li class="menu_social_item"><a href="https://twitter.com/?lang=ko"><i class="fab fa-linkedin-in"></i></a></li>
+						<li class="menu_social_item"><a href="https://www.instagram.com/?hl=ko"><i class="fab fa-instagram"></i></a></li>
+						<li class="menu_social_item"><a href="https://ko-kr.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+						<li class="menu_social_item"><a href="https://twitter.com/?lang=ko"><i class="fab fa-twitter"></i></a></li>
 					</ul>
 				</div>
 			</div>
-
 		</div>
 	</footer>
 </body>

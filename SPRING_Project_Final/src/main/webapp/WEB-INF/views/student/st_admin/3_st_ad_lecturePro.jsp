@@ -5,8 +5,11 @@
 <body>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
-		swal("등록완료")
-		window.location = 'st_adm?st_state=8';
+		swal("등록완료").then((okay) => {
+			  if (okay) {
+				  window.location = 'st_adm?st_state=8';
+				  }
+				});
 	</script>
 </body>
 </html>

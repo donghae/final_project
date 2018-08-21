@@ -12,20 +12,21 @@
 	<c:if test="${sessionScope.id == null}">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			swal("잘못된 입력입니다.");
-			setTimeout(function() {
-				window.location="loginPage";
-			}, 1000);
-			
+			swal("잘못된 입력입니다.").then((okay) => {
+				  if (okay) {
+					  window.location="loginPage";
+					  }
+					});
 		</script>	
 	</c:if>
 	<c:if test="${sessionScope.id != null}">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			swal("환영합니다.");
-			setTimeout(function() {
-				window.location="ara";
-			}, 1000);
+			swal("환영합니다.").then((okay) => {
+				  if (okay) {
+					  window.location="ara";
+					  }
+					});
 		</script>	
 		
 	</c:if>

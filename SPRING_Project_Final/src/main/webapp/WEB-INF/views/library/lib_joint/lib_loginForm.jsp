@@ -8,33 +8,35 @@
 <link rel="stylesheet" href="resources/css/form-basic.css">
 <script type="text/javascript" src="${path}resources/js/library.js"></script>
 
+<body>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 
 function libLogin_written() {
 
 	if (!document.libLoginForm.userId.value) {
-		alert("아이디를 입력하세요");
-		document.libLoginForm.userId.focus();
-		return false;
+		swal("아이디를 입력하세요").then((okay) => {
+			  if (okay) {
+				  document.libLoginForm.userId.focus();
+					return false;
+				  }
+				});
+		
 	}
 	if (!document.libLoginForm.passwd.value) {
-		alert("비밀번호를 입력하세요");
-		document.libLoginForm.passwd.focus();
-		return false;
+		swal("비밀번호를 입력하세요").then((okay) => {
+			  if (okay) {
+				  document.libLoginForm.passwd.focus();
+					return false;
+				  }
+				});
 	}
 	
 	document.libLoginForm.submit();
 
 }
-
-
-
 </script>
-
-<title>도서관 로그인</title>
 </head>
-<body>
-
 	<div class="main-content" style="padding-top:0px;" id="hidelibInput">	
 		<form style="magin:0px;" action="lib_loginPro" name="libLoginForm" class="form-basic" 
 			method="post" onsubmit="return libLogin_written();">

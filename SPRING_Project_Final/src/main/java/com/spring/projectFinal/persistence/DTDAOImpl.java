@@ -117,11 +117,11 @@ public class DTDAOImpl implements DTDAO{
 	
 	// 관리자 공지사항 수정 값 뿌리기
 	@Override
-	public Admin_notice_selectVO updateDormNotice(int dorm_n_no) {
+	public Admin_notice_selectVO updateDormNotice(Map<String, Object> map) {
 		
 		DTDAO dao = sqlsession.getMapper(DTDAO.class);
 		
-		return dao.updateDormNotice(dorm_n_no);
+		return dao.updateDormNotice(map);
 	}	
 	
 	// 관리자 공지사항 수정 update
@@ -151,14 +151,32 @@ public class DTDAOImpl implements DTDAO{
 		return dao.addAdminNoticeModify(ad_no);
 	}	*/
 	
-	// 관리자 벌점 조회
+	// 관리자 벌점관리 클릭시 벌점 현황 게시판 글 수
+	@Override
+	public int getDormPenaltyCnt() {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);
+		
+		return dao.getDormPenaltyCnt();
+	}
+	
+	// 관리자 벌점현황 목록
+	@Override
+	public ArrayList<Dt_stu_penalty_selectVO> getDormPenalty(Map<String, Object> map) {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);
+		
+		return dao.getDormPenalty(map);
+	}
+	
+/*	// 관리자 벌점 조회
 	@Override
 	public ArrayList<Dt_stu_penalty_selectVO> dtAdminPenaltySel() {
 		
 		DTDAO dao = sqlsession.getMapper(DTDAO.class);
 		
 		return dao.dtAdminPenaltySel();
-	}
+	}*/
 	
 	// 관리자 벌점 등록
 	@Override
@@ -167,6 +185,24 @@ public class DTDAOImpl implements DTDAO{
 		DTDAO dao = sqlsession.getMapper(DTDAO.class);		
 		
 		return dao.addPenaltyInsert(map);
+	}
+	
+	// 관리자 벌점 수정 클릭
+	@Override
+	public Dt_stu_penalty_selectVO dtAdminPenaltyUp(Map<String, Object> map) {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);
+		
+		return dao.dtAdminPenaltyUp(map);
+	}
+	
+	// 관리자 벌점 수정 처리
+	@Override
+	public int dtAdminStuUpdate(Map<String, Object> map) {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);
+		
+		return dao.dtAdminStuUpdate(map);
 	}
 	
 	// 관리자 벌점 수정 목록
@@ -187,6 +223,50 @@ public class DTDAOImpl implements DTDAO{
 		return dao.updatePenalty(map);
 	}	
 	
+	// 관리자 외박신청 목록 갯수
+	@Override
+	public int getDormOvernightCnt() {
+
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);
+		
+		return dao.getDormOvernightCnt();
+	}
+	
+	// 관리자 외박신청 목록 dtos
+	@Override
+	public ArrayList<Dt_stu_overnight_selectVO> getDormOvernightList(Map<String, Object> map) {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);
+		
+		return dao.getDormOvernightList(map);
+	}
+
+	// 관리자 외박신청 승인
+	@Override
+	public int dtAdminOvernightIns(Map<String, Object> map) {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);
+		
+		return dao.dtAdminOvernightIns(map);
+	}
+	
+	// 관리자 외박신청 승인 목록 건수
+	@Override
+	public int getDormOvernightSelect() {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);
+		
+		return dao.getDormOvernightSelect();
+	}
+
+	// 관리자 외박신청 승인 목록 가져오기
+	@Override
+	public ArrayList<Dt_stu_overnight_selectVO> getDormOvernightSelectList(Map<String, Object> map) {
+		
+		DTDAO dao = sqlsession.getMapper(DTDAO.class);
+		
+		return dao.getDormOvernightSelectList(map);
+	}
 	
 	
 	
@@ -308,6 +388,22 @@ public class DTDAOImpl implements DTDAO{
 		
 		return dao.araCircleDelete(cc_name);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

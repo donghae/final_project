@@ -9,18 +9,25 @@
 </head>
 <body>
 	<c:if test="${updateCnt == 0}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			alert("공지사항 수정이 취소 되었습니다." +"\n" + "다시 시도해 주세요");
-			window.location="history.back()";
+			swal("공지사항 수정이 취소 되었습니다." +"\n" + "다시 시도해 주세요").then((okay) => {
+				  if (okay) {
+					  window.location="history.back()";
+					  }
+					});
+			
 		</script>
 	</c:if>
 
 	<c:if test="${updateCnt == 1}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			setTimeout(function(){
-				alert("수정이 정상 처리되었습니다.");
-				window.location='stu_infomation';				
-			}, 1000)	
+			swal("수정이 정상 처리되었습니다.").then((okay) => {
+				  if (okay) {
+					  window.location='dt_admin_notice_sel';
+					  }
+					});
 		</script>	
 	</c:if>
 </body>

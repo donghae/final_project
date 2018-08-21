@@ -11,18 +11,25 @@
 </head>
 <body>
 	<c:if test="${selectCnt == 0}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			alert(admin_idChk);
-			window.location="history.back()";
+			swal(admin_idChk).then((okay) => {
+				  if (okay) {
+					  window.location="history.back()";
+					  }
+					});
+			
 		</script>
 	</c:if>
 
 	<c:if test="${selectCnt == 1}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			setTimeout(function(){
-				alert("관리자 로그인 되었습니다.");
-				window.location='dormitory_admin_stu';				
-			}, 1000)	
+			swal("관리자 로그인 되었습니다.").then((okay) => {
+				  if (okay) {
+					  window.location='dormitory_admin_stu';	
+					  }
+					});
 		</script>	
 	</c:if>
 

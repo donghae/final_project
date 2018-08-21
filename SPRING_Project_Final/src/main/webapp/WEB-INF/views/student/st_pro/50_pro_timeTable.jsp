@@ -36,7 +36,7 @@
 					<div class="inbox-head">
 						<div style="width: 30%; float: left;">
 							<br><br>
-							<h1>교수시간표</h1>
+							<h1>시간표</h1>
 						</div>
 						<div style="width: 30%; margin-left:720px;">
 							<br><br><br><br><br>

@@ -168,12 +168,12 @@ public class LIController {
 	}
 	
 	//관리자 : 도서 대여 기록 결과 페이지 - ajax 결과1
-	@RequestMapping("lib_loanSuperlistb")
+	@RequestMapping("lib_loanSuperlist")
 	public String lib_loanSuperlist(HttpServletRequest req, Model model) {
 		
 		System.out.println("lib_loanSuperlist-관리자 : 도서 대여 기록 조회");
 		LIservice.lib_loanSuperlist(req,model);
-		return "library/lib_admin/lib_loanSuperlistb";
+		return "library/lib_admin/lib_loanSuperlist";
 	}
 	
 	//관리자 : 도서 대여 양식 ajax 결과2
@@ -305,6 +305,7 @@ public class LIController {
 	public String lib_situation(HttpServletRequest req, Model model) {
 		
 		System.out.println("lib_situation-도서관 현황(소개)");
+		LIservice.lib_situation(req,model);
 		return "library/lib_joint/lib_situation";
 	}
 	
@@ -426,10 +427,8 @@ public class LIController {
 	//검색 결과
 	@RequestMapping("searchResult")
 	public String searchResult(HttpServletRequest req, Model model) {
-		System.out.println("searchResult");
-						
-		LIservice.searchtest(req, model);
-		
+		System.out.println("searchResult");						
+		LIservice.searchtest(req, model);		
 		return "library/searchResult";
 	}
 	

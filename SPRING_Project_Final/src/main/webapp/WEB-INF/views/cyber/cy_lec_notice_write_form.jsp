@@ -75,9 +75,9 @@
 <body>
 	<jsp:include page="../layout/header_ara.jsp" />
 
-	<div align="center">
+	<div align="center" style="    height: 600px;   margin-top: 50px;">
 		<div class="cy_1">
-			<h4>공지사항</h4>
+			<h4 style="margin-left: 700px;">공지사항</h4>
 		</div>
 		<%@ include file="../cyber/cy_lec_sidebar_stu.jsp"%>
 		<div class="left_div" style="width: 800px; height: 40%;">
@@ -115,4 +115,4 @@
 </body>
 
 
-<%@ include file="../layout/footer_lib.jsp"%>
+<%@ include file="../layout/footer_stu.jsp"%>

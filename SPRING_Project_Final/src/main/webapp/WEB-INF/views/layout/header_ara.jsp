@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
- 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -25,7 +26,6 @@
 	<meta name="twitter:image" content="" />
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
-
 
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="resources/boot_main/css/animate.css">
@@ -55,25 +55,45 @@
 	<!--[if lt IE 9]>
 	<script src="resources/boot_main/js/respond.min.js"></script>
 	<![endif]-->
-
+	
 	</head>
+	
 	<body>
 		
 		
 		
-		<!-- 헤더-로그인 -->
-	<div id="my">
-		<p style="text-align: center;">
-			<span class="nanumFont">ARA, Leading the Way to the Future</span>
-			<c:if test="${sessionScope.id==null}">
-				<a style="color: black; padding-right: 20px;" href="loginPage">LOGIN</a>
-			</c:if>
-			<c:if test="${sessionScope.id!=null}">
-		    	${sessionScope.name}(${sessionScope.id})님<a
-					style="color: black; padding-right: 20px;" href="logout">LOGOUT</a>
-			</c:if>
-		</p>
+	<!-- 헤더-로그인 -->	 
+	<div id="myara">
+	
+		<c:if test="${sessionScope.id==null}">
+		    <div class="menu common" style="width:20%"><p class="aranav"></p>
+		   	</div>
+		    <div class="logo common" style="width:40%">
+		    	<p class="aranav"><span>ARA, Leading the Way to the Future</span></p>
+		    </div>
+		    <div class="login common" style="width:20%">
+		    	<p class="aranav">
+		    		<a href="loginPage" style="color:#001E42;">LOGIN</a>
+		    	</p>
+		    </div>
+	    </c:if>
+	    
+	    <c:if test="${sessionScope.id!=null}">
+	    	<div class="menu common" style="width:20%"><p class="aranav"></p>
+	    	</div>
+		    <div class="logo common" style="width:40%">
+		    	<p class="aranav"><span>ARA, Leading the Way to the Future</span></p>
+		    </div>
+		    <div class="login common" style="width:25%">
+		    	<p class="aranav">
+		    		<span style="color:#001E42;padding-right:20px;display:inline">${sessionScope.name} (${sessionScope.id}) 님</span>
+		    		<span><a href="logout" style="color:#001E42;padding:20px;">LOGOUT</a></span>	    			    						
+		    	</p>
+		    </div>
+	    </c:if>
 	</div>
+	
+	
 	
 	
 	<div class="gtco-loader"></div>
@@ -87,7 +107,7 @@
 					</div>
 					<div class="col-xs-10 text-right menu-1">
 						<ul>
-							<li><a href="ara">대학소개</a></li>
+							<li><a href="ara_intro">대학소개</a></li>
 							<li><a href="admission">입학안내</a></li>
 								<c:if test="${fn:substring(sessionScope.id,0,1)==2}">
 									<li><a href="st_stu?st_state=10">교육</a></li>							

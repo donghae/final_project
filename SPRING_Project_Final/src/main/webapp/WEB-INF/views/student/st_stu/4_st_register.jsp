@@ -71,9 +71,9 @@ function nexthp2() {
 							<h1>학적 관리</h1>
 						</div>
 						<div style="width: 30%; margin-left:750px;">
-							<br><br><br><br><br>
+							<br><br><br><br><br><br><br>
 							<h3>학적 관리 > 기본 학적</h3>
-						</div>
+						</div><br>
 						
 						<div class="inbox-body">
 						<div class="mail-option">
@@ -86,29 +86,71 @@ function nexthp2() {
 											<th rowspan="4"><img id="pf_img" src="resources/images/addmission_img/${vo.getSt_img()}"></th>
 											<th class="bg-gray">이름</th>
 											<td>${vo.getSt_name()}</td>
-											<th class="bg-gray">생년월일</th>
-											<td>${vo.getSt_birth()}</td>
-										</tr>
-										
-										<tr>
-											<th scope="row" class="bg-gray">학번</th>
-											<td>${vo.getSt_no()}</td>
 											<th class="bg-gray">학년</th>
 											<td>${vo.getSt_level()}</td>
 										</tr>
 										
 										<tr>
-											<th scope="row" class="bg-gray">전공명</th>
-											<td>${vo.getMaj_cd()}</td>
+											<th scope="row" class="bg-gray">학번</th>
+											<td>${vo.getSt_no()}</td>
 											<th class="bg-gray">입학일</th>
 											<td>${vo.getSt_ent_dt()}</td>
 										</tr>
 										
 										<tr>
+											<th scope="row" class="bg-gray">전공명</th>
+											<td>
+												<c:if test="${vo.getMaj_cd() == 101}">기계공학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 102}">소프트웨어공학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 103}">식품공학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 104}">전기공학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 105}">화학공학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 201}">물리학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 202}">미생물학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 203}">분자생물학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 204}">생명과학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 205}">화학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 301}">경영학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 302}">경제학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 303}">심리학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 304}">정치외교학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 305}">행정학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 401}">도예과</c:if>
+												<c:if test="${vo.getMaj_cd() == 402}">무용과</c:if>
+												<c:if test="${vo.getMaj_cd() == 403}">문예창작과</c:if>
+												<c:if test="${vo.getMaj_cd() == 404}">실용음악과</c:if>
+												<c:if test="${vo.getMaj_cd() == 405}">조소과</c:if>
+												<c:if test="${vo.getMaj_cd() == 501}">국어국문학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 502}">사학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 503}">영어영문학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 504}">철학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 505}">포르투갈어과</c:if>
+												<c:if test="${vo.getMaj_cd() == 601}">국제스포츠학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 602}">생활체육학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 603}">스포츠경영학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 604}">스포츠응용산업학과</c:if>
+												<c:if test="${vo.getMaj_cd() == 605}">체육교육학</c:if>
+											</td>
+											
+											<th class="bg-gray">휴학여부</th>
+											<td>
+												<c:if test="${vo.getSt_abs_fl() == 0}">재학</c:if>
+												<c:if test="${vo.getSt_abs_fl() == 1}">휴학</c:if>
+											</td>
+										</tr>
+										
+										<tr>
 											<th scope="row" class="bg-gray">이수학점</th>
 											<td>${vo.getSt_point()}</td>
-											<th class="bg-gray">휴학여부</th>
-											<td>${vo.getSt_abs_fl()}</td>
+											<th class="bg-gray">장애여부</th>
+											<td>
+											<c:if test="${vo.getSt_disable_fl() ==0}">
+												해당사항없음
+											</c:if>
+											<c:if test="${vo.getSt_disable_fl() !=0}">
+												장애있음.
+											</c:if>											
+											</td>
 										</tr>
 										
 										<tr>
@@ -133,20 +175,6 @@ function nexthp2() {
 	   				<input name="searchAddrButton" class="btn_navy" value="주소찾기" type="button" onclick="openAddr();"/><br>
 											<input name="addr1" type="text" value="${vo.getSt_addr1()}" style="width:350px;"/></td>
 											<td colspan="2"><input name="addr2" type="text" value="${vo.getSt_addr2()}" style="width:300px;"/></td>
-										</tr>
-										
-										<tr>
-											<th scope="row" class="bg-gray">동아리명</th>
-											<td colspan="2">${vo.getCc_name()}</td>
-											<th class="bg-gray">장애여부</th>
-											<td>
-											<c:if test="${vo.getSt_disable_fl() ==0}">
-												해당사항없음
-											</c:if>
-											<c:if test="${vo.getSt_disable_fl() !=0}">
-												장애있음.
-											</c:if>											
-											</td>
 										</tr>
 										
 										<tr>

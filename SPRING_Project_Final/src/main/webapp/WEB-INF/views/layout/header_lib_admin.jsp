@@ -55,9 +55,9 @@
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
-		
-	<!-- 헤더-로그인 -->	
+	
+	
+<!-- 헤더-로그인 -->	
 	<c:choose>
 	
 		<c:when test="${sessionScope.id == null}">

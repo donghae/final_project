@@ -28,7 +28,7 @@
 </head>
 <body>
 	<jsp:include page="../layout/header_ara.jsp" />
-		<form name="loginForm" action="login" method="post" onsubmit="return loginChk();">
+		<form name="loginForm" action="login" method="post" onsubmit="return loginChk();" style="height: 500px;margin-top: 150px;">
 			<table class="st_navy_login">
 				<thead>
 					<tr>

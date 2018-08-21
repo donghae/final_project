@@ -77,17 +77,21 @@
 	<c:if test="${sessionScope.id == null}">
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 		<script type="text/javascript">
-			swal("권한이 없습니다.");
-			window.history.back();
+			swal("권한이 없습니다.").then((okay) => {
+				  if (okay) {
+					  window.history.back();
+					  }
+					});
+			
 		</script>	
 	</c:if>
 	
-		<div align="center">
+		<div align="center" style="    height: 600px;   margin-top: 50px;">
 			<div class="cy_1">
-				<h4>온라인 강의 수강신청 목록</h4>
+				<h4 style="margin-left: 700px;">강의 목록</h4>
 			</div>
 			<%@ include file="../cyber/cy_sidebar_stu.jsp"%>
-			<div class="left_div"  style="width: 800px; height: 40%;">
+			<div class="left_div" style="width: 1000px;height: 40%;margin-left: -450;">
 				<table class="st_mint">
 					<thead>
 						<tr>
@@ -144,4 +148,4 @@
 </body>
 
 
-<%@ include file="../layout/footer_lib.jsp"%>
+<%@ include file="../layout/footer_stu.jsp"%>

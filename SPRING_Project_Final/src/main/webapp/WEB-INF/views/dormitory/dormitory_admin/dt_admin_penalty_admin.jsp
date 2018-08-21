@@ -9,12 +9,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:if test="${insertCnt ==1}">
-		성공했습니다.
+	<c:if test="${insertCnt == 0}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script type="text/javascript">
+			swal("벌점 등록에 실했습니다.." +"\n" + "다시 시도해 주세요").then((okay) => {
+				  if (okay) {
+					  window.location="dt_admin_penalty_ins";
+					  }
+					});
+		</script>
 	</c:if>
-	
-	<c:if test="${insertCnt != 1}">
-		실패했씁ㄴ디ㅏ.
+
+	<c:if test="${insertCnt == 1}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		swal("정상적으로 벌점 등록 되었습니다.").then((okay) => {
+			  if (okay) {
+				  window.location='dormitory';	
+				  }
+				});
+		</script>	
 	</c:if>
 </body>
 </html>

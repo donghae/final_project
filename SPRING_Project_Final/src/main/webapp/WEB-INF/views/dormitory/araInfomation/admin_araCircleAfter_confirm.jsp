@@ -9,18 +9,24 @@
 </head>
 <body>
 	<c:if test="${updateCnt == 0}">
-		<script type="text/javascript">
-			alert("동아리 수정이 취소 되었습니다." +"\n" + "다시 시도해 주세요");
-			window.location="araCircleBefore";
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+			<script type="text/javascript">
+			swal("동아리 수정이 취소 되었습니다." +"\n" + "다시 시도해 주세요").then((okay) => {
+				  if (okay) {
+					  window.location="araCircleBefore";
+					  }
+					});
 		</script>
 	</c:if>
 
 	<c:if test="${updateCnt == 1}">
-		<script type="text/javascript">
-			setTimeout(function(){
-				alert("동아리 수정이 정상 처리되었습니다.");
-				window.location='stu_infomation';				
-			}, 1000)	
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+			<script type="text/javascript">
+			swal("동아리 수정이 정상 처리되었습니다.").then((okay) => {
+				  if (okay) {
+					  window.location='stu_infomation';
+					  }
+					});
 		</script>	
 	</c:if>
 </body>

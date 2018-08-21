@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.projectFinal.LIVO.BookLoanVO;
 import com.spring.projectFinal.LIVO.BookVO;
 import com.spring.projectFinal.LIVO.SeatVO;
+import com.spring.projectFinal.LIVO.SituationVO;
 
 @Repository
 public class LIDAOImpl implements LIDAO {
@@ -191,14 +192,24 @@ public class LIDAOImpl implements LIDAO {
 
 	//도서 반납,연장
 	@Override
-	public int loanupdate(BookLoanVO bloanVO) {
+	public int loanreturn(BookLoanVO bloanVO) {
 		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
-		int updateCnt = lidao.loanupdate(bloanVO);
+		int updateCnt = lidao.loanreturn(bloanVO);
 		
 		return updateCnt;
 	}
 
 
+	//도서 반납,연장
+	@Override
+	public int loanrenew(BookLoanVO bloanVO) {
+		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
+		int updateCnt = lidao.loanrenew(bloanVO);
+		
+		return updateCnt;
+	}
+
+	
 	
 	//도서 검색
 	@Override
@@ -297,6 +308,16 @@ public class LIDAOImpl implements LIDAO {
 		ArrayList<BookLoanVO> bloanVOs = lidao.myloan(user_no);
 	
 		return bloanVOs;
+	}
+
+
+	//도서 현황 : 카테고리별 도서 개수
+	@Override
+	public ArrayList<SituationVO> bookCateSum() {
+		LIDAO lidao = sqlSession.getMapper(LIDAO.class);
+		ArrayList<SituationVO> bookcateCnt = lidao.bookCateSum();
+	
+		return bookcateCnt;
 	}
 
 
